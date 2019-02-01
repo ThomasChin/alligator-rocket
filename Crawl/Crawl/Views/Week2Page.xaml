@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Crawl.Views.Week2Page">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+            <StackLayout 
+                HorizontalOptions="Center" 
+                VerticalOptions="Start"
+                Orientation="Vertical">
+
+                <Image 
+                    Source="https://media.istockphoto.com/vectors/friendly-narwhal-vector-id174160137" 
+                    VerticalOptions="Center" 
+                    HeightRequest="150"
+                    HorizontalOptions="Fill"/>
+
+                <Label 
+                    FontSize="Large"
+                    Text="Horn Wars"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+
+            <StackLayout>
+            <Button Text="History/Score"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="HistoryButton_Command"/>
+                   
+                 <Button Text="Characters"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="CharacterButton_Command"/>
+                    
+                <Button Text="Items"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="ItemsButton_Command"/>
+                        
+            </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
