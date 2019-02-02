@@ -20,6 +20,8 @@ namespace Crawl.Models
         // Constructor for Item called if needed to create a new item with set values.
         public Character(string name, int age)
         {
+            Attribute = new AttributeBase();
+            Alive = true;
             Name = name;
             Age = age;
         }
@@ -28,6 +30,8 @@ namespace Crawl.Models
         {
             Name = name;
             Age = age;
+            Attribute = new AttributeBase();
+            Alive = true;
             Attribute.Attack = Attack;
             Attribute.Defense = Defense;
             Attribute.Speed = Speed;
@@ -279,7 +283,7 @@ namespace Crawl.Models
         }
 
         // Walk all the Items on the 
-        .
+        
         // Add together all Items that modify the Attribute Enum Passed in
         // Return the sum
         public int GetItemBonus(AttributeEnum attributeEnum)

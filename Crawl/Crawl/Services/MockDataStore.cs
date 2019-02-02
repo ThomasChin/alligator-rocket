@@ -56,7 +56,7 @@ namespace Crawl.Services
             _itemDataset.Add(new Item("Laser Horn", "This is self-explanatory",
                 "http://www.clipartbest.com/cliparts/7Ta/6G6/7Ta6G6MGc.jpg", 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
-            _characterDataset.Add(new Character("Thomas", 30));
+            _characterDataset.Add(new Character("Thomas", 30, 10, 10, 10));
             _characterDataset.Add(new Character("George", 35));
             _characterDataset.Add(new Character("Laura", 19));
             _characterDataset.Add(new Character("Char", 18));

@@ -47,7 +47,7 @@
 				<Label Text="Attack : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
-				<Label Text="{Binding Data.Attack}" 
+				<Label Text="{Binding Data.Attribute.Attack}" 
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
@@ -58,7 +58,7 @@
 				<Label Text="Defense : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
-				<Label Text="{Binding Data.Defense}" 
+				<Label Text="{Binding Data.Attribute.Defense}" 
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
@@ -69,7 +69,7 @@
 				<Label Text="Speed : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
-				<Label Text="{Binding Data.Speed}" 
+				<Label Text="{Binding Data.Attribute.Speed}" 
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
@@ -77,10 +77,10 @@
 			<StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
-				<Label Text="EXP : " 
+				<Label Text="Max Health : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
-				<Label Text="{Binding Data.Attack}" 
+				<Label Text="{Binding Data.Attribute.MaxHealth}" 
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
