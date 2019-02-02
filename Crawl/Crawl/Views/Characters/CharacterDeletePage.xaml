@@ -1,14 +1,7 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Crawl.Views.CharacterDeletePage"
-            Title="{Binding Title}">
-
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
-    </ContentPage.ToolbarItems>
+             x:Class="Crawl.Views.CharacterDeletePage">
 
     <ScrollView>
         <StackLayout 
@@ -17,7 +10,7 @@
             Spacing="20"
             Padding="15">
 
-            <Label Text="Characters Delete Page" FontSize="Medium" />
+            <Label Text="Delete Character?" FontSize="Medium" />
 
             <StackLayout
                 Orientation="Horizontal"
@@ -33,7 +26,7 @@
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
-                <Label Text="Age : " 
+                <Label Text="Class : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Age}" 
@@ -41,6 +34,57 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
             
+            <Label Text="Stats:" FontSize="Medium" FontAttributes="Bold" />
+            
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
+                <Label Text="Attack : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+                <Label Text="{Binding Data.Attribute.Attack}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
+                <Label Text="Defense : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+                <Label Text="{Binding Data.Attribute.Defense}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
+                <Label Text="Speed : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+                <Label Text="{Binding Data.Attribute.Speed}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
+                <Label Text="Max Health : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+                <Label Text="{Binding Data.Attribute.MaxHealth}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+            
+            <StackLayout Grid.Row="2" Grid.Column="1">
+            <Button Text="Yes, Delete"
+                    HorizontalOptions="Center"
+                    Clicked="Delete_Clicked"/>
+            </StackLayout>  
         </StackLayout>
     </ScrollView>
 </ContentPage>

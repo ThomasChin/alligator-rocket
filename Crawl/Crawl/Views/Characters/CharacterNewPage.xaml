@@ -13,7 +13,6 @@
                     RowSpacing="1"
                     ColumnSpacing="2"
                     VerticalOptions="Center">
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
