@@ -57,7 +57,50 @@
                             Margin="0" 
                             VerticalOptions="Center"/>
                     </StackLayout>
-                </Grid>
+
+					<!-- Attack Attribute -->
+					<StackLayout Grid.Row="2" Grid.Column="0">
+						<Label 
+                            Text="Attack" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+					</StackLayout>
+					<StackLayout Grid.Row="2" Grid.Column="1">
+						<Label Text="{Binding Data.Attribute.Attack}" 
+						FontSize="Medium" 
+						HorizontalOptions="Center"/>
+					</StackLayout>
+
+					<!-- Defense Attribute -->
+					<StackLayout Grid.Row="3" Grid.Column="0">
+						<Label 
+                            Text="Defense" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+					</StackLayout>
+					<StackLayout Grid.Row="3" Grid.Column="1">
+						<Label Text="{Binding Data.Attribute.Defense}" 
+						FontSize="Medium" 
+						HorizontalOptions="Center"/>
+					</StackLayout>
+
+					<!-- Speed Attribute -->
+					<StackLayout Grid.Row="4" Grid.Column="0">
+						<Label 
+                            Text="Defense" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+					</StackLayout>
+					<StackLayout Grid.Row="4" Grid.Column="1">
+						<Label Text="{Binding Data.Attribute.Speed}" 
+						FontSize="Medium" 
+						HorizontalOptions="Center"/>
+					</StackLayout>
+
+				</Grid>
 
             </StackLayout>
         </ScrollView>
