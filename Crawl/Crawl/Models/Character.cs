@@ -24,6 +24,15 @@ namespace Crawl.Models
             Age = age;
         }
 
+        public Character(string name, int age, int Attack, int Defense, int Speed)
+        {
+            Name = name;
+            Age = age;
+            Attribute.Attack = Attack;
+            Attribute.Defense = Defense;
+            Attribute.Speed = Speed;
+        }
+
         // Make sure Attribute is instantiated in the constructor
         public Character(string v)
         {
@@ -269,7 +278,8 @@ namespace Crawl.Models
             return myReturn;
         }
 
-        // Walk all the Items on the Character.
+        // Walk all the Items on the 
+        .
         // Add together all Items that modify the Attribute Enum Passed in
         // Return the sum
         public int GetItemBonus(AttributeEnum attributeEnum)
