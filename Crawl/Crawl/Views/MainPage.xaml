@@ -4,6 +4,17 @@
             xmlns:views="clr-namespace:Crawl.Views"
             x:Class="Crawl.Views.MainPage">
     <TabbedPage.Children>
+        <NavigationPage Title="Manage">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:ManagePage />
+            </x:Arguments>
+        </NavigationPage>
+        
         <NavigationPage Title="About">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -36,16 +47,6 @@
                 <views:OpeningPage />
             </x:Arguments>
         </NavigationPage>
-
-        <NavigationPage Title="Manage">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_feed.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
-            <x:Arguments>
-                <views:ManagePage />
-            </x:Arguments>
-        </NavigationPage>
+        
     </TabbedPage.Children>
 </TabbedPage>
