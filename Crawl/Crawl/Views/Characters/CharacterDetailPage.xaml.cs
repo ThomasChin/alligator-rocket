@@ -36,7 +36,6 @@ namespace Crawl.Views
             BindingContext = _viewModel;
         }
 
-
         public async void Edit_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CharacterEditPage(_viewModel));

@@ -85,6 +85,17 @@
                     HorizontalOptions="Center"/>
 			</StackLayout>
 
+			<StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
+				<Label Text="Max Health : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+				<Label Text="{Binding Data.ExperienceTotal}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+			</StackLayout>
+
 		</StackLayout>
     </ScrollView>
 </ContentPage>
