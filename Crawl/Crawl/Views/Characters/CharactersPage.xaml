@@ -25,7 +25,6 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-
                             <StackLayout Padding="10"
                                          Orientation="Horizontal"
                                          VerticalOptions="Start"
@@ -34,11 +33,11 @@
                                 <StackLayout>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" 
-                                           LineBreakMode="NoWrap" 
+                                           LineBreakMode="WordWrap"
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
                                         <Label Text="{Binding Age}" 
-                                           LineBreakMode="NoWrap" 
+                                           LineBreakMode="WordWrap"
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
                                     </StackLayout>
