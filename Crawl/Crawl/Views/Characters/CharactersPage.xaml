@@ -31,13 +31,6 @@
                                          VerticalOptions="Start"
                                          HorizontalOptions="Start">
 
-                                <Image Source="{Binding ImageURI}"
-                                       WidthRequest="50"
-                                       HeightRequest="50" 
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"/>
-
-
                                 <StackLayout>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" 
@@ -49,9 +42,9 @@
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
                                     </StackLayout>
-                                </StackLayout>
-                                
+                                </StackLayout> 
                             </StackLayout>
+                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

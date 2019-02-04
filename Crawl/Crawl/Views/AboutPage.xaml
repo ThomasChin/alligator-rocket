@@ -27,26 +27,14 @@
             Orientation="Vertical">
 
                     <Image 
-                Source="d20.png" 
+                Source="https://media.istockphoto.com/vectors/friendly-narwhal-vector-id174160137" 
                 VerticalOptions="Center" 
                 HeightRequest="150"
                 HorizontalOptions="Fill"/>
 
                     <Label 
                 FontSize="Large"
-                Text="Thomas Chin"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
-
-                    <Label 
-                FontSize="Medium"
-                Text="Mobile Development Week 2"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
-
-                    <Label 
-                FontSize="Small"
-                Text="1/17/19"
+                Text="Horn Wars"
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" />
 
