@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\RoundEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\TurnEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Attribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BaseClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Character.cs" />

@@ -100,6 +100,20 @@
 						HorizontalOptions="Center"/>
 					</StackLayout>
 
+					<!-- Speed Attribute -->
+					<StackLayout Grid.Row="5" Grid.Column="0">
+						<Label 
+                            Text="EXP:" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+					</StackLayout>
+					<StackLayout Grid.Row="5" Grid.Column="1">
+						<Label Text="{Binding Data.Attribute.ExperienceTotal}" 
+						FontSize="Medium" 
+						HorizontalOptions="Center"/>
+					</StackLayout>
+
 				</Grid>
 
             </StackLayout>
