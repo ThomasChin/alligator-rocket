@@ -19,6 +19,9 @@ namespace Crawl.Models
             Alive = true;
             Name = "Default"; 
             Class = new KnightClass();
+
+            Level = 1;
+            ExperienceTotal = 0;
         }
 
         //Main character constructor. "Rolls" stats based on class type.
@@ -28,11 +31,11 @@ namespace Crawl.Models
             Alive = true;
             Name = name;
             Class = classType;
+
             Level = 1;
             ExperienceTotal = 0;
 
             //TODO: ADD math in here to roll the stats based on class starting stats
-
             Attribute.MaxHealth = Class.baseHealth;
             Attribute.Attack = Class.baseAttack;
             Attribute.Defense = Class.baseDefense;
@@ -102,8 +105,14 @@ namespace Crawl.Models
         // Updates the attribute string
         public void Update(Character newData)
         {
+            Attribute.Attack = newData.Attribute.Attack;
+            Attribute.Defense = newData.Attribute.Defense;
+            Attribute.MaxHealth = newData.Attribute.MaxHealth;
+            Attribute.Speed = newData.Attribute.Speed;
 
-            // Implement
+            Level = newData.Level;
+            ExperienceTotal = newData.Level;
+
             return;
         }
 
@@ -156,7 +165,6 @@ namespace Crawl.Models
             return myReturn;
         }
 
-        // Get Speed
         public int GetSpeed()
         {
             // Base value
@@ -171,7 +179,6 @@ namespace Crawl.Models
             return myReturn;
         }
 
-        // Get Defense
         public int GetDefense()
         {
             // Base value
@@ -186,7 +193,6 @@ namespace Crawl.Models
             return myReturn;
         }
 
-        // Get Max Health
         public int GetHealthMax()
         {
             // Base value
@@ -199,7 +205,6 @@ namespace Crawl.Models
             return myReturn;
         }
 
-        // Get Current Health
         public int GetHealthCurrent()
         {
             // Base value
@@ -212,8 +217,7 @@ namespace Crawl.Models
             return myReturn;
         }
 
-        // Returns the Dice for the item
-        // Sword 10, is Sword Dice 10
+        // Returns the Dice for the itemm Sword 10, is Sword Dice 10
         public int GetDamageDice()
         {
             var myReturn = 0;
@@ -314,7 +318,13 @@ namespace Crawl.Models
         // monsters give experience to characters.  Characters don't accept expereince from monsters
         public void TakeDamage(int damage)
         {
-            // Implement
+            if((Attribute.CurrentHealth - damage) < 0)
+            {
+                Attribute.CurrentHealth = 0;
+                Alive = false;
+
+                //TODO: ADD DROPS HERE
+            }
         }
     }
 }

@@ -23,13 +23,24 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
-            <StackLayout
+			<StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
-                <Label Text="Class : " 
+				<Label Text="Class : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Age}" 
+				<Label Text="{Binding Data.Class.name}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+			</StackLayout>
+
+			<StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
+                <Label Text="Level : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+                <Label Text="{Binding Data.Level}" 
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
             </StackLayout>

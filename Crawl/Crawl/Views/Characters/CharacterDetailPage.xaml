@@ -33,6 +33,17 @@
 			<StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
+				<Label Text="Class : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+				<Label Text="{Binding Data.Class.name}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+			</StackLayout>
+
+			<StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
 				<Label Text="Attack : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
@@ -77,6 +88,17 @@
 			<StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
+				<Label Text="Level : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+				<Label Text="{Binding Data.Level}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+			</StackLayout>
+
+			<StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
 				<Label Text="EXP : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
@@ -85,16 +107,6 @@
                     HorizontalOptions="Center"/>
 			</StackLayout>
 
-			<StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-				<Label Text="Class : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-				<Label Text="{Binding Data.Class.name}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-			</StackLayout>
 
 		</StackLayout>
     </ScrollView>

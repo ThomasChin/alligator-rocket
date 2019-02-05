@@ -36,6 +36,10 @@
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16" />
+					<Label Text="Level:"
+                       LineBreakMode="WordWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="16" />
                     <Label Text="{Binding Level}"
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"

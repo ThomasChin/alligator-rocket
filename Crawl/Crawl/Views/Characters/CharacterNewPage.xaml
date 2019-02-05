@@ -36,7 +36,7 @@
                     </StackLayout>
 
 					<!-- Save Button -->
-					<StackLayout Grid.Row="2" Grid.Column="1">
+					<StackLayout Grid.Row="1" Grid.Column="1">
                     <Button Text="Proceed with Narwhal Knighting Ceremony"
                             HorizontalOptions="Center"
                             Clicked="Save_Clicked" 

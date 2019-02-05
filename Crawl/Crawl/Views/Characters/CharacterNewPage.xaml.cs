@@ -19,7 +19,6 @@ namespace Crawl.Views
             Data = new Character
             {
                 Name = "Doug",
-                Age = 20,
                 Id = Guid.NewGuid().ToString()
             };
 
@@ -28,7 +27,7 @@ namespace Crawl.Views
 
         public async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddData", Data);
+            MessagingCenter.Send(this, "AddData", new Character(Data.Name, Data.Class));
             await Navigation.PopAsync();
         }
 
