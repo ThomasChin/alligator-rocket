@@ -58,8 +58,8 @@ namespace Crawl.Services
 
             _characterDataset.Add(new Character("Thomas", 30, 10, 10, 10));
             _characterDataset.Add(new Character("George", 35, new KnightClass()));
-            _characterDataset.Add(new Character("Laura", 19, new KnightClass()));
-            _characterDataset.Add(new Character("Char", 18, new KnightClass()));
+            _characterDataset.Add(new Character("Laura", 19, new AssasinClass()));
+            _characterDataset.Add(new Character("Char", 18, new MageClass()));
             // Implement Monsters
 
             // Implement Scores

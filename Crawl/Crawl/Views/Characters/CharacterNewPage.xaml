@@ -55,7 +55,21 @@
                             Clicked="Save_Clicked" 
                              />
                     </StackLayout>  
-                </Grid>
+					
+					<!-- Class -->
+					<StackLayout Grid.Row="2" Grid.Column="0">
+						<Picker Title="Class"
+						VerticalOptions="CenterAndExpand"
+						Margin="10, 0"
+						SelectedIndexChanged="OnPickerSelectedIndexChanged">
+							<Picker.Items>
+								<x:String>Knight</x:String>
+								<x:String>Mage</x:String>
+								<x:String>Assasin</x:String>
+							</Picker.Items>
+						</Picker>
+					</StackLayout>
+				</Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

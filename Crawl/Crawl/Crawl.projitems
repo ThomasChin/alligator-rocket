@@ -40,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\HelperEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\RoundEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\TurnEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AssasinClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Attribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseEntity.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\KnightClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LevelTable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseMonster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MageClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Round.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Turn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />

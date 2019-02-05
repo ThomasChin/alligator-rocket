@@ -36,5 +36,19 @@ namespace Crawl.Views
         {
             await Navigation.PopAsync();
         }
+
+        void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+
+            if (picker.SelectedIndex == 0)
+                Data.Class = new KnightClass();
+
+            if (picker.SelectedIndex == 1)
+                Data.Class = new MageClass();
+
+            if (picker.SelectedIndex == 2)
+                Data.Class = new AssasinClass();
+        }
     }
 }
