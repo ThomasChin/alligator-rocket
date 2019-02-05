@@ -4,11 +4,12 @@ using System.Text;
 
 namespace Crawl.Models
 {
-    public class KnightClass : BaseClass
+    class KnightClass : BaseClass
     {
-        int baseHealth = 10;
-        int baseAttack = 10;
-        int baseDefense = 8;
-        int baseSpeed = 5;
+        public override string name { get { return "Knight"; } }
+        public override int baseHealth { get { return 6; } }
+        public override int baseAttack { get { return 6; } }
+        public override int baseDefense { get { return 6; } }
+        public override int baseSpeed { get { return 2; } }
     }
 }

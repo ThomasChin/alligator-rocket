@@ -6,22 +6,10 @@ namespace Crawl.Models
 {
     public class BaseClass
     {
-        int baseHealth = 10;
-        int baseAttack = 5;
-        int baseDefense = 5;
-        int baseSpeed = 10;
-
-        public int getBaseHealth() {
-            return baseHealth;
-        }
-        public int getBaseAttack() {
-            return baseHealth;
-        }
-        public int getBaseDefense() {
-            return baseHealth;
-        }
-        public int getBaseSpeed() {
-            return baseHealth;
-        }
+        public virtual string name { get { return "Base"; } }
+        public virtual int baseHealth { get { return 5; } }
+        public virtual int baseAttack { get { return 5; } }
+        public virtual int baseDefense { get { return 3; } }
+        public virtual int baseSpeed { get { return 2; } }
     }
 }

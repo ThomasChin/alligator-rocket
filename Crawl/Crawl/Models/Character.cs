@@ -10,7 +10,7 @@ namespace Crawl.Models
     {
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
-        public BaseClass Class;
+        public BaseClass Class { get; }
 
         //Returns a character with the default knight class.
         public Character()
@@ -22,13 +22,13 @@ namespace Crawl.Models
             Class = new KnightClass();
         }
 
-        // Constructor for Item called if needed to create a new item with set values.
-        public Character(string name, int age)
+        public Character(string name, int age, BaseClass classType)
         {
             Attribute = new AttributeBase();
             Alive = true;
             Name = name;
             Age = age;
+            Class = new KnightClass();
         }
 
         public Character(string name, int age, int Attack, int Defense, int Speed)
@@ -40,6 +40,7 @@ namespace Crawl.Models
             Attribute.Attack = Attack;
             Attribute.Defense = Defense;
             Attribute.Speed = Speed;
+            Class = new KnightClass();
         }
 
         // Make sure Attribute is instantiated in the constructor
