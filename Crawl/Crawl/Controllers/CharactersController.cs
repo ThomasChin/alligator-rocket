@@ -28,6 +28,5 @@ namespace Crawl.Controllers
 
         // Return the Default Image URI for the Local Image for an Item.
         public static string DefaultImageURI = "Item.png";
-
     }
 }
