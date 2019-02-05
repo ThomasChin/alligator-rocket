@@ -20,7 +20,6 @@ namespace Crawl.Models
             // Base information
             Name = newData.Name;
             Description = newData.Description;
-            Age = newData.Age;
             Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;

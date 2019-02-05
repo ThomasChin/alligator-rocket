@@ -7,9 +7,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
-                <Label Text="Character" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center"/>
-                <Label Text="Creation" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center"/>
-                <Grid
+				<Label Text="New Character" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center"/>
+				<Grid
                     RowSpacing="1"
                     ColumnSpacing="2"
                     VerticalOptions="Center">
@@ -20,7 +19,8 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackLayout Grid.Row="0" Grid.Column="0">
+					<!-- Name Entry -->
+					<StackLayout Grid.Row="0" Grid.Column="0">
                         <Label 
                             Text="Name" 
                             FontSize="Medium" 
@@ -35,21 +35,8 @@
                             VerticalOptions="Center"/>
                     </StackLayout>
 
-                    <StackLayout Grid.Row="1" Grid.Column="0">
-                        <Label 
-                            Text="Class" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="1">
-                        <Entry 
-                            Text="{Binding Data.Age}" 
-                            FontSize="Small" 
-                            Margin="0" 
-                            VerticalOptions="Center"/>
-                    </StackLayout>  
-                    <StackLayout Grid.Row="2" Grid.Column="1">
+					<!-- Save Button -->
+					<StackLayout Grid.Row="2" Grid.Column="1">
                     <Button Text="Proceed with Narwhal Knighting Ceremony"
                             HorizontalOptions="Center"
                             Clicked="Save_Clicked" 
@@ -57,10 +44,10 @@
                     </StackLayout>  
 					
 					<!-- Class -->
-					<StackLayout Grid.Row="2" Grid.Column="0">
+					<StackLayout Grid.Row="1" Grid.Column="0">
 						<Picker Title="Class"
 						VerticalOptions="CenterAndExpand"
-						Margin="10, 0"
+						Margin="30, 5"
 						SelectedIndexChanged="OnPickerSelectedIndexChanged">
 							<Picker.Items>
 								<x:String>Knight</x:String>
@@ -69,6 +56,8 @@
 							</Picker.Items>
 						</Picker>
 					</StackLayout>
+					
+					
 				</Grid>
             </StackLayout>
         </ScrollView>

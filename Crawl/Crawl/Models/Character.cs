@@ -28,6 +28,8 @@ namespace Crawl.Models
             Alive = true;
             Name = name;
             Class = classType;
+            Level = 1;
+            ExperienceTotal = 0;
 
             //TODO: ADD math in here to roll the stats based on class starting stats
 
