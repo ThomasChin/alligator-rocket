@@ -17,24 +17,29 @@ namespace Crawl.Models
         {
             Attribute = new AttributeBase();
             Alive = true;
-            Name = "Thomas"; 
-            Age = 10;
+            Name = "Default"; 
             Class = new KnightClass();
         }
 
-        public Character(string name, int age, BaseClass classType)
+        //Main character constructor. "Rolls" stats based on class type.
+        public Character(string name, BaseClass classType)
         {
             Attribute = new AttributeBase();
             Alive = true;
             Name = name;
-            Age = age;
             Class = classType;
+
+            //TODO: ADD math in here to roll the stats based on class starting stats
+
+            Attribute.MaxHealth = Class.baseHealth;
+            Attribute.Attack = Class.baseAttack;
+            Attribute.Defense = Class.baseDefense;
+            Attribute.Speed = Class.baseSpeed;
         }
 
-        public Character(string name, int age, int Attack, int Defense, int Speed)
+        public Character(string name, int Attack, int Defense, int Speed)
         {
             Name = name;
-            Age = age;
             Attribute = new AttributeBase();
             Alive = true;
             Attribute.Attack = Attack;
@@ -56,7 +61,6 @@ namespace Crawl.Models
         {
             // Base information
             Name = newData.Name;
-            Age = newData.Age;
             /*Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
@@ -84,7 +88,6 @@ namespace Crawl.Models
         public Character(string v, Character newData)
         {
             Name = newData.Name;
-            Age = newData.Age;
         }
 
         // Upgrades to a set level
