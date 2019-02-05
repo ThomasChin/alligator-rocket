@@ -4,88 +4,49 @@
              x:Class="Crawl.Views.CharactersPage"
               Title="{Binding Title}"
              x:Name="BrowseCharactersPage">
-	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" />
-	</ContentPage.ToolbarItems>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" />
+  </ContentPage.ToolbarItems>
 
-	<ContentPage.Content>
-		<StackLayout>
+  <ContentPage.Content>
+    <StackLayout>
 
-			<Label Text="Character List Page" FontSize="Small" />
+      <Label Text="Character List Page" FontSize="Small" />
 
-			<ListView x:Name="CharactersListView" 
-                ItemsSource="{Binding Dataset}"
-                VerticalOptions="FillAndExpand"
-                 HasUnevenRows="true"
-                 RefreshCommand="{Binding LoadItemsCommand}"
-                 IsPullToRefreshEnabled="true"
-                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                 CachingStrategy="RecycleElement"
-                 ItemSelected="OnItemSelected">
-<<<<<<< HEAD
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<ViewCell>
+      <ListView x:Name="CharactersListView"
+          ItemsSource="{Binding Dataset}"
+          VerticalOptions="FillAndExpand"
+           HasUnevenRows="true"
+           RefreshCommand="{Binding LoadItemsCommand}"
+           IsPullToRefreshEnabled="true"
+           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+           CachingStrategy="RecycleElement"
+           ItemSelected="OnItemSelected">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="10"
+                           Orientation="Horizontal"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start">
 
-							<StackLayout Padding="10"
-=======
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10"
->>>>>>> 76c59687bd82d570ab77f4b48e6d3e565b0fef56
-                                         Orientation="Horizontal"
-                                         VerticalOptions="Start"
-                                         HorizontalOptions="Start">
-
-<<<<<<< HEAD
-								<Image Source="{Binding ImageURI}"
-                                       WidthRequest="50"
-                                       HeightRequest="50" 
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"/>
-
-
-								<StackLayout>
-									<StackLayout Orientation="Horizontal">
-										<Label Text="{Binding Name}" 
-                                           LineBreakMode="NoWrap" 
-                                           Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16" />
-										<Label Text="{Binding Age}" 
-                                           LineBreakMode="NoWrap" 
-                                           Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16" />
-									</StackLayout>
-								</StackLayout>
-
-							</StackLayout>
-						</ViewCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-		</StackLayout>
-	</ContentPage.Content>
-=======
-                                <StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Name}" 
-                                           LineBreakMode="WordWrap"
-                                           Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16" />
-                                        <Label Text="{Binding Age}" 
-                                           LineBreakMode="WordWrap"
-                                           Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16" />
-                                    </StackLayout>
-                                </StackLayout> 
-                            </StackLayout>
-                            
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
->>>>>>> 76c59687bd82d570ab77f4b48e6d3e565b0fef56
+                <StackLayout>
+                  <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Name}"
+                       LineBreakMode="WordWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="16" />
+                    <Label Text="{Binding Age}"
+                       LineBreakMode="WordWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="16" />
+                  </StackLayout>
+                </StackLayout>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>
