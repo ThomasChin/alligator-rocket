@@ -22,6 +22,7 @@ namespace Crawl.Models
 
             Level = 1;
             ExperienceTotal = 0;
+            RollStats();
         }
 
         //Main character constructor. "Rolls" stats based on class type.
@@ -34,26 +35,19 @@ namespace Crawl.Models
 
             Level = 1;
             ExperienceTotal = 0;
-
-            //TODO: ADD math in here to roll the stats based on class starting stats
-            Attribute.MaxHealth = Class.baseHealth;
-            Attribute.Attack = Class.baseAttack;
-            Attribute.Defense = Class.baseDefense;
-            Attribute.Speed = Class.baseSpeed;
+            RollStats();
         }
 
-        public Character(string name, int Attack, int Defense, int Speed)
+        private void RollStats()
         {
-            Name = name;
-            Attribute = new AttributeBase();
-            Alive = true;
-            Attribute.Attack = Attack;
-            Attribute.Defense = Defense;
-            Attribute.Speed = Speed;
-            Class = new KnightClass();
+            //TODO: ADD more complex math in here to roll the stats based on class starting stats
+            Random r = new Random();
+            Attribute.MaxHealth = Class.baseHealth + r.Next(-1, 1);
+            Attribute.Attack = Class.baseAttack + r.Next(-1, 1);
+            Attribute.Defense = Class.baseDefense + r.Next(-1, 1);
+            Attribute.Speed = Class.baseSpeed + r.Next(-1, 1);
         }
 
-        // Make sure Attribute is instantiated in the constructor
         public Character(string v)
         {
             Attribute = new AttributeBase();
