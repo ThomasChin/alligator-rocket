@@ -11,8 +11,6 @@
   <ContentPage.Content>
     <StackLayout>
 
-      <Label Text="Character List Page" FontSize="Small" />
-
       <ListView x:Name="CharactersListView"
           ItemsSource="{Binding Dataset}"
           VerticalOptions="FillAndExpand"
@@ -32,16 +30,20 @@
 
                 <StackLayout>
                   <StackLayout Orientation="Horizontal">
+                    <Label Text="Name:"
+                       LineBreakMode="WordWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="16" />
                     <Label Text="{Binding Name}"
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"
 					   FontAttributes="Bold"
                        FontSize="16" />
-					<Label Text="Level:"
+					<Label Text="Class:"
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16" />
-                    <Label Text="{Binding Level}"
+                    <Label Text="{Binding Class.name}"
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16" />
