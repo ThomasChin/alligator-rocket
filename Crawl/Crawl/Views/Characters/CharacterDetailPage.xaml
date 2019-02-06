@@ -44,6 +44,17 @@
 			<StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
+				<Label Text="Max Health : " 
+                   FontSize="Medium" 
+                   HorizontalOptions="Start"/>
+				<Label Text="{Binding Data.Attribute.MaxHealth}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+			</StackLayout>
+
+			<StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Start">
 				<Label Text="Attack : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
@@ -70,17 +81,6 @@
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.Speed}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-			</StackLayout>
-
-			<StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-				<Label Text="Max Health : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-				<Label Text="{Binding Data.Attribute.MaxHealth}" 
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
 			</StackLayout>

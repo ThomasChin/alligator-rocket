@@ -14,8 +14,6 @@
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
 
-                <Label Text="Character Edit Page" FontSize="Small" />
-
                 <Grid
                     RowSpacing="1"
                     ColumnSpacing="2"
@@ -43,44 +41,47 @@
                             VerticalOptions="Center"/>
 					</StackLayout>
 
-					<!-- Attack Attribute -->
+					<!-- Health Attribute -->
 					<StackLayout Grid.Row="1" Grid.Column="0">
 						<Label 
-                            Text="Attack" 
+                            Text="Health:" 
                             FontSize="Medium" 
                             HorizontalOptions="Start"
+							FontAttributes="Bold"
                             VerticalOptions="Center"/>
 					</StackLayout>
 					<StackLayout Grid.Row="1" Grid.Column="1">
+						<Label Text="{Binding Data.Attribute.MaxHealth}" 
+						FontSize="Medium" 
+						HorizontalOptions="Center"/>
+					</StackLayout>
+
+					<!-- Attack Attribute -->
+					<StackLayout Grid.Row="2" Grid.Column="0">
+						<Label 
+                            Text="Attack:" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+							FontAttributes="Bold"
+                            VerticalOptions="Center"/>
+					</StackLayout>
+					<StackLayout Grid.Row="2" Grid.Column="1">
 						<Label Text="{Binding Data.Attribute.Attack}" 
 						FontSize="Medium" 
 						HorizontalOptions="Center"/>
 					</StackLayout>
 
 					<!-- Defense Attribute -->
-					<StackLayout Grid.Row="2" Grid.Column="0">
-						<Label 
-                            Text="Defense" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"/>
-					</StackLayout>
-					<StackLayout Grid.Row="2" Grid.Column="1">
-						<Label Text="{Binding Data.Attribute.Defense}" 
-						FontSize="Medium" 
-						HorizontalOptions="Center"/>
-					</StackLayout>
-
-					<!-- Speed Attribute -->
 					<StackLayout Grid.Row="3" Grid.Column="0">
 						<Label 
-                            Text="Defense" 
+                            Text="Defense:" 
                             FontSize="Medium" 
                             HorizontalOptions="Start"
+							FontAttributes="Bold"
                             VerticalOptions="Center"/>
 					</StackLayout>
 					<StackLayout Grid.Row="3" Grid.Column="1">
-						<Label Text="{Binding Data.Attribute.Speed}" 
+						<Label Text="{Binding Data.Attribute.Defense}" 
 						FontSize="Medium" 
 						HorizontalOptions="Center"/>
 					</StackLayout>
@@ -88,17 +89,44 @@
 					<!-- Speed Attribute -->
 					<StackLayout Grid.Row="4" Grid.Column="0">
 						<Label 
-                            Text="EXP:" 
+                            Text="Speed:" 
                             FontSize="Medium" 
                             HorizontalOptions="Start"
+							FontAttributes="Bold"
                             VerticalOptions="Center"/>
 					</StackLayout>
 					<StackLayout Grid.Row="4" Grid.Column="1">
-						<Label Text="{Binding Data.Attribute.ExperienceTotal}" 
+						<Label Text="{Binding Data.Attribute.Speed}" 
 						FontSize="Medium" 
 						HorizontalOptions="Center"/>
 					</StackLayout>
 
+					<!-- Speed Attribute -->
+					<StackLayout Grid.Row="5" Grid.Column="0">
+						<Label 
+                            Text="EXP:" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+							FontAttributes="Bold"
+                            VerticalOptions="Center"/>
+					</StackLayout>
+					<StackLayout Grid.Row="5" Grid.Column="1">
+						<Label Text="{Binding Data.ExperienceTotal}" 
+						FontSize="Medium" 
+						HorizontalOptions="Center"/>
+					</StackLayout>
+
+					<!-- Reroll Base Attributes -->
+					<StackLayout Grid.Row="6" Grid.Column="1">
+						<Button Text ="ReRoll"
+							BackgroundColor = "Accent"
+							BorderRadius = "10"
+							BorderWidth = "2"
+							BorderColor = "Black"
+							Clicked = "ReRollButton_Clicked"
+							HorizontalOptions = "Center"/>		
+					</StackLayout>
+					
 				</Grid>
 
             </StackLayout>

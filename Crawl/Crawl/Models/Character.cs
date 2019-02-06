@@ -48,6 +48,12 @@ namespace Crawl.Models
             Attribute.Speed = Class.baseSpeed + r.Next(-1, 1);
         }
 
+        public void ReRollStats()
+        {
+            RollStats();
+            ScaleLevel(Level);
+        }
+
         public Character(string v)
         {
             Attribute = new AttributeBase();
@@ -211,7 +217,7 @@ namespace Crawl.Models
             return myReturn;
         }
 
-        // Returns the Dice for the itemm Sword 10, is Sword Dice 10
+        // Returns the Dice for the item Sword 10, is Sword Dice 10
         public int GetDamageDice()
         {
             var myReturn = 0;

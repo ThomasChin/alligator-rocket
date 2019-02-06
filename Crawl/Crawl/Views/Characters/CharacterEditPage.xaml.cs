@@ -23,7 +23,6 @@ namespace Crawl.Views
 
             InitializeComponent();
             
-
             // Set the data binding for the page
             BindingContext = _viewModel = viewModel;
         }
@@ -53,5 +52,16 @@ namespace Crawl.Views
         {
             await Navigation.PopAsync();
         }
+
+        private async void ReRollButton_Clicked(object sender, EventArgs e)
+        {
+            Data.ReRollStats();
+            MessagingCenter.Send(this, "EditData", Data);
+
+            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+            await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(Data)));
+            Navigation.RemovePage(this);
+        }
+
     }
 }
