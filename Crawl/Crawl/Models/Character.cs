@@ -48,12 +48,14 @@ namespace Crawl.Models
             Level = 1;
             ExperienceTotal = 0;
             RollStats();
-            Head = "test";
-            Feet = "test";
-            Necklass = "test";
-            RightFinger = "test";
-            LeftFinger = "test";
-            Feet = "test";
+            Head = "None";
+            Feet = "None";
+            Necklass = "None";
+            PrimaryHand = "None";
+            OffHand = "None";
+            RightFinger = "None";
+            LeftFinger = "None";
+            Feet = "None";
         }
 
         //Main character constructor. "Rolls" stats based on class type.
@@ -67,14 +69,14 @@ namespace Crawl.Models
             Level = 1;
             ExperienceTotal = 0;
             RollStats();
-            Head = "test";
-            Feet = "test";
-            Necklass = "test";
+            Head = "None";
+            Feet = "None";
+            Necklass = "None";
             PrimaryHand = "None";
             OffHand = "None";
-            RightFinger = "test";
-            LeftFinger = "test";
-            Feet = "test";
+            RightFinger = "None";
+            LeftFinger = "None";
+            Feet = "None";
         }
 
         private void RollStats()

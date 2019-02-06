@@ -107,7 +107,8 @@
                     HorizontalOptions="Center"/>
 			</StackLayout>
             
-            <Label Text="Items:" 
+            <Label Text="Items:"
+               FontAttributes="Bold"
                FontSize="Medium" 
                HorizontalOptions="Start"/>
             

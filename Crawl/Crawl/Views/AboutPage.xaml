@@ -4,7 +4,7 @@
              x:Class="Crawl.Views.AboutPage"
              xmlns:vm="clr-namespace:Crawl.ViewModels;"
              xmlns:documents="clr-namespace:Windows.UI.Xaml.Documents;assembly=Windows.Foundation.UniversalApiContract"
-             Title="{Binding Title}">
+             Title="Home">
 
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
