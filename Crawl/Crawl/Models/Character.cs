@@ -12,6 +12,31 @@ namespace Crawl.Models
         public AttributeBase Attribute { get; set; }
         public BaseClass Class { get; set; }
 
+        //Array represents the 20 character levels and relative stats
+        //Format: EXP, Attack, Defense, Speed
+        int[,] Levels =  {
+               {0     ,1,1,1},
+               {300   ,1,2,1},
+               {900   ,2,3,1},
+               {2700  ,2,3,1},
+               {6500  ,2,4,2},
+               {14000 ,3,4,2},
+               {23000 ,3,5,2},
+               {34000 ,3,5,2},
+               {48000 ,3,5,2},
+               {64000 ,4,6,3},
+               {85000 ,4,6,3},
+               {100000,4,6,3},
+               {120000,4,7,3},
+               {140000,5,7,3},
+               {165000,5,7,4},
+               {195000,5,8,4},
+               {225000,5,8,4},
+               {265000,6,8,4},
+               {305000,7,9,4},
+               {355000,8,10,5}
+          };
+
         //Returns a character with the default knight class.
         public Character()
         {
@@ -96,9 +121,17 @@ namespace Crawl.Models
         }
 
         // Upgrades to a set level
-        public void ScaleLevel(int level)
+        public void ScaleLevel(int newLevel)
         {
-            // Implement
+            Attribute.Attack = Class.baseAttack + Levels[newLevel - 1, 1];
+            Attribute.Defense = Class.baseDefense + Levels[newLevel - 1, 2];
+            Attribute.Speed = Class.baseAttack + Levels[newLevel - 1, 3];
+
+            //Add code to roll health stats
+            for(int i = Level; i <= newLevel; i++)
+            {
+                
+            }
         }
 
         // Update the character information
