@@ -15,6 +15,7 @@ namespace Crawl.Views
         // ReSharper disable once FieldCanBeMadeReadOnly.Local
         private MonsterDetailViewModel _viewModel;
 
+        // Page constructor
         public MonsterDetailPage(MonsterDetailViewModel viewModel)
         {
             InitializeComponent();
@@ -22,30 +23,19 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
-        public MonsterDetailPage()
-        {
-            InitializeComponent();
-
-            var data = new Monster
-            {
-                Name = "Item 1",
-                Description = "This is an item description."
-            };
-
-            _viewModel = new MonsterDetailViewModel(data);
-            BindingContext = _viewModel;
-        }
-
+        // Redirect to MonsterEditPage
         private async void Edit_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MonsterEditPage(_viewModel));
         }
 
+        // Redirect to MonsterDeletePage
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MonsterDeletePage(_viewModel));
         }
 
+        // Redirect back to Monster Index
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
