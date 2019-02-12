@@ -10,7 +10,6 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
 
@@ -101,21 +100,6 @@
 						HorizontalOptions="Center"/>
 					</StackLayout>
 
-					<!-- Speed Attribute -->
-					<StackLayout Grid.Row="5" Grid.Column="0">
-						<Label 
-                            Text="EXP:" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-							FontAttributes="Bold"
-                            VerticalOptions="Center"/>
-					</StackLayout>
-					<StackLayout Grid.Row="5" Grid.Column="1">
-						<Label Text="{Binding Data.ExperienceTotal}" 
-						FontSize="Medium" 
-						HorizontalOptions="Center"/>
-					</StackLayout>
-
 					<!-- Reroll Base Attributes -->
 					<StackLayout Grid.Row="6" Grid.Column="1">
 						<Button Text ="ReRoll"
@@ -126,12 +110,8 @@
 							Clicked = "ReRollButton_Clicked"
 							HorizontalOptions = "Center"/>		
 					</StackLayout>
-					
 				</Grid>
-
             </StackLayout>
         </ScrollView>
-
     </ContentPage.Content>
-
 </ContentPage>

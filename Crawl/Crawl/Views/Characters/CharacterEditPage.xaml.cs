@@ -13,8 +13,10 @@ namespace Crawl.Views
 	    // ReSharper disable once NotAccessedField.Local
 	    private CharacterDetailViewModel _viewModel;
 
+        // Character Data get/set
         public Character Data { get; set; }
 
+        // Screen Page Constructor
         public CharacterEditPage(CharacterDetailViewModel viewModel)
         {
             // Save off the item
@@ -48,20 +50,20 @@ namespace Crawl.Views
             Navigation.RemovePage(this);
         }
 
+        // Redirect to CharacterPage
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
 
+        // Reroll Character Stats and return to 
         private async void ReRollButton_Clicked(object sender, EventArgs e)
         {
             Data.ReRollStats();
             MessagingCenter.Send(this, "EditData", Data);
 
-            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-            await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(Data)));
             Navigation.RemovePage(this);
+            await Navigation.PushAsync(new CharacterEditPage(_viewModel));
         }
-
     }
 }
