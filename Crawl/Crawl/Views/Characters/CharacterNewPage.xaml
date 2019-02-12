@@ -8,64 +8,51 @@
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
                 <Label Text="New Character" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center"/>
-                <Grid
-                    RowSpacing="1"
-                    ColumnSpacing="2"
-                    VerticalOptions="Center">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Name Entry -->
-                    <StackLayout Grid.Row="0" Grid.Column="0">
-                        <Label 
-                            Text="Name: " 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start" 
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="0" Grid.Column="1">
-                        <Entry 
-                            Text="{Binding Data.Name}" 
-                            FontSize="Small" 
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    
-                    <!-- Class -->
-                    <StackLayout Grid.Row="1" Grid.Column="0">
-                        <Label 
-                            Text="Class: " 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start" 
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    
-                    <StackLayout Grid.Row="1" Grid.Column="1">
-                        <Picker Title="Class"
-                        VerticalOptions="CenterAndExpand"
-                        Margin="30, 5"
-                        SelectedIndexChanged="OnPickerSelectedIndexChanged">
-                            <Picker.Items>
-                                <x:String>Knight</x:String>
-                                <x:String>Mage</x:String>
-                                <x:String>Assasin</x:String>
-                            </Picker.Items>
-                        </Picker>
-                    </StackLayout>
-                    
-                    <!-- Save Button -->
-                    <StackLayout Grid.Row="2" Grid.Column="1">
-                    <Button Text="Proceed with Narwhal Knighting Ceremony"
-                            HorizontalOptions="Center"
-                            Clicked="Save_Clicked" 
-                             />
-                    </StackLayout>  
-                    
-                </Grid>
+                <!-- Name Entry -->
+                <StackLayout>
+                    <Label 
+                        Text="Name: " 
+                        FontSize="Medium" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout>
+                    <Entry 
+                        Text="{Binding Data.Name}" 
+                        FontSize="Small" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                
+                <!-- Class -->
+                <StackLayout>
+                    <Label 
+                        Text="Class: " 
+                        FontSize="Medium" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout>
+                    <Picker Title="Class"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+                    SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                        <Picker.Items>
+                            <x:String>Knight</x:String>
+                            <x:String>Mage</x:String>
+                            <x:String>Assasin</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                
+                <!-- Save Button -->
+                <StackLayout>
+                <Button Text="Proceed with Narwhal Knighting Ceremony"
+                        HorizontalOptions="Center"
+                        Clicked="Save_Clicked" 
+                         />
+                </StackLayout>  
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
