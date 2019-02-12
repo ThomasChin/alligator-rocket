@@ -23,10 +23,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Name : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Name}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
 
@@ -34,10 +34,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Class : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Class.name}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
 
@@ -45,10 +45,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Max Health : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.MaxHealth}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
 
@@ -56,10 +56,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Attack : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.Attack}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
 
@@ -67,10 +67,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Defense : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.Defense}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
 
@@ -78,10 +78,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Speed : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.Speed}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
 
@@ -89,10 +89,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Level : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Level}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
 
@@ -100,26 +100,26 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="EXP : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.ExperienceTotal}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
 			</StackLayout>
             
             <Label Text="Items:"
                FontAttributes="Bold"
-               FontSize="Medium" 
+               FontSize="Small" 
                HorizontalOptions="Start"/>
             
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Head : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Head}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
             
@@ -127,10 +127,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Feet: " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Feet}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
             
@@ -139,10 +139,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Necklace : " 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Necklass}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
             
@@ -150,10 +150,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Primary Fin :" 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.PrimaryHand}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
             
@@ -161,10 +161,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Off Fin :" 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.OffHand}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
             
@@ -172,10 +172,10 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Right Ring :" 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.RightFinger}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
             
@@ -183,13 +183,12 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Left Ring :" 
-                   FontSize="Medium" 
+                   FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.LeftFinger}" 
-                    FontSize="Medium" 
+                    FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
-            
 		</StackLayout>
     </ScrollView>
 </ContentPage>

@@ -15,6 +15,7 @@ namespace Crawl.Views
     {
         private CharacterDetailViewModel _viewModel;
 
+        // Page Constructor
         public CharacterDetailPage(CharacterDetailViewModel viewModel)
         {
             InitializeComponent();
@@ -22,30 +23,19 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
-        public CharacterDetailPage()
-        {
-            InitializeComponent();
-
-            var data = new Character
-            {
-                Name = "Character 1",
-                Age = 0
-            };
-
-            _viewModel = new CharacterDetailViewModel(data);
-            BindingContext = _viewModel;
-        }
-
+        // Redirect to CharacterEditPage
         public async void Edit_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CharacterEditPage(_viewModel));
         }
 
+        // Redirect to CharacterDeletePage
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CharacterDeletePage(_viewModel));
         }
 
+        // Redirect to last page (CharacterPage)
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
