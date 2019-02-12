@@ -10,10 +10,13 @@ namespace Crawl.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CharacterDeletePage : ContentPage
 	{
+        // ViewModel for Character
 	    private CharacterDetailViewModel _viewModel;
 
+        // Character Data get/set
         public Character Data { get; set; }
 
+        // Screen Page Constructor
         public CharacterDeletePage (CharacterDetailViewModel viewModel)
         {
             // Save off the item
@@ -26,6 +29,7 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Delete Character from db
 	    private async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "DeleteData", Data);
@@ -36,6 +40,7 @@ namespace Crawl.Views
             await Navigation.PopAsync();
         }
 
+        // Cancel and redirect to CharactersPage (index)
 	    private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
