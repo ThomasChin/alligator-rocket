@@ -28,6 +28,7 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Save Monster to db and return to Monster Index
 	    private async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "EditData", Data);
@@ -42,9 +43,20 @@ namespace Crawl.Views
             Navigation.RemovePage(this);
         }
 
+        // Cancel and redirect to Monster Index
 	    private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        // Reroll Monster Stats and return to last page
+        private async void ReRollButton_Clicked(object sender, EventArgs e)
+        {
+            Data.ReRollStats();
+            MessagingCenter.Send(this, "EditData", Data);
+
+            Navigation.RemovePage(this);
+            await Navigation.PushAsync(new MonsterEditPage(_viewModel));
         }
     }
 }

@@ -41,6 +41,21 @@ namespace Crawl.Models
             // Implement
 
         }
+        private void RollStats()
+        {
+            //TODO: ADD more complex math in here to roll the stats based on class starting stats
+            Random r = new Random();
+            Attribute.MaxHealth = 10+ r.Next(-1, 1);
+            Attribute.Attack = 10 + r.Next(-1, 1);
+            Attribute.Defense = 10 + r.Next(-1, 1);
+            Attribute.Speed = 10 + r.Next(-1, 1);
+        }
+
+        public void ReRollStats()
+        {
+            RollStats();
+            ScaleLevel(Level);
+        }
 
         // Upgrades a monster to a set level
         public void ScaleLevel(int level)
