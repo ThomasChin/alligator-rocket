@@ -13,8 +13,10 @@ namespace Crawl.Views
 	    // ReSharper disable once NotAccessedField.Local
 	    private MonsterDetailViewModel _viewModel;
 
+        // Monster Data get/set
         public Monster Data { get; set; }
 
+        // Page Constructor
         public MonsterDeletePage(MonsterDetailViewModel viewModel)
         {
             // Save off the item
@@ -27,6 +29,7 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Delete Monster from db
 	    private async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "DeleteData", Data);
@@ -37,6 +40,7 @@ namespace Crawl.Views
             await Navigation.PopAsync();
         }
 
+        // Cancel and redirect to last page
 	    private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
