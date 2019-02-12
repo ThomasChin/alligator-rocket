@@ -178,6 +178,12 @@ namespace Crawl.Services
 
         #region Monster
         //Monster
+        public async Task<bool> InsertUpdateAsync_Monster(Monster data)
+        {
+            // Implement
+
+            return false;
+        }
         public async Task<bool> AddAsync_Monster(Monster data)
         {
             // Implement

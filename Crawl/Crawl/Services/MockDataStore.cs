@@ -50,7 +50,7 @@ namespace Crawl.Services
 
             // Implement
 
-            // Load Items.
+            // Default Items
             _itemDataset.Add(new Item("Blue 'horn'", "I guess this'll work??",
                 "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg", 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
 
@@ -66,11 +66,14 @@ namespace Crawl.Services
             _itemDataset.Add(new Item("Laser Horn", "This is self-explanatory",
                 "http://www.clipartbest.com/cliparts/7Ta/6G6/7Ta6G6MGc.jpg", 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
+            // Default Characters
             _characterDataset.Add(new Character("Thomas", new KnightClass()));
             _characterDataset.Add(new Character("George", new KnightClass()));
             _characterDataset.Add(new Character("Laura", new AssasinClass()));
             _characterDataset.Add(new Character("Char", new MageClass()));
-            // Implement Monsters
+
+            // Default Monsters
+            _monsterDataset.Add(new Monster());
 
             // Implement Scores
         }
@@ -91,9 +94,8 @@ namespace Crawl.Services
         private void NotifyViewModelsOfDataChange()
         {
             ItemsViewModel.Instance.SetNeedsRefresh(true);
-            // Implement Monsters
-
             CharactersViewModel.Instance.SetNeedsRefresh(true);
+            MonstersViewModel.Instance.SetNeedsRefresh(true);
 
             // Implement Scores
         }
@@ -188,7 +190,7 @@ namespace Crawl.Services
         public async Task<bool> InsertUpdateAsync_Character(Character data)
         {
 
-            // Check to see if the item exist
+            // Check to see if the Character exist
             var oldData = await GetAsync_Character(data.Id);
             if (oldData == null)
             {
@@ -215,7 +217,7 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
-        // Add Monster to db
+        // Add Character to db
         public async Task<bool> UpdateAsync_Character(Character data)
         {
             var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -229,7 +231,7 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
-        // Delete Monster to db
+        // Delete Character to db
         public async Task<bool> DeleteAsync_Character(Character data)
         {
             var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -238,7 +240,7 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
-        // Get Monster from db
+        // Get Character from db
         public async Task<Character> GetAsync_Character(string id)
         {
             return await Task.FromResult(_characterDataset.FirstOrDefault(s => s.Id == id));
@@ -254,34 +256,69 @@ namespace Crawl.Services
 
         #region Monster
         //Monster
+        public async Task<bool> InsertUpdateAsync_Monster(Monster data)
+        {
+
+            // Check to see if the Monster exist
+            var oldData = await GetAsync_Monster(data.Id);
+            if (oldData == null)
+            {
+                _monsterDataset.Add(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Monster(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Monster(data);
+                return true;
+            }
+
+            return false;
+        }
+
+        // Add Monster to db
         public async Task<bool> AddAsync_Monster(Monster data)
         {
-            // Implement
-            return false;
+            _monsterDataset.Add(data);
+
+            return await Task.FromResult(true);
         }
 
+        // Add Monster to db
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
-            // Implement
-            return false;
+            var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            if (myData == null)
+            {
+                return false;
+            }
+
+            myData.Update(data);
+
+            return await Task.FromResult(true);
         }
 
+        // Delete Monster to db
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
-            // Implement
-            return false;
+            var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            _monsterDataset.Remove(myData);
+
+            return await Task.FromResult(true);
         }
 
+        // Get Monster from db
         public async Task<Monster> GetAsync_Monster(string id)
         {
-            // Implement
-            return null;
+            return await Task.FromResult(_monsterDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        // List Monsters from db
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            return await Task.FromResult(_monsterDataset);
         }
 
         #endregion Monster
