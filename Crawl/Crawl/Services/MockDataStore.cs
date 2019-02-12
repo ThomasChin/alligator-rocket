@@ -13,6 +13,7 @@ namespace Crawl.Services
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static MockDataStore _instance;
 
+        // Creates MockDataStore if doesn't exist
         public static MockDataStore Instance
         {
             get
@@ -25,16 +26,25 @@ namespace Crawl.Services
             }
         }
 
+        // List of Item Data
         private List<Item> _itemDataset = new List<Item>();
+
+        // List of Character Data
         private List<Character> _characterDataset = new List<Character>();
+
+        // List of Monster Data
         private List<Monster> _monsterDataset = new List<Monster>();
+
+        // List of Score Data
         private List<Score> _scoreDataset = new List<Score>();
 
+        // Constructor that intializes seed data
         private MockDataStore()
         {
             InitilizeSeedData();
         }
 
+        // Load intial data into Mock
         private void InitilizeSeedData()
         {
 
@@ -65,6 +75,7 @@ namespace Crawl.Services
             // Implement Scores
         }
 
+        // For now, do nothing
         private void CreateTables()
         {
             // Do nothing...
@@ -87,6 +98,8 @@ namespace Crawl.Services
             // Implement Scores
         }
 
+
+        // Refresh tables with intial seed data
         public void InitializeDatabaseNewTables()
         {
             DeleteTables();
@@ -125,6 +138,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Add Item in db
         public async Task<bool> AddAsync_Item(Item data)
         {
             _itemDataset.Add(data);
@@ -132,6 +146,7 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
+        // Update Item in db
         public async Task<bool> UpdateAsync_Item(Item data)
         {
             var myData = _itemDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -145,6 +160,7 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
+        // Delete Item in db
         public async Task<bool> DeleteAsync_Item(Item data)
         {
             var myData = _itemDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -153,11 +169,13 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
+        // Get Item in db
         public async Task<Item> GetAsync_Item(string id)
         {
             return await Task.FromResult(_itemDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        // List Items in db
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
             return await Task.FromResult(_itemDataset);
@@ -167,7 +185,6 @@ namespace Crawl.Services
 
         #region Character
         // Character
-
         public async Task<bool> InsertUpdateAsync_Character(Character data)
         {
 
@@ -189,6 +206,8 @@ namespace Crawl.Services
 
             return false;
         }
+
+        // Add Character to db
         public async Task<bool> AddAsync_Character(Character data)
         {
             _characterDataset.Add(data);
@@ -196,6 +215,7 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
+        // Add Monster to db
         public async Task<bool> UpdateAsync_Character(Character data)
         {
             var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -209,6 +229,7 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
+        // Delete Monster to db
         public async Task<bool> DeleteAsync_Character(Character data)
         {
             var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -217,11 +238,13 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
+        // Get Monster from db
         public async Task<Character> GetAsync_Character(string id)
         {
             return await Task.FromResult(_characterDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        // List Monsters from db
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
             return await Task.FromResult(_characterDataset);
