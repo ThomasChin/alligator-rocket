@@ -16,6 +16,7 @@ namespace Crawl.ViewModels
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static CharactersViewModel _instance;
 
+        // Instance property
         public static CharactersViewModel Instance
         {
             get
@@ -28,9 +29,13 @@ namespace Crawl.ViewModels
             }
         }
 
+        // Collection of Characters to show as a list
         public ObservableCollection<Character> Dataset { get; set; }
+
+        // Load command for loading Character Data
         public Command LoadDataCommand { get; set; }
 
+        // Bool for checking refresh
         private bool _needsRefresh;
 
         public CharactersViewModel()
@@ -79,6 +84,7 @@ namespace Crawl.ViewModels
             _needsRefresh = value;
         }
 
+        // Helper for proccing Loading of Character Data
         private async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
@@ -116,6 +122,7 @@ namespace Crawl.ViewModels
             }
         }
 
+        // Helper function for forcing db refresh
         public void ForceDataRefresh()
         {
             // Reset
@@ -125,6 +132,7 @@ namespace Crawl.ViewModels
 
         #region DataOperations
 
+        // Create Character db logic
         public async Task<bool> AddAsync(Character data)
         {
             Dataset.Add(data);
@@ -132,6 +140,7 @@ namespace Crawl.ViewModels
             return myReturn;
         }
 
+        // Delete Character db logic
         public async Task<bool> DeleteAsync(Character data)
         {
             Dataset.Remove(data);
@@ -139,9 +148,10 @@ namespace Crawl.ViewModels
             return myReturn;
         }
 
+        // Update Character db logic
         public async Task<bool> UpdateAsync(Character data)
         {
-            // Find the Item, then update it
+            // Find the Character, then update it
             var myData = Dataset.FirstOrDefault(arg => arg.Id == data.Id);
             if (myData == null)
             {
