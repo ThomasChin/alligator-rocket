@@ -3,14 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Crawl.Views.MonsterNewPage"
 		     Title="Add New Monster">
-    
-    <ContentPage.ToolbarItems>
-
-    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
-
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="MONSTER CREATION" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <!-- Name Entry -->
+                <StackLayout>
+                    <Label 
+                        Text="Name: " 
+                        FontSize="Medium" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout>
+                    <Entry 
+                        Text="{Binding Data.Name}" 
+                        FontSize="Small" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                
+                <!-- Class -->
+                <StackLayout>
+                    <Label 
+                        Text="Class: " 
+                        FontSize="Medium" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout>
+                    <Picker Title="Class"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+                    SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                        <Picker.Items>
+                            <x:String>Giant Squid</x:String>
+                            <x:String>Giant Starfish</x:String>
+                            <x:String>Giant Whale</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                
+                <!-- Save Button -->
+                <StackLayout>
+                <Button Text="Birth Creature of the Deep"
+                        HorizontalOptions="Center"
+                        Clicked="Save_Clicked" 
+                         />
+                </StackLayout>  
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
