@@ -24,17 +24,17 @@
                         VerticalOptions="Center"/>
                 </StackLayout>
                 
-                <!-- Class -->
+                <!-- Type -->
                 <StackLayout>
                     <Label 
-                        Text="Class: " 
+                        Text="Type: " 
                         FontSize="Medium" 
                         HorizontalOptions="Start" 
                         VerticalOptions="Center"/>
                 </StackLayout>
                 
                 <StackLayout>
-                    <Picker Title="Class"
+                    <Picker Title="Type"
                     VerticalOptions="CenterAndExpand"
                     Margin="30, 5"
                     SelectedIndexChanged="OnPickerSelectedIndexChanged">
@@ -42,6 +42,30 @@
                             <x:String>Giant Squid</x:String>
                             <x:String>Giant Starfish</x:String>
                             <x:String>Giant Whale</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                
+                <!-- Difficulty -->
+                <StackLayout>
+                    <Label 
+                        Text="Difficulty: " 
+                        FontSize="Medium" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout>
+                    <Picker Title="Difficulty"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+                    SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                        <Picker.Items>
+                            <x:String>1</x:String>
+                            <x:String>2</x:String>
+                            <x:String>3</x:String>
+                            <x:String>4</x:String>
+                            <x:String>5</x:String>
                         </Picker.Items>
                     </Picker>
                 </StackLayout>

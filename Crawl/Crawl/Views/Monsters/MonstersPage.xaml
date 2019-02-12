@@ -37,11 +37,11 @@
                            Style="{DynamicResource ListItemTextStyle}"
                            FontAttributes="Bold"
                            FontSize="16" />
-                        <Label Text="Class:"
+                        <Label Text="Type:"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontSize="16" />
-                        <Label Text="{Binding Class.name}"
+                        <Label Text="{Binding Type.name}"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontSize="16" />
