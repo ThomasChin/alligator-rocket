@@ -40,7 +40,6 @@ namespace Crawl.Views
             await Navigation.PushAsync(new CharacterNewPage());
         }
 
-        // 
         protected override void OnAppearing()
         {
             base.OnAppearing();
