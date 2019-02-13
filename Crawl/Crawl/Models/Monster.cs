@@ -11,8 +11,9 @@ namespace Crawl.Models
     // The Monster is the higher level concept.  This is the Character with all attirbutes defined.
     public class Monster : BaseMonster
     {
-        MonsterType type;
-        int Difficulty;
+        public MonsterType type { get; set; }
+        public string MonsterTypeName { get; set; }
+        int Difficulty { get; set; }
 
         // Remaining Experience Points to give
         public int ExperienceRemaining { get; set; }
@@ -28,6 +29,8 @@ namespace Crawl.Models
 
             Alive = true;
             Level = 1;
+            type = MonsterType.GiantSquid;
+            MonsterTypeName = "GiantSquid";
 
             // Scale up to the level
             // Implement ScaleLevel(Level);
@@ -47,6 +50,8 @@ namespace Crawl.Models
             Level = level;
             ScaleLevel(level);
             Difficulty = difficulty;
+            MonsterTypeName = type.ToString();
+            MonsterTypeName = "GiantSquid";
         }
 
         // Passed in from creating via the Database, so use the guid passed in...
@@ -54,6 +59,11 @@ namespace Crawl.Models
         {
             // Implement
 
+        }
+
+        public string GetType()
+        {
+            return "thing";
         }
 
         // For making a new one for lists etc..

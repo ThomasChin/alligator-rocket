@@ -36,7 +36,7 @@
                 <Label Text="Type : " 
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Type.name}" 
+				<Label Text="{Binding Data.MonsterTypeName}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>

@@ -41,17 +41,17 @@ namespace Crawl.Views
         // Picker functionality for Monster type selection
         void OnPickerSelectedIndexChanged(object sender, EventArgs e)
         {
-            /*Picker picker = (Picker)sender;
+            Picker picker = (Picker)sender;
 
             if (picker.SelectedIndex == 0)
-                Data.Class = new KnightClass();
+                Data.type = MonsterType.GiantSquid;
 
             if (picker.SelectedIndex == 1)
-                Data.Class = new MageClass();
+                Data.type = MonsterType.GiantStarfish;
 
             if (picker.SelectedIndex == 2)
-                Data.Class = new AssasinClass();
-                */               
+                Data.type = MonsterType.GiantWhale;
+
         }
     }
 }

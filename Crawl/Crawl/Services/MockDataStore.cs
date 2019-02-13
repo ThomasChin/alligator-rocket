@@ -74,7 +74,7 @@ namespace Crawl.Services
 
             // Default Monsters
             _monsterDataset.Add(new Monster("Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
-
+            _monsterDataset.Add(new Monster("aBaddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
             // Implement Scores
         }
 

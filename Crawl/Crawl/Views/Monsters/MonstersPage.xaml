@@ -41,11 +41,20 @@
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontSize="16" />
-                        <Label Text="{Binding Type.name}"
+						<Label Text="{Binding MonsterTypeName}"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontSize="16" />
-                      </StackLayout>
+						  
+						<Label Text="Difficulty:"
+                           LineBreakMode="WordWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16" />
+						<Label Text="{Binding Difficulty}"
+                           LineBreakMode="WordWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16" />
+									</StackLayout>
                     </StackLayout>
                   </StackLayout>
                 </ViewCell>
