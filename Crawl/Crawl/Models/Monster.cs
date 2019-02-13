@@ -4,11 +4,16 @@ using Crawl.Controllers;
 using Crawl.ViewModels;
 using System.Collections.Generic;
 
+enum MonsterType {GiantSquid, GiantStarfish, GiantWhale}
+
 namespace Crawl.Models
 {
     // The Monster is the higher level concept.  This is the Character with all attirbutes defined.
     public class Monster : BaseMonster
     {
+        MonsterType type;
+        int Difficulty;
+
         // Remaining Experience Points to give
         public int ExperienceRemaining { get; set; }
 
@@ -25,7 +30,20 @@ namespace Crawl.Models
             Level = 1;
 
             // Scale up to the level
-            // // Implement ScaleLevel(Level);
+            // Implement ScaleLevel(Level);
+        }
+
+        public Monster(string name, int maxhealth, int attack, int defense, int speed, int level)
+        {
+            Name = name;
+            Attribute.MaxHealth = maxhealth;
+            Attribute.Attack = attack;
+            Attribute.Defense = defense;
+            Attribute.Speed = speed;
+
+            Alive = true;
+            Level = level;
+            ScaleLevel(level);
         }
 
         // Passed in from creating via the Database, so use the guid passed in...

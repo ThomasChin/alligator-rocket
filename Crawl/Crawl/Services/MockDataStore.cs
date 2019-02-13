@@ -73,7 +73,7 @@ namespace Crawl.Services
             _characterDataset.Add(new Character("Char", new MageClass()));
 
             // Default Monsters
-            _monsterDataset.Add(new Monster());
+            _monsterDataset.Add(new Monster("Baddy", 30, 10, 10, 2, 4));
 
             // Implement Scores
         }
