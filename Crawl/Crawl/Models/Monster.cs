@@ -4,7 +4,7 @@ using Crawl.Controllers;
 using Crawl.ViewModels;
 using System.Collections.Generic;
 
-enum MonsterType {GiantSquid, GiantStarfish, GiantWhale}
+public enum MonsterType {GiantSquid, GiantStarfish, GiantWhale}
 
 namespace Crawl.Models
 {
@@ -33,8 +33,9 @@ namespace Crawl.Models
             // Implement ScaleLevel(Level);
         }
 
-        public Monster(string name, int maxhealth, int attack, int defense, int speed, int level)
+        public Monster(string name, MonsterType newtype, int maxhealth, int attack, int defense, int speed, int level, int difficulty)
         {
+            type = newtype;
             Name = name;
             Attribute.MaxHealth = maxhealth;
             Attribute.Attack = attack;
@@ -44,6 +45,7 @@ namespace Crawl.Models
             Alive = true;
             Level = level;
             ScaleLevel(level);
+            Difficulty = difficulty;
         }
 
         // Passed in from creating via the Database, so use the guid passed in...

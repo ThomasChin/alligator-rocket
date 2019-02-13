@@ -66,6 +66,13 @@ namespace Crawl.Services
         {
             // Implement
 
+            await AddAsync_Item(new Item("Blue 'horn'", "I guess this'll work??",
+                "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg", 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+
+            await AddAsync_Item(new Item("Silver Narwhal Armor", "Will this even fit?",
+            "http://www.clipartbest.com/cliparts/yio/6kj/yio6kjKoT.png", 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
+
+
         }
 
         #region Item
@@ -95,35 +102,33 @@ namespace Crawl.Services
 
         public async Task<bool> AddAsync_Item(Item data)
         {
-            // Implement
-
+            var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<bool> UpdateAsync_Item(Item data)
         {
-            // Implement
-
+            var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<bool> DeleteAsync_Item(Item data)
         {
-            // Implement
-
+            var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<Item> GetAsync_Item(string id)
         {
-            // Implement
-            return null;
+            var result = await App.Database.GetAsync<Item>(id);
+            return result;
         }
 
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            var result = await App.Database.Table<Item>().ToListAsync();
+            return result;
+    
         }
         #endregion Item
 
@@ -140,38 +145,37 @@ namespace Crawl.Services
         // Conver to BaseCharacter and then add it
         public async Task<bool> AddAsync_Character(Character data)
         {
-            // Implement
-
+            var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         // Convert to BaseCharacter and then update it
         public async Task<bool> UpdateAsync_Character(Character data)
         {
-            // Implement
+            var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         // Pass in the character and convert to Character to then delete it
         public async Task<bool> DeleteAsync_Character(Character data)
         {
-            // Implement
+            var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         // Get the Character Base, and Load it back as Character
         public async Task<Character> GetAsync_Character(string id)
         {
-            // Implement
-            return null;
+            var result = await App.Database.GetAsync<Character>(id);
+            return result;
         }
 
         // Load each character as the base character, 
         // Then then convert the list to characters to push up to the view model
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            var result = await App.Database.Table<Character>().ToListAsync();
+            return result;
         }
 
         #endregion Character
@@ -186,32 +190,32 @@ namespace Crawl.Services
         }
         public async Task<bool> AddAsync_Monster(Monster data)
         {
-            // Implement
+            var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
-            // Implement
+            var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
-            // Implement
+            var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<Monster> GetAsync_Monster(string id)
         {
-            // Implement
-            return null;
+            var result = await App.Database.GetAsync<Monster>(id);
+            return result;
         }
 
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            var result = await App.Database.Table<Monster>().ToListAsync();
+            return result;
         }
 
         #endregion Monster
@@ -220,35 +224,34 @@ namespace Crawl.Services
         // Score
         public async Task<bool> AddAsync_Score(Score data)
         {
-            // Implement
+            var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<bool> UpdateAsync_Score(Score data)
         {
-            // Implement
+            var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<bool> DeleteAsync_Score(Score data)
         {
-            // Implement
+            var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
             return false;
         }
 
         public async Task<Score> GetAsync_Score(string id)
         {
-            // Implement
-            return null;
+            var result = await App.Database.GetAsync<Score>(id);
+            return result;
         }
 
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
-            // Implement
-            return null ;
-
+            var result = await App.Database.Table<Score>().ToListAsync();
+            return result;
         }
 
-#endregion Score
+    #endregion Score
     }
 }
