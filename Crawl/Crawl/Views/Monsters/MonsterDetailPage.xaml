@@ -47,7 +47,7 @@
                 <Label Text="Difficulty : " 
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Type.name}" 
+				<Label Text="{Binding Data.Difficulty}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>

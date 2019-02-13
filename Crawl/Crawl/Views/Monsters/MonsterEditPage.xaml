@@ -99,16 +99,7 @@
                         HorizontalOptions="Center"/>
                     </StackLayout>
 
-                    <!-- Reroll Base Attributes -->
-                    <StackLayout Grid.Row="5" Grid.Column="1">
-                        <Button Text ="ReRoll"
-                            BackgroundColor = "Accent"
-                            BorderRadius = "10"
-                            BorderWidth = "2"
-                            BorderColor = "Black"
-                            Clicked = "ReRollButton_Clicked"
-                            HorizontalOptions = "Center"/>      
-                    </StackLayout>
+                    
                 </Grid>
             </StackLayout>
         </ScrollView>

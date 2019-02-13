@@ -13,7 +13,7 @@ namespace Crawl.Models
     {
         public MonsterType type { get; set; }
         public string MonsterTypeName { get; set; }
-        int Difficulty { get; set; }
+        public int Difficulty { get; set; }
 
         // Remaining Experience Points to give
         public int ExperienceRemaining { get; set; }
@@ -31,7 +31,7 @@ namespace Crawl.Models
             Level = 1;
             type = MonsterType.GiantSquid;
             MonsterTypeName = "GiantSquid";
-
+            Difficulty = 1;
             // Scale up to the level
             // Implement ScaleLevel(Level);
         }
