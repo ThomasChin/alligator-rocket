@@ -116,9 +116,9 @@ namespace Crawl.Models
         // Upgrades to a set level
         public void ScaleLevel(int newLevel)
         {
-            Attribute.Attack = Class.baseAttack + Levels[newLevel - 1, 1];
-            Attribute.Defense = Class.baseDefense + Levels[newLevel - 1, 2];
-            Attribute.Speed = Class.baseAttack + Levels[newLevel - 1, 3];
+            //Attribute.Attack = Class.baseAttack + Levels[newLevel - 1, 1];
+            //Attribute.Defense = Class.baseDefense + Levels[newLevel - 1, 2];
+            //Attribute.Speed = Class.baseAttack + Levels[newLevel - 1, 3];
 
             //Add code to roll health stats
             for(int i = Level; i <= newLevel; i++)
