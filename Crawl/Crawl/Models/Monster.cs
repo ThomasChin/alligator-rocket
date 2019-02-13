@@ -37,6 +37,7 @@ namespace Crawl.Models
         {
             type = newtype;
             Name = name;
+            Attribute = new AttributeBase();
             Attribute.MaxHealth = maxhealth;
             Attribute.Attack = attack;
             Attribute.Defense = defense;
