@@ -48,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Character.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Converter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Dice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BasePlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BasePlayerItemSlots.cs" />

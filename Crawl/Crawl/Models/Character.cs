@@ -12,6 +12,11 @@ namespace Crawl.Models
         public AttributeBase Attribute { get; set; }
         public BaseClass Class { get; set; }
 
+        private int HealthBuff = 0;
+        private int SpeedBuff = 0;
+        private int DefenseBuff = 0;
+        private int AttackBuff = 0;
+
         //Returns a character with the default knight class.
         public Character()
         {
@@ -39,18 +44,19 @@ namespace Crawl.Models
             ExperienceTotal = 0;
             RollStats();
             Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
-
         }
 
         private void RollStats()
         {
-            //TODO: ADD more complex math in here to roll the stats based on class starting stats
-            Random r = new Random();
-            Attribute.MaxHealth = Class.baseHealth + r.Next(-1, 1);
-            Attribute.Attack = Class.baseAttack + r.Next(-1, 1);
-            Attribute.Defense = Class.baseDefense + r.Next(-1, 1);
-            Attribute.Speed = Class.baseSpeed + r.Next(-1, 1);
-        }
+            //Roll character buffs
+            int HealthBuff = Dice.Roll(4, 1);
+            int SpeedBuff = Dice.Roll(4, 1);
+            int DefenseBuff = Dice.Roll(4, 1);
+            int AttackBuff = Dice.Roll(4, 1);
+
+            //Set attributes 
+            ScaleLevel(1);
+    }
 
         public void ReRollStats()
         {
@@ -82,11 +88,11 @@ namespace Crawl.Models
         {
             LevelTable lt = new LevelTable();
 
-            Attribute.Attack = Class.baseAttack + lt.LevelDetailsList[newLevel].Attack;
-            Attribute.Defense = Class.baseDefense + lt.LevelDetailsList[newLevel].Defense;
-            Attribute.Speed = Class.baseSpeed + lt.LevelDetailsList[newLevel].Speed;
-            Attribute.MaxHealth = Class.baseHealth;
+            Attribute.Attack = Class.baseAttack + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
+            Attribute.Defense = Class.baseDefense + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
+            Attribute.Speed = Class.baseSpeed + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
 
+            Attribute.MaxHealth = Class.baseHealth + HealthBuff;
             Attribute.MaxHealth += Dice.Roll(10, newLevel);
         }
 
