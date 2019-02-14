@@ -12,8 +12,6 @@ namespace Crawl.Models
         public AttributeBase Attribute { get; set; }
         public BaseClass Class { get; set; }
 
-        
-
         //Returns a character with the default knight class.
         public Character()
         {
@@ -116,12 +114,15 @@ namespace Crawl.Models
         // Upgrades to a set level
         public void ScaleLevel(int newLevel)
         {
-            //Attribute.Attack = Class.baseAttack + Levels[newLevel - 1, 1];
-            //Attribute.Defense = Class.baseDefense + Levels[newLevel - 1, 2];
-            //Attribute.Speed = Class.baseAttack + Levels[newLevel - 1, 3];
+            LevelTable lt = new LevelTable();
+
+            Attribute.Attack = Class.baseAttack + lt.LevelDetailsList[newLevel].Attack;
+            Attribute.Defense = Class.baseDefense + lt.LevelDetailsList[newLevel].Defense;
+            Attribute.Speed = Class.baseSpeed + lt.LevelDetailsList[newLevel].Speed;
+            Attribute.MaxHealth = Class.baseHealth;
 
             //Add code to roll health stats
-            for(int i = Level; i <= newLevel; i++)
+            for (int i = Level; i <= newLevel; i++)
             {
                 
             }

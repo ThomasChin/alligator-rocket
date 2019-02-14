@@ -22,7 +22,7 @@
               <DataTemplate>
                 <ViewCell>
                   <StackLayout Padding="10"
-                               Orientation="Horizontal"
+							   Orientation="Horizontal"
                                VerticalOptions="Start"
                                HorizontalOptions="Start">
 
@@ -31,22 +31,21 @@
                         <Label Text="Name:"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="16" />
+                           FontSize="13" />
                         <Label Text="{Binding Name}"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontAttributes="Bold"
-                           FontSize="16" />
+                           FontSize="13" />
                         <Label Text="Type:"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="16" />
+                           FontSize="13" />
 						<Label Text="{Binding MonsterTypeName}"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="16" />
-						  
-	
+                           FontSize="13" />
+						 
 						</StackLayout>
                     </StackLayout>
                   </StackLayout>

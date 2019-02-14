@@ -47,9 +47,6 @@ namespace Crawl.Services
         // Load intial data into Mock
         private void InitilizeSeedData()
         {
-
-            // Implement
-     
             //Image URLs
             string blueHornURL = "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg";
             string silverNarwhalArmorURL = "http://www.clipartbest.com/cliparts/yio/6kj/yio6kjKoT.png";
@@ -65,10 +62,10 @@ namespace Crawl.Services
             _itemDataset.Add(new Item("Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
             // Default Characters
-            _characterDataset.Add(new Character("Thomas", new KnightClass()));
-            _characterDataset.Add(new Character("George", new KnightClass()));
-            _characterDataset.Add(new Character("Laura", new AssasinClass()));
-            _characterDataset.Add(new Character("Char", new MageClass()));
+            _characterDataset.Add(new Character("Ike", new KnightClass()));
+            _characterDataset.Add(new Character("Kirby", new KnightClass()));
+            _characterDataset.Add(new Character("Marth", new AssasinClass()));
+            _characterDataset.Add(new Character("Charizard", new MageClass()));
 
             // Default Monsters
             _monsterDataset.Add(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
