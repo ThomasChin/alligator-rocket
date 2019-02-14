@@ -23,14 +23,8 @@ namespace Crawl.Models
             Level = 1;
             ExperienceTotal = 0;
             RollStats();
-            Head = "None";
-            Feet = "None";
-            Necklass = "None";
-            PrimaryHand = "None";
-            OffHand = "None";
-            RightFinger = "None";
-            LeftFinger = "None";
-            Feet = "None";
+            Head = Feet = Necklass =  PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
+
         }
 
         //Main character constructor. "Rolls" stats based on class type.
@@ -44,14 +38,8 @@ namespace Crawl.Models
             Level = 1;
             ExperienceTotal = 0;
             RollStats();
-            Head = "None";
-            Feet = "None";
-            Necklass = "None";
-            PrimaryHand = "None";
-            OffHand = "None";
-            RightFinger = "None";
-            LeftFinger = "None";
-            Feet = "None";
+            Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
+
         }
 
         private void RollStats()
@@ -80,29 +68,7 @@ namespace Crawl.Models
         // Used for converting from database format to character
         public Character(BaseCharacter newData)
         {
-            // Base information
             Name = newData.Name;
-            /*Level = newData.Level;
-            ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = newData.ImageURI;
-            Alive = newData.Alive; 
-
-            // Database information
-            Guid = newData.Guid;
-            Id = newData.Id;*/
-
-            /*// Populate the Attributes
-            AttributeString = newData.AttributeString;
-
-            Attribute = new AttributeBase(newData.AttributeString);
-
-            // Set the strings for the items
-            Head = newData.Head;
-            Feet = newData.Feet;
-            Necklass = newData.Necklass;
-            RightFinger = newData.RightFinger;
-            LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet; */
         }
 
         // Create a new character, based on existing Character
@@ -120,7 +86,6 @@ namespace Crawl.Models
             Attribute.Defense = Class.baseDefense + lt.LevelDetailsList[newLevel].Defense;
             Attribute.Speed = Class.baseSpeed + lt.LevelDetailsList[newLevel].Speed;
             Attribute.MaxHealth = Class.baseHealth;
-
 
             Attribute.MaxHealth += Dice.Roll(10, newLevel);
         }
