@@ -71,8 +71,9 @@ namespace Crawl.Services
             _characterDataset.Add(new Character("Char", new MageClass()));
 
             // Default Monsters
-            _monsterDataset.Add(new Monster("Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
-            _monsterDataset.Add(new Monster("aBaddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
+            _monsterDataset.Add(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
+            _monsterDataset.Add(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
+            _monsterDataset.Add(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
             // Implement Scores
         }
 
