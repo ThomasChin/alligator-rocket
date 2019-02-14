@@ -121,11 +121,8 @@ namespace Crawl.Models
             Attribute.Speed = Class.baseSpeed + lt.LevelDetailsList[newLevel].Speed;
             Attribute.MaxHealth = Class.baseHealth;
 
-            //Add code to roll health stats
-            for (int i = Level; i <= newLevel; i++)
-            {
-                
-            }
+
+            Attribute.MaxHealth += Dice.Roll(10, newLevel);
         }
 
         // Update the character information
