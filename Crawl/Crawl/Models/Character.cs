@@ -37,12 +37,12 @@ namespace Crawl.Models
         {
             Attribute = new AttributeBase();
             Alive = true;
-            Name = name;
-            Class = classType;
-
             Level = 1;
             ExperienceTotal = 0;
+            Name = name;
+            Class = classType;
             RollStats();
+
             Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
         }
 
