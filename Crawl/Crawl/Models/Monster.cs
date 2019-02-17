@@ -15,6 +15,9 @@ namespace Crawl.Models
         public string MonsterTypeName { get; set; }
         public int Difficulty { get; set; }
 
+        public const int MINDIFF = 1;
+        public const int MAXDIFF = 5;
+
         // Remaining Experience Points to give
         public int ExperienceRemaining { get; set; }
 
