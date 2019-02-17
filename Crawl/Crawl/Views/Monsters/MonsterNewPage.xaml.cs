@@ -38,8 +38,9 @@ namespace Crawl.Views
         {
             await Navigation.PopAsync();
         }
+
         // Picker functionality for Monster type selection
-        void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        void OnTypePickerSelectedIndexChanged(object sender, EventArgs e)
         {
             Picker picker = (Picker)sender;
 
@@ -52,6 +53,13 @@ namespace Crawl.Views
             if (picker.SelectedIndex == 2)
                 Data.type = MonsterType.GiantWhale;
 
+        }
+
+        // Picker functionality for Monster difficulty selection
+        void OnDifficultyPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+            Data.Difficulty = picker.SelectedIndex;
         }
     }
 }

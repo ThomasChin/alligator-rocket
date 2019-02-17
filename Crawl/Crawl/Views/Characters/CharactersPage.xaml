@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.CharactersPage"
-              Title="{Binding Title}"
+             Title="{Binding Title}"
              x:Name="BrowseCharactersPage">
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" />
@@ -30,6 +30,8 @@
 
                 <StackLayout>
                   <StackLayout Orientation="Horizontal">
+					  
+					<!-- Name Attribute -->
                     <Label Text="Name:"
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"
@@ -39,6 +41,8 @@
                        Style="{DynamicResource ListItemTextStyle}"
 					   FontAttributes="Bold"
                        FontSize="16" />
+					
+					  <!-- Class Attribute --> 
 					<Label Text="Class:"
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"

@@ -8,6 +8,7 @@
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
                 <Label Text="MONSTER CREATION" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center"/>
+				
                 <!-- Name Entry -->
                 <StackLayout>
                     <Label 
@@ -24,7 +25,7 @@
                         VerticalOptions="Center"/>
                 </StackLayout>
                 
-                <!-- Type -->
+                <!-- Type entry -->
                 <StackLayout>
                     <Label 
                         Text="Type: " 
@@ -37,7 +38,7 @@
                     <Picker Title="Type"
                     VerticalOptions="CenterAndExpand"
                     Margin="30, 5"
-                    SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                    SelectedIndexChanged="OnTypePickerSelectedIndexChanged">
                         <Picker.Items>
                             <x:String>Giant Squid</x:String>
                             <x:String>Giant Starfish</x:String>
@@ -46,7 +47,7 @@
                     </Picker>
                 </StackLayout>
                 
-                <!-- Difficulty -->
+                <!-- Difficulty entry -->
                 <StackLayout>
                     <Label 
                         Text="Difficulty: " 
@@ -59,7 +60,7 @@
                     <Picker Title="Difficulty"
                     VerticalOptions="CenterAndExpand"
                     Margin="30, 5"
-                    SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                    SelectedIndexChanged="OnDifficultyPickerSelectedIndexChanged">
                         <Picker.Items>
                             <x:String>1</x:String>
                             <x:String>2</x:String>

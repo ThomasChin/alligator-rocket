@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.MonstersPage"
-              Title="{Binding Title}"
+             Title="{Binding Title}"
              x:Name="BrowseMonsterPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddMonster_Clicked" />
@@ -28,6 +28,8 @@
 
                     <StackLayout>
                       <StackLayout Orientation="Horizontal">
+						  
+						<!-- Name Attribute -->
                         <Label Text="Name:"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
@@ -37,6 +39,8 @@
                            Style="{DynamicResource ListItemTextStyle}"
                            FontAttributes="Bold"
                            FontSize="13" />
+						  
+						<!-- Type Attribute -->  
                         <Label Text="Type:"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
