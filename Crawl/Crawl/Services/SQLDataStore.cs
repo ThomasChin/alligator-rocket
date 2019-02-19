@@ -34,12 +34,20 @@ namespace Crawl.Services
         private void CreateTables()
         {
             // Implement
+            App.Database.CreateTableAsync<Item>().Wait();
+            App.Database.CreateTableAsync<BaseCharacter>().Wait();
+            App.Database.CreateTableAsync<BaseMonster>().Wait();
+            App.Database.CreateTableAsync<Score>().Wait();
         }
 
         // Delete the Datbase Tables by dropping them
         private void DeleteTables()
         {
             // Implement
+            App.Database.DropTableAsync<Item>().Wait();
+            App.Database.DropTableAsync<BaseCharacter>().Wait();
+            App.Database.DropTableAsync<BaseMonster>().Wait();
+            App.Database.DropTableAsync<Score>().Wait();
         }
 
             // Tells the View Models to update themselves.
@@ -50,19 +58,20 @@ namespace Crawl.Services
 
             public void InitializeDatabaseNewTables()
         {
-            // Implement
-            
             // Delete the tables
+            DeleteTables();
 
             // make them again
+            CreateTables();
 
             // Populate them
+            InitializeSeedData();
 
             // Tell View Models they need to refresh
-
+            NotifyViewModelsOfDataChange();
         }
 
-        private async void InitilizeSeedData()
+        private async void InitializeSeedData()
         {
             // Implement
 
