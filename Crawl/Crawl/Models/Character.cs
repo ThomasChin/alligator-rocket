@@ -334,6 +334,11 @@ namespace Crawl.Models
             }
         }
 
+        //Functions to get the Class ID (enum #) and Name
+        public String ClassName
+        {
+            get { return Class.ToString(); }
+        }
         public int ClassCode()
         {
             switch(Class)
@@ -345,6 +350,7 @@ namespace Crawl.Models
             }
         }
         
+        //Functions to get base attributes for the class of this character
         public int baseHealth() { return ClassBaseStats[ClassCode()][0]; } 
         public int baseAttack() { return ClassBaseStats[ClassCode()][1]; } 
         public int baseDefense() { return ClassBaseStats[ClassCode()][2];} 
