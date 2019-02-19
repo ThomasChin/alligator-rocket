@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Crawl.Models
 {
-    public enum CharacterType {Mage, Knight, Assasin};
+    public enum CharacterType {Base = 0, Mage, Knight, Assasin};
 
     // The Character is the higher level concept.  This is the Character with all attirbutes defined.
     public class Character : BaseCharacter
@@ -15,6 +15,12 @@ namespace Crawl.Models
         public BaseClass Class { get; set; }
 
         public CharacterType type { get; set; }
+
+        //Health, Attack, Defense, Speed
+        int[] BaseClassBaseStats = { 5, 4, 3, 4 };
+        int[] MageClassBaseStats = { 4, 7, 3, 4 };
+        int[] KnightClassBaseStats = { 6, 6, 6, 2 };
+        int[] AssasinClassBaseStats = { 3, 5, 3, 8 };
 
         private int HealthBuff = 0;
         private int SpeedBuff = 0;
@@ -326,5 +332,10 @@ namespace Crawl.Models
                 //TODO: ADD DROPS HERE
             }
         }
+
+        public int baseHealth { get { return 5; } }
+        public int baseAttack { get { return 5; } }
+        public int baseDefense { get { return 3; } }
+        public int baseSpeed { get { return 2; } }
     }
 }
