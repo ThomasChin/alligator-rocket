@@ -45,13 +45,16 @@ namespace Crawl.Views
             Picker picker = (Picker)sender;
 
             if (picker.SelectedIndex == 0)
-                Data.Class = new KnightClass();
+                Data.Class = ClassType.Base;
 
             if (picker.SelectedIndex == 1)
-                Data.Class = new MageClass();
+                Data.Class = ClassType.Mage;
 
             if (picker.SelectedIndex == 2)
-                Data.Class = new AssasinClass();
+                Data.Class = ClassType.Knight;
+
+            if (picker.SelectedIndex == 3)
+                Data.Class = ClassType.Assasin;
         }
     }
 }

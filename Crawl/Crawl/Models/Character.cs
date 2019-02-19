@@ -5,22 +5,24 @@ using System.Collections.Generic;
 
 namespace Crawl.Models
 {
-    public enum CharacterType {Base = 0, Mage, Knight, Assasin};
+    public enum ClassType {Base = 0, Mage, Knight, Assasin};
 
     // The Character is the higher level concept.  This is the Character with all attirbutes defined.
     public class Character : BaseCharacter
     {
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
-        public BaseClass Class { get; set; }
+        //public BaseClass Class { get; set; }
 
-        public CharacterType type { get; set; }
+        public ClassType Class { get; set; }
 
         //Health, Attack, Defense, Speed
-        int[] BaseClassBaseStats = { 5, 4, 3, 4 };
-        int[] MageClassBaseStats = { 4, 7, 3, 4 };
-        int[] KnightClassBaseStats = { 6, 6, 6, 2 };
-        int[] AssasinClassBaseStats = { 3, 5, 3, 8 };
+        static int[] BaseClassBaseStats = { 5, 4, 3, 4 };
+        static int[] MageClassBaseStats = { 4, 7, 3, 4 };
+        static int[] KnightClassBaseStats = { 6, 6, 6, 2 };
+        static int[] AssasinClassBaseStats = { 3, 5, 3, 8 };
+
+        static int[][] ClassBaseStats = { BaseClassBaseStats, MageClassBaseStats, KnightClassBaseStats, AssasinClassBaseStats };
 
         private int HealthBuff = 0;
         private int SpeedBuff = 0;
@@ -32,9 +34,8 @@ namespace Crawl.Models
         {
             Attribute = new AttributeBase();
             Alive = true;
-            Name = "Default"; 
-            Class = new KnightClass();
-            type = CharacterType.Knight;
+            Name = "Default";
+            Class = ClassType.Knight;
 
             Level = 1;
             ExperienceTotal = 0;
@@ -44,7 +45,7 @@ namespace Crawl.Models
         }
 
         //Main character constructor. "Rolls" stats based on class type.
-        public Character(string name, BaseClass classType)
+        public Character(string name, ClassType classType)
         {
             Attribute = new AttributeBase();
             Alive = true;
@@ -99,11 +100,11 @@ namespace Crawl.Models
         {
             LevelTable lt = new LevelTable();
 
-            Attribute.Attack = Class.baseAttack + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
-            Attribute.Defense = Class.baseDefense + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
-            Attribute.Speed = Class.baseSpeed + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
+            Attribute.Attack = baseAttack + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
+            Attribute.Defense = baseDefense + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
+            Attribute.Speed = baseSpeed + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
 
-            Attribute.MaxHealth = Class.baseHealth + HealthBuff;
+            Attribute.MaxHealth = baseHealth + HealthBuff;
             Attribute.MaxHealth += Dice.Roll(10, newLevel);
         }
 
@@ -333,9 +334,9 @@ namespace Crawl.Models
             }
         }
 
-        public int baseHealth { get { return 5; } }
-        public int baseAttack { get { return 5; } }
-        public int baseDefense { get { return 3; } }
-        public int baseSpeed { get { return 2; } }
+        public int baseHealth { get { return ClassBaseStats[(int)Class.GetTypeCode()][0]; } }
+        public int baseAttack { get { return ClassBaseStats[(int)Class.GetTypeCode()][1]; } }
+        public int baseDefense { get { return ClassBaseStats[(int)Class.GetTypeCode()][2];} }
+        public int baseSpeed { get { return ClassBaseStats[(int)Class.GetTypeCode()][3]; } }
     }
 }

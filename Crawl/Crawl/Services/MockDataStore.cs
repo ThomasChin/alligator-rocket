@@ -62,10 +62,10 @@ namespace Crawl.Services
             _itemDataset.Add(new Item("Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
             // Default Characters
-            _characterDataset.Add(new Character("Ike", new KnightClass()));
-            _characterDataset.Add(new Character("Kirby", new KnightClass()));
-            _characterDataset.Add(new Character("Marth", new AssasinClass()));
-            _characterDataset.Add(new Character("Charizard", new MageClass()));
+            _characterDataset.Add(new Character("Ike", ClassType.Knight));
+            _characterDataset.Add(new Character("Kirby", ClassType.Mage));
+            _characterDataset.Add(new Character("Marth", ClassType.Assasin));
+            _characterDataset.Add(new Character("Charizard", ClassType.Mage));
 
             // Default Monsters
             _monsterDataset.Add(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
