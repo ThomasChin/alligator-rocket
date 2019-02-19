@@ -100,11 +100,11 @@ namespace Crawl.Models
         {
             LevelTable lt = new LevelTable();
 
-            Attribute.Attack = baseAttack + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
-            Attribute.Defense = baseDefense + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
-            Attribute.Speed = baseSpeed + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
+            Attribute.Attack = baseAttack() + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
+            Attribute.Defense = baseDefense() + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
+            Attribute.Speed = baseSpeed() + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
 
-            Attribute.MaxHealth = baseHealth + HealthBuff;
+            Attribute.MaxHealth = baseHealth() + HealthBuff;
             Attribute.MaxHealth += Dice.Roll(10, newLevel);
         }
 
@@ -334,9 +334,20 @@ namespace Crawl.Models
             }
         }
 
-        public int baseHealth { get { return ClassBaseStats[(int)Class.GetTypeCode()][0]; } }
-        public int baseAttack { get { return ClassBaseStats[(int)Class.GetTypeCode()][1]; } }
-        public int baseDefense { get { return ClassBaseStats[(int)Class.GetTypeCode()][2];} }
-        public int baseSpeed { get { return ClassBaseStats[(int)Class.GetTypeCode()][3]; } }
+        public int ClassCode()
+        {
+            switch(Class)
+            {
+                default : return 0;
+                case ClassType.Mage: return 1;
+                case ClassType.Knight: return 2;
+                case ClassType.Assasin: return 3;
+            }
+        }
+        
+        public int baseHealth() { return ClassBaseStats[ClassCode()][0]; } 
+        public int baseAttack() { return ClassBaseStats[ClassCode()][1]; } 
+        public int baseDefense() { return ClassBaseStats[ClassCode()][2];} 
+        public int baseSpeed() { return ClassBaseStats[ClassCode()][3]; } 
     }
 }

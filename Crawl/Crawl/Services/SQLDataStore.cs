@@ -97,9 +97,9 @@ namespace Crawl.Services
 
             // Default Characters
             await AddAsync_Character(new Character("Ike", ClassType.Knight));
-            await AddAsync_Character(new Character("Kirby", ClassType.Base));
-            await AddAsync_Character(new Character("Marth", ClassType.Mage));
-            await AddAsync_Character(new Character("Charizard", ClassType.Assasin));
+            await AddAsync_Character(new Character("Kirby", ClassType.Mage));
+            await AddAsync_Character(new Character("Marth", ClassType.Assasin));
+            await AddAsync_Character(new Character("Charizard", ClassType.Mage));
 
             // Default Monsters
             await AddAsync_Monster(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
