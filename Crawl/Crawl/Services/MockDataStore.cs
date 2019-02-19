@@ -47,34 +47,30 @@ namespace Crawl.Services
         // Load intial data into Mock
         private void InitilizeSeedData()
         {
+            //Image URLs
+            string blueHornURL = "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg";
+            string silverNarwhalArmorURL = "http://www.clipartbest.com/cliparts/yio/6kj/yio6kjKoT.png";
+            string animeGirlURL = "http://www.clipartbest.com/cliparts/ace/XAr/aceXAregi.jpg";
+            string engagementRingURL = "http://www.clipartbest.com/cliparts/Kij/XL6/KijXL6RRT.png";
+            string laserHornURL = "http://www.clipartbest.com/cliparts/7Ta/6G6/7Ta6G6MGc.jpg";
 
-            // Implement
-
-            // Default Items
-            _itemDataset.Add(new Item("Blue 'horn'", "I guess this'll work??",
-                "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg", 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
-
-            _itemDataset.Add(new Item("Silver Narwhal Armor", "Will this even fit?",
-                "http://www.clipartbest.com/cliparts/yio/6kj/yio6kjKoT.png", 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
-
-            _itemDataset.Add(new Item("Anime Girl", "What would a narwhal do with this...",
-                "http://www.clipartbest.com/cliparts/ace/XAr/aceXAregi.jpg", 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
-
-            _itemDataset.Add(new Item("Engagement Ring", "Narwhals can get married too...",
-                "http://www.clipartbest.com/cliparts/Kij/XL6/KijXL6RRT.png", 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
-
-            _itemDataset.Add(new Item("Laser Horn", "This is self-explanatory",
-                "http://www.clipartbest.com/cliparts/7Ta/6G6/7Ta6G6MGc.jpg", 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
+            //Default Items
+            _itemDataset.Add(new Item("Blue 'horn'", "I guess this'll work??", blueHornURL, 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+            _itemDataset.Add(new Item("Silver Narwhal Armor", "Will this even fit?", silverNarwhalArmorURL, 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
+            _itemDataset.Add(new Item("Anime Girl", "What would a narwhal do with this...", animeGirlURL, 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
+            _itemDataset.Add(new Item("Engagement Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
+            _itemDataset.Add(new Item("Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
             // Default Characters
-            _characterDataset.Add(new Character("Thomas", new KnightClass()));
-            _characterDataset.Add(new Character("George", new KnightClass()));
-            _characterDataset.Add(new Character("Laura", new AssasinClass()));
-            _characterDataset.Add(new Character("Char", new MageClass()));
+            _characterDataset.Add(new Character("Ike", ClassType.Knight));
+            _characterDataset.Add(new Character("Kirby", ClassType.Mage));
+            _characterDataset.Add(new Character("Marth", ClassType.Assasin));
+            _characterDataset.Add(new Character("Charizard", ClassType.Mage));
 
             // Default Monsters
-            _monsterDataset.Add(new Monster("Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
-            _monsterDataset.Add(new Monster("aBaddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
+            _monsterDataset.Add(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
+            _monsterDataset.Add(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
+            _monsterDataset.Add(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
             // Implement Scores
         }
 

@@ -5,66 +5,70 @@ using System.Collections.Generic;
 
 namespace Crawl.Models
 {
+    public enum ClassType {Base = 0, Mage, Knight, Assasin};
+
     // The Character is the higher level concept.  This is the Character with all attirbutes defined.
     public class Character : BaseCharacter
     {
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
-        public BaseClass Class { get; set; }
+        //public BaseClass Class { get; set; }
 
-        
+        public ClassType Class { get; set; }
+
+        //Health, Attack, Defense, Speed
+        static int[] BaseClassBaseStats = { 5, 4, 3, 4 };
+        static int[] MageClassBaseStats = { 4, 7, 3, 4 };
+        static int[] KnightClassBaseStats = { 6, 6, 6, 2 };
+        static int[] AssasinClassBaseStats = { 3, 5, 3, 8 };
+
+        static int[][] ClassBaseStats = { BaseClassBaseStats, MageClassBaseStats, KnightClassBaseStats, AssasinClassBaseStats };
+
+        private int HealthBuff = 0;
+        private int SpeedBuff = 0;
+        private int DefenseBuff = 0;
+        private int AttackBuff = 0;
 
         //Returns a character with the default knight class.
         public Character()
         {
             Attribute = new AttributeBase();
             Alive = true;
-            Name = "Default"; 
-            Class = new KnightClass();
+            Name = "Default";
+            Class = ClassType.Knight;
 
             Level = 1;
             ExperienceTotal = 0;
             RollStats();
-            Head = "None";
-            Feet = "None";
-            Necklass = "None";
-            PrimaryHand = "None";
-            OffHand = "None";
-            RightFinger = "None";
-            LeftFinger = "None";
-            Feet = "None";
+            Head = Feet = Necklass =  PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
+
         }
 
         //Main character constructor. "Rolls" stats based on class type.
-        public Character(string name, BaseClass classType)
+        public Character(string name, ClassType classType)
         {
             Attribute = new AttributeBase();
             Alive = true;
-            Name = name;
-            Class = classType;
-
             Level = 1;
             ExperienceTotal = 0;
+            Name = name;
+            Class = classType;
             RollStats();
-            Head = "None";
-            Feet = "None";
-            Necklass = "None";
-            PrimaryHand = "None";
-            OffHand = "None";
-            RightFinger = "None";
-            LeftFinger = "None";
-            Feet = "None";
+
+            Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
         }
 
         private void RollStats()
         {
-            //TODO: ADD more complex math in here to roll the stats based on class starting stats
-            Random r = new Random();
-            Attribute.MaxHealth = Class.baseHealth + r.Next(-1, 1);
-            Attribute.Attack = Class.baseAttack + r.Next(-1, 1);
-            Attribute.Defense = Class.baseDefense + r.Next(-1, 1);
-            Attribute.Speed = Class.baseSpeed + r.Next(-1, 1);
-        }
+            //Roll character buffs
+            int HealthBuff = Dice.Roll(4, 1);
+            int SpeedBuff = Dice.Roll(4, 1);
+            int DefenseBuff = Dice.Roll(4, 1);
+            int AttackBuff = Dice.Roll(4, 1);
+
+            //Set attributes 
+            ScaleLevel(1);
+    }
 
         public void ReRollStats()
         {
@@ -82,29 +86,7 @@ namespace Crawl.Models
         // Used for converting from database format to character
         public Character(BaseCharacter newData)
         {
-            // Base information
             Name = newData.Name;
-            /*Level = newData.Level;
-            ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = newData.ImageURI;
-            Alive = newData.Alive; 
-
-            // Database information
-            Guid = newData.Guid;
-            Id = newData.Id;*/
-
-            /*// Populate the Attributes
-            AttributeString = newData.AttributeString;
-
-            Attribute = new AttributeBase(newData.AttributeString);
-
-            // Set the strings for the items
-            Head = newData.Head;
-            Feet = newData.Feet;
-            Necklass = newData.Necklass;
-            RightFinger = newData.RightFinger;
-            LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet; */
         }
 
         // Create a new character, based on existing Character
@@ -116,15 +98,14 @@ namespace Crawl.Models
         // Upgrades to a set level
         public void ScaleLevel(int newLevel)
         {
-            //Attribute.Attack = Class.baseAttack + Levels[newLevel - 1, 1];
-            //Attribute.Defense = Class.baseDefense + Levels[newLevel - 1, 2];
-            //Attribute.Speed = Class.baseAttack + Levels[newLevel - 1, 3];
+            LevelTable lt = new LevelTable();
 
-            //Add code to roll health stats
-            for(int i = Level; i <= newLevel; i++)
-            {
-                
-            }
+            Attribute.Attack = baseAttack() + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
+            Attribute.Defense = baseDefense() + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
+            Attribute.Speed = baseSpeed() + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
+
+            Attribute.MaxHealth = baseHealth() + HealthBuff;
+            Attribute.MaxHealth += Dice.Roll(10, newLevel);
         }
 
         // Update the character information
@@ -352,5 +333,27 @@ namespace Crawl.Models
                 //TODO: ADD DROPS HERE
             }
         }
+
+        //Functions to get the Class ID (enum #) and Name
+        public String ClassName
+        {
+            get { return Class.ToString(); }
+        }
+        public int ClassCode()
+        {
+            switch(Class)
+            {
+                default : return 0;
+                case ClassType.Mage: return 1;
+                case ClassType.Knight: return 2;
+                case ClassType.Assasin: return 3;
+            }
+        }
+        
+        //Functions to get base attributes for the class of this character
+        public int baseHealth() { return ClassBaseStats[ClassCode()][0]; } 
+        public int baseAttack() { return ClassBaseStats[ClassCode()][1]; } 
+        public int baseDefense() { return ClassBaseStats[ClassCode()][2];} 
+        public int baseSpeed() { return ClassBaseStats[ClassCode()][3]; } 
     }
 }

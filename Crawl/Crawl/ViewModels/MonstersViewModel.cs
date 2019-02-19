@@ -128,6 +128,7 @@ namespace Crawl.ViewModels
 
         #region DataOperations
 
+        //Asynchronously adds a monster to the data store. 
         public async Task<bool> AddAsync(Monster data)
         {
             Dataset.Add(data);
@@ -135,6 +136,7 @@ namespace Crawl.ViewModels
             return myReturn;
         }
 
+        //Asynchronously deletes a monster from the data store. 
         public async Task<bool> DeleteAsync(Monster data)
         {
             Dataset.Remove(data);
@@ -142,6 +144,7 @@ namespace Crawl.ViewModels
             return myReturn;
         }
 
+        //Asynchronously updates a monster in the data store. 
         public async Task<bool> UpdateAsync(Monster data)
         {
             // Find the Monster, then update it

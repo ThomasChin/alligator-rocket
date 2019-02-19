@@ -3,6 +3,7 @@ using SQLite;
 using Crawl.Controllers;
 using Crawl.ViewModels;
 using System.Collections.Generic;
+using Crawl.GameEngine;
 
 public enum MonsterType {GiantSquid, GiantStarfish, GiantWhale}
 
@@ -14,6 +15,9 @@ namespace Crawl.Models
         public MonsterType type { get; set; }
         public string MonsterTypeName { get; set; }
         public int Difficulty { get; set; }
+
+        public const int MINDIFF = 1;
+        public const int MAXDIFF = 5;
 
         // Remaining Experience Points to give
         public int ExperienceRemaining { get; set; }
@@ -32,8 +36,7 @@ namespace Crawl.Models
             type = MonsterType.GiantSquid;
             MonsterTypeName = "GiantSquid";
             Difficulty = 1;
-            // Scale up to the level
-            // Implement ScaleLevel(Level);
+
         }
 
         public Monster(string name, MonsterType newtype, int maxhealth, int attack, int defense, int speed, int level, int difficulty)
@@ -51,35 +54,27 @@ namespace Crawl.Models
             ScaleLevel(level);
             Difficulty = difficulty;
             MonsterTypeName = type.ToString();
-            MonsterTypeName = "GiantSquid";
         }
 
         // Passed in from creating via the Database, so use the guid passed in...
         public Monster(BaseMonster newData)
         {
             // Implement
-
         }
 
-        public string GetType()
+        // Returns the string name of the monster type
+        public string GetMonsterType()
         {
-            return "thing";
+            return type.ToString();
         }
 
-        // For making a new one for lists etc..
-        public Monster(Monster newData)
-        {
-            // Implement
-
-        }
+        //Picks new and randomized stats for the monster
         private void RollStats()
         {
-            //TODO: ADD more complex math in here to roll the stats based on class starting stats
-            Random r = new Random();
-            Attribute.MaxHealth = 10+ r.Next(-1, 1);
-            Attribute.Attack = 10 + r.Next(-1, 1);
-            Attribute.Defense = 10 + r.Next(-1, 1);
-            Attribute.Speed = 10 + r.Next(-1, 1);
+            Attribute.MaxHealth = 10 + HelperEngine.RollDice(3, 1);
+            Attribute.Attack = 10 + HelperEngine.RollDice(3, 1);
+            Attribute.Defense = 10 + HelperEngine.RollDice(3, 1);
+            Attribute.Speed = 10 + HelperEngine.RollDice(3, 1);
         }
 
         public void ReRollStats()
@@ -91,28 +86,27 @@ namespace Crawl.Models
         // Upgrades a monster to a set level
         public void ScaleLevel(int level)
         {
-            // Implement
+            // Set new Level
+            Level = level;
         }
 
         // Update the values passed in
         public new void Update(Monster newData)
         {
-            // Implement
-
-            return;
+            type = newData.type;
+            Name = newData.Name;
+            Level = newData.Level;
+            ScaleLevel(newData.Level);
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
             var UniqueOutput = "Implement";
-
             var myReturn = "Implement";
 
             // Implement
-
             myReturn += " , Unique Item : " + UniqueOutput;
-
             return myReturn;
         }
 

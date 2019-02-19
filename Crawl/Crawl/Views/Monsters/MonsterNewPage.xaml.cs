@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using Crawl.Models;
+using System.Collections.Generic;
 
 namespace Crawl.Views
 {
@@ -11,9 +12,12 @@ namespace Crawl.Views
     public partial class MonsterNewPage : ContentPage
     {
         public Monster Data { get; set; }
+        public List<int> Difficulties { get; set; }
+        public List<string> typeNames;
 
         public MonsterNewPage()
         {
+            InitializeDifficultes();
             InitializeComponent();
 
             Data = new Monster
@@ -24,6 +28,19 @@ namespace Crawl.Views
             };
 
             BindingContext = this;
+
+            //Initialize Type picker
+
+
+            //Initialize Difficulty picker
+        }
+
+        //Add all of the monster difficulties to the picker
+        private void InitializeDifficultes()
+        {
+            Difficulties = new List<int>();
+            for(int i = Monster.MINDIFF; i <= Monster.MAXDIFF; i++)
+                Difficulties.Add(i);
         }
 
         // Save Monster to db and redirect to Monster Index
@@ -38,8 +55,9 @@ namespace Crawl.Views
         {
             await Navigation.PopAsync();
         }
+
         // Picker functionality for Monster type selection
-        void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        void OnTypePickerSelectedIndexChanged(object sender, EventArgs e)
         {
             Picker picker = (Picker)sender;
 
@@ -52,6 +70,13 @@ namespace Crawl.Views
             if (picker.SelectedIndex == 2)
                 Data.type = MonsterType.GiantWhale;
 
+        }
+
+        // Picker functionality for Monster difficulty selection
+        void OnDifficultyPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+            Data.Difficulty = picker.SelectedIndex;
         }
     }
 }

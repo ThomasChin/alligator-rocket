@@ -20,11 +20,12 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto"/>
+					</Grid.ColumnDefinitions>
 
-                    <StackLayout Grid.Row="0" Grid.Column="0">
+					<!-- Name Attribute -->
+					<StackLayout Grid.Row="0" Grid.Column="0">
                         <Label 
                             Text="Name" 
                             FontSize="Medium" 
@@ -99,8 +100,18 @@
                         HorizontalOptions="Center"/>
                     </StackLayout>
 
-                    
-                </Grid>
+					<!-- Reroll Base Attributes -->
+					<StackLayout Grid.Row="6" Grid.Column="1">
+						<Button Text ="ReRoll"
+							BackgroundColor = "Accent"
+							BorderRadius = "10"
+							BorderWidth = "2"
+							BorderColor = "Black"
+							Clicked = "ReRollButton_Clicked"
+							HorizontalOptions = "Center"/>
+					</StackLayout>
+
+				</Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

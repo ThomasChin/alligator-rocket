@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.MonstersPage"
-              Title="{Binding Title}"
-             x:Name="BrowseItemsPage">
+             Title="{Binding Title}"
+             x:Name="BrowseMonsterPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddMonster_Clicked" />
     </ContentPage.ToolbarItems>
@@ -22,31 +22,34 @@
               <DataTemplate>
                 <ViewCell>
                   <StackLayout Padding="10"
-                               Orientation="Horizontal"
+							   Orientation="Horizontal"
                                VerticalOptions="Start"
                                HorizontalOptions="Start">
 
                     <StackLayout>
                       <StackLayout Orientation="Horizontal">
+						  
+						<!-- Name Attribute -->
                         <Label Text="Name:"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="16" />
+                           FontSize="13" />
                         <Label Text="{Binding Name}"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontAttributes="Bold"
-                           FontSize="16" />
+                           FontSize="13" />
+						  
+						<!-- Type Attribute -->  
                         <Label Text="Type:"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="16" />
+                           FontSize="13" />
 						<Label Text="{Binding MonsterTypeName}"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="16" />
-						  
-	
+                           FontSize="13" />
+						 
 						</StackLayout>
                     </StackLayout>
                   </StackLayout>
