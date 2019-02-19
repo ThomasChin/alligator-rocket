@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.ItemEditPage"		     
@@ -20,8 +20,6 @@
 
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
-
-                <Label Text="Item Edit Page" FontSize="Small" />
 
                 <Image Source="{Binding Data.ImageURI}"
                 WidthRequest="75"

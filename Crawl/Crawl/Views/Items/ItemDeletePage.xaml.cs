@@ -13,8 +13,10 @@ namespace Crawl.Views
 	    // ReSharper disable once NotAccessedField.Local
 	    private ItemDetailViewModel _viewModel;
 
+        // Data getter and setter
         public Item Data { get; set; }
 
+        // Constructor
         public ItemDeletePage (ItemDetailViewModel viewModel)
         {
             // Save off the item
@@ -27,6 +29,7 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Delete Item
 	    private async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "DeleteData", Data);
@@ -37,6 +40,7 @@ namespace Crawl.Views
             await Navigation.PopAsync();
         }
 
+        // Cancel Action and return to screen
 	    private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

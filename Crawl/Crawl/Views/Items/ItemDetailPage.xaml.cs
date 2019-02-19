@@ -21,6 +21,7 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Constuctor for Page
         public ItemDetailPage()
         {
             InitializeComponent();
@@ -31,17 +32,19 @@ namespace Crawl.Views
             BindingContext = _viewModel;
         }
 
-
+        // Open Item edit page
         private async void Edit_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ItemEditPage(_viewModel));
         }
 
+        // Open Item Delete page
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ItemDeletePage(_viewModel));
         }
 
+        // Cancel action and return to last page
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

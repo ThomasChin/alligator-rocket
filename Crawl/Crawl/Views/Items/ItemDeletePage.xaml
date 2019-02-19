@@ -1,15 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.ItemDeletePage"
             Title="{Binding Title}">
 
-
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
-
 
     <ScrollView>
         <StackLayout 
@@ -17,8 +13,6 @@
             Orientation="Vertical"
             Spacing="20"
             Padding="15">
-
-            <Label Text="Items Delete Page" FontSize="Medium" />
 
             <Image Source="{Binding Data.ImageURI}"
                 WidthRequest="150"
@@ -102,6 +96,12 @@
                    FontSize="Medium" 
                    HorizontalOptions="Center"/>
             </StackLayout>
+            
+            <StackLayout>
+            <Button Text="Yes, Delete"
+                    HorizontalOptions="Center"
+                    Clicked="Delete_Clicked"/>
+            </StackLayout>  
         </StackLayout>
     </ScrollView>
 </ContentPage>

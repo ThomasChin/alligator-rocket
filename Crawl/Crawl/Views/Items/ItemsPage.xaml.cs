@@ -11,14 +11,17 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemsPage : ContentPage
     {
+        // Initialize ItemsViewModel
         private ItemsViewModel _viewModel;
 
+        // Page constructor
         public ItemsPage()
         {
             InitializeComponent();
             BindingContext = _viewModel = ItemsViewModel.Instance;
         }
 
+        // Open detail page when item is selected from Index
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Item;
@@ -31,11 +34,13 @@ namespace Crawl.Views
             ItemsListView.SelectedItem = null;
         }
 
+        // Open a Create Item Page
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ItemNewPage());
         }
 
+        // Load Data for Items 
         protected override void OnAppearing()
         {
             base.OnAppearing();
