@@ -27,7 +27,7 @@ namespace Crawl.Services
         private SQLDataStore()
         {
             // Implement
-            // CreateTables();
+            CreateTables();
         }
 
         // Create the Database Tables

@@ -5,12 +5,16 @@ using System.Collections.Generic;
 
 namespace Crawl.Models
 {
+    public enum CharacterType {Mage, Knight, Assasin};
+
     // The Character is the higher level concept.  This is the Character with all attirbutes defined.
     public class Character : BaseCharacter
     {
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
         public BaseClass Class { get; set; }
+
+        public CharacterType type { get; set; }
 
         private int HealthBuff = 0;
         private int SpeedBuff = 0;
@@ -24,6 +28,7 @@ namespace Crawl.Models
             Alive = true;
             Name = "Default"; 
             Class = new KnightClass();
+            type = CharacterType.Knight;
 
             Level = 1;
             ExperienceTotal = 0;
