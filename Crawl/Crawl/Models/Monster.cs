@@ -214,10 +214,11 @@ namespace Crawl.Models
         // monsters give experience to characters.  Characters don't accept expereince from monsters
         public void TakeDamage(int damage)
         {
-            // Implement
-            return;
+            if (Attribute.CurrentHealth - damage <= 0)
+                Alive = false;
 
-            // Implement   CauseDeath();
+            else
+                Attribute.CurrentHealth -= damage;
         }
     }
 }
