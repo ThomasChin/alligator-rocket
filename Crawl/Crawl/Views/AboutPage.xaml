@@ -4,7 +4,7 @@
              x:Class="Crawl.Views.AboutPage"
              xmlns:vm="clr-namespace:Crawl.ViewModels;"
              xmlns:documents="clr-namespace:Windows.UI.Xaml.Documents;assembly=Windows.Foundation.UniversalApiContract"
-             Title="Home">
+             Title="Horn Wars">
 
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
@@ -37,21 +37,22 @@
                 Text="Horn Wars"
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" />
-
-                    <StackLayout 
-                x:Name="DateRoot"
-                HorizontalOptions="CenterAndExpand" 
-                VerticalOptions="Start"
-                Orientation="Vertical">
-                    </StackLayout>
-
                 </StackLayout>
-
-                <StackLayout
-                    Margin="0,50,0,0"
-        VerticalOptions="StartAndExpand"
-        HorizontalOptions="CenterAndExpand" 
-        Orientation="Vertical">
+                    
+                <!--Battle-->
+                <StackLayout>
+                    <Button  
+                        Text="Auto Battle" 
+                        Clicked="AutoBattle_Clicked"
+                        HorizontalOptions="Fill"
+                        TextColor="Black" />
+                    
+                    <Button  
+                        Text="Manual Battle" 
+                        Clicked="ManualBattle_Clicked"
+                        HorizontalOptions="Fill"
+                        TextColor="Black" />
+                </StackLayout>
                     
                 <!--Database Settings-->
                 <StackLayout
@@ -212,9 +213,7 @@
                     <Label Text="Code Version" Grid.Row="1" Grid.Column="0" />
                     <Label Text="2" Grid.Row="1" Grid.Column="1" />
                 </Grid>
-
                 </StackLayout>
             </StackLayout>
-    </StackLayout>
     </ScrollView>
 </ContentPage>

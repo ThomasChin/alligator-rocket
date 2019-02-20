@@ -8,11 +8,12 @@
             HorizontalOptions="CenterAndExpand" 
             VerticalOptions="StartAndExpand"
             Orientation="Vertical">
-                    <Image 
-                Source="https://media.istockphoto.com/vectors/friendly-narwhal-vector-id174160137" 
-                VerticalOptions="Center" 
-                HeightRequest="150"
-                HorizontalOptions="Fill"/>
+                <Image 
+                    Source="https://media.istockphoto.com/vectors/friendly-narwhal-vector-id174160137" 
+                    VerticalOptions="Center" 
+                    HeightRequest="150"
+                    HorizontalOptions="Fill"/>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>
