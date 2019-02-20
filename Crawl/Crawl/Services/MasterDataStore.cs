@@ -25,7 +25,7 @@ namespace Crawl.Services
                 case DataStoreEnum.Mock:
                     _dataStoreEnum = DataStoreEnum.Mock;
                     ItemsViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
-                    // Implement Monster
+                    MonstersViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
                     CharactersViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
                     // Implement Score
 
@@ -35,7 +35,7 @@ namespace Crawl.Services
                 default:
                     _dataStoreEnum = DataStoreEnum.Sql;
                     ItemsViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
-                    // Implement Monster
+                    MonstersViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
                     CharactersViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
                     // Implement Score
                     break;
@@ -43,7 +43,7 @@ namespace Crawl.Services
 
             // Load the Data
             ItemsViewModel.Instance.ForceDataRefresh();
-            // Implement Monster
+            MonstersViewModel.Instance.ForceDataRefresh();
             CharactersViewModel.Instance.ForceDataRefresh();
 
             // Implement Score
@@ -53,7 +53,7 @@ namespace Crawl.Services
         public static void ForceDataRestoreAll()
         {
             ItemsViewModel.Instance.ForceDataRefresh();
-            // Implement Monster
+            MonstersViewModel.Instance.ForceDataRefresh();
             CharactersViewModel.Instance.ForceDataRefresh();
             // Implement Score
         }
