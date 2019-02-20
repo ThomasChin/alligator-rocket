@@ -58,7 +58,7 @@ namespace Crawl.Models
             Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
         }
 
-        private void RollStats()
+        public void RollStats()
         {
             //Roll character buffs
             int HealthBuff = Dice.Roll(4, 1);
@@ -67,12 +67,6 @@ namespace Crawl.Models
             int AttackBuff = Dice.Roll(4, 1);
 
             //Set attributes 
-            ScaleLevel(1);
-    }
-
-        public void ReRollStats()
-        {
-            RollStats();
             ScaleLevel(Level);
         }
 

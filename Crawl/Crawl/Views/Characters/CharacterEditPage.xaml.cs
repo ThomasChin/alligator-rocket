@@ -59,7 +59,7 @@ namespace Crawl.Views
         // Reroll Character Stats and return to 
         private async void ReRollButton_Clicked(object sender, EventArgs e)
         {
-            Data.ReRollStats();
+            Data.RollStats();
             MessagingCenter.Send(this, "EditData", Data);
 
             Navigation.RemovePage(this);
