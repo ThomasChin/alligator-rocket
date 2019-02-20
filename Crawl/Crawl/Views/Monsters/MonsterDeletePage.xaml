@@ -13,6 +13,7 @@
 
             <Label Text="Delete Monster?" FontSize="Medium" />
 
+			<!-- Name Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -24,6 +25,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Monster Type Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -35,6 +37,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Level Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -47,8 +50,9 @@
             </StackLayout>
             
             <Label Text="Stats:" FontSize="Medium" FontAttributes="Bold" />
-            
-            <StackLayout
+
+			<!-- Attack Attribute -->
+			<StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Attack : " 
@@ -59,6 +63,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Defense Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -70,6 +75,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Speed Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -81,6 +87,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- MaxHealth Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -91,8 +98,9 @@
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
-            
-            <StackLayout Grid.Row="2" Grid.Column="1">
+
+			<!-- Delete Button -->
+			<StackLayout Grid.Row="2" Grid.Column="1">
             <Button Text="Yes, Delete"
                     HorizontalOptions="Center"
                     Clicked="Delete_Clicked"/>
