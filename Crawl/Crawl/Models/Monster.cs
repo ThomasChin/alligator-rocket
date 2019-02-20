@@ -84,8 +84,16 @@ namespace Crawl.Models
         // Upgrades a monster to a set level
         public void ScaleLevel(int level)
         {
-            // Set new Level
+            //TODO: ADD base attributes
             Level = level;
+
+            LevelTable lt = new LevelTable();
+
+            Attribute.Attack =  lt.LevelDetailsList[level].Attack;
+            Attribute.Defense = lt.LevelDetailsList[level].Defense;
+            Attribute.Speed = lt.LevelDetailsList[level].Speed;
+
+            Attribute.MaxHealth = Dice.Roll(10, level);
         }
 
         // Update the values passed in
