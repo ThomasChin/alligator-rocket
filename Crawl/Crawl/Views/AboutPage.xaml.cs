@@ -33,9 +33,7 @@ namespace Crawl.Views
                 FontSize = 12,
                 TextColor = Color.Black,
             };
-
-            DateRoot.Children.Add(dateLabel);
-
+            
             // Set debug settings
             EnableCriticalMissProblems.IsToggled = GameGlobals.EnableCriticalMissProblems;
             EnableCriticalHitDamage.IsToggled = GameGlobals.EnableCriticalHitDamage;
@@ -76,9 +74,20 @@ namespace Crawl.Views
             SetDataSource(e.Value);
         }
 
+        // Open a Create Item Page
+        private async void AutoBattle_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Battle.AutoBattlePage());
+        }
+
+        private async void ManualBattle_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new OpeningPage());
+        }
+
         // Debug Switches
 
-       
+
         // Turn on Critical Misses
         private void EnableCriticalMissProblems_OnToggled(object sender, ToggledEventArgs e)
         {
