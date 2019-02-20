@@ -45,7 +45,7 @@
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontSize="13" />
-						<Label Text="{Binding MonsterTypeName}"
+						<Label Text="{Binding type}"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontSize="13" />

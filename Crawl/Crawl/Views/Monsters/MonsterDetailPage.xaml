@@ -19,6 +19,7 @@
 
             <Label Text="Monster Detail Page" FontSize="Medium" />
 
+			<!-- Name Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -30,18 +31,20 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Type attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Type : " 
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
-				<Label Text="{Binding Data.MonsterTypeName}" 
+				<Label Text="{Binding Data.type}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
-            
-            <StackLayout
+
+			<!-- Difficulty Attribute -->
+			<StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Difficulty : " 
@@ -52,6 +55,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Max Health Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -63,6 +67,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Attack Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -74,6 +79,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Defense Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
@@ -85,6 +91,7 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
 
+			<!-- Speed Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">

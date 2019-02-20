@@ -5,7 +5,7 @@ using Crawl.ViewModels;
 using System.Collections.Generic;
 using Crawl.GameEngine;
 
-public enum MonsterType {GiantSquid, GiantStarfish, GiantWhale}
+public enum MonsterType {Base = 0, GiantSquid, GiantStarfish, GiantWhale}
 
 namespace Crawl.Models
 {
@@ -28,9 +28,9 @@ namespace Crawl.Models
         // Make sure Attribute is instantiated in the constructor
         public Monster()
         {
+            //Default name is Monster, 
             Name = "Monster";
             Attribute = new AttributeBase();
-
             Alive = true;
             Level = 1;
             type = MonsterType.GiantSquid;
