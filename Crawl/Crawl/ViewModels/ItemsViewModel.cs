@@ -184,11 +184,11 @@ namespace Crawl.ViewModels
             // This will walk the items and find if there is one that is the same.
             // If so, it returns the item...
 
-            var myList = Dataset.Where(a => 
-                                        a.Attribute == data.Attribute && 
-                                        a.Name == data.Name && 
-                                        a.Location == data.Location && 
-                                        a.Range == data.Range && 
+            var myList = Dataset.Where(a =>
+                                        a.Attribute == data.Attribute &&
+                                        a.Name == data.Name &&
+                                        a.Location == data.Location &&
+                                        a.Range == data.Range &&
                                         a.Value == data.Value &&
                                         a.Damage == data.Damage)
                                         .FirstOrDefault();
@@ -234,4 +234,5 @@ namespace Crawl.ViewModels
             return null;
         }
     }
+
 }

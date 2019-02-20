@@ -12,6 +12,9 @@ namespace Crawl.Models
     // The Monster is the higher level concept.  This is the Character with all attirbutes defined.
     public class Monster : BaseMonster
     {
+        [PrimaryKey]
+        public string Id { get; set; }
+
         //Type is effectively the monster's class
         public MonsterType type { get; set; }
         public int Difficulty { get; set; }

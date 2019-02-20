@@ -2,6 +2,7 @@
 using Crawl.ViewModels;
 using System;
 using System.Collections.Generic;
+using SQLite;
 
 namespace Crawl.Models
 {
@@ -10,6 +11,9 @@ namespace Crawl.Models
     // The Character is the higher level concept.  This is the Character with all attirbutes defined.
     public class Character : BaseCharacter
     {
+        [PrimaryKey]
+        public string Id { get; set; }
+
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
         //public BaseClass Class { get; set; }
@@ -41,7 +45,7 @@ namespace Crawl.Models
             ExperienceTotal = 0;
             RollStats();
             Head = Feet = Necklass =  PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
-
+            Id = System.Guid.NewGuid().ToString();
         }
 
         //Main character constructor. "Rolls" stats based on class type.
