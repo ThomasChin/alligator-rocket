@@ -13,12 +13,16 @@ namespace Crawl.Views
     {
         public Monster Data { get; set; }
         public List<int> Difficulties { get; set; }
-        public List<string> typeNames;
+        public List<string> Types { get; set; }
 
         public MonsterNewPage()
         {
             InitializeDifficultes();
+          
+            //Setup lists for both difficulty types and monster types
+            //These will be used to populate the pickers in teh XAML
             InitializeComponent();
+            InitializeTypes();
 
             Data = new Monster
             {
@@ -29,10 +33,7 @@ namespace Crawl.Views
 
             BindingContext = this;
 
-            //Initialize Type picker
-
-
-            //Initialize Difficulty picker
+   
         }
 
         //Add all of the monster difficulties to the picker
@@ -41,6 +42,14 @@ namespace Crawl.Views
             Difficulties = new List<int>();
             for(int i = Monster.MINDIFF; i <= Monster.MAXDIFF; i++)
                 Difficulties.Add(i);
+        }
+
+        //Add all of the monster difficulties to the picker
+        private void InitializeTypes()
+        {
+            Types = new List<string>();
+            foreach (var type in Enum.GetNames(typeof(MonsterType)))
+                Types.Add(type);
         }
 
         // Save Monster to db and redirect to Monster Index

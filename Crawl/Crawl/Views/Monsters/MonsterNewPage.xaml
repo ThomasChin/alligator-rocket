@@ -35,16 +35,12 @@
                 </StackLayout>
                 
                 <StackLayout>
-                    <Picker Title="Type"
+					<Picker Title="Type"
                     VerticalOptions="CenterAndExpand"
                     Margin="30, 5"
+					ItemsSource="{Binding Types}"
                     SelectedIndexChanged="OnTypePickerSelectedIndexChanged">
-                        <Picker.Items>
-                            <x:String>Giant Squid</x:String>
-                            <x:String>Giant Starfish</x:String>
-                            <x:String>Giant Whale</x:String>
-                        </Picker.Items>
-                    </Picker>
+					</Picker>
                 </StackLayout>
                 
                 <!-- Difficulty entry -->

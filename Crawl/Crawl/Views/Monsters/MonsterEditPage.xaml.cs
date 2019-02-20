@@ -52,7 +52,7 @@ namespace Crawl.Views
         // Reroll Monster Stats and return to last page
         private async void ReRollButton_Clicked(object sender, EventArgs e)
         {
-            Data.ReRollStats();
+            Data.RollStats();
             MessagingCenter.Send(this, "EditData", Data);
 
             Navigation.RemovePage(this);
