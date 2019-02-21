@@ -24,9 +24,9 @@ namespace Crawl.Services
             }
         }
 
+        // Initialize SQL DataStore.
         private SQLDataStore()
         {
-            // Implement
             CreateTables();
         }
 
@@ -101,6 +101,9 @@ namespace Crawl.Services
             await AddAsync_Monster(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
             await AddAsync_Monster(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
             // Implement Scores
+            await AddAsync_Score(new Score());
+            await AddAsync_Score(new Score());
+            await AddAsync_Score(new Score());
 
         }
 
@@ -338,37 +341,62 @@ namespace Crawl.Services
         #endregion Monster
 
         #region Score
-        // Score
+        // Add new Score to db.
         public async Task<bool> AddAsync_Score(Score data)
         {
             var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
             return false;
         }
 
+        // Update Score in db.
         public async Task<bool> UpdateAsync_Score(Score data)
         {
             var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
             return false;
         }
 
+        // Delete Score from db.
         public async Task<bool> DeleteAsync_Score(Score data)
         {
             var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
             return false;
         }
 
+        // Get Score from db.
         public async Task<Score> GetAsync_Score(string id)
         {
             var result = await App.Database.GetAsync<Score>(id);
             return result;
         }
 
+        // Load all scores.
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
             var result = await App.Database.Table<Score>().ToListAsync();
             return result;
         }
 
-    #endregion Score
+        public async Task<bool> InsertUpdateAsync_Score(Score data)
+        {
+
+            // Check to see if the item exist
+            var oldData = await GetAsync_Score(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Score(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Score(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Score(data);
+                return true;
+            }
+
+            return false;
+        }
+        #endregion Score
     }
 }

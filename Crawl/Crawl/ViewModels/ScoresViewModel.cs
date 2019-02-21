@@ -62,40 +62,69 @@ namespace Crawl.ViewModels
             });
         }
 
+        #region DataOperations
+
+        // Having this at the ViewModel, because it has the DataStore
+        // That allows the feature to work for both SQL and the MOCk datastores...
+        public async Task<bool> InsertUpdateAsync(Score data)
+        {
+            var myReturn = await DataStore.InsertUpdateAsync_Score(data);
+            return myReturn;
+        }
+
         // Call to database operation for delete
         public async Task<bool> DeleteAsync(Score data)
         {
-            return false;
+            Dataset.Remove(data);
+
+            await DataStore.DeleteAsync_Score(data);
+            return true;
         }
 
         // Call to database operation for add
         public async Task<bool> AddAsync(Score data)
         {
-            // Implement 
-            return false;
+            Dataset.Add(data);
+            await DataStore.AddAsync_Score(data);
+            return true;
         }
 
         // Call to database operation for update
         public async Task<bool> UpdateAsync(Score data)
         {
-            // Implement 
-            return false;
+            // Find the Score, then update it
+            var myData = Dataset.FirstOrDefault(arg => arg.Id == data.Id);
+            if (myData == null)
+            {
+                return false;
+            }
+
+            myData.Update(data);
+
+            _needsRefresh = true;
+            await DataStore.UpdateAsync_Score(data);
+            return true;
         }
 
         // Call to database to ensure most recent
         public async Task<Score> GetAsync(string id)
         {
-            // Implement 
-            return null;
+            var myData = await DataStore.GetAsync_Score(id);
+            return myData;
         }
+        #endregion DataOperations
 
         // Return True if a refresh is needed
         // It sets the refresh flag to false
         public bool NeedsRefresh()
         {
-            // Implement 
-            return false;
+            if (_needsRefresh)
+            {
+                _needsRefresh = false;
+                return true;
+            }
 
+            return false;
         }
 
         // Sets the need to refresh
@@ -104,16 +133,42 @@ namespace Crawl.ViewModels
             _needsRefresh = value;
         }
 
+        // Command that Loads the Data
         private async Task ExecuteLoadDataCommand()
         {
-            // Implement 
-            return;
+            if (IsBusy)
+            {
+                return;
+            }
 
+            IsBusy = true;
+
+            try
+            {
+                Dataset.Clear();
+                var dataset = await DataStore.GetAllAsync_Score(true);
+                foreach (var data in dataset)
+                {
+                    Dataset.Add(data);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         public void ForceDataRefresh()
         {
-            // Implement 
+            // Reset
+            var canExecute = LoadDataCommand.CanExecute(null);
+            LoadDataCommand.Execute(null);
         }
     }
 }

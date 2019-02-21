@@ -71,7 +71,12 @@ namespace Crawl.Services
             _monsterDataset.Add(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
             _monsterDataset.Add(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
             _monsterDataset.Add(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
-            // Implement Scores
+
+            // Default Scores
+            _scoreDataset.Add(new Score());
+            _scoreDataset.Add(new Score());
+            _scoreDataset.Add(new Score());
+
         }
 
         // For now, do nothing
@@ -83,7 +88,10 @@ namespace Crawl.Services
         // Delete the Datbase Tables by dropping them
         public void DeleteTables()
         {
-            // Implement
+            _characterDataset.Clear();
+            _itemDataset.Clear();
+            _monsterDataset.Clear();
+            _scoreDataset.Clear();
         }
 
         // Tells the View Models to update themselves.
@@ -92,10 +100,8 @@ namespace Crawl.Services
             ItemsViewModel.Instance.SetNeedsRefresh(true);
             CharactersViewModel.Instance.SetNeedsRefresh(true);
             MonstersViewModel.Instance.SetNeedsRefresh(true);
-
-            // Implement Scores
+            ScoresViewModel.Instance.SetNeedsRefresh(true);
         }
-
 
         // Refresh tables with intial seed data
         public void InitializeDatabaseNewTables()
@@ -321,34 +327,67 @@ namespace Crawl.Services
 
         #region Score
         // Score
+        public async Task<bool> InsertUpdateAsync_Score(Score data)
+        {
+            // Check to see if the item exist
+            var oldData = await GetAsync_Score(data.Id);
+            if (oldData == null)
+            {
+                _scoreDataset.Add(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Score(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Score(data);
+                return true;
+            }
+
+            return false;
+        }
+
+        // Add Score to db.
         public async Task<bool> AddAsync_Score(Score data)
         {
-            // Implement
-            return false;
+            _scoreDataset.Add(data);
+            return await Task.FromResult(true);
         }
 
+        // Update Score in db.
         public async Task<bool> UpdateAsync_Score(Score data)
         {
-            // Implement
-            return false;
+            var myData = _scoreDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            if (myData == null)
+            {
+                return false;
+            }
+
+            myData.Update(data);
+
+            return await Task.FromResult(true);
         }
 
+        // Delete Score from db.
         public async Task<bool> DeleteAsync_Score(Score data)
         {
-            // Implement
-            return false;
+            var myData = _scoreDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            _scoreDataset.Remove(myData);
+
+            return await Task.FromResult(true);
         }
 
-            public async Task<Score> GetAsync_Score(string id)
+        // Get Score by id from db.
+        public async Task<Score> GetAsync_Score(string id)
         {
-            // Implement
-            return null;
+            return await Task.FromResult(_scoreDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        // Get all scores from db.
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            return await Task.FromResult(_scoreDataset);
         }
         #endregion Score
     }

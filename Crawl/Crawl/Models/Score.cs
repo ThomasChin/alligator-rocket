@@ -54,6 +54,12 @@ namespace Crawl.Models
             ItemsDroppedList = null;
         }
 
+        // Constructor for updating with Score data parameter.
+        public Score(Score data)
+        {
+            Update(data);
+        }
+
         // Update the score based on the passed in values.
         public void Update(Score newData)
         {

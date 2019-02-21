@@ -10,8 +10,9 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScoreNewPage : ContentPage
     {
-        public Score Data { get; set; }
+        public Score Data { get; set; } // Score Data
 
+        // Initialize New Score page.
         public ScoreNewPage()
         {
             InitializeComponent();
@@ -26,12 +27,14 @@ namespace Crawl.Views
             BindingContext = this;
         }
 
+        // Save new Score to db.
         private async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "AddData", Data);
             await Navigation.PopAsync();
         }
 
+        // Cancel and pop screen off stack.
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
