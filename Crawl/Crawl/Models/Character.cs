@@ -11,8 +11,8 @@ namespace Crawl.Models
     // The Character is the higher level concept.  This is the Character with all attirbutes defined.
     public class Character : BaseCharacter
     {
-        [PrimaryKey]
-        public string Id { get; set; }
+        //[PrimaryKey]
+        //public string Id { get; set; }
 
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }

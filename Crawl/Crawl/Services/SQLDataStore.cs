@@ -53,10 +53,14 @@ namespace Crawl.Services
             // Tells the View Models to update themselves.
             private void NotifyViewModelsOfDataChange()
         {
+            ItemsViewModel.Instance.SetNeedsRefresh(true);
+            CharactersViewModel.Instance.SetNeedsRefresh(true);
+            MonstersViewModel.Instance.SetNeedsRefresh(true);
+            ScoresViewModel.Instance.SetNeedsRefresh(true);
             // Implement
         }
 
-            public void InitializeDatabaseNewTables()
+        public void InitializeDatabaseNewTables()
         {
             // Delete the tables
             DeleteTables();
@@ -75,11 +79,11 @@ namespace Crawl.Services
         {
             // Implement
 
-            await AddAsync_Item(new Item("Blue 'horn'", "I guess this'll work??",
-                "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg", 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+            //await AddAsync_Item(new Item("Blue 'horn'", "I guess this'll work??",
+            //    "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg", 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
 
-            await AddAsync_Item(new Item("Silver Narwhal Armor", "Will this even fit?",
-            "http://www.clipartbest.com/cliparts/yio/6kj/yio6kjKoT.png", 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
+            //await AddAsync_Item(new Item("Silver Narwhal Armor", "Will this even fit?",
+            //"http://www.clipartbest.com/cliparts/yio/6kj/yio6kjKoT.png", 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
 
             //Image URLs
             string blueHornURL = "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg";
@@ -129,14 +133,33 @@ namespace Crawl.Services
 
         public async Task<bool> InsertUpdateAsync_Item(Item data)
         {
-            // Implement
+            var oldData = await GetAsync_Item(data.Id);
+            if(oldData == null)
+            {
+                await AddAsync_Item(data);
+                return true;
+            }
+
+            var UpdateResult = await UpdateAsync_Item(data);
+            if(UpdateResult)
+            {
+                await AddAsync_Item(data);
+                return true;
+
+            }
 
             return false;
         }
 
         public async Task<bool> AddAsync_Item(Item data)
         {
-            var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
+            var result = await App.Database.InsertAsync(data);
+
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -179,28 +202,40 @@ namespace Crawl.Services
         // Conver to BaseCharacter and then add it
         public async Task<bool> AddAsync_Character(Character data)
         {
-            var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
+
+            var myBase = new BaseCharacter(data);
+            var result = await App.Database.InsertAsync(myBase);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         // Convert to BaseCharacter and then update it
         public async Task<bool> UpdateAsync_Character(Character data)
         {
-            var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
+            var myBase = new BaseCharacter(data);
+            var result = await App.Database.UpdateAsync(myBase);
+            if (result == 1) { return true; }
             return false;
         }
 
         // Pass in the character and convert to Character to then delete it
         public async Task<bool> DeleteAsync_Character(Character data)
         {
-            var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
+            var myBase = new BaseCharacter(data);
+            var result = await App.Database.DeleteAsync(myBase); if (result == 1) { return true; }
             return false;
         }
 
         // Get the Character Base, and Load it back as Character
         public async Task<Character> GetAsync_Character(string id)
         {
-            var result = await App.Database.GetAsync<Character>(id);
+            var baseResult = await App.Database.GetAsync<BaseCharacter>(id);
+
+            var result = new Character(baseResult);
             return result;
         }
 
@@ -208,7 +243,15 @@ namespace Crawl.Services
         // Then then convert the list to characters to push up to the view model
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
-            var result = await App.Database.Table<Character>().ToListAsync();
+            var baseList = await App.Database.Table<Character>().ToListAsync();
+
+            var result = new List<Character>();
+
+            foreach (var data in baseList)
+            {
+                result.Add(data);
+            }
+
             return result;
         }
 
