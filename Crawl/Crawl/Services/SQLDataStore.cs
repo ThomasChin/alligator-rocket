@@ -57,7 +57,6 @@ namespace Crawl.Services
             CharactersViewModel.Instance.SetNeedsRefresh(true);
             MonstersViewModel.Instance.SetNeedsRefresh(true);
             ScoresViewModel.Instance.SetNeedsRefresh(true);
-            // Implement
         }
 
         public void InitializeDatabaseNewTables()
@@ -77,14 +76,6 @@ namespace Crawl.Services
 
         private async void InitializeSeedData()
         {
-            // Implement
-
-            //await AddAsync_Item(new Item("Blue 'horn'", "I guess this'll work??",
-            //    "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg", 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
-
-            //await AddAsync_Item(new Item("Silver Narwhal Armor", "Will this even fit?",
-            //"http://www.clipartbest.com/cliparts/yio/6kj/yio6kjKoT.png", 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
-
             //Image URLs
             string blueHornURL = "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg";
             string silverNarwhalArmorURL = "http://www.clipartbest.com/cliparts/yio/6kj/yio6kjKoT.png";
@@ -154,24 +145,27 @@ namespace Crawl.Services
         public async Task<bool> AddAsync_Item(Item data)
         {
             var result = await App.Database.InsertAsync(data);
-
             if (result == 1)
-            {
                 return true;
-            }
 
             return false;
         }
 
         public async Task<bool> UpdateAsync_Item(Item data)
         {
-            var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
+            var result = await App.Database.UpdateAsync(data);
+            if (result == 1)
+                return true;
+
             return false;
         }
 
         public async Task<bool> DeleteAsync_Item(Item data)
         {
-            var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
+            var result = await App.Database.DeleteAsync(data);
+            if (result == 1)
+                return true; 
+
             return false;
         }
 
@@ -194,7 +188,20 @@ namespace Crawl.Services
 
         public async Task<bool> InsertUpdateAsync_Character(Character data)
         {
-            // Implement
+            var oldData = await GetAsync_Character(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Character(data);
+                return true;
+            }
+
+            var UpdateResult = await UpdateAsync_Character(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Character(data);
+                return true;
+
+            }
 
             return false;
         }
@@ -202,7 +209,6 @@ namespace Crawl.Services
         // Conver to BaseCharacter and then add it
         public async Task<bool> AddAsync_Character(Character data)
         {
-
             var myBase = new BaseCharacter(data);
             var result = await App.Database.InsertAsync(myBase);
             if (result == 1)
@@ -218,7 +224,9 @@ namespace Crawl.Services
         {
             var myBase = new BaseCharacter(data);
             var result = await App.Database.UpdateAsync(myBase);
-            if (result == 1) { return true; }
+            if (result == 1)
+                return true; 
+
             return false;
         }
 
@@ -226,7 +234,10 @@ namespace Crawl.Services
         public async Task<bool> DeleteAsync_Character(Character data)
         {
             var myBase = new BaseCharacter(data);
-            var result = await App.Database.DeleteAsync(myBase); if (result == 1) { return true; }
+            var result = await App.Database.DeleteAsync(myBase);
+            if (result == 1)
+                return true;
+
             return false;
         }
 
@@ -234,7 +245,6 @@ namespace Crawl.Services
         public async Task<Character> GetAsync_Character(string id)
         {
             var baseResult = await App.Database.GetAsync<BaseCharacter>(id);
-
             var result = new Character(baseResult);
             return result;
         }
@@ -244,14 +254,11 @@ namespace Crawl.Services
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
             var baseList = await App.Database.Table<Character>().ToListAsync();
-
             var result = new List<Character>();
 
             foreach (var data in baseList)
-            {
                 result.Add(data);
-            }
-
+            
             return result;
         }
 
@@ -261,37 +268,70 @@ namespace Crawl.Services
         //Monster
         public async Task<bool> InsertUpdateAsync_Monster(Monster data)
         {
-            // Implement
+            var oldData = await GetAsync_Monster(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Monster(data);
+                return true;
+            }
+
+            var UpdateResult = await UpdateAsync_Monster(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Monster(data);
+                return true;
+            }
 
             return false;
         }
+
         public async Task<bool> AddAsync_Monster(Monster data)
         {
-            var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
+            var myBase = new BaseMonster(data);
+            var result = await App.Database.InsertAsync(myBase);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
-            var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
+            var myBase = new BaseMonster(data);
+            var result = await App.Database.UpdateAsync(myBase);
+            if (result == 1)
+                return true;
+
             return false;
         }
 
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
-            var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
+            var myBase = new BaseMonster(data);
+            var result = await App.Database.DeleteAsync(myBase);
+            if (result == 1)
+                return true;
+
             return false;
         }
 
         public async Task<Monster> GetAsync_Monster(string id)
         {
-            var result = await App.Database.GetAsync<Monster>(id);
+            var baseResult = await App.Database.GetAsync<BaseMonster>(id);
+            var result = new Monster(baseResult);
             return result;
         }
 
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
-            var result = await App.Database.Table<Monster>().ToListAsync();
+            var baseList = await App.Database.Table<Monster>().ToListAsync();
+            var result = new List<Monster>();
+
+            foreach (var data in baseList)
+                result.Add(data);
+
             return result;
         }
 

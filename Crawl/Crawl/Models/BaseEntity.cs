@@ -14,7 +14,6 @@ namespace Crawl.Models
         // Used for List Identification, not used for game interaction or exposed to users
         public string Guid { get; set; }
 
-
         // Set the guid and ID because the DB uses it...
         public BaseEntity()
         {

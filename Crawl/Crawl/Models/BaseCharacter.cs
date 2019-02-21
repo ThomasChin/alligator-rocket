@@ -11,7 +11,7 @@ namespace Crawl.Models
 
         public BaseCharacter()
         {
-
+            
         }
 
         // Makes BaseCharacter using character for constructor
@@ -44,9 +44,7 @@ namespace Crawl.Models
         // Update character from the passed in data
         public void Update(BaseCharacter newData)
         {
-                return;
-        
+            return;
         }
-
     }
 }

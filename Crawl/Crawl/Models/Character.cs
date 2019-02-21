@@ -51,6 +51,7 @@ namespace Crawl.Models
         //Main character constructor. "Rolls" stats based on class type.
         public Character(string name, ClassType classType)
         {
+            Id = System.Guid.NewGuid().ToString();
             Attribute = new AttributeBase();
             Alive = true;
             Level = 1;

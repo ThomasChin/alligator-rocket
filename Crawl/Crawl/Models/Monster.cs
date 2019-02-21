@@ -55,6 +55,8 @@ namespace Crawl.Models
             Level = level;
             ScaleLevel(level);
             Difficulty = difficulty;
+
+            Id = System.Guid.NewGuid().ToString();
         }
 
         // Passed in from creating via the Database, so use the guid passed in...
