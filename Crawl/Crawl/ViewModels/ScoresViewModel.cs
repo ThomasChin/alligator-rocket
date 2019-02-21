@@ -29,10 +29,10 @@ namespace Crawl.ViewModels
             }
         }
 
-        public ObservableCollection<Score> Dataset { get; set; }
+        public ObservableCollection<Score> Dataset { get; set; } // Score Dataset
         public Command LoadDataCommand { get; set; }
 
-        private bool _needsRefresh;
+        private bool _needsRefresh; // Determine if db needs refresh.
 
         public ScoresViewModel()
         {
@@ -40,13 +40,31 @@ namespace Crawl.ViewModels
             Dataset = new ObservableCollection<Score>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
-            // Implement 
+            // Load data from db.
+            ExecuteLoadDataCommand().GetAwaiter().GetResult();
+
+            MessagingCenter.Subscribe<ScoreDeletePage, Score>
+            (this, "DeleteData", async (obj, data) =>
+            {
+                await DeleteAsync(data);
+            });
+
+            MessagingCenter.Subscribe<ScoreNewPage, Score>
+            (this, "AddData", async (obj, data) =>
+            {
+                await AddAsync(data);
+            });
+
+            MessagingCenter.Subscribe<ScoreEditPage, Score>
+            (this, "EditData", async (obj, data) =>
+            {
+                await UpdateAsync(data);
+            });
         }
 
         // Call to database operation for delete
         public async Task<bool> DeleteAsync(Score data)
         {
-            // Implement 
             return false;
         }
 
