@@ -72,6 +72,7 @@ namespace Crawl.Services
             ScoresViewModel.Instance.SetNeedsRefresh(true);
         }
 
+        // Initialize starting SQL data.
         private async void InitializeSeedData()
         {
             //Image URLs
@@ -123,6 +124,7 @@ namespace Crawl.Services
 
         // If you got to here then return false;
 
+        // InsertUpdate for item.
         public async Task<bool> InsertUpdateAsync_Item(Item data)
         {
             var oldData = await GetAsync_Item(data.Id);
@@ -143,6 +145,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Add Item.
         public async Task<bool> AddAsync_Item(Item data)
         {
             var result = await App.Database.InsertAsync(data);
@@ -152,6 +155,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Update Item.
         public async Task<bool> UpdateAsync_Item(Item data)
         {
             var result = await App.Database.UpdateAsync(data);
@@ -161,6 +165,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Delete Item.
         public async Task<bool> DeleteAsync_Item(Item data)
         {
             var result = await App.Database.DeleteAsync(data);
@@ -170,12 +175,14 @@ namespace Crawl.Services
             return false;
         }
 
+        // Get Item.
         public async Task<Item> GetAsync_Item(string id)
         {
             var result = await App.Database.GetAsync<Item>(id);
             return result;
         }
 
+        // Get all Items.
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
             var result = await App.Database.Table<Item>().ToListAsync();
@@ -187,6 +194,7 @@ namespace Crawl.Services
         #region Character
         // Character
 
+        // Insert updated Character.
         public async Task<bool> InsertUpdateAsync_Character(Character data)
         {
             var oldData = await GetAsync_Character(data.Id);
@@ -267,6 +275,8 @@ namespace Crawl.Services
 
         #region Monster
         //Monster
+
+        // Insert updated Monster.
         public async Task<bool> InsertUpdateAsync_Monster(Monster data)
         {
             var oldData = await GetAsync_Monster(data.Id);
@@ -286,6 +296,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Add Monster.
         public async Task<bool> AddAsync_Monster(Monster data)
         {
             var myBase = new BaseMonster(data);
@@ -298,6 +309,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Update Monster.
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
             var myBase = new BaseMonster(data);
@@ -308,6 +320,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Delete Monster.
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
             var myBase = new BaseMonster(data);
@@ -318,6 +331,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Get monster.
         public async Task<Monster> GetAsync_Monster(string id)
         {
             var baseResult = await App.Database.GetAsync<BaseMonster>(id);
@@ -325,6 +339,7 @@ namespace Crawl.Services
             return result;
         }
 
+        // Get all monsters.
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
             var baseList = await App.Database.Table<Monster>().ToListAsync();
@@ -374,6 +389,7 @@ namespace Crawl.Services
             return result;
         }
 
+        // Insert updated Score.
         public async Task<bool> InsertUpdateAsync_Score(Score data)
         {
 

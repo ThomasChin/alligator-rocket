@@ -45,7 +45,7 @@ namespace Crawl.Services
         }
 
         // Load intial data into Mock
-        private async Task InitilizeSeedData()
+        private async void InitilizeSeedData()
         {
             //Image URLs
             string blueHornURL = "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg";
@@ -76,7 +76,6 @@ namespace Crawl.Services
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock  First Score", ScoreTotal = 111 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock  Second Score", ScoreTotal = 222 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock  Third Score", ScoreTotal = 333 });
-
         }
 
         // For now, do nothing
