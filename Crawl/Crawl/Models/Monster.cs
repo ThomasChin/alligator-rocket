@@ -12,8 +12,6 @@ namespace Crawl.Models
     // The Monster is the higher level concept.  This is the Character with all attirbutes defined.
     public class Monster : BaseMonster
     {
-        [PrimaryKey]
-        public string Id { get; set; }
 
         //Type is effectively the monster's class
         public MonsterType type { get; set; }
@@ -41,6 +39,7 @@ namespace Crawl.Models
 
         }
 
+        //Basic constructor with inputs for base stats
         public Monster(string name, MonsterType newtype, int maxhealth, int attack, int defense, int speed, int level, int difficulty)
         {
             type = newtype;
@@ -55,14 +54,18 @@ namespace Crawl.Models
             Level = level;
             ScaleLevel(level);
             Difficulty = difficulty;
-
-            Id = System.Guid.NewGuid().ToString();
         }
 
         // Passed in from creating via the Database, so use the guid passed in...
         public Monster(BaseMonster newData)
         {
-            // Implement
+            Name = newData.Name;
+            Attribute = new AttributeBase();
+
+            Alive = true;
+            Level = newData.Level;
+
+            Id = System.Guid.NewGuid().ToString();
         }
 
         // Returns the string name of the monster type

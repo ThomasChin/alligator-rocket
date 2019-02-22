@@ -44,7 +44,35 @@ namespace Crawl.Models
         // Update character from the passed in data
         public void Update(BaseCharacter newData)
         {
-            return;
+            if (newData == null)
+            {
+                return;
+            }
+
+            // Update all the fields in the Data, except for the Id
+
+            // Base information
+            Name = newData.Name;
+            Description = newData.Description;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = newData.ImageURI;
+            Alive = newData.Alive;
+
+            // Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
+
+            // Populate the Attributes
+            AttributeString = newData.AttributeString;
+
+            // Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
         }
     }
 }

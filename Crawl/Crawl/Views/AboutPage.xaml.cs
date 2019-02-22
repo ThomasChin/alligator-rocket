@@ -71,7 +71,7 @@ namespace Crawl.Views
 
             // DebugSettingsFrame.IsVisible = (e.Value);
         }
-
+        
         private void DatabaseSettingsSwitch_OnToggled(object sender, ToggledEventArgs e)
         {
             DatabaseSettingsFrame.IsVisible = (e.Value);
@@ -89,13 +89,11 @@ namespace Crawl.Views
             await Navigation.PushAsync(new Battle.AutoBattlePage());
         }
 
+        //Manually Create a battle
         private async void ManualBattle_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new OpeningPage());
         }
-
-        // Debug Switches
-
 
         // Turn on Critical Misses
         private void EnableCriticalMissProblems_OnToggled(object sender, ToggledEventArgs e)

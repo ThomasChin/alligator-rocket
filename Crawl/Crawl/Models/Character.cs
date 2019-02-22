@@ -45,13 +45,11 @@ namespace Crawl.Models
             ExperienceTotal = 0;
             RollStats();
             Head = Feet = Necklass =  PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
-            Id = System.Guid.NewGuid().ToString();
         }
 
         //Main character constructor. "Rolls" stats based on class type.
         public Character(string name, ClassType classType)
         {
-            Id = System.Guid.NewGuid().ToString();
             Attribute = new AttributeBase();
             Alive = true;
             Level = 1;
@@ -85,7 +83,30 @@ namespace Crawl.Models
         // Used for converting from database format to character
         public Character(BaseCharacter newData)
         {
+            // Base information
             Name = newData.Name;
+            Description = newData.Description;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = newData.ImageURI;
+            Alive = newData.Alive;
+
+            // Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
+
+            // Populate the Attributes
+            AttributeString = newData.AttributeString;
+
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            // Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
         }
 
         // Create a new character, based on existing Character
@@ -111,21 +132,45 @@ namespace Crawl.Models
         // Updates the attribute string
         public void Update(Character newData)
         {
-            Attribute.Attack = newData.Attribute.Attack;
-            Attribute.Defense = newData.Attribute.Defense;
-            Attribute.MaxHealth = newData.Attribute.MaxHealth;
-            Attribute.Speed = newData.Attribute.Speed;
+            if (newData == null)
+                return;
+            
+            // Update all the fields in the Data, except for the Id
 
+            // Base information
+            Name = newData.Name;
+            Description = newData.Description;
             Level = newData.Level;
-            ExperienceTotal = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = newData.ImageURI;
+            Alive = newData.Alive;
 
-            return;
+            // Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
+
+            // Populate the Attributes
+            Attribute = newData.Attribute;
+
+            // set the attribute string, for the Attribute
+            AttributeString = AttributeBase.GetAttributeString(Attribute);
+
+            // Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = " Implement";
+            var myReturn = "";
+            myReturn += Name;
+            myReturn += ",";
+            myReturn += Class;
             return myReturn;
         }
 
