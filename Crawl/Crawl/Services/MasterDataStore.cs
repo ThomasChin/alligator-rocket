@@ -35,7 +35,7 @@ namespace Crawl.Services
                     ItemsViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
                     MonstersViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
                     CharactersViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
-                    ScoresViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
+                    ScoresViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
                     break;
             }
 
