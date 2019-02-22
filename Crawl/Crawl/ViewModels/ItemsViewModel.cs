@@ -37,6 +37,7 @@ namespace Crawl.ViewModels
 
         private bool _needsRefresh;
 
+        // Constructor 
         public ItemsViewModel()
         {
 
@@ -83,6 +84,7 @@ namespace Crawl.ViewModels
             _needsRefresh = value;
         }
 
+        // Load Data form db.
         private async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
@@ -122,6 +124,7 @@ namespace Crawl.ViewModels
             }
         }
 
+        // Force db refresh.
         public void ForceDataRefresh()
         {
             // Reset
@@ -133,6 +136,7 @@ namespace Crawl.ViewModels
 
         #region DataOperations
 
+        // Add Item.
         public async Task<bool> AddAsync(Item data)
         {
             Dataset.Add(data);
@@ -140,6 +144,7 @@ namespace Crawl.ViewModels
             return myReturn;
         }
 
+        // Delete Item.
         public async Task<bool> DeleteAsync(Item data)
         {
             Dataset.Remove(data);
@@ -147,6 +152,7 @@ namespace Crawl.ViewModels
             return myReturn;
         }
 
+        // Update Item.
         public async Task<bool> UpdateAsync(Item data)
         {
             // Find the Item, then update it
@@ -179,6 +185,7 @@ namespace Crawl.ViewModels
             return myReturn;
         }
 
+        // Check if Item exists in db.
         public Item CheckIfItemExists(Item data)
         {
             // This will walk the items and find if there is one that is the same.

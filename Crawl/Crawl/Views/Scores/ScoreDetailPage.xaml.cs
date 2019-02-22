@@ -21,6 +21,7 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Constructor.
         public ScoreDetailPage()
         {
             InitializeComponent();

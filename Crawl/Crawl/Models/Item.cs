@@ -35,6 +35,7 @@ namespace Crawl.Models
         // Description comes from the Entity class
         // ImageURI comes from the Entity class
 
+        // Constructor
         public Item()
         {
             CreateDefaultItem();
@@ -71,6 +72,7 @@ namespace Crawl.Models
             return myReturn.Trim();
         }
 
+        // Update constructor.
         public Item(Item data)
         {
             Update(data);

@@ -13,6 +13,7 @@ namespace Crawl.Views
     {
         private ScoresViewModel _viewModel;
 
+        // Constructor
         public ScoresPage()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace Crawl.Views
             await Navigation.PushAsync(new ScoreNewPage());
         }
 
+        // Load data on apperaring in Index.
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -63,6 +65,5 @@ namespace Crawl.Views
 
             BindingContext = _viewModel;
         }
-
     }
 }
