@@ -1,15 +1,119 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.ScoreDetailPage"
              Title="{Binding Title}">
-
-
+             
     <ContentPage.ToolbarItems>
-
+        <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
+        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
     </ContentPage.ToolbarItems>
-    <ScrollView>
-
-        
-    </ScrollView>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout 
+            x:Name="DetailsRoot"
+            Orientation="Vertical"
+            Spacing="20"
+            Padding="15">
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Name: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.Name}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                 <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Score: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.ScoreTotal}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                   
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Game Date: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.GameDate}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="AutoBattle: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.AutoBattle}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Monsters Slain: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.AutoBattle}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Experience Gained: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.ExperienceGainedTotal}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Characters at Death: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.CharacterAtDeathList}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Monsters Killed: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.MonstersKilledList}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Items Dropped: " 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.ItemsDroppedList}" 
+                        FontSize="Small" 
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

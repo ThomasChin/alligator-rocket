@@ -110,7 +110,6 @@
 							Clicked = "ReRollButton_Clicked"
 							HorizontalOptions = "Center"/>
 					</StackLayout>
-
 				</Grid>
             </StackLayout>
         </ScrollView>

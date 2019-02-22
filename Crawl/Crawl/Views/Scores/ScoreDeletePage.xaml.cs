@@ -27,6 +27,7 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Delete Score from db.
 	    private async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "DeleteData", Data);
@@ -37,6 +38,7 @@ namespace Crawl.Views
             await Navigation.PopAsync();
         }
 
+        // Cancel and pop off screen from stack.
 	    private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

@@ -27,6 +27,7 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Save any changes to db.
         private async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "EditData", Data);
@@ -41,6 +42,7 @@ namespace Crawl.Views
             Navigation.RemovePage(this);
         }
 
+        // Pop off screen from stack.
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

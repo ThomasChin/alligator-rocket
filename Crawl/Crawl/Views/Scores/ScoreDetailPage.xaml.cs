@@ -35,20 +35,16 @@ namespace Crawl.Views
             BindingContext = _viewModel;
         }
 
-
+        // Create new Score Edit Page.
         private async void Edit_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ScoreEditPage(_viewModel));
         }
 
+        // Create new Score Delete Page.
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ScoreDeletePage(_viewModel));
-        }
-
-        private async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
         }
     }
 }
