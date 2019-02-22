@@ -13,9 +13,13 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPage : ContentPage
     {
+        private AboutViewModel _aboutViewModel = new AboutViewModel();
+
         public AboutPage()
         {
             InitializeComponent();
+
+            BindingContext = _aboutViewModel;
 
             // Set the flag for Mock on or off...
             UseMockDataSource.IsToggled = (MasterDataStore.GetDataStoreMockFlag() == DataStoreEnum.Mock);
@@ -66,6 +70,11 @@ namespace Crawl.Views
             // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
 
             // DebugSettingsFrame.IsVisible = (e.Value);
+        }
+
+        private void DatabaseSettingsSwitch_OnToggled(object sender, ToggledEventArgs e)
+        {
+            DatabaseSettingsFrame.IsVisible = (e.Value);
         }
 
         private void UseMockDataSourceSwitch_OnToggled(object sender, ToggledEventArgs e)

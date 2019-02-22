@@ -29,35 +29,7 @@ namespace Crawl.Services
             CreateTables();
         }
 
-        // Create the Database Tables
-        private void CreateTables()
-        {
-            // Implement
-            App.Database.CreateTableAsync<Item>().Wait();
-            App.Database.CreateTableAsync<BaseCharacter>().Wait();
-            App.Database.CreateTableAsync<BaseMonster>().Wait();
-            App.Database.CreateTableAsync<Score>().Wait();
-        }
-
-        // Delete the Datbase Tables by dropping them
-        private void DeleteTables()
-        {
-            // Implement
-            App.Database.DropTableAsync<Item>().Wait();
-            App.Database.DropTableAsync<BaseCharacter>().Wait();
-            App.Database.DropTableAsync<BaseMonster>().Wait();
-            App.Database.DropTableAsync<Score>().Wait();
-        }
-
-            // Tells the View Models to update themselves.
-            private void NotifyViewModelsOfDataChange()
-        {
-            ItemsViewModel.Instance.SetNeedsRefresh(true);
-            CharactersViewModel.Instance.SetNeedsRefresh(true);
-            MonstersViewModel.Instance.SetNeedsRefresh(true);
-            ScoresViewModel.Instance.SetNeedsRefresh(true);
-        }
-
+        // Initialize New Tables.
         public void InitializeDatabaseNewTables()
         {
             // Delete the tables
@@ -71,6 +43,33 @@ namespace Crawl.Services
 
             // Tell View Models they need to refresh
             NotifyViewModelsOfDataChange();
+        }
+
+        // Create the Database Tables
+        private void CreateTables()
+        {
+            App.Database.CreateTableAsync<Item>().Wait();
+            App.Database.CreateTableAsync<BaseCharacter>().Wait();
+            App.Database.CreateTableAsync<BaseMonster>().Wait();
+            App.Database.CreateTableAsync<Score>().Wait();
+        }
+
+        // Delete the Datbase Tables by dropping them
+        private void DeleteTables()
+        {
+            App.Database.DropTableAsync<Item>().Wait();
+            App.Database.DropTableAsync<BaseCharacter>().Wait();
+            App.Database.DropTableAsync<BaseMonster>().Wait();
+            App.Database.DropTableAsync<Score>().Wait();
+        }
+
+        // Tells the View Models to update themselves.
+        private void NotifyViewModelsOfDataChange()
+        {
+            ItemsViewModel.Instance.SetNeedsRefresh(true);
+            CharactersViewModel.Instance.SetNeedsRefresh(true);
+            MonstersViewModel.Instance.SetNeedsRefresh(true);
+            ScoresViewModel.Instance.SetNeedsRefresh(true);
         }
 
         private async void InitializeSeedData()
@@ -100,9 +99,9 @@ namespace Crawl.Services
             await AddAsync_Monster(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
             await AddAsync_Monster(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
             // Implement Scores
-            await AddAsync_Score(new Score());
-            await AddAsync_Score(new Score());
-            await AddAsync_Score(new Score());
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL First Score", ScoreTotal = 111 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Second Score", ScoreTotal = 222 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Third Score", ScoreTotal = 333 });
 
         }
 

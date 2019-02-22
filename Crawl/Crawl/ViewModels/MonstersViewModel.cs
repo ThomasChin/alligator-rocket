@@ -44,6 +44,9 @@ namespace Crawl.ViewModels
             Dataset = new ObservableCollection<Monster>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
+            // Load Data
+            ExecuteLoadDataCommand().GetAwaiter().GetResult();
+
             #region Messages
             MessagingCenter.Subscribe<MonsterDeletePage, Monster>(this, "DeleteData", async (obj, data) =>
             {
