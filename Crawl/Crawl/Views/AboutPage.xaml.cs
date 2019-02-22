@@ -35,8 +35,8 @@ namespace Crawl.Views
             };
             
             // Set debug settings
-            EnableCriticalMissProblems.IsToggled = GameGlobals.EnableCriticalMissProblems;
-            EnableCriticalHitDamage.IsToggled = GameGlobals.EnableCriticalHitDamage;
+            //EnableCriticalMissProblems.IsToggled = GameGlobals.EnableCriticalMissProblems;
+            //EnableCriticalHitDamage.IsToggled = GameGlobals.EnableCriticalHitDamage;
 
 
             var myTestItem = new Item();
@@ -65,7 +65,7 @@ namespace Crawl.Views
         {
             // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
 
-            DebugSettingsFrame.IsVisible = (e.Value);
+            // DebugSettingsFrame.IsVisible = (e.Value);
         }
 
         private void UseMockDataSourceSwitch_OnToggled(object sender, ToggledEventArgs e)
