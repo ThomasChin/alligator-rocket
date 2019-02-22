@@ -45,7 +45,7 @@ namespace Crawl.Services
         }
 
         // Load intial data into Mock
-        private void InitilizeSeedData()
+        private async Task InitilizeSeedData()
         {
             //Image URLs
             string blueHornURL = "http://www.clipartbest.com/cliparts/4T9/X99/4T9X99rTE.jpeg";
@@ -55,27 +55,27 @@ namespace Crawl.Services
             string laserHornURL = "http://www.clipartbest.com/cliparts/7Ta/6G6/7Ta6G6MGc.jpg";
 
             //Default Items
-            _itemDataset.Add(new Item("Blue 'horn'", "I guess this'll work??", blueHornURL, 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
-            _itemDataset.Add(new Item("Silver Narwhal Armor", "Will this even fit?", silverNarwhalArmorURL, 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
-            _itemDataset.Add(new Item("Anime Girl", "What would a narwhal do with this...", animeGirlURL, 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
-            _itemDataset.Add(new Item("Engagement Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
-            _itemDataset.Add(new Item("Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("Blue 'horn'", "I guess this'll work??", blueHornURL, 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("Silver Narwhal Armor", "Will this even fit?", silverNarwhalArmorURL, 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
+            await AddAsync_Item(new Item("Anime Girl", "What would a narwhal do with this...", animeGirlURL, 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
+            await AddAsync_Item(new Item("Engagement Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
             // Default Characters
-            _characterDataset.Add(new Character("Ike", ClassType.Knight));
-            _characterDataset.Add(new Character("Kirby", ClassType.Mage));
-            _characterDataset.Add(new Character("Marth", ClassType.Assasin));
-            _characterDataset.Add(new Character("Charizard", ClassType.Mage));
+            await AddAsync_Character(new Character("Ike", ClassType.Knight));
+            await AddAsync_Character(new Character("Kirby", ClassType.Mage));
+            await AddAsync_Character(new Character("Marth", ClassType.Assasin));
+            await AddAsync_Character(new Character("Charizard", ClassType.Mage));
 
             // Default Monsters
-            _monsterDataset.Add(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
-            _monsterDataset.Add(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
-            _monsterDataset.Add(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
 
             // Default Scores
-            _scoreDataset.Add(new Score());
-            _scoreDataset.Add(new Score());
-            _scoreDataset.Add(new Score());
+            await AddAsync_Score(new Score());
+            await AddAsync_Score(new Score());
+            await AddAsync_Score(new Score());
 
         }
 

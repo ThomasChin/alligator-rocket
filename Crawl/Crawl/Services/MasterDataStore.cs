@@ -39,11 +39,8 @@ namespace Crawl.Services
                     break;
             }
 
-            // Load the Data
-            ItemsViewModel.Instance.ForceDataRefresh();
-            MonstersViewModel.Instance.ForceDataRefresh();
-            CharactersViewModel.Instance.ForceDataRefresh();
-            ScoresViewModel.Instance.ForceDataRefresh();
+            // Load the Data for everything.
+            ForceDataRestoreAll();
         }
 
         // Force all modes to load data...
