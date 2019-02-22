@@ -155,6 +155,7 @@
       <DependentUpon>ScoresPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\CharactersController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\AutoBattleEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">

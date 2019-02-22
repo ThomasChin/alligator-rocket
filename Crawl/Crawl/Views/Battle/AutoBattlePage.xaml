@@ -11,6 +11,11 @@
                 <Label Text="AutoBattle"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+                
+                <Button Text="Auto Battle"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                Clicked="AutoBattleButton_Command"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
