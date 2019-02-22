@@ -55,27 +55,27 @@ namespace Crawl.Services
             string laserHornURL = "http://www.clipartbest.com/cliparts/7Ta/6G6/7Ta6G6MGc.jpg";
 
             //Default Items
-            await AddAsync_Item(new Item("Blue 'horn'", "I guess this'll work??", blueHornURL, 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
-            await AddAsync_Item(new Item("Silver Narwhal Armor", "Will this even fit?", silverNarwhalArmorURL, 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
-            await AddAsync_Item(new Item("Anime Girl", "What would a narwhal do with this...", animeGirlURL, 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
-            await AddAsync_Item(new Item("Engagement Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
-            await AddAsync_Item(new Item("Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("Mock Blue 'horn'", "I guess this'll work??", blueHornURL, 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("Mock Silver Narwhal Armor", "Will this even fit?", silverNarwhalArmorURL, 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
+            await AddAsync_Item(new Item("Mock Anime Girl", "What would a narwhal do with this...", animeGirlURL, 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
+            await AddAsync_Item(new Item("Mock Engagement Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("Mock Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
             // Default Characters
-            await AddAsync_Character(new Character("Ike", ClassType.Knight));
+            await AddAsync_Character(new Character("Mock Ike", ClassType.Knight));
             await AddAsync_Character(new Character("Kirby", ClassType.Mage));
             await AddAsync_Character(new Character("Marth", ClassType.Assasin));
             await AddAsync_Character(new Character("Charizard", ClassType.Mage));
 
             // Default Monsters
-            await AddAsync_Monster(new Monster("Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mock Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
             await AddAsync_Monster(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
             await AddAsync_Monster(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
 
             // Default Scores
-            await AddAsync_Score(new Score());
-            await AddAsync_Score(new Score());
-            await AddAsync_Score(new Score());
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock  First Score", ScoreTotal = 111 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock  Second Score", ScoreTotal = 222 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock  Third Score", ScoreTotal = 333 });
 
         }
 
