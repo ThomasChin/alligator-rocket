@@ -6,7 +6,6 @@ namespace Crawl.Services
     public static class MasterDataStore
     {
         // Holds which datastore to use.
-
         private static DataStoreEnum _dataStoreEnum = DataStoreEnum.Mock;
 
         // Returns which dtatstore to use
@@ -27,8 +26,7 @@ namespace Crawl.Services
                     ItemsViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
                     MonstersViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
                     CharactersViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
-                    // Implement Score
-
+                    ScoresViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
                     break;
 
                 case DataStoreEnum.Sql:
@@ -37,7 +35,7 @@ namespace Crawl.Services
                     ItemsViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
                     MonstersViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
                     CharactersViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
-                    // Implement Score
+                    ScoresViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
                     break;
             }
 
@@ -45,8 +43,7 @@ namespace Crawl.Services
             ItemsViewModel.Instance.ForceDataRefresh();
             MonstersViewModel.Instance.ForceDataRefresh();
             CharactersViewModel.Instance.ForceDataRefresh();
-
-            // Implement Score
+            ScoresViewModel.Instance.ForceDataRefresh();
         }
 
         // Force all modes to load data...
@@ -55,7 +52,7 @@ namespace Crawl.Services
             ItemsViewModel.Instance.ForceDataRefresh();
             MonstersViewModel.Instance.ForceDataRefresh();
             CharactersViewModel.Instance.ForceDataRefresh();
-            // Implement Score
+            ScoresViewModel.Instance.ForceDataRefresh();
         }
     }
 }

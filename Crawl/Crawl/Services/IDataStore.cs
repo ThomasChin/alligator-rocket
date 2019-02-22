@@ -43,7 +43,5 @@ namespace Crawl.Services
         Task<bool> DeleteAsync_Score(Score data);
         Task<Score> GetAsync_Score(string id);
         Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false);
-
-
     }
 }
