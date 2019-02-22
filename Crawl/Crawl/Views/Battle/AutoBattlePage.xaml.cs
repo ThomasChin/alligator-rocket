@@ -19,6 +19,7 @@ namespace Crawl.Views.Battle
 			InitializeComponent ();
 		}
 
+        // ExcecuateAutoBattle Button
         private async void AutoBattleButton_Command(object sender, EventArgs e)
         {
             // Can create a new battle engine...
