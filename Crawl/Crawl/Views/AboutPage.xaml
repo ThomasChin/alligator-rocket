@@ -196,6 +196,10 @@
                     </StackLayout>
                 </StackLayout> -->
                 </StackLayout>
+            <StackLayout>
+                <Label
+                    Text="Creators: Thomas Chin | Fisher Harris"/>
             </StackLayout>
+        </StackLayout>
     </ScrollView>
 </ContentPage>
