@@ -23,20 +23,23 @@ namespace Crawl.GameEngine
         // Holds the official score
         public Score BattleScore = new Score();
 
-        public string AttackerName = string.Empty; // Name of Attacker.
-        public string TargetName = string.Empty; // Name of Target.
-        public string AttackStatus = string.Empty; // Status of attack.
+        public string AttackerName = string.Empty;
+        public string TargetName = string.Empty;
+        public string AttackStatus = string.Empty;
 
-        public string TurnMessage = string.Empty; // Message for Turn.
-        public string TurnMessageSpecial = string.Empty; // Special messages.
-        public string LevelUpMessage = string.Empty; // Message for level-up.
+        public string TurnMessage = string.Empty;
+        public string TurnMessageSpecial = string.Empty;
+        public string LevelUpMessage = string.Empty;
 
-        public int DamageAmount = 0; // Int to hold damage value.
-        public HitStatusEnum HitStatus = HitStatusEnum.Unknown; // Enum for hit status.
+        public int DamageAmount = 0;
+        public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
 
-        public List<Item> ItemPool = new List<Item>(); // Item Pool.
-        public List<Monster> MonsterList = new List<Monster>(); // Monsters.
-        public List<Character> CharacterList = new List<Character>(); // Characters.
+        public List<Item> ItemPool = new List<Item>();
+
+        //public List<Item> ItemList = new List<Item>();
+
+        public List<Monster> MonsterList = new List<Monster>();
+        public List<Character> CharacterList = new List<Character>();
 
         // Attack or Move
         // Roll To Hit
@@ -49,26 +52,32 @@ namespace Crawl.GameEngine
         // Character Attacks...
         public bool TakeTurn(Character Attacker)
         {
-            // Identify target.
+            // Choose Move or Attack
+
+            // For Attack, Choose Who
             var Target = AttackChoice(Attacker);
 
-            // Strike.
+            // Do Attack
             var AttackScore = Attacker.Level + Attacker.GetAttack();
             var DefenseScore = Target.GetDefense() + Target.Level;
             TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
+
             return true;
         }
 
         // Monster Attacks...
         public bool TakeTurn(Monster Attacker)
         {
-            // Identify target.
+            // Choose Move or Attack
+
+            // For Attack, Choose Who
             var Target = AttackChoice(Attacker);
 
-            // Hi-ya.
+            // Do Attack
             var AttackScore = Attacker.Level + Attacker.GetAttack();
             var DefenseScore = Target.GetDefense() + Target.Level;
             TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
+
             return true;
         }
 
