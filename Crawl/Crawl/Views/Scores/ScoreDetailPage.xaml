@@ -15,16 +15,6 @@
             Orientation="Vertical"
             Spacing="20"
             Padding="15">
-                <StackLayout
-                    Orientation="Horizontal"
-                    HorizontalOptions="Start">
-                    <Label Text="Name: " 
-                       FontSize="Small" 
-                       HorizontalOptions="Start"/>
-                    <Label Text="{Binding Data.Name}" 
-                        FontSize="Small" 
-                        HorizontalOptions="Center"/>
-                </StackLayout>
                 
                  <StackLayout
                     Orientation="Horizontal"
@@ -65,7 +55,7 @@
                     <Label Text="Monsters Slain: " 
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
-                    <Label Text="{Binding Data.AutoBattle}" 
+                    <Label Text="{Binding Data.MonsterSlainNumber}" 
                         FontSize="Small" 
                         HorizontalOptions="Center"/>
                 </StackLayout>
