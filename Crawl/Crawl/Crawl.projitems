@@ -247,7 +247,4 @@
   <!--#if (CreateBackendProject)
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
   #endif-->
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\Enums\" />
-  </ItemGroup>
 </Project>

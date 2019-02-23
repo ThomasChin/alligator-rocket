@@ -105,6 +105,10 @@ namespace Crawl.Models
             Name = newData.Name;
             Level = newData.Level;
             ScaleLevel(newData.Level);
+
+            // Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
@@ -122,9 +126,30 @@ namespace Crawl.Models
         // Needs to be called before applying damage
         public int CalculateExperienceEarned(int damage)
         {
-            int damageTaken = (Attribute.MaxHealth - Attribute.CurrentHealth)/Attribute.MaxHealth;
-            return damageTaken * ExperienceTotal;
+            if (damage < 1)
+            {
+                return 0;
+            }
 
+            int remainingHealth = Math.Max(Attribute.CurrentHealth - damage, 0); // Go to 0 is OK...
+            double rawPercent = (double)remainingHealth / (double)Attribute.CurrentHealth;
+            double deltaPercent = 1 - rawPercent;
+            var pointsAllocate = (int)Math.Floor(ExperienceRemaining * deltaPercent);
+
+            // Catch rounding of low values, and force to 1.
+            if (pointsAllocate < 1)
+            {
+                pointsAllocate = 1;
+            }
+
+            // Take away the points from remaining experience
+            ExperienceRemaining -= pointsAllocate;
+            if (ExperienceRemaining < 0)
+            {
+                pointsAllocate = 0;
+            }
+
+            return pointsAllocate;
         }
 
         #region GetAttributes
