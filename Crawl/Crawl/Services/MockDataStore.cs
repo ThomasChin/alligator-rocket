@@ -68,9 +68,7 @@ namespace Crawl.Services
             await AddAsync_Character(new Character("Charizard", ClassType.Mage));
 
             // Default Monsters
-            await AddAsync_Monster(new Monster("Mock Big Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
-            await AddAsync_Monster(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
-            await AddAsync_Monster(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mock Big Baddy", MonsterType.GiantSquid, 30000, 10000, 10, 2, 4, 1));
 
             // Default Scores
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock  First Score", ScoreTotal = 111 });

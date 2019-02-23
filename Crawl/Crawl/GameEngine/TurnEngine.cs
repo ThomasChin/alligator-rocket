@@ -109,16 +109,14 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Miss)
             {
-                TurnMessage = Attacker.Name + " misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
-                return true;
+                Target.TakeDamage(DamageAmount);
+                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
             }
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
-                TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
-                return true;
+                Target.TakeDamage(DamageAmount);
+                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
             }
 
             // It's a Hit or a Critical Hit

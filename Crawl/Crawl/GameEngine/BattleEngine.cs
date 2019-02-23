@@ -69,7 +69,7 @@ namespace Crawl.GameEngine
         public bool AddCharactersToBattle()
         {
             // Check to see if the Character list is full, if so, no need to add more...
-            if (CharacterList.Count >= 6)
+            if (CharacterList.Count >= 1)
             {
                 return true;
             }
@@ -87,7 +87,7 @@ namespace Crawl.GameEngine
             {
                 var myData = GetRandomCharacter(ScaleLevelMin, ScaleLevelMax);
                 CharacterList.Add(myData);
-            } while (CharacterList.Count < 6);
+            } while (CharacterList.Count < 1);
 
             return true;
         }

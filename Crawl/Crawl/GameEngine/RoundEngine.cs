@@ -53,7 +53,7 @@ namespace Crawl.GameEngine
         private void AddMonstersToRound()
         {
             // Check to see if the monster list is full, if so, no need to add more...
-            if (MonsterList.Count() >= 1)
+            if (MonsterList.Count() >= 6)
             {
                 return;
             }
@@ -82,12 +82,12 @@ namespace Crawl.GameEngine
                         MonsterList.Add(item);
                     }
 
-                } while (MonsterList.Count() < 1);
+                } while (MonsterList.Count() < 6);
             }
             else
             {
                 // No monsters in DB, so add 6 new ones...
-                for (var i = 0; i < 1; i++)
+                for (var i = 0; i < 6; i++)
                 {
                     var item = new Monster();
                     // Help identify which monster it is...

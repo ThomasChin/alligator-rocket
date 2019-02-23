@@ -4,6 +4,7 @@ using Crawl.Controllers;
 using Crawl.ViewModels;
 using System.Collections.Generic;
 using Crawl.GameEngine;
+using System.Diagnostics;
 
 public enum MonsterType {Base = 0, GiantSquid, GiantStarfish, GiantWhale}
 
@@ -49,10 +50,11 @@ namespace Crawl.Models
             Attribute.Attack = attack;
             Attribute.Defense = defense;
             Attribute.Speed = speed;
+            Attribute.CurrentHealth = Attribute.MaxHealth;
 
             Alive = true;
             Level = level;
-            ScaleLevel(level);
+            //ScaleLevel(level);
             Difficulty = difficulty;
         }
 
@@ -77,10 +79,11 @@ namespace Crawl.Models
         //Picks new and randomized stats for the monster
         public void RollStats()
         {
-            Attribute.MaxHealth = 10 + HelperEngine.RollDice(3, 1);
-            Attribute.Attack = 10 + HelperEngine.RollDice(3, 1);
-            Attribute.Defense = 10 + HelperEngine.RollDice(3, 1);
-            Attribute.Speed = 10 + HelperEngine.RollDice(3, 1);
+            Attribute.MaxHealth = 1000 + HelperEngine.RollDice(3, 10);
+            Attribute.Attack = 1000 + HelperEngine.RollDice(3, 10);
+            Attribute.Defense = 1000 + HelperEngine.RollDice(3, 10);
+            Attribute.Speed = 1000 + HelperEngine.RollDice(3, 10);
+            Attribute.CurrentHealth = Attribute.MaxHealth;
         }
 
         // Upgrades a monster to a set level
@@ -96,6 +99,7 @@ namespace Crawl.Models
             Attribute.Speed = lt.LevelDetailsList[level].Speed;
 
             Attribute.MaxHealth = Dice.Roll(10, level);
+            Attribute.CurrentHealth = Attribute.MaxHealth;
         }
 
         // Update the values passed in
@@ -114,10 +118,19 @@ namespace Crawl.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var UniqueOutput = "Implement";
-            var myReturn = "Implement";
+            var UniqueOutput = "None";
+            var myUnique = ItemsViewModel.Instance.GetItem(UniqueItem);
+            if (myUnique != null)
+            {
+                UniqueOutput = myUnique.FormatOutput();
+            }
 
+            var myReturn = Name;
+            myReturn += " , " + Description;
+            myReturn += " , Level : " + Level.ToString();
+            myReturn += " , Total Experience : " + ExperienceTotal;
             myReturn += " , Unique Item : " + UniqueOutput;
+
             return myReturn;
         }
 
@@ -249,6 +262,7 @@ namespace Crawl.Models
         // monsters give experience to characters.  Characters don't accept expereince from monsters
         public void TakeDamage(int damage)
         {
+            Debug.WriteLine("DAMAGE:" + (Attribute.CurrentHealth - damage));
             if (Attribute.CurrentHealth - damage <= 0)
                 Alive = false;
 
