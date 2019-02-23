@@ -125,79 +125,103 @@ namespace Crawl.Services
 
         // If you got to here then return false;
 
-        // InsertUpdate for item.
         public async Task<bool> InsertUpdateAsync_Item(Item data)
         {
+            // Check to see if the item exist
             var oldData = await GetAsync_Item(data.Id);
-            if(oldData == null)
+            if (oldData == null)
             {
                 await AddAsync_Item(data);
                 return true;
             }
 
+            // Compare it, if different update in the DB
             var UpdateResult = await UpdateAsync_Item(data);
-            if(UpdateResult)
+            if (UpdateResult)
             {
                 await AddAsync_Item(data);
                 return true;
-
             }
 
             return false;
         }
 
-        // Add Item.
         public async Task<bool> AddAsync_Item(Item data)
         {
             var result = await App.Database.InsertAsync(data);
             if (result == 1)
+            {
                 return true;
-
+            }
             return false;
         }
 
-        // Update Item.
         public async Task<bool> UpdateAsync_Item(Item data)
         {
             var result = await App.Database.UpdateAsync(data);
             if (result == 1)
+            {
                 return true;
+            }
 
             return false;
         }
 
-        // Delete Item.
         public async Task<bool> DeleteAsync_Item(Item data)
         {
             var result = await App.Database.DeleteAsync(data);
             if (result == 1)
-                return true; 
+            {
+                return true;
+            }
 
             return false;
         }
 
-        // Get Item.
         public async Task<Item> GetAsync_Item(string id)
         {
-            var result = await App.Database.GetAsync<Item>(id);
+            var tempResult = await App.Database.GetAsync<Item>(id);
+
+            var result = new Item(tempResult);
+
             return result;
         }
 
-        // Get all Items.
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
-            var result = await App.Database.Table<Item>().ToListAsync();
+            var tempResult = await App.Database.Table<Item>().ToListAsync();
+
+            var result = new List<Item>();
+            foreach (var item in tempResult)
+            {
+                result.Add(new Item(item));
+            }
+
             return result;
-    
         }
         #endregion Item
 
         #region Character
         // Character
+        // Conver to BaseCharacter and then add it
+        public async Task<bool> AddAsync_Character(Character data)
+        {
+            // Convert Character to CharacterBase before saving to Database
+            var dataBase = new BaseCharacter(data);
 
-        // Insert updated Character.
+            var result = await App.Database.InsertAsync(dataBase);
+            if (result == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> InsertUpdateAsync_Character(Character data)
         {
+
+            // Check to see if the item exist
             var oldData = await GetAsync_Character(data.Id);
             if (oldData == null)
             {
@@ -205,24 +229,11 @@ namespace Crawl.Services
                 return true;
             }
 
+            // Compare it, if different update in the DB
             var UpdateResult = await UpdateAsync_Character(data);
             if (UpdateResult)
             {
                 await AddAsync_Character(data);
-                return true;
-
-            }
-
-            return false;
-        }
-
-        // Conver to BaseCharacter and then add it
-        public async Task<bool> AddAsync_Character(Character data)
-        {
-            var myBase = new BaseCharacter(data);
-            var result = await App.Database.InsertAsync(myBase);
-            if (result == 1)
-            {
                 return true;
             }
 
@@ -232,10 +243,14 @@ namespace Crawl.Services
         // Convert to BaseCharacter and then update it
         public async Task<bool> UpdateAsync_Character(Character data)
         {
-            var myBase = new BaseCharacter(data);
-            var result = await App.Database.UpdateAsync(myBase);
+            // Convert Character to CharacterBase before saving to Database
+            var dataBase = new BaseCharacter(data);
+
+            var result = await App.Database.UpdateAsync(dataBase);
             if (result == 1)
-                return true; 
+            {
+                return true;
+            }
 
             return false;
         }
@@ -243,10 +258,14 @@ namespace Crawl.Services
         // Pass in the character and convert to Character to then delete it
         public async Task<bool> DeleteAsync_Character(Character data)
         {
-            var myBase = new BaseCharacter(data);
-            var result = await App.Database.DeleteAsync(myBase);
+            // Convert Character to CharacterBase before saving to Database
+            var dataBase = new BaseCharacter(data);
+
+            var result = await App.Database.DeleteAsync(dataBase);
             if (result == 1)
+            {
                 return true;
+            }
 
             return false;
         }
@@ -254,8 +273,10 @@ namespace Crawl.Services
         // Get the Character Base, and Load it back as Character
         public async Task<Character> GetAsync_Character(string id)
         {
-            var baseResult = await App.Database.GetAsync<BaseCharacter>(id);
-            var result = new Character(baseResult);
+            var tempResult = await App.Database.GetAsync<BaseCharacter>(id);
+
+            var result = new Character(tempResult);
+
             return result;
         }
 
@@ -263,12 +284,14 @@ namespace Crawl.Services
         // Then then convert the list to characters to push up to the view model
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
-            var baseList = await App.Database.Table<Character>().ToListAsync();
-            var result = new List<Character>();
+            var tempResult = await App.Database.Table<BaseCharacter>().ToListAsync();
 
-            foreach (var data in baseList)
-                result.Add(data);
-            
+            var result = new List<Character>();
+            foreach (var item in tempResult)
+            {
+                result.Add(new Character(item));
+            }
+
             return result;
         }
 
@@ -276,10 +299,25 @@ namespace Crawl.Services
 
         #region Monster
         //Monster
+        // Conver to BaseMonster and then add it
+        public async Task<bool> AddAsync_Monster(Monster data)
+        {
+            // Convert Monster to MonsterBase before saving to Database
+            var dataBase = new BaseMonster(data);
 
-        // Insert updated Monster.
+            var result = await App.Database.InsertAsync(dataBase);
+            if (result == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> InsertUpdateAsync_Monster(Monster data)
         {
+
+            // Check to see if the item exist
             var oldData = await GetAsync_Monster(data.Id);
             if (oldData == null)
             {
@@ -287,6 +325,7 @@ namespace Crawl.Services
                 return true;
             }
 
+            // Compare it, if different update in the DB
             var UpdateResult = await UpdateAsync_Monster(data);
             if (UpdateResult)
             {
@@ -297,11 +336,13 @@ namespace Crawl.Services
             return false;
         }
 
-        // Add Monster.
-        public async Task<bool> AddAsync_Monster(Monster data)
+        // Convert to BaseMonster and then update it
+        public async Task<bool> UpdateAsync_Monster(Monster data)
         {
-            var myBase = new BaseMonster(data);
-            var result = await App.Database.InsertAsync(myBase);
+            // Convert Monster to MonsterBase before saving to Database
+            var dataBase = new BaseMonster(data);
+
+            var result = await App.Database.UpdateAsync(dataBase);
             if (result == 1)
             {
                 return true;
@@ -310,44 +351,42 @@ namespace Crawl.Services
             return false;
         }
 
-        // Update Monster.
-        public async Task<bool> UpdateAsync_Monster(Monster data)
-        {
-            var myBase = new BaseMonster(data);
-            var result = await App.Database.UpdateAsync(myBase);
-            if (result == 1)
-                return true;
-
-            return false;
-        }
-
-        // Delete Monster.
+        // Pass in the Monster and convert to Monster to then delete it
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
-            var myBase = new BaseMonster(data);
-            var result = await App.Database.DeleteAsync(myBase);
+            // Convert Monster to MonsterBase before saving to Database
+            var dataBase = new BaseMonster(data);
+
+            var result = await App.Database.DeleteAsync(dataBase);
             if (result == 1)
+            {
                 return true;
+            }
 
             return false;
         }
 
-        // Get monster.
+        // Get the Monster Base, and Load it back as Monster
         public async Task<Monster> GetAsync_Monster(string id)
         {
-            var baseResult = await App.Database.GetAsync<BaseMonster>(id);
-            var result = new Monster(baseResult);
+            var tempResult = await App.Database.GetAsync<BaseMonster>(id);
+
+            var result = new Monster(tempResult);
+
             return result;
         }
 
-        // Get all monsters.
+        // Load each Monster as the base Monster, 
+        // Then then convert the list to Monsters to push up to the view model
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
-            var baseList = await App.Database.Table<Monster>().ToListAsync();
-            var result = new List<Monster>();
+            var tempResult = await App.Database.Table<BaseMonster>().ToListAsync();
 
-            foreach (var data in baseList)
-                result.Add(data);
+            var result = new List<Monster>();
+            foreach (var item in tempResult)
+            {
+                result.Add(new Monster(item));
+            }
 
             return result;
         }
@@ -355,42 +394,62 @@ namespace Crawl.Services
         #endregion Monster
 
         #region Score
-        // Add new Score to db.
+        // Score
         public async Task<bool> AddAsync_Score(Score data)
         {
-            var result = await App.Database.InsertAsync(data); if (result == 1) { return true; }
+            var result = await App.Database.InsertAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
-        // Update Score in db.
         public async Task<bool> UpdateAsync_Score(Score data)
         {
-            var result = await App.Database.UpdateAsync(data); if (result == 1) { return true; }
+            var result = await App.Database.UpdateAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
-        // Delete Score from db.
         public async Task<bool> DeleteAsync_Score(Score data)
         {
-            var result = await App.Database.DeleteAsync(data); if (result == 1) { return true; }
+            var result = await App.Database.DeleteAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
-        // Get Score from db.
         public async Task<Score> GetAsync_Score(string id)
         {
-            var result = await App.Database.GetAsync<Score>(id);
+            var tempResult = await App.Database.GetAsync<Score>(id);
+
+            var result = new Score(tempResult);
+
             return result;
         }
 
-        // Load all scores.
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
-            var result = await App.Database.Table<Score>().ToListAsync();
+            var tempResult = await App.Database.Table<Score>().ToListAsync();
+
+            var result = new List<Score>();
+            foreach (var Score in tempResult)
+            {
+                result.Add(new Score(Score));
+            }
+
             return result;
         }
 
-        // Insert updated Score.
         public async Task<bool> InsertUpdateAsync_Score(Score data)
         {
 
@@ -412,6 +471,7 @@ namespace Crawl.Services
 
             return false;
         }
+
         #endregion Score
     }
 }
