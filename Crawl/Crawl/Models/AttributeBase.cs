@@ -24,7 +24,11 @@ namespace Crawl.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = "Implement";
+            var myReturn = "Speed : " + Speed +
+                            " , Defense : " + Defense +
+                            " , Attack : " + Attack +
+                            " , CurrentHealth : " + CurrentHealth +
+                            " , MaxHealth : " + MaxHealth;
             return myReturn.Trim();
         }
 

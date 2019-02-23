@@ -164,10 +164,15 @@ namespace Crawl.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = "";
+            var myReturn = string.Empty;
             myReturn += Name;
-            myReturn += ",";
-            myReturn += Class;
+            myReturn += " , " + Description;
+            myReturn += " , Level : " + Level.ToString();
+            myReturn += " , Total Experience : " + ExperienceTotal;
+            myReturn += " , " + Attribute.FormatOutput();
+            myReturn += " , Items : " + ItemSlotsFormatOutput();
+            myReturn += " Damage : " + GetDamageDice();
+
             return myReturn;
         }
 
