@@ -99,7 +99,8 @@ namespace Crawl.Services
             await AddAsync_Monster(new Monster("Bigg Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));
             await AddAsync_Monster(new Monster("Mad Maddy", MonsterType.GiantStarfish, 30, 10, 10, 2, 4, 1));
             await AddAsync_Monster(new Monster("Sad Saddy", MonsterType.GiantWhale, 30, 10, 10, 2, 4, 1));
-            // Implement Scores
+
+            // Default Scores
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL First Score", ScoreTotal = 111 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Second Score", ScoreTotal = 222 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Third Score", ScoreTotal = 333 });

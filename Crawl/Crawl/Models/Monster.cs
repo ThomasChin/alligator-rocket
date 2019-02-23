@@ -249,8 +249,11 @@ namespace Crawl.Models
             // Drop all Items
             Item myItem;
 
-            // Implement
-
+            myItem = ItemsViewModel.Instance.GetItem(UniqueItem);
+            if (myItem != null)
+            {
+                myReturn.Add(myItem);
+            }
             return myReturn;
         }
 
