@@ -54,7 +54,7 @@ namespace Crawl.Models
 
             Alive = true;
             Level = level;
-            //ScaleLevel(level);
+            ScaleLevel(level);
             Difficulty = difficulty;
         }
 
@@ -89,8 +89,11 @@ namespace Crawl.Models
         // Upgrades a monster to a set level
         public void ScaleLevel(int level)
         {
-            //TODO: ADD base attributes
             Level = level;
+
+            // Get the number of points at the next level, and set it for Experience Total...
+            ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level + 1].Experience;
+            ExperienceRemaining = ExperienceTotal;
 
             LevelTable lt = new LevelTable();
 

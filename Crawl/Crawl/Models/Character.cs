@@ -13,7 +13,6 @@ namespace Crawl.Models
     {
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
-        //public BaseClass Class { get; set; }
 
         public ClassType Class { get; set; }
 
