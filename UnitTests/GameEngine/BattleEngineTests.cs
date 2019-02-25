@@ -367,7 +367,7 @@ namespace UnitTests.GameEngine
             var Return = myBattleEngine.AddCharactersToBattle();
 
             var Actual = myBattleEngine.CharacterList.Count;
-            var Expected = 6;
+            var Expected = 1;
 
             Assert.AreEqual(true, Return, " Pass Fail " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
