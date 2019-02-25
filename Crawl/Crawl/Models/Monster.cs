@@ -79,11 +79,7 @@ namespace Crawl.Models
         //Picks new and randomized stats for the monster
         public void RollStats()
         {
-            Attribute.MaxHealth = 1000 + HelperEngine.RollDice(3, 10);
-            Attribute.Attack = 1000 + HelperEngine.RollDice(3, 10);
-            Attribute.Defense = 1000 + HelperEngine.RollDice(3, 10);
-            Attribute.Speed = 1000 + HelperEngine.RollDice(3, 10);
-            Attribute.CurrentHealth = Attribute.MaxHealth;
+            ScaleLevel(1);
         }
 
         // Upgrades a monster to a set level
@@ -101,7 +97,7 @@ namespace Crawl.Models
             Attribute.Defense = lt.LevelDetailsList[level].Defense;
             Attribute.Speed = lt.LevelDetailsList[level].Speed;
 
-            Attribute.MaxHealth = Dice.Roll(10, level);
+            Attribute.MaxHealth = 5 * level;
             Attribute.CurrentHealth = Attribute.MaxHealth;
         }
 

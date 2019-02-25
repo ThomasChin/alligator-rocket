@@ -112,16 +112,32 @@ namespace Crawl.Models
         }
 
         // Upgrades to a set level
-        public void ScaleLevel(int newLevel)
+        public bool ScaleLevel(int newLevel)
         {
             LevelTable lt = new LevelTable();
 
-            Attribute.Attack = baseAttack() + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
-            Attribute.Defense = baseDefense() + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
-            Attribute.Speed = baseSpeed() + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
+            var myReturn = true;
 
-            Attribute.MaxHealth = baseHealth() + HealthBuff;
-            Attribute.MaxHealth += Dice.Roll(10, newLevel);
+            if (newLevel < 1)
+                myReturn = false;
+
+            if (newLevel > LevelTable.MaxLevel)
+                myReturn = false;
+
+            if (newLevel <= Level)
+                myReturn = false;
+
+            else
+            {
+                Level = newLevel;
+                Attribute.Attack = baseAttack() + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
+                Attribute.Defense = baseDefense() + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
+                Attribute.Speed = baseSpeed() + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
+
+                Attribute.MaxHealth = Attribute.MaxHealth = HelperEngine.RollDice(Level, 10);
+            }
+
+            return myReturn;
         }
 
         // Update the character information

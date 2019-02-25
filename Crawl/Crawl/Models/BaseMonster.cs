@@ -56,7 +56,35 @@ namespace Crawl.Models
         // So when working with the database, pass Character
         public void Update(Monster newData)
         {
+            if (newData == null)
+            {
                 return;
+            }
+
+            Name = newData.Name;
+            Description = newData.Description;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = newData.ImageURI;
+            Alive = newData.Alive;
+
+            // Populate the Attributes
+            AttributeString = newData.AttributeString;
+
+            // Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
+            UniqueItem = newData.UniqueItem;
+
+            // Calculate Experience Remaining based on Lookup...
+            ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level].Experience;
+
+            Damage = newData.Damage;
+            return;
         }
     }
 }
