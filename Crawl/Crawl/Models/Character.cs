@@ -6,7 +6,7 @@ using SQLite;
 
 namespace Crawl.Models
 {
-    public enum ClassType {Base = 0, Mage, Knight, Assasin};
+    public enum ClassType { Base = 0, Mage, Knight, Assasin };
 
     // The Character is the higher level concept.  This is the Character with all attirbutes defined.
     public class Character : BaseCharacter
@@ -40,7 +40,7 @@ namespace Crawl.Models
             Level = 1;
             ExperienceTotal = 0;
             RollStats();
-            Head = Feet = Necklass =  PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
+            Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
         }
 
         //Main character constructor. "Rolls" stats based on class type.
@@ -112,32 +112,16 @@ namespace Crawl.Models
         }
 
         // Upgrades to a set level
-        public bool ScaleLevel(int newLevel)
+        public void ScaleLevel(int newLevel)
         {
             LevelTable lt = new LevelTable();
 
-            var myReturn = true;
+            Attribute.Attack = baseAttack() + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
+            Attribute.Defense = baseDefense() + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
+            Attribute.Speed = baseSpeed() + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
 
-            if (newLevel < 1)
-                myReturn = false;
-
-            else if (newLevel > LevelTable.MaxLevel)
-                myReturn = false;
-
-            else if (newLevel <= Level)
-                myReturn = false;
-
-            else
-            {
-                // Calculate Experience Remaining based on Lookup...
-                Level = newLevel;
-
-                Attribute.MaxHealth = HelperEngine.RollDice(Level, 10);
-
-                return true;
-            }
-
-            return myReturn;
+            Attribute.MaxHealth = baseHealth() + HealthBuff;
+            Attribute.MaxHealth += Dice.Roll(10, newLevel);
         }
 
         // Update the character information
@@ -146,7 +130,7 @@ namespace Crawl.Models
         {
             if (newData == null)
                 return;
-            
+
             // Update all the fields in the Data, except for the Id
 
             // Base information
@@ -346,7 +330,7 @@ namespace Crawl.Models
             var myReturn = Attribute.MaxHealth;
 
             // Get bonus from Items
-            //myReturn += GetItemBonus(AttributeEnum.MaxHealth);
+            myReturn += GetItemBonus(AttributeEnum.MaxHealth);
 
             return myReturn;
         }
@@ -657,19 +641,19 @@ namespace Crawl.Models
         }
         public int ClassCode()
         {
-            switch(Class)
+            switch (Class)
             {
-                default : return 0;
+                default: return 0;
                 case ClassType.Mage: return 1;
                 case ClassType.Knight: return 2;
                 case ClassType.Assasin: return 3;
             }
         }
-        
+
         //Functions to get base attributes for the class of this character
-        public int baseHealth() { return ClassBaseStats[ClassCode()][0]; } 
-        public int baseAttack() { return ClassBaseStats[ClassCode()][1]; } 
-        public int baseDefense() { return ClassBaseStats[ClassCode()][2];} 
-        public int baseSpeed() { return ClassBaseStats[ClassCode()][3]; } 
+        public int baseHealth() { return ClassBaseStats[ClassCode()][0]; }
+        public int baseAttack() { return ClassBaseStats[ClassCode()][1]; }
+        public int baseDefense() { return ClassBaseStats[ClassCode()][2]; }
+        public int baseSpeed() { return ClassBaseStats[ClassCode()][3]; }
     }
 }

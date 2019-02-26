@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Crawl.GameEngine;
 using System.Diagnostics;
 
-public enum MonsterType {Base = 0, GiantSquid, GiantStarfish, GiantWhale}
+public enum MonsterType { Base = 0, GiantSquid, GiantStarfish, GiantWhale }
 
 namespace Crawl.Models
 {
@@ -61,30 +61,13 @@ namespace Crawl.Models
         // Passed in from creating via the Database, so use the guid passed in...
         public Monster(BaseMonster newData)
         {
-            // Database information
-            Guid = newData.Guid;
-            Id = newData.Id;
-
-            // Set the strings for the items
-            Head = newData.Head;
-            Feet = newData.Feet;
-            Necklass = newData.Necklass;
-            RightFinger = newData.RightFinger;
-            LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
-
             Name = newData.Name;
-            Description = newData.Description;
-            ImageURI = newData.ImageURI;
-            Alive = newData.Alive;
+            Attribute = new AttributeBase();
 
+            Alive = true;
             Level = newData.Level;
 
-            // Populate the Attributes
-            Attribute = new AttributeBase(newData.AttributeString);
-
-            // Scale up to the level
-            ScaleLevel(Level);
+            Id = System.Guid.NewGuid().ToString();
         }
 
         // Returns the string name of the monster type
@@ -96,7 +79,11 @@ namespace Crawl.Models
         //Picks new and randomized stats for the monster
         public void RollStats()
         {
-            ScaleLevel(1);
+            Attribute.MaxHealth = 1000 + HelperEngine.RollDice(3, 10);
+            Attribute.Attack = 1000 + HelperEngine.RollDice(3, 10);
+            Attribute.Defense = 1000 + HelperEngine.RollDice(3, 10);
+            Attribute.Speed = 1000 + HelperEngine.RollDice(3, 10);
+            Attribute.CurrentHealth = Attribute.MaxHealth;
         }
 
         // Upgrades a monster to a set level
@@ -110,50 +97,25 @@ namespace Crawl.Models
 
             LevelTable lt = new LevelTable();
 
-            Attribute.Attack =  lt.LevelDetailsList[level].Attack;
+            Attribute.Attack = lt.LevelDetailsList[level].Attack;
             Attribute.Defense = lt.LevelDetailsList[level].Defense;
             Attribute.Speed = lt.LevelDetailsList[level].Speed;
 
-            Attribute.MaxHealth = 5 * level;
+            Attribute.MaxHealth = Dice.Roll(10, level);
             Attribute.CurrentHealth = Attribute.MaxHealth;
         }
 
         // Update the values passed in
         public new void Update(Monster newData)
         {
-            //Do not update character if the new data is null
-            if (newData == null)
-                return;
-            // Update all the fields in the Data, except for the Id
+            type = newData.type;
             Name = newData.Name;
-            Description = newData.Description;
             Level = newData.Level;
-            ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = newData.ImageURI;
-            Alive = newData.Alive;
+            ScaleLevel(newData.Level);
 
             // Database information
             Guid = newData.Guid;
             Id = newData.Id;
-
-            // Populate the Attributes
-            AttributeString = newData.AttributeString;
-            Attribute = new AttributeBase(newData.AttributeString);
-
-            // Set the strings for the items
-            Head = newData.Head;
-            Feet = newData.Feet;
-            Necklass = newData.Necklass;
-            RightFinger = newData.RightFinger;
-            LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
-            UniqueItem = newData.UniqueItem;
-
-            // Calculate Experience Remaining based on Lookup...
-            ExperienceTotal = newData.ExperienceTotal;
-            ExperienceRemaining = newData.ExperienceRemaining;
-
-            Damage = newData.Damage;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
@@ -308,10 +270,8 @@ namespace Crawl.Models
         {
             Debug.WriteLine("DAMAGE:" + (Attribute.CurrentHealth - damage));
             if (Attribute.CurrentHealth - damage <= 0)
-            {
-                Attribute.CurrentHealth = 0;
                 Alive = false;
-            }
+
             else
                 Attribute.CurrentHealth -= damage;
         }
