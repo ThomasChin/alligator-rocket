@@ -61,13 +61,30 @@ namespace Crawl.Models
         // Passed in from creating via the Database, so use the guid passed in...
         public Monster(BaseMonster newData)
         {
-            Name = newData.Name;
-            Attribute = new AttributeBase();
+            // Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
 
-            Alive = true;
+            // Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
+
+            Name = newData.Name;
+            Description = newData.Description;
+            ImageURI = newData.ImageURI;
+            Alive = newData.Alive;
+
             Level = newData.Level;
 
-            Id = System.Guid.NewGuid().ToString();
+            // Populate the Attributes
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            // Scale up to the level
+            ScaleLevel(Level);
         }
 
         // Returns the string name of the monster type
@@ -104,14 +121,39 @@ namespace Crawl.Models
         // Update the values passed in
         public new void Update(Monster newData)
         {
-            type = newData.type;
+            //Do not update character if the new data is null
+            if (newData == null)
+                return;
+            // Update all the fields in the Data, except for the Id
             Name = newData.Name;
+            Description = newData.Description;
             Level = newData.Level;
-            ScaleLevel(newData.Level);
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = newData.ImageURI;
+            Alive = newData.Alive;
 
             // Database information
             Guid = newData.Guid;
             Id = newData.Id;
+
+            // Populate the Attributes
+            AttributeString = newData.AttributeString;
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            // Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
+            UniqueItem = newData.UniqueItem;
+
+            // Calculate Experience Remaining based on Lookup...
+            ExperienceTotal = newData.ExperienceTotal;
+            ExperienceRemaining = newData.ExperienceRemaining;
+
+            Damage = newData.Damage;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
@@ -266,8 +308,10 @@ namespace Crawl.Models
         {
             Debug.WriteLine("DAMAGE:" + (Attribute.CurrentHealth - damage));
             if (Attribute.CurrentHealth - damage <= 0)
+            {
+                Attribute.CurrentHealth = 0;
                 Alive = false;
-
+            }
             else
                 Attribute.CurrentHealth -= damage;
         }

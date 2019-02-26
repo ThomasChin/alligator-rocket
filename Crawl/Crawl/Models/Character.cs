@@ -121,20 +121,20 @@ namespace Crawl.Models
             if (newLevel < 1)
                 myReturn = false;
 
-            if (newLevel > LevelTable.MaxLevel)
+            else if (newLevel > LevelTable.MaxLevel)
                 myReturn = false;
 
-            if (newLevel <= Level)
+            else if (newLevel <= Level)
                 myReturn = false;
 
             else
             {
+                // Calculate Experience Remaining based on Lookup...
                 Level = newLevel;
-                Attribute.Attack = baseAttack() + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
-                Attribute.Defense = baseDefense() + DefenseBuff + lt.LevelDetailsList[newLevel].Defense;
-                Attribute.Speed = baseSpeed() + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
 
-                Attribute.MaxHealth = Attribute.MaxHealth = HelperEngine.RollDice(Level, 10);
+                Attribute.MaxHealth = HelperEngine.RollDice(Level, 10);
+
+                return true;
             }
 
             return myReturn;
@@ -346,7 +346,7 @@ namespace Crawl.Models
             var myReturn = Attribute.MaxHealth;
 
             // Get bonus from Items
-            myReturn += GetItemBonus(AttributeEnum.MaxHealth);
+            //myReturn += GetItemBonus(AttributeEnum.MaxHealth);
 
             return myReturn;
         }

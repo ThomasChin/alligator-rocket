@@ -155,18 +155,6 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void Model_Monster_GetDamage_Valid_Should_Pass()
-        {
-            var myData = new Monster();
-            var myDataDefault = DefaultModels.MonsterDefault();
-
-            var Result = myDataDefault.GetDamage();
-            var Expected = 2; // 1 for level, and 1 for base damage
-
-            Assert.AreEqual(Expected, Result, TestContext.CurrentContext.Test.Name);
-        }
-
-        [Test]
         public void Model_Monster_GetDefense_Valid_Should_Pass()
         {
             var myData = new Monster();
@@ -318,47 +306,6 @@ namespace UnitTests.Models
 
             // Guids should match up...
             Assert.AreEqual(Expected.Guid, Result.Guid, TestContext.CurrentContext.Test.Name);
-        }
-
-        [Test]
-        public void Model_Monster_Monster_From_BaseMonster_Should_Pass()
-        {
-            var myBase = DefaultModels.BaseMonsterDefault();
-            var Expected = new Monster(myBase);
-            var Result = new Monster(myBase);
-
-            // Check all Monster fields, that come from BaseMonster.
-            Assert.AreEqual(Expected.Guid, Result.Guid, "Guid "+TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Result.Guid, Result.Id, " Guid match ID " +TestContext.CurrentContext.Test.Name);
-
-            Assert.AreEqual(Expected.Head, Result.Head, "Head " +TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Expected.Necklass, Result.Necklass, "Necklass " +TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Expected.RightFinger, Result.RightFinger, "Right Finger " +TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Expected.LeftFinger, Result.LeftFinger, "Left Finger " + TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Expected.Feet, Result.Feet, "Feet " + TestContext.CurrentContext.Test.Name);
-
-            Assert.AreEqual(Expected.Damage, Result.Damage, "Damage " + TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(300, Result.ExperienceRemaining, "Experience Remaining "+TestContext.CurrentContext.Test.Name);
-
-            // Check the Attributes
-            var myAttributes = new AttributeBase
-            {
-                Attack = 1,
-                Speed = 1,
-                MaxHealth = 5,
-                CurrentHealth = 5,
-                Defense = 1
-            };
-
-            JObject myAttributesJson = (JObject)JToken.FromObject(myAttributes);
-            var myAttibutesString = myAttributesJson.ToString();
-            Assert.AreEqual(myAttibutesString, Result.AttributeString, "Attribute String" + TestContext.CurrentContext.Test.Name);
-
-            Assert.AreEqual(Expected.Name, Result.Name, "Name " +TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Expected.Description, Result.Description, "Description " +TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Expected.Level, Result.Level, "Level "+TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Expected.ExperienceTotal, Result.ExperienceTotal, "Experience Total " +TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(Expected.ImageURI, Result.ImageURI, "Image " +TestContext.CurrentContext.Test.Name);
         }
 
         [Test]

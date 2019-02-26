@@ -292,49 +292,6 @@ namespace UnitTests.GameEngine
 
 
         [Test]
-        public void TurnEngine_TurnAsAttack_Monster_Attack_Defender_CriticalHit_PowerfullHit_Should_Kill()
-        {
-            MockForms.Init();
-
-            // Turn off random numbers
-            GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
-
-            var Attacker = DefaultModels.MonsterDefault();
-            Attacker.Name = "Rat";
-            Attacker.ScaleLevel(20);
-
-            var myDefaultCharacter = new Character(DefaultModels.CharacterDefault());
-            myDefaultCharacter.Name = "Fighter";
-            myDefaultCharacter.ScaleLevel(1);
-
-            var myTurnEngine = new TurnEngine();
-            myTurnEngine.CharacterList.Add(myDefaultCharacter);
-
-            GameGlobals.ForceToHitValue = 20; // Force a hit
-
-            // Should Kill because level 20 hit on level 1 Character for Critical is more damage than health...
-
-            var AttackScore = Attacker.Level + Attacker.GetAttack();
-            var DefenseScore = myDefaultCharacter.GetDefense() + myDefaultCharacter.Level;
-
-            var Status = myTurnEngine.TurnAsAttack(Attacker, AttackScore, myDefaultCharacter, DefenseScore);
-
-            var Actual = Status;
-            bool Expected = true;
-
-            var ActualString = myTurnEngine.TurnMessage;
-            var ActualResult = myTurnEngine.HitStatus;
-            var ActualDamage = myTurnEngine.DamageAmount;
-            var LifeStatus = myDefaultCharacter.Alive;
-
-            // Reset
-            GameGlobals.ToggleRandomState();
-
-            Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(false, myDefaultCharacter.Alive, TestContext.CurrentContext.Test.Name);
-        }
-
-        [Test]
         public void TurnEngine_TurnAsAttack_Character_Attack_Defender_Die_With_Item_Should_Drop()
         {
             MockForms.Init();
@@ -373,58 +330,6 @@ namespace UnitTests.GameEngine
             var DefenseScore = myDefaultMonster.GetDefense() + myDefaultMonster.Level;
 
             var Status = myTurnEngine.TurnAsAttack(Attacker, AttackScore, myDefaultMonster, DefenseScore);
-
-
-            // Item should drop...
-
-            // Reset
-            GameGlobals.ToggleRandomState();
-
-            // Need to get Score
-            // See if Item is now in the score list...
-            var AfterItemDropList = myTurnEngine.BattleScore.ItemsDroppedList;
-            Assert.AreNotEqual(BeforeItemDropList, AfterItemDropList, TestContext.CurrentContext.Test.Name);
-        }
-
-        [Test]
-        public void TurnEngine_TurnAsAttack_Monster_Attack_Defender_Die_With_Item_Should_Drop()
-        {
-            MockForms.Init();
-
-            // Turn off random numbers
-            GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
-
-            var Attacker = DefaultModels.MonsterDefault();
-            Attacker.Name = "Rat";
-            Attacker.ScaleLevel(20);
-
-            var myDefaultCharacter = new Character(DefaultModels.CharacterDefault());
-            myDefaultCharacter.Name = "Fighter";
-            myDefaultCharacter.ScaleLevel(1);
-
-            // Add Uniqueitem
-            var myItem = new Item
-            {
-                Attribute = AttributeEnum.Attack,
-                Location = ItemLocationEnum.Feet,
-                Value = 1
-            };
-            ItemsViewModel.Instance.AddAsync(myItem).GetAwaiter().GetResult();  // Register Item to DataSet
-            myDefaultCharacter.PrimaryHand = myItem.Guid;
-
-            var myTurnEngine = new TurnEngine();
-            myTurnEngine.CharacterList.Add(myDefaultCharacter);
-
-            // Get Score, and remember item.
-            var BeforeItemDropList = myTurnEngine.BattleScore.ItemsDroppedList;
-
-            GameGlobals.ForceToHitValue = 20; // Force a hit
-
-            // Should Kill because level 20 hit on level 1 Character for Critical is more damage than health...
-            var AttackScore = Attacker.Level + Attacker.GetAttack();
-            var DefenseScore = myDefaultCharacter.GetDefense() + myDefaultCharacter.Level;
-
-            var Status = myTurnEngine.TurnAsAttack(Attacker, AttackScore, myDefaultCharacter, DefenseScore);
 
 
             // Item should drop...
