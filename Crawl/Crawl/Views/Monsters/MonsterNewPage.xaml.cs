@@ -11,10 +11,11 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MonsterNewPage : ContentPage
     {
-        public Monster Data { get; set; }
-        public List<int> Difficulties { get; set; }
-        public List<string> Types { get; set; }
+        public Monster Data { get; set; } // Monster Data
+        public List<int> Difficulties { get; set; } // Monster Difficulties
+        public List<string> Types { get; set; } // Monster Types
 
+        // Initialize MonstersNewPage.
         public MonsterNewPage()
         {
             InitializeDifficultes();
@@ -32,8 +33,6 @@ namespace Crawl.Views
             };
 
             BindingContext = this;
-
-   
         }
 
         //Add all of the monster difficulties to the picker

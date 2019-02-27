@@ -10,7 +10,7 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterNewPage : ContentPage
     {
-        public Character Data { get; set; }
+        public Character Data { get; set; } // Character
 
         // Page constructor
         public CharacterNewPage()

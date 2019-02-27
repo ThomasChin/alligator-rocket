@@ -13,6 +13,7 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterDetailPage : ContentPage
     {
+        // ViewModel for CharacterDetail
         private CharacterDetailViewModel _viewModel;
 
         // Page Constructor

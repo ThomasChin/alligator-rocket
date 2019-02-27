@@ -10,7 +10,7 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemNewPage : ContentPage
     {
-        public Item Data { get; set; }
+        public Item Data { get; set; } // Item data.
 
         // Constructor for the page, will create a new black item that can tehn get updated
         public ItemNewPage()

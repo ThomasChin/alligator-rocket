@@ -14,12 +14,13 @@ namespace Crawl.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AutoBattlePage : ContentPage
 	{
+        // Initialize AutoBattlePage.
 		public AutoBattlePage ()
 		{
 			InitializeComponent ();
 		}
 
-        // ExcecuateAutoBattle Button
+        // Excecute AutoBattle Button
         private async void AutoBattleButton_Command(object sender, EventArgs e)
         {
             // Can create a new battle engine...

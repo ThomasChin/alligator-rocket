@@ -14,6 +14,7 @@ namespace Crawl.Views
         // ReSharper disable once NotAccessedField.Local
         private MonstersViewModel _viewModel;
 
+        // Monster Page with MonsterViewModel.
         public MonstersPage()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace Crawl.Views
             await Navigation.PushAsync(new MonsterNewPage());
         }
 
+        // Logic for OnApperaing.
         protected override void OnAppearing()
         {
             base.OnAppearing();

@@ -14,6 +14,7 @@ namespace Crawl.Views
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private ItemDetailViewModel _viewModel;
 
+        // Item DetailPage with viewModel.
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();

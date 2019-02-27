@@ -13,8 +13,9 @@ namespace Crawl.Views
 	    // ReSharper disable once NotAccessedField.Local
 	    private MonsterDetailViewModel _viewModel;
 
-        public Monster Data { get; set; }
+        public Monster Data { get; set; } // Monster Data.
 
+        // Initialize MonsterEditPage.
         public MonsterEditPage(MonsterDetailViewModel viewModel)
         {
             // Save off the item
@@ -22,7 +23,6 @@ namespace Crawl.Views
             viewModel.Title = "Edit " + viewModel.Title;
 
             InitializeComponent();
-            
 
             // Set the data binding for the page
             BindingContext = _viewModel = viewModel;
