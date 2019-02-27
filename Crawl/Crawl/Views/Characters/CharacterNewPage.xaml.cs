@@ -19,7 +19,7 @@ namespace Crawl.Views
 
             Data = new Character
             {
-                Name = "Doug",
+                Name = "Narwallace",
                 Id = Guid.NewGuid().ToString()
             };
 
