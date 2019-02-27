@@ -1,8 +1,6 @@
 ﻿using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 using Crawl.Models;
 using Crawl.ViewModels;
 
@@ -14,26 +12,12 @@ namespace Crawl.Views
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private ScoreDetailViewModel _viewModel;
 
+        // New Score Detail Page with ViewModel.
         public ScoreDetailPage(ScoreDetailViewModel viewModel)
         {
             InitializeComponent();
 
             BindingContext = _viewModel = viewModel;
-        }
-
-        // Constructor.
-        public ScoreDetailPage()
-        {
-            InitializeComponent();
-
-            var data = new Score
-            {
-                Name = "Score name",
-                ScoreTotal = 0
-            };
-
-            _viewModel = new ScoreDetailViewModel(data);
-            BindingContext = _viewModel;
         }
 
         // Create new Score Edit Page.

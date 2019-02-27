@@ -13,8 +13,9 @@ namespace Crawl.Views
 	    // ReSharper disable once NotAccessedField.Local
 	    private ScoreDetailViewModel _viewModel;
 
-        public Score Data { get; set; }
+        public Score Data { get; set; } // Score Data.
 
+        // New ScoreEditPage.
         public ScoreEditPage(ScoreDetailViewModel viewModel)
         {
             // Save off the item

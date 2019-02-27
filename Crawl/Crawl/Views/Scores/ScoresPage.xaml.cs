@@ -11,6 +11,7 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScoresPage : ContentPage
     {
+        // Use Score View Model.
         private ScoresViewModel _viewModel;
 
         // Constructor

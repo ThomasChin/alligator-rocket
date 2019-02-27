@@ -14,9 +14,6 @@
             <StackLayout Spacing="20" Padding="15">
                 <Label Text="Score Create Page" FontSize="Small" />
 
-                <Label Text="Name" FontSize="Medium" />
-                <Entry Text="{Binding Data.Name}" FontSize="Small" />
-
                 <Label Text="Score:" FontSize="Medium" />
                 <Entry Text="{Binding Data.ScoreTotal}" FontSize="Small"/>
 
