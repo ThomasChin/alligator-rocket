@@ -32,10 +32,10 @@ namespace Crawl.Views
         // Save on the Tool bar
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            // If the image in teh data box is empty, use the default one..
+            // If the image in the data box is empty, use the default one..
             if (string.IsNullOrEmpty(Data.ImageURI))
             {
-                Data.ImageURI = CharacterController.DefaultImageURI;
+                Data.ImageURI = "https://image-cdn.neatoshop.com/styleimg/63924/none/lightturquoise/default/364350-20;1506129408j.jpg";
             }
 
             MessagingCenter.Send(this, "EditData", Data);
