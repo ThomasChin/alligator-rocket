@@ -5,7 +5,7 @@ namespace Crawl.GameEngine
 {
     class AutoBattleEngine
     {
-        public BattleEngine BattleEngine = new BattleEngine();
+        public BattleEngine BattleEngine = new BattleEngine(); // Instantiate
 
         // Automated Battle Sequence.
         public bool ExecuteAutoBattle()

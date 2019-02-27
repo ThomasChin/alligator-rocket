@@ -17,11 +17,13 @@ namespace Crawl.GameEngine
         // Player currently engaged
         public PlayerInfo PlayerCurrent;
 
+        // Instantiate
         public RoundEngine()
         {
             ClearLists();
         }
 
+        // Intialize Lists.
         private void ClearLists()
         {
             ItemPool = new List<Item>();

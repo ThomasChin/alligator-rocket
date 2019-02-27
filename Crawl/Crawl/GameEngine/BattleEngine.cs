@@ -92,6 +92,7 @@ namespace Crawl.GameEngine
             return true;
         }
 
+        // Get a random character.
         public Character GetRandomCharacter(int ScaleLevelMin, int ScaleLevelMax)
         {
             var myCharacterViewModel = CharactersViewModel.Instance;

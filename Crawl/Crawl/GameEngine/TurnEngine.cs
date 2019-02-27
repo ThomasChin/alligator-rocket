@@ -23,21 +23,20 @@ namespace Crawl.GameEngine
         // Holds the official score
         public Score BattleScore = new Score();
 
-        public string AttackerName = string.Empty;
-        public string TargetName = string.Empty;
-        public string AttackStatus = string.Empty;
+        public string AttackerName = string.Empty; // Attacker
+        public string TargetName = string.Empty; // Target
+        public string AttackStatus = string.Empty; // Attack Status
 
-        public string TurnMessage = string.Empty;
-        public string TurnMessageSpecial = string.Empty;
-        public string LevelUpMessage = string.Empty;
+        public string TurnMessage = string.Empty; // Message for Turn
+        public string TurnMessageSpecial = string.Empty; // Special Message.
+        public string LevelUpMessage = string.Empty; // Level Up Message.
 
-        public int DamageAmount = 0;
-        public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
+        public int DamageAmount = 0; // Damage amount
+        public HitStatusEnum HitStatus = HitStatusEnum.Unknown; // Hit Type
 
-        public List<Item> ItemPool = new List<Item>();
+        public List<Item> ItemPool = new List<Item>(); // Pool for Items.
 
         //public List<Item> ItemList = new List<Item>();
-
         public List<Monster> MonsterList = new List<Monster>();
         public List<Character> CharacterList = new List<Character>();
 
@@ -295,9 +294,9 @@ namespace Crawl.GameEngine
             return true;
         }
 
+        // Roll for attack.
         public HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
-
             var d20 = HelperEngine.RollDice(1, 20);
 
             // Turn On UnitTestingSetRoll
@@ -443,6 +442,7 @@ namespace Crawl.GameEngine
             return myList;
         }
 
+        // Determin Critiical Miss.
         public string DetermineCriticalMissProblem(Character attacker)
         {
             if (attacker == null)
@@ -505,7 +505,6 @@ namespace Crawl.GameEngine
                     }
                     break;
             }
-
             return myReturn;
         }
     }
