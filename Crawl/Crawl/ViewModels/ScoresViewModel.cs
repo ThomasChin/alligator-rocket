@@ -17,6 +17,7 @@ namespace Crawl.ViewModels
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static ScoresViewModel _instance;
 
+        // Instance of viewmodel.
         public static ScoresViewModel Instance
         {
             get
@@ -30,10 +31,11 @@ namespace Crawl.ViewModels
         }
 
         public ObservableCollection<Score> Dataset { get; set; } // Score Dataset
-        public Command LoadDataCommand { get; set; }
+        public Command LoadDataCommand { get; set; } // Load Data
 
         private bool _needsRefresh; // Determine if db needs refresh.
 
+        // Constructor
         public ScoresViewModel()
         {
             Title = "Score List";
@@ -164,9 +166,9 @@ namespace Crawl.ViewModels
             }
         }
 
+        // Force Data to refresh.
         public void ForceDataRefresh()
         {
-            // Reset
             var canExecute = LoadDataCommand.CanExecute(null);
             LoadDataCommand.Execute(null);
         }

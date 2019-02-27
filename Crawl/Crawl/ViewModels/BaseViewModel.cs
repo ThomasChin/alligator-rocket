@@ -14,16 +14,21 @@ namespace Crawl.ViewModels
     {
         #region RefactorLater
 
+        // Dependency for Mock
         private IDataStore DataStoreMock => DependencyService.Get<IDataStore>() ?? MockDataStore.Instance;
+
+        // Dependency for SQL
         private IDataStore DataStoreSql => DependencyService.Get<IDataStore>() ?? SQLDataStore.Instance;
 
-        public IDataStore DataStore;
+        public IDataStore DataStore; // Datastore
 
+        // Constructor.
         public BaseViewModel()
         {
             SetDataStore(DataStoreEnum.Mock);
         }
 
+        // Set to SQL or Mock.
         public void SetDataStore(DataStoreEnum data)
         {
             switch (data)
@@ -42,23 +47,27 @@ namespace Crawl.ViewModels
             }
         }
 
-
         #endregion
 
-        private bool _isBusy = false;
+        private bool _isBusy = false; // Default is Busy.
+
+        // Check if busy.
         public bool IsBusy
         {
             get { return _isBusy; }
             set { SetProperty(ref _isBusy, value); }
         }
 
-        private string _title = string.Empty;
+        private string _title = string.Empty; // Default title.
+
+        // Get title
         public string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
 
+        // Set a property.
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
@@ -73,7 +82,10 @@ namespace Crawl.ViewModels
         }
 
         #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        public event PropertyChangedEventHandler PropertyChanged; // Handle changed property.
+
+        // Update on property changed.
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;

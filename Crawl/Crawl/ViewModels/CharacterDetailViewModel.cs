@@ -4,7 +4,9 @@ namespace Crawl.ViewModels
 {
     public class CharacterDetailViewModel : BaseViewModel
     {
-        public Character Data { get; set; }
+        public Character Data { get; set; } // Character Data
+
+        // Constructor.
         public CharacterDetailViewModel(Character data = null)
         {
             Title = data?.Name;

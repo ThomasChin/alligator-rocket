@@ -38,6 +38,7 @@ namespace Crawl.ViewModels
         // Bool for checking refresh
         private bool _needsRefresh;
 
+        // Constructor.
         public CharactersViewModel()
         {
 
@@ -62,7 +63,6 @@ namespace Crawl.ViewModels
             });
 
             #endregion Messages
-
         }
 
         // Return True if a refresh is needed
@@ -182,6 +182,5 @@ namespace Crawl.ViewModels
         }
 
         #endregion DataOperations
-
     }
 }

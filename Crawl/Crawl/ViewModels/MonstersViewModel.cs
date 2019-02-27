@@ -38,6 +38,7 @@ namespace Crawl.ViewModels
         // Bool for checking refresh
         private bool _needsRefresh;
 
+        // Constructor.
         public MonstersViewModel()
         {
             Title = "Monster List";
@@ -85,6 +86,7 @@ namespace Crawl.ViewModels
             _needsRefresh = value;
         }
 
+        // Execute Loading of Data.
         private async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
@@ -121,10 +123,10 @@ namespace Crawl.ViewModels
                 IsBusy = false;
             }
         }
-        
+
+        // Force refresh.
         public void ForceDataRefresh()
         {
-            // Reset
             var canExecute = LoadDataCommand.CanExecute(null);
             LoadDataCommand.Execute(null);
         }
@@ -181,6 +183,5 @@ namespace Crawl.ViewModels
         }
 
         #endregion DataOperations
-
     }
 }

@@ -18,6 +18,7 @@ namespace Crawl.ViewModels
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static ItemsViewModel _instance;
 
+        // Instance property.
         public static ItemsViewModel Instance
         {
             get
@@ -32,10 +33,10 @@ namespace Crawl.ViewModels
 
         #endregion Singleton
 
-        public ObservableCollection<Item> Dataset { get; set; }
-        public Command LoadDataCommand { get; set; }
+        public ObservableCollection<Item> Dataset { get; set; } // Item List
+        public Command LoadDataCommand { get; set; } // Load Data
 
-        private bool _needsRefresh;
+        private bool _needsRefresh; // Boolean for checking if refresh needed.
 
         // Constructor 
         public ItemsViewModel()
@@ -84,7 +85,7 @@ namespace Crawl.ViewModels
             _needsRefresh = value;
         }
 
-        // Load Data form db.
+        // Load Data from db.
         private async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
@@ -271,5 +272,4 @@ namespace Crawl.ViewModels
             return myReturn.Guid;
         }
     }
-
 }

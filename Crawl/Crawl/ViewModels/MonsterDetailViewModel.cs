@@ -6,6 +6,8 @@ namespace Crawl.ViewModels
     {
         // Data getters and setters
         public Monster Data { get; set; }
+
+        // Constructor.
         public MonsterDetailViewModel(Monster data = null)
         {
             Title = data?.Name;
