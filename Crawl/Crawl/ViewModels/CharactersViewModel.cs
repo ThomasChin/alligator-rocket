@@ -101,7 +101,6 @@ namespace Crawl.ViewModels
                 //Sort the list
                 dataset = dataset
                     .OrderBy(a => a.Name)
-                    .ThenBy(a => a.Age)
                     .ToList();
 
                 // Then load the data structure

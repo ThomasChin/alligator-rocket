@@ -7,6 +7,7 @@ namespace Crawl.Models
 {
     public abstract class Dice
     {
+        // Roll the dice helper.
         public static int Roll(int faces, int count)
         {
             Random r = new Random();

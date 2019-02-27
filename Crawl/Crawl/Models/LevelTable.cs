@@ -8,6 +8,7 @@ namespace Crawl.Models
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static LevelTable _instance;
 
+        // Create instance of LevelTable.
         public static LevelTable Instance
         {
             get
@@ -31,9 +32,11 @@ namespace Crawl.Models
         // Data for the Levels
         public LevelTable()
         {
-            ClearAndLoadDatTable();
+            ClearAndLoadDataTable();
         }
-        public void ClearAndLoadDatTable()
+
+        // Clear / Load Data for Table.
+        public void ClearAndLoadDataTable()
         { 
             LevelDetailsList = new List<LevelDetails>();
             LoadLevelData();

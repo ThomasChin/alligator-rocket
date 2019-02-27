@@ -6,8 +6,6 @@ namespace Crawl.Models
 
     public class BasePlayer<T> : BasePlayerItemSlots<T>
     {
-        // Where is the Item Slots, it is in the baseclass...
-
 
         // Level of the character, or difficulty level of the monster
         public int Level { get; set; }
@@ -16,9 +14,6 @@ namespace Crawl.Models
         public int ExperienceTotal { get; set; }
 
         public bool Alive { get; set; }
-
-        // Age (Week 4 Personal HW Attribute
-        public int Age { get; set; }
 
         // The AttributeString will be unpacked and stored in the top level of Character as actual attributes, 
         // but it needs to go here as a string so it can be saved to the database.
@@ -38,6 +33,5 @@ namespace Crawl.Models
         {
             return (int)Math.Ceiling(Level * .25);
         }
-
     }
 }

@@ -15,10 +15,9 @@ namespace Crawl.Models
 
         // Just base from here down. 
         // This is what will be saved to the Database
-
+        // Constructor.
         public BaseMonster()
         {
-
         }
 
         // Creaste a base from a monster, this reuses the guid and id

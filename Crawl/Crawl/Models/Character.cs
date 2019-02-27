@@ -22,8 +22,10 @@ namespace Crawl.Models
         static int[] KnightClassBaseStats = { 6, 6, 6, 2 };
         static int[] AssasinClassBaseStats = { 3, 5, 3, 8 };
 
+        // Base stats.
         static int[][] ClassBaseStats = { BaseClassBaseStats, MageClassBaseStats, KnightClassBaseStats, AssasinClassBaseStats };
 
+        // Buffs
         private int HealthBuff = 0;
         private int SpeedBuff = 0;
         private int DefenseBuff = 0;
@@ -57,6 +59,7 @@ namespace Crawl.Models
             Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
         }
 
+        // Roll Stats for Character.
         public void RollStats()
         {
             //Roll character buffs
@@ -69,6 +72,7 @@ namespace Crawl.Models
             ScaleLevel(Level);
         }
 
+        // Constructor with string.
         public Character(string v)
         {
             Attribute = new AttributeBase();
@@ -634,11 +638,13 @@ namespace Crawl.Models
             }
         }
 
-        //Functions to get the Class ID (enum #) and Name
+        // Get Class ID.
         public String ClassName
         {
             get { return Class.ToString(); }
         }
+
+        // Choose Class.
         public int ClassCode()
         {
             switch (Class)

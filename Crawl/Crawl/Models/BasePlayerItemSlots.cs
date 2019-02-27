@@ -62,6 +62,7 @@ namespace Crawl.Models
             return myReturn;
         }
 
+        // Format output for itme slots.
         public string ItemSlotsFormatOutput()
         {
             var myReturn = "";

@@ -12,6 +12,7 @@ namespace Crawl.Models
     // Converts from an Int to an Enum value
     public class IntEnumConverter : IValueConverter
     {
+        // Convert Enum.
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is Enum)
@@ -22,6 +23,7 @@ namespace Crawl.Models
             return 0;
         }
 
+        // Convert back.
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is int)
@@ -37,6 +39,7 @@ namespace Crawl.Models
     // Converts from a String to the enum value.  Head = 5, would return 5 for the string "Head", and for "Head" will return 5
     public class StringEnumConverter : IValueConverter
     {
+        // Convert string enum.
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is Enum)
@@ -54,6 +57,7 @@ namespace Crawl.Models
             return 0;
         }
 
+        // Convert back.
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is int)
