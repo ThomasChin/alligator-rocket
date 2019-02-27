@@ -125,6 +125,7 @@ namespace Crawl.Services
 
         // If you got to here then return false;
 
+        // Insert Update for Item.
         public async Task<bool> InsertUpdateAsync_Item(Item data)
         {
             // Check to see if the item exist
@@ -145,6 +146,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Add Item.
         public async Task<bool> AddAsync_Item(Item data)
         {
             var result = await App.Database.InsertAsync(data);
@@ -155,6 +157,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Update Item.
         public async Task<bool> UpdateAsync_Item(Item data)
         {
             var result = await App.Database.UpdateAsync(data);
@@ -166,6 +169,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Remove Item.
         public async Task<bool> DeleteAsync_Item(Item data)
         {
             var result = await App.Database.DeleteAsync(data);
@@ -177,6 +181,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Get Item.
         public async Task<Item> GetAsync_Item(string id)
         {
             var tempResult = await App.Database.GetAsync<Item>(id);
@@ -186,6 +191,7 @@ namespace Crawl.Services
             return result;
         }
 
+        // Get List of Items.
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
             var tempResult = await App.Database.Table<Item>().ToListAsync();
@@ -217,6 +223,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Insert Update Character.
         public async Task<bool> InsertUpdateAsync_Character(Character data)
         {
 
@@ -313,6 +320,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // InsertUpdate Monster.
         public async Task<bool> InsertUpdateAsync_Monster(Monster data)
         {
 
@@ -394,6 +402,7 @@ namespace Crawl.Services
 
         #region Score
         // Score
+        // Add Score.
         public async Task<bool> AddAsync_Score(Score data)
         {
             var result = await App.Database.InsertAsync(data);
@@ -405,6 +414,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Update Score.
         public async Task<bool> UpdateAsync_Score(Score data)
         {
             var result = await App.Database.UpdateAsync(data);
@@ -416,6 +426,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Delete Score.
         public async Task<bool> DeleteAsync_Score(Score data)
         {
             var result = await App.Database.DeleteAsync(data);
@@ -427,6 +438,7 @@ namespace Crawl.Services
             return false;
         }
 
+        // Get Score.
         public async Task<Score> GetAsync_Score(string id)
         {
             var tempResult = await App.Database.GetAsync<Score>(id);
@@ -436,6 +448,7 @@ namespace Crawl.Services
             return result;
         }
 
+        // Get All scores.
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
             var tempResult = await App.Database.Table<Score>().ToListAsync();
@@ -449,6 +462,7 @@ namespace Crawl.Services
             return result;
         }
 
+        // Insert Update Score.
         public async Task<bool> InsertUpdateAsync_Score(Score data)
         {
 
@@ -470,7 +484,6 @@ namespace Crawl.Services
 
             return false;
         }
-
         #endregion Score
     }
 }

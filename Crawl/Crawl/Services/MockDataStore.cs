@@ -9,7 +9,6 @@ namespace Crawl.Services
 {
     public sealed class MockDataStore : IDataStore
     {
-
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static MockDataStore _instance;
 
@@ -216,7 +215,7 @@ namespace Crawl.Services
             return await Task.FromResult(true);
         }
 
-        // Add Character to db
+        // Update Character in db
         public async Task<bool> UpdateAsync_Character(Character data)
         {
             var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);

@@ -16,9 +16,10 @@ namespace Crawl.Services
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static HttpClientService _instance;
 
-        private HttpClient _httpClientInstance;
+        private HttpClient _httpClientInstance; // Insatnce property.
 
-        private HttpClient _httpClient
+        // Constructor.
+        private HttpClient _httpClient 
         {
             get
             {
@@ -34,7 +35,8 @@ namespace Crawl.Services
             }
         }
 
-    public static HttpClientService Instance
+        // Create instance.
+        public static HttpClientService Instance
         {
             get
             {
@@ -46,12 +48,14 @@ namespace Crawl.Services
             }
         }
 
+        // Set the client.
         public HttpClient SetHttpClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
             return _httpClient;
         }
 
+        // Parse JSON from http message.
         public async Task<string> JsonParseResult(HttpResponseMessage response)
         {
             if (response == null)
@@ -132,6 +136,7 @@ namespace Crawl.Services
             return data;
         }
 
+        // Get JSON from POST request.
         public async Task<string> GetJsonPostAsync(string RestUrl, JObject jsonString)
         {
             // Take the post paramaters, and add the Version and Device to it
@@ -186,6 +191,8 @@ namespace Crawl.Services
             return data;
         }
 
+
+        // Get JSON from GET request.
         public async Task<string> GetJsonGetAsync(string RestUrl)
         {
             // Take the post paramaters, and add the Version and Device to it
@@ -214,7 +221,5 @@ namespace Crawl.Services
             var data = await JsonParseResult(response);
             return data;
         }
-
     }
 }
-

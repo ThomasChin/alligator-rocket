@@ -11,7 +11,6 @@ namespace Crawl.Services
     //    Task<bool> DeleteAsync(T item);
     //    Task<T> GetAsync(string id);
     //    Task<IEnumerable<T>> GetAllAsync(bool forceRefresh = false);
-
     //}
 
     public interface IDataStore

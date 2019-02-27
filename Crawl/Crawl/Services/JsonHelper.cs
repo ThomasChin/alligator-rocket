@@ -234,6 +234,7 @@ namespace Crawl.Services
             }
         }
 
+        // Get JSON long helper.
         public static long GetJsonLong(JObject json, string field)
         {
             if (string.IsNullOrEmpty(field))
@@ -260,6 +261,7 @@ namespace Crawl.Services
             }
         }
 
+        // Get JSON ulong helper.
         public static ulong GetJsonuLong(JObject json, string field)
         {
             if (string.IsNullOrEmpty(field))
@@ -428,6 +430,7 @@ namespace Crawl.Services
             }
         }
 
+        // Get JObject 
         public static List<JObject> GetJObjectList(JObject json, string field)
         {
             if (string.IsNullOrEmpty(field))
@@ -468,6 +471,7 @@ namespace Crawl.Services
             }
         }
 
+        // Get Object List from JSON.
         public static List<T> GetObjectList<T>(JObject json, string field)
         {
             if (string.IsNullOrEmpty(field))
@@ -507,6 +511,5 @@ namespace Crawl.Services
                 return new List<T>();
             }
         }
-
     }
 }
