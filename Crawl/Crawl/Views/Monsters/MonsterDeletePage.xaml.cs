@@ -34,8 +34,8 @@ namespace Crawl.Views
         {
             MessagingCenter.Send(this, "DeleteData", Data);
 
-            // Remove Item Details Page manualy
-            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+            // Remove Monster Details Page manualy
+            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
 
             await Navigation.PopAsync();
         }
