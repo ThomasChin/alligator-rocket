@@ -32,11 +32,11 @@ namespace Crawl.Models
         // Data for the Levels
         public LevelTable()
         {
-            ClearAndLoadDataTable();
+            ClearAndLoadDatTable();
         }
 
         // Clear / Load Data for Table.
-        public void ClearAndLoadDataTable()
+        public void ClearAndLoadDatTable()
         { 
             LevelDetailsList = new List<LevelDetails>();
             LoadLevelData();
