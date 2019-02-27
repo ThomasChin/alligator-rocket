@@ -13,8 +13,10 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPage : ContentPage
     {
+        // Use AboutViewModel.
         private AboutViewModel _aboutViewModel = new AboutViewModel();
 
+        // Initialize AboutPage.
         public AboutPage()
         {
             InitializeComponent();
@@ -53,6 +55,7 @@ namespace Crawl.Views
 
         }
 
+        // Set the Data Source between Mock and SQL.
         private void SetDataSource(bool isMock)
         {
             var set = DataStoreEnum.Sql;
@@ -65,18 +68,21 @@ namespace Crawl.Views
             MasterDataStore.ToggleDataStore(set);
         }
 
+        // Enable Debug Settings.
         private void EnableDebugSettings_OnToggled(object sender, ToggledEventArgs e)
         {
             // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
 
             // DebugSettingsFrame.IsVisible = (e.Value);
         }
-        
+
+        // Enable Database Settings.
         private void DatabaseSettingsSwitch_OnToggled(object sender, ToggledEventArgs e)
         {
             DatabaseSettingsFrame.IsVisible = (e.Value);
         }
 
+        // Toggle for Mock and SQL db.
         private void UseMockDataSourceSwitch_OnToggled(object sender, ToggledEventArgs e)
         {
             // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
@@ -119,10 +125,7 @@ namespace Crawl.Views
             }
         }
 
-
-        // Add code for GetItems_Command
-        // add your code here
-
+        // Server Get Items.
         private async void GetItems_Command(object sender, EventArgs e)
         {
             var answer = await DisplayAlert("Get", "Sure you want to Get Items from the Server?", "Yes", "No");
@@ -133,6 +136,7 @@ namespace Crawl.Views
             }
         }
 
+        // Server Post Items.
         private async void GetItemsPost_Command(object sender, EventArgs e)
         {
             //ItemsController.Instance.GetItemsFromGame(int number, int level, AttributeEnum attribute, ItemLocationEnum location, bool random, bool updateDataBase)
@@ -164,6 +168,5 @@ namespace Crawl.Views
 
             var answer = await DisplayAlert("Returned List", myOutput, "Yes", "No");
         }
-
     }
 }

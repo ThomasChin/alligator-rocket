@@ -7,6 +7,7 @@ namespace Crawl.Views
 {
 	public partial class MainPage : TabbedPage
 	{
+        // Initialize Main App Page.
 		public MainPage ()
 		{
 			InitializeComponent ();
