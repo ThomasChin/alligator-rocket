@@ -8,7 +8,7 @@ namespace Crawl
 {
 	public partial class App : Application
 	{
-
+        // Initialize App
 		public App ()
 		{
 			InitializeComponent();
@@ -19,35 +19,20 @@ namespace Crawl
             Crawl.Services.MasterDataStore.ToggleDataStore(Models.DataStoreEnum.Mock);
         }
 
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
-
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
-
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
-
-
+        // Database Connection
 	    static SQLiteAsyncConnection _database;
 
+        // Connect to DB.
         public static SQLiteAsyncConnection Database
 	    {
 	        get
 	        {
 	            if (_database == null)
 	            {
-	                _database = new SQLiteAsyncConnection(DependencyService.Get<IFileHelper>().GetLocalFilePath("CrawlDatabaseKoenig1.db3"));
+	                _database = new SQLiteAsyncConnection(DependencyService.Get<IFileHelper>().GetLocalFilePath("SQLLiteDBName.db3"));
 	            }
 	            return _database;
 	        }
 	    }
-
     }
 }

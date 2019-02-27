@@ -14,6 +14,7 @@ namespace Crawl.Controllers
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static ItemsController _instance;
 
+        // Constructor for Items Controller.
         public static ItemsController Instance
         {
             get
