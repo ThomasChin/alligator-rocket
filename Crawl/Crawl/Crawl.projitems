@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\AutoBattleEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ClassType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MonsterType.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">

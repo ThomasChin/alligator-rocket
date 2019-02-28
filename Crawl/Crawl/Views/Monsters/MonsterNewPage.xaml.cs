@@ -47,7 +47,7 @@ namespace Crawl.Views
         private void InitializeTypes()
         {
             Types = new List<string>();
-            foreach (var type in Enum.GetNames(typeof(MonsterType)))
+            foreach (var type in Enum.GetNames(typeof(MonsterTypeEnum)))
                 Types.Add(type);
         }
 
@@ -70,13 +70,13 @@ namespace Crawl.Views
             Picker picker = (Picker)sender;
 
             if (picker.SelectedIndex == 0)
-                Data.type = MonsterType.GiantSquid;
+                Data.Type = MonsterTypeEnum.GiantSquid;
 
             if (picker.SelectedIndex == 1)
-                Data.type = MonsterType.GiantStarfish;
+                Data.Type = MonsterTypeEnum.GiantStarfish;
 
             if (picker.SelectedIndex == 2)
-                Data.type = MonsterType.GiantWhale;
+                Data.Type = MonsterTypeEnum.Whale;
 
         }
 

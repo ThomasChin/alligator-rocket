@@ -38,7 +38,7 @@
 					<Picker Title="Type"
                     VerticalOptions="CenterAndExpand"
                     Margin="30, 5"
-					ItemsSource="{Binding Types}"
+					ItemsSource="{Binding Type}"
                     SelectedIndexChanged="OnTypePickerSelectedIndexChanged">
 					</Picker>
                 </StackLayout>

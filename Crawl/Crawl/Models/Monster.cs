@@ -6,16 +6,16 @@ using System.Collections.Generic;
 using Crawl.GameEngine;
 using System.Diagnostics;
 
-public enum MonsterType { Base = 0, GiantSquid, GiantStarfish, GiantWhale }
-
 namespace Crawl.Models
 {
     // The Monster is the higher level concept.  This is the Character with all attirbutes defined.
     public class Monster : BaseMonster
     {
 
-        //Type is effectively the monster's class
-        public MonsterType type { get; set; }
+        // Enum for MonsterType
+        public MonsterTypeEnum Type { get; set; }
+
+        // Difficulty
         public int Difficulty { get; set; }
 
         public const int MINDIFF = 1;
@@ -35,15 +35,15 @@ namespace Crawl.Models
             Attribute = new AttributeBase();
             Alive = true;
             Level = 1;
-            type = MonsterType.GiantSquid;
+            Type = MonsterTypeEnum.GiantSquid;
             Difficulty = 1;
 
         }
 
         //Basic constructor with inputs for base stats
-        public Monster(string name, MonsterType newtype, int maxhealth, int attack, int defense, int speed, int level, int difficulty)
+        public Monster(string name, MonsterTypeEnum type, int maxhealth, int attack, int defense, int speed, int level, int difficulty)
         {
-            type = newtype;
+            Type = type;
             Name = name;
             Attribute = new AttributeBase();
             Attribute.MaxHealth = maxhealth;
@@ -73,7 +73,7 @@ namespace Crawl.Models
         // Returns the string name of the monster type
         public string GetMonsterType()
         {
-            return type.ToString();
+            return Type.ToString();
         }
 
         //Picks new and randomized stats for the monster
@@ -108,7 +108,7 @@ namespace Crawl.Models
         // Update the values passed in
         public new void Update(Monster newData)
         {
-            type = newData.type;
+            Type = newData.Type;
             Name = newData.Name;
             Level = newData.Level;
             ScaleLevel(newData.Level);
