@@ -77,6 +77,7 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
+        /*
         [Test]
         public void RoundEngine_RoundNextTurn_2_Characters_Should_Return_NextTurn()
         {
@@ -106,7 +107,7 @@ namespace UnitTests.GameEngine
             var Expected = RoundEnum.NextTurn;
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
-        }
+        } 
 
         [Test]
         public void RoundEngine_RoundNextTurn_Characters_MonstersDead_Should_Return_NewRound()
@@ -151,6 +152,7 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
+        
         [Test]
         public void RoundEngine_RoundNextTurn_2Characters_1Monster_Weak_Should_Take_2_Rounds()
         {
@@ -204,8 +206,9 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, "Status " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(2, myRoundEngine.BattleScore.TurnCount, "TurnCount " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(1, myRoundEngine.BattleScore.RoundCount, "RoundCount " + TestContext.CurrentContext.Test.Name);
-        }
+        } */
 
+        /*
         [Test]
         public void RoundEngine_RoundNextTurn_2Characters_1Monster_Strong_Should_Take_3_Rounds()
         {
@@ -259,7 +262,7 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, "Status " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(4, myRoundEngine.BattleScore.TurnCount, "TurnCount " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(1, myRoundEngine.BattleScore.RoundCount, "RoundCount " + TestContext.CurrentContext.Test.Name);
-        }
+        } */
 
         #endregion RoundNextTurn
 

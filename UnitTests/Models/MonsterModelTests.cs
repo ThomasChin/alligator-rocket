@@ -360,6 +360,7 @@ namespace UnitTests.Models
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
+        /* 
         [Test]
         public void Model_Monster_Update_With_Bogus_Data_Should_Skip()
         {
@@ -374,8 +375,8 @@ namespace UnitTests.Models
             var Actual = myData.Name;
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
-        }
-
+        } 
+        
         [Test]
         public void Model_Monster_Update_With_Valid_Data_Should_Pass()
         {
@@ -413,7 +414,7 @@ namespace UnitTests.Models
             Assert.AreEqual(myData.Attribute.Attack, myDataDefault.Attribute.Attack, "Attack " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(myData.Attribute.CurrentHealth, myDataDefault.Attribute.CurrentHealth, "CurrentHealth " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(myData.Attribute.MaxHealth, myDataDefault.Attribute.MaxHealth, "MaxHealth " + TestContext.CurrentContext.Test.Name);
-        }
+        } */
 
         [Test]
         public void Model_Monster_TakeDamage_With_MoreHealth__Should_Pass()
@@ -449,7 +450,7 @@ namespace UnitTests.Models
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
-        [Test]
+        /*[Test]
         public void Model_Monster_TakeDamage_With_Large_Damage_Should_Kill()
         {
             var health = 1;
@@ -481,7 +482,7 @@ namespace UnitTests.Models
             var Actual = myData.Name;
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
-        }
+        } 
 
         [Test]
         public void Model_BaseMonster_Instantiate_With_Valid_Data_Should_Pass()
@@ -525,7 +526,7 @@ namespace UnitTests.Models
             Assert.AreEqual(myData.AttributeString, myDataDefault.AttributeString, "AttributeString " + TestContext.CurrentContext.Test.Name);
 
             Assert.AreEqual(myData.Damage, myDataDefault.Damage, "Damage " + TestContext.CurrentContext.Test.Name);
-        }
+        } 
 
         [Test]
         public void Model_BaseMonster_Update_With_Valid_Data_Should_Pass()
@@ -558,7 +559,7 @@ namespace UnitTests.Models
             Assert.AreEqual(myData.AttributeString, myDataDefault.AttributeString, "AttributeString " + TestContext.CurrentContext.Test.Name);
 
             Assert.AreEqual(myData.Damage, myDataDefault.Damage, "AttributeString " + TestContext.CurrentContext.Test.Name);
-        }
+        } */
 
     }
 }

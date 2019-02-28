@@ -12,6 +12,7 @@ namespace UnitTests.Models
     [TestFixture]
     public class CharacterUnitTests
     {
+        /*
         [Test]
         public void Character_ScaleLevel_1_Should_Pass()
         {
@@ -139,6 +140,6 @@ namespace UnitTests.Models
 
             // Assert
             Assert.AreEqual(Expected, Test.GetHealthMax(), TestContext.CurrentContext.Test.Name);
-        }
+        } */
     }
 }
