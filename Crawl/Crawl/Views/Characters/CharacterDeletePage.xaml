@@ -29,7 +29,7 @@
 				<Label Text="Class : " 
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
-				<Label Text="{Binding Data.Class}" 
+				<Label Text="{Binding Data.Type}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
 			</StackLayout>

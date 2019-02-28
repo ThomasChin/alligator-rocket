@@ -47,7 +47,7 @@
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16" />
-                    <Label Text="{Binding Class}"
+                    <Label Text="{Binding Type}"
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16" />

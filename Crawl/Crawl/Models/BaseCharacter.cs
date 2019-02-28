@@ -9,6 +9,7 @@ namespace Crawl.Models
 
         // So when working with the database, pass Character
 
+
         // Constructor
         public BaseCharacter()
         {

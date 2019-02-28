@@ -29,7 +29,7 @@ namespace Crawl.Views
         // Button for saving character to database
         public async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddData", new Character(Data.Name, Data.Class));
+            MessagingCenter.Send(this, "AddData", new Character(Data.Name, Data.Type));
             await Navigation.PopAsync();
         }
 
@@ -45,16 +45,16 @@ namespace Crawl.Views
             Picker picker = (Picker)sender;
 
             if (picker.SelectedIndex == 0)
-                Data.Class = ClassType.Base;
+                Data.Type = ClassTypeEnum.Unknown;
 
             if (picker.SelectedIndex == 1)
-                Data.Class = ClassType.Mage;
+                Data.Type = ClassTypeEnum.Mage;
 
             if (picker.SelectedIndex == 2)
-                Data.Class = ClassType.Knight;
+                Data.Type = ClassTypeEnum.Knight;
 
             if (picker.SelectedIndex == 3)
-                Data.Class = ClassType.Assasin;
+                Data.Type = ClassTypeEnum.Assassin;
         }
     }
 }

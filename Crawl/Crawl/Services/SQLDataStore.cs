@@ -90,10 +90,10 @@ namespace Crawl.Services
             await AddAsync_Item(new Item("Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
             // Default Characters
-            await AddAsync_Character(new Character("Ike", ClassType.Knight));
-            await AddAsync_Character(new Character("Kirby", ClassType.Mage));
-            await AddAsync_Character(new Character("Marth", ClassType.Assasin));
-            await AddAsync_Character(new Character("Charizardddddd", ClassType.Mage));
+            await AddAsync_Character(new Character("Ike", ClassTypeEnum.Knight));
+            await AddAsync_Character(new Character("Kirby", ClassTypeEnum.Mage));
+            await AddAsync_Character(new Character("Marth", ClassTypeEnum.Assassin));
+            await AddAsync_Character(new Character("Charizardddddd", ClassTypeEnum.Mage));
 
             // Default Monsters
             await AddAsync_Monster(new Monster("Bigg Baddy", MonsterType.GiantSquid, 30, 10, 10, 2, 4, 1));

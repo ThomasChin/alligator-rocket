@@ -6,15 +6,14 @@ using SQLite;
 
 namespace Crawl.Models
 {
-    public enum ClassType { Base = 0, Mage, Knight, Assasin };
-
     // The Character is the higher level concept.  This is the Character with all attirbutes defined.
     public class Character : BaseCharacter
     {
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
 
-        public ClassType Class { get; set; }
+        // Enum for ClassType
+        public ClassTypeEnum Type { get; set; }
 
         //Health, Attack, Defense, Speed
         static int[] BaseClassBaseStats = { 5, 4, 3, 4 };
@@ -37,7 +36,7 @@ namespace Crawl.Models
             Attribute = new AttributeBase();
             Alive = true;
             Name = "Default";
-            Class = ClassType.Knight;
+            Type = ClassTypeEnum.Unknown;
 
             Level = 1;
             ExperienceTotal = 0;
@@ -46,14 +45,14 @@ namespace Crawl.Models
         }
 
         //Main character constructor. "Rolls" stats based on class type.
-        public Character(string name, ClassType classType)
+        public Character(string name, ClassTypeEnum classType)
         {
             Attribute = new AttributeBase();
             Alive = true;
             Level = 1;
             ExperienceTotal = 0;
             Name = name;
-            Class = classType;
+            Type = classType;
             RollStats();
 
             Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
@@ -641,18 +640,18 @@ namespace Crawl.Models
         // Get Class ID.
         public String ClassName
         {
-            get { return Class.ToString(); }
+            get { return Type.ToString(); }
         }
 
         // Choose Class.
         public int ClassCode()
         {
-            switch (Class)
+            switch (Type)
             {
                 default: return 0;
-                case ClassType.Mage: return 1;
-                case ClassType.Knight: return 2;
-                case ClassType.Assasin: return 3;
+                case ClassTypeEnum.Mage: return 1;
+                case ClassTypeEnum.Knight: return 2;
+                case ClassTypeEnum.Assassin: return 3;
             }
         }
 
