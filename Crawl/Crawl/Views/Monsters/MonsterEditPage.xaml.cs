@@ -10,12 +10,13 @@ namespace Crawl.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MonsterEditPage : ContentPage
 	{
-	    // ReSharper disable once NotAccessedField.Local
-	    private MonsterDetailViewModel _viewModel;
+        // ReSharper disable once NotAccessedField.Local
+        private MonsterDetailViewModel _viewModel;
 
-        public Monster Data { get; set; } // Monster Data.
+        // Monster Data get/set
+        public Monster Data { get; set; }
 
-        // Initialize MonsterEditPage.
+        // Screen Page Constructor
         public MonsterEditPage(MonsterDetailViewModel viewModel)
         {
             // Save off the item
@@ -28,28 +29,28 @@ namespace Crawl.Views
             BindingContext = _viewModel = viewModel;
         }
 
-        // Save Monster to db and return to Monster Index
-	    private async void Save_Clicked(object sender, EventArgs e)
+        // Save on the Tool bar
+        private async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "EditData", Data);
 
-            // removing the old ItemDetails page, 2 up counting this page
+            // removing the old MonsterDetails page, 2 up counting this page
             Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
 
-            // Add a new items details page, with the new Item data on it
+            // Add a new monster details page, with the new Monster data on it
             await Navigation.PushAsync(new MonsterDetailPage(new MonsterDetailViewModel(Data)));
 
             // Last, remove this page
             Navigation.RemovePage(this);
         }
 
-        // Cancel and redirect to Monster Index
-	    private async void Cancel_Clicked(object sender, EventArgs e)
+        // Redirect to MonsterPage
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
 
-        // Reroll Monster Stats and return to last page
+        // Reroll Monster Stats and return to 
         private async void ReRollButton_Clicked(object sender, EventArgs e)
         {
             Data.RollStats();

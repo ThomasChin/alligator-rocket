@@ -34,10 +34,10 @@ namespace Crawl.Views
         {
             MessagingCenter.Send(this, "EditData", Data);
 
-            // removing the old ItemDetails page, 2 up counting this page
+            // removing the old CharacterDetails page, 2 up counting this page
             Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
 
-            // Add a new items details page, with the new Item data on it
+            // Add a new character details page, with the new Character data on it
             await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(Data)));
 
             // Last, remove this page
