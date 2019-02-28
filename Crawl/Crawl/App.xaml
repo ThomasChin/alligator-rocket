@@ -1,9 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Crawl.App">
+             x:Class="Crawl.App"
+             xmlns:dark="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Dark">
     <Application.Resources>
         <ResourceDictionary>
+            
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="PrimaryDark">#1976D2</Color>
             <Color x:Key="Accent">#96d1ff</Color>
@@ -53,5 +55,6 @@
             </Style>
 
         </ResourceDictionary>
+        <ResourceDictionary MergedWith="dark:DarkThemeResources" />
     </Application.Resources>
 </Application>
