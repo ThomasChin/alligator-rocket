@@ -77,8 +77,8 @@ namespace Crawl.GameEngine
                     " Turns :" + BattleEngine.BattleScore.TurnCount +
                     " Monster Kills :" + BattleEngine.BattleScore.MonstersKilledList;
 
-            Debug.WriteLine(myResult);
 
+            Debug.WriteLine(myResult);
             return myResult;
         }
     }

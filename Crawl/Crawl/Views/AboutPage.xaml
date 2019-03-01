@@ -11,191 +11,184 @@
     </ContentPage.BindingContext>
 
     <ScrollView>
-        <StackLayout
-        VerticalOptions="StartAndExpand"
-        HorizontalOptions="CenterAndExpand" 
-        Orientation="Vertical">
+        <StackLayout 
+            VerticalOptions="StartAndExpand"
+            HorizontalOptions="CenterAndExpand" 
+            Orientation="Vertical">
 
             <StackLayout 
-                VerticalOptions="StartAndExpand"
-                HorizontalOptions="CenterAndExpand" 
-                Orientation="Vertical">
-
-                <StackLayout 
             HorizontalOptions="CenterAndExpand" 
             VerticalOptions="StartAndExpand"
             Orientation="Vertical">
 
-                    <Image 
+                <Image 
                 Source="https://media.istockphoto.com/vectors/friendly-narwhal-vector-id174160137" 
                 VerticalOptions="Center" 
                 HeightRequest="150"
                 HorizontalOptions="Fill"/>
 
-                    <Label 
+                <Label 
                 FontSize="Large"
                 Text="Horn Wars"
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" />
-                </StackLayout>
-                    
-                <!--Battle-->
-                <StackLayout>
-                    <Button  
-                        Text="Auto Battle" 
-                        Clicked="AutoBattle_Clicked"
-                        HorizontalOptions="Fill"
-                        TextColor="Black" />
-                    
-                    <Button  
-                        Text="Manual Battle" 
-                        Clicked="ManualBattle_Clicked"
-                        HorizontalOptions="Fill"
-                        TextColor="Black" />
-                </StackLayout>
-                    
-                <!--Database Settings-->
-                <StackLayout
-                        x:Name="DatabaseSettingsFrame"
-                        IsVisible="True"
-                        BackgroundColor="WhiteSmoke">
-  
-
-                        <StackLayout 
-                            VerticalOptions="StartAndExpand"
-                            HorizontalOptions="FillAndExpand" 
-                            Orientation="Vertical">
-
-                            <StackLayout
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="Start"
-                                Orientation="Horizontal">
-
-                                    <Label 
-                                        FontSize="Small"
-                                        Text="Use Mock DataStore"
-                                        HorizontalTextAlignment="Start"
-                                        HorizontalOptions="StartAndExpand"/>
-
-                                    <Switch 
-                                        x:Name="UseMockDataSource"
-                                        HorizontalOptions="EndAndExpand"
-                                        Toggled="UseMockDataSourceSwitch_OnToggled"
-                                        IsToggled="False"/>
-                            </StackLayout>
-                            
-                            <StackLayout
-                                    HorizontalOptions="FillAndExpand"
-                                    Orientation="Horizontal">
-
-                                <Label 
-                                    FontSize="Small"
-                                    Text="Clear Database"
-                                    HorizontalTextAlignment="Start"
-                                    HorizontalOptions="Start"/>
-
-                                <Button  
-                                    Text="Clear" 
-                                    Clicked="ClearDatabase_Command" 
-                                    HorizontalOptions="Fill"
-                                    TextColor="Black" />
-                            </StackLayout>
-
-                            <!--
-                            <StackLayout
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal">
-
-                                <Label 
-                                    FontSize="Small"
-                                    Text="Server Items"
-                                    HorizontalTextAlignment="Start"
-                                    HorizontalOptions="Start"/>
-
-                                <Button  
-                                    Text="Get" 
-                                    Clicked="GetItems_Command" 
-                                    HorizontalOptions="EndAndExpand"
-                                    TextColor="Black" />
-
-                                <Button  
-                                    Text="Post" 
-                                    Clicked="GetItemsPost_Command" 
-                                    HorizontalOptions="EndAndExpand"
-                                    TextColor="Black" />
-                            </StackLayout> -->
-                        
-                    </StackLayout>
-                </StackLayout>
+            </StackLayout>
+                
+            <!--Battle-->
+            <StackLayout>
+                <Button  
+                    Text="Auto Battle" 
+                    Clicked="AutoBattle_Clicked"
+                    HorizontalOptions="Fill"
+                    TextColor="Black" />
+                
+                <Button  
+                    Text="Manual Battle" 
+                    Clicked="ManualBattle_Clicked"
+                    HorizontalOptions="Fill"
+                    TextColor="Black" />
+            </StackLayout>
+                
+            <!--Database Settings-->
+            <StackLayout
+                    x:Name="DatabaseSettingsFrame"
+                    IsVisible="True"
+                    BackgroundColor="Blue">
 
 
-                <!--
-                <StackLayout 
-                    Margin="0,50,0,0"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="Start"
+                    <StackLayout 
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand" 
                         Orientation="Vertical">
 
-                    <StackLayout
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="Start"
-                        Orientation="Horizontal">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start"
+                            Orientation="Horizontal">
 
-                        <Label 
-                            FontSize="Small"
-                            Text="Debug Settings"
-                            HorizontalTextAlignment="Start"
-                            HorizontalOptions="Start"/>
+                                <Label 
+                                    FontSize="Small"
+                                    Text="Use Mock DataStore"
+                                    HorizontalTextAlignment="Start"
+                                    HorizontalOptions="StartAndExpand"/>
 
-                        <Switch 
-                            x:Name="EnableDebugSettings"
-                            HorizontalOptions="EndAndExpand"
-                            Toggled="EnableDebugSettings_OnToggled"
-                            IsToggled="True"/>
-                    </StackLayout>
-
-                    <StackLayout
-                        x:Name="DebugSettingsFrame"
-                        IsVisible="True"
-                        BackgroundColor="WhiteSmoke"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="StartAndExpand">
+                                <Switch 
+                                    x:Name="UseMockDataSource"
+                                    HorizontalOptions="EndAndExpand"
+                                    Toggled="UseMockDataSourceSwitch_OnToggled"
+                                    IsToggled="False"/>
+                        </StackLayout>
                         
                         <StackLayout
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Horizontal">
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal">
 
                             <Label 
-                            Text="Critical Hit Double Damage"
-                            Style="{DynamicResource DebugSwitchLabel}"
-                            />
+                                FontSize="Small"
+                                Text="Clear Database"
+                                HorizontalTextAlignment="Start"
+                                HorizontalOptions="Start"/>
 
-                            <Switch 
-                            x:Name="EnableCriticalHitDamage"
-                            HorizontalOptions="EndAndExpand"
-                            Toggled="EnableCriticalHitDamage_OnToggled"
-                            IsToggled="False"/>
+                            <Button  
+                                Text="Clear" 
+                                Clicked="ClearDatabase_Command" 
+                                HorizontalOptions="Fill"
+                                TextColor="Black" />
                         </StackLayout>
 
-
+                        <!--
                         <StackLayout
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Horizontal">
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
 
                             <Label 
-                            Text="Critical Miss Bad Things"
-                            Style="{DynamicResource DebugSwitchLabel}"
-                            />
+                                FontSize="Small"
+                                Text="Server Items"
+                                HorizontalTextAlignment="Start"
+                                HorizontalOptions="Start"/>
 
-                            <Switch 
-                            x:Name="EnableCriticalMissProblems"
-                            HorizontalOptions="EndAndExpand"
-                            Toggled="EnableCriticalMissProblems_OnToggled"
-                            IsToggled="False"/>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout> -->
+                            <Button  
+                                Text="Get" 
+                                Clicked="GetItems_Command" 
+                                HorizontalOptions="EndAndExpand"
+                                TextColor="Black" />
+
+                            <Button  
+                                Text="Post" 
+                                Clicked="GetItemsPost_Command" 
+                                HorizontalOptions="EndAndExpand"
+                                TextColor="Black" />
+                        </StackLayout> --> 
                 </StackLayout>
+            </StackLayout>
+
+
+            <!--
+            <StackLayout 
+                Margin="0,50,0,0"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="Start"
+                    Orientation="Vertical">
+
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start"
+                    Orientation="Horizontal">
+
+                    <Label 
+                        FontSize="Small"
+                        Text="Debug Settings"
+                        HorizontalTextAlignment="Start"
+                        HorizontalOptions="Start"/>
+
+                    <Switch 
+                        x:Name="EnableDebugSettings"
+                        HorizontalOptions="EndAndExpand"
+                        Toggled="EnableDebugSettings_OnToggled"
+                        IsToggled="True"/>
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="DebugSettingsFrame"
+                    IsVisible="True"
+                    BackgroundColor="WhiteSmoke"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand">
+                    
+                    <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
+                        <Label 
+                        Text="Critical Hit Double Damage"
+                        Style="{DynamicResource DebugSwitchLabel}"
+                        />
+
+                        <Switch 
+                        x:Name="EnableCriticalHitDamage"
+                        HorizontalOptions="EndAndExpand"
+                        Toggled="EnableCriticalHitDamage_OnToggled"
+                        IsToggled="False"/>
+                    </StackLayout>
+
+
+                    <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
+                        <Label 
+                        Text="Critical Miss Bad Things"
+                        Style="{DynamicResource DebugSwitchLabel}"
+                        />
+
+                        <Switch 
+                        x:Name="EnableCriticalMissProblems"
+                        HorizontalOptions="EndAndExpand"
+                        Toggled="EnableCriticalMissProblems_OnToggled"
+                        IsToggled="False"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout> -->
             <StackLayout>
                 <Label
                     Text="Creators: Thomas Chin | Fisher Harris"/>

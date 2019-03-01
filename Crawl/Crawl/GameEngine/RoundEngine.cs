@@ -50,6 +50,19 @@ namespace Crawl.GameEngine
             BattleScore.RoundCount++;
         }
 
+        // At the end of the round
+        // Clear the Item List
+        // Clear the Monster List
+        public void EndRound()
+        {
+            // Have each character pickup items...
+            foreach (var character in CharacterList)
+            {
+                PickupItemsFromPool(character);
+            }
+            ClearLists();
+        }
+
         // Add Monsters
         // Scale them to meet Character Strength...
         public void AddMonstersToRound()
@@ -99,21 +112,7 @@ namespace Crawl.GameEngine
             }
         }
 
-        // At the end of the round
-        // Clear the Item List
-        // Clear the Monster List
-        public void EndRound()
-        {
-            // Have each character pickup items...
-            foreach (var character in CharacterList)
-            {
-                PickupItemsFromPool(character);
-            }
-            ClearLists();
-        }
-
         // Get Round Turn Order
-
         // Rember Who's Turn
 
         // RoundNextTurn
@@ -238,11 +237,9 @@ namespace Crawl.GameEngine
                     {
                         return PlayerList[i + 1];
                     }
-                    else
-                    {
-                        // Return the first in the list...
-                        return PlayerList.FirstOrDefault();
-                    }
+
+                    // Return the first in the list...
+                    return PlayerList.FirstOrDefault();
                 }
             }
             return null;

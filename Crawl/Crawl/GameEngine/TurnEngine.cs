@@ -40,7 +40,7 @@ namespace Crawl.GameEngine
         public List<Monster> MonsterList = new List<Monster>();
         public List<Character> CharacterList = new List<Character>();
 
-        // Attack or Move
+        // Attack
         // Roll To Hit
         // Decide Hit or Miss
         // Decide Damage
@@ -51,8 +51,6 @@ namespace Crawl.GameEngine
         // Character Attacks...
         public bool TakeTurn(Character Attacker)
         {
-            // Choose Move or Attack
-
             // For Attack, Choose Who
             var Target = AttackChoice(Attacker);
 
@@ -67,8 +65,6 @@ namespace Crawl.GameEngine
         // Monster Attacks...
         public bool TakeTurn(Monster Attacker)
         {
-            // Choose Move or Attack
-
             // For Attack, Choose Who
             var Target = AttackChoice(Attacker);
 
@@ -355,16 +351,10 @@ namespace Crawl.GameEngine
                 return null;
             }
 
-            // For now, just use a simple selection of the first in the list.
-            // Later consider, strongest, closest, with most Health etc...
-
+            // Since there is only one Monster, it will choose that one.
             foreach (var Defender in MonsterList)
             {
-                if (Defender.Alive)
-                {
-                    // Select first one to hit in the list for now...
-                    return Defender;
-                }
+                if (Defender.Alive) { return Defender; }
             }
             return null;
         }
@@ -383,13 +373,10 @@ namespace Crawl.GameEngine
             }
 
             // For now, just use a simple selection of the first in the list.
-            // Later consider, strongest, closest, with most Health etc...
-
             foreach (var Defender in CharacterList)
             {
                 if (Defender.Alive)
                 {
-                    // Select first one to hit in the list for now...
                     return Defender;
                 }
             }

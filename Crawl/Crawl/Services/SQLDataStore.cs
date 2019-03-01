@@ -83,27 +83,32 @@ namespace Crawl.Services
             string laserHornURL = "http://www.clipartbest.com/cliparts/7Ta/6G6/7Ta6G6MGc.jpg";
 
             //Default Items
-            await AddAsync_Item(new Item("Blue 'horn'", "I guess this'll work??", blueHornURL, 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
-            await AddAsync_Item(new Item("Silver Narwhal Armor", "Will this even fit?", silverNarwhalArmorURL, 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
-            await AddAsync_Item(new Item("Anime Girl", "What would a narwhal do with this...", animeGirlURL, 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
-            await AddAsync_Item(new Item("Engagement Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
-            await AddAsync_Item(new Item("Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("SQL Blue 'horn'", "I guess this'll work??", blueHornURL, 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("SQL Silver Narwhal Armor", "Will this even fit?", silverNarwhalArmorURL, 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
+            await AddAsync_Item(new Item("SQL Anime Girl", "What would a narwhal do with this...", animeGirlURL, 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
+            await AddAsync_Item(new Item("SQL Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("SQL Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
             // Default Characters
-            await AddAsync_Character(new Character("Ike", ClassTypeEnum.Knight));
-            await AddAsync_Character(new Character("Kirby", ClassTypeEnum.Mage));
-            await AddAsync_Character(new Character("Marth", ClassTypeEnum.Assassin));
-            await AddAsync_Character(new Character("Charizardddddd", ClassTypeEnum.Mage));
+            await AddAsync_Character(new Character("SQL Naruto", ClassTypeEnum.Knight));
+            await AddAsync_Character(new Character("SQL Narcisist", ClassTypeEnum.Mage));
+            await AddAsync_Character(new Character("SQL Narcotic", ClassTypeEnum.Assassin));
+            await AddAsync_Character(new Character("SQL Great-whal", ClassTypeEnum.Knight));
+            await AddAsync_Character(new Character("SQL Stone-whal Jackson", ClassTypeEnum.Mage));
+            await AddAsync_Character(new Character("SQL Whal-E", ClassTypeEnum.Assassin));
 
             // Default Monsters
-            await AddAsync_Monster(new Monster("Bigg Baddy", MonsterTypeEnum.GiantSquid, 30, 10, 10, 2, 4, 1));
-            await AddAsync_Monster(new Monster("Mad Maddy", MonsterTypeEnum.GiantStarfish, 30, 10, 10, 2, 4, 1));
-            await AddAsync_Monster(new Monster("Sad Saddy", MonsterTypeEnum.Whale, 30, 10, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("SQL Squiddy", MonsterTypeEnum.GiantSquid, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("SQL Squidward", MonsterTypeEnum.GiantSquid, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("SQL Moby Dick", MonsterTypeEnum.Whale, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("SQL Sea Biscuit", MonsterTypeEnum.Whale, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("SQL Starfish 1", MonsterTypeEnum.GiantStarfish, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("SQL Starfish 2", MonsterTypeEnum.GiantStarfish, 30000, 10000, 10, 2, 4, 1));
 
             // Default Scores
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL First Score", ScoreTotal = 111 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Second Score", ScoreTotal = 222 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Third Score", ScoreTotal = 333 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL  First Score", ScoreTotal = 111 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL  Second Score", ScoreTotal = 222 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL  Third Score", ScoreTotal = 333 });
 
         }
 

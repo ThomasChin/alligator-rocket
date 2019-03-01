@@ -5,7 +5,7 @@
             xmlns:views="clr-namespace:Crawl.Views"
             x:Class="Crawl.Views.MainPage">
     <TabbedPage.Children>
-        <NavigationPage Title="Start">
+        <NavigationPage Title="主页">
              <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
@@ -16,7 +16,7 @@
             </x:Arguments>
         </NavigationPage>
         
-        <NavigationPage Title="Item">
+        <NavigationPage Title="事">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
@@ -27,7 +27,7 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Character">
+        <NavigationPage Title="英雄">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
@@ -38,7 +38,7 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Monster">
+        <NavigationPage Title="怪物">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
@@ -49,7 +49,7 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Score">
+        <NavigationPage Title="结果">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>

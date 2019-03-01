@@ -57,17 +57,24 @@ namespace Crawl.Services
             await AddAsync_Item(new Item("Mock Blue 'horn'", "I guess this'll work??", blueHornURL, 1, 1, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
             await AddAsync_Item(new Item("Mock Silver Narwhal Armor", "Will this even fit?", silverNarwhalArmorURL, 0, 10, 10, ItemLocationEnum.Head, AttributeEnum.Defense));
             await AddAsync_Item(new Item("Mock Anime Girl", "What would a narwhal do with this...", animeGirlURL, 0, 0, 0, ItemLocationEnum.OffHand, AttributeEnum.Speed));
-            await AddAsync_Item(new Item("Mock Engagement Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
+            await AddAsync_Item(new Item("Mock Ring", "Narwhals can get married too...", engagementRingURL, 0, 5, 1, ItemLocationEnum.LeftFinger, AttributeEnum.Attack));
             await AddAsync_Item(new Item("Mock Laser Horn", "This is self-explanatory", laserHornURL, 100, 100, 1, ItemLocationEnum.Head, AttributeEnum.Attack));
 
             // Default Characters
-            await AddAsync_Character(new Character("Mock Ike", ClassTypeEnum.Knight));
-            await AddAsync_Character(new Character("Kirby", ClassTypeEnum.Mage));
-            await AddAsync_Character(new Character("Marth", ClassTypeEnum.Assassin));
-            await AddAsync_Character(new Character("Charizard", ClassTypeEnum.Mage));
+            await AddAsync_Character(new Character("Mock Naruto", ClassTypeEnum.Knight));
+            await AddAsync_Character(new Character("Mock Narcisist", ClassTypeEnum.Mage));
+            await AddAsync_Character(new Character("Mock Narcotic", ClassTypeEnum.Assassin));
+            await AddAsync_Character(new Character("Mock Great-whal", ClassTypeEnum.Knight));
+            await AddAsync_Character(new Character("Mock Stone-whal Jackson", ClassTypeEnum.Mage));
+            await AddAsync_Character(new Character("Mock Whal-E", ClassTypeEnum.Assassin));
 
             // Default Monsters
-            await AddAsync_Monster(new Monster("Mock Big Baddy", MonsterTypeEnum.GiantSquid, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mock Squiddy", MonsterTypeEnum.GiantSquid, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mock Squidward", MonsterTypeEnum.GiantSquid, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mock Moby Dick", MonsterTypeEnum.Whale, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mock Sea Biscuit", MonsterTypeEnum.Whale, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mock Starfish 1", MonsterTypeEnum.GiantStarfish, 30000, 10000, 10, 2, 4, 1));
+            await AddAsync_Monster(new Monster("Mock Starfish 2", MonsterTypeEnum.GiantStarfish, 30000, 10000, 10, 2, 4, 1));
 
             // Default Scores
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock  First Score", ScoreTotal = 111 });
