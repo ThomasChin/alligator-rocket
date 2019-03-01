@@ -2,11 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.CharacterEditPage"		     
-             Title="{Binding Title}">
+             >
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -29,7 +28,9 @@
                     <StackLayout Grid.Row="0" Grid.Column="0">
                         <Label 
                             Text="Name" 
-                            FontSize="Medium" 
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            TextColor="Teal"
                             HorizontalOptions="Start"
                             VerticalOptions="Center"/>
                     </StackLayout>
@@ -45,6 +46,7 @@
 					<StackLayout Grid.Row="1" Grid.Column="0">
 						<Label 
                             Text="Health:" 
+                            TextColor="Teal"
                             FontSize="Medium" 
                             HorizontalOptions="Start"
 							FontAttributes="Bold"
@@ -60,6 +62,7 @@
 					<StackLayout Grid.Row="2" Grid.Column="0">
 						<Label 
                             Text="Attack:" 
+                            TextColor="Teal"
                             FontSize="Medium" 
                             HorizontalOptions="Start"
 							FontAttributes="Bold"
@@ -75,6 +78,7 @@
 					<StackLayout Grid.Row="3" Grid.Column="0">
 						<Label 
                             Text="Defense:" 
+                            TextColor="Teal"
                             FontSize="Medium" 
                             HorizontalOptions="Start"
 							FontAttributes="Bold"
@@ -90,6 +94,7 @@
 					<StackLayout Grid.Row="4" Grid.Column="0">
 						<Label 
                             Text="Speed:" 
+                            TextColor="Teal"
                             FontSize="Medium" 
                             HorizontalOptions="Start"
 							FontAttributes="Bold"
@@ -104,10 +109,11 @@
 					<!-- Reroll Base Attributes -->
 					<StackLayout Grid.Row="6" Grid.Column="1">
 						<Button Text ="ReRoll"
-							BackgroundColor = "Accent"
+                                TextColor="White"
+							BackgroundColor = "Teal"
 							BorderRadius = "10"
 							BorderWidth = "2"
-							BorderColor = "Black"
+							BorderColor = "White"
 							Clicked = "ReRollButton_Clicked"
 							HorizontalOptions = "Center"/>		
 					</StackLayout>

@@ -10,7 +10,6 @@
 
   <ContentPage.Content>
     <StackLayout>
-
       <ListView x:Name="CharactersListView"
           ItemsSource="{Binding Dataset}"
           VerticalOptions="FillAndExpand"
@@ -23,37 +22,29 @@
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-              <StackLayout Padding="10"
+                <StackLayout Padding="10"
                            Orientation="Horizontal"
                            VerticalOptions="Start"
                            HorizontalOptions="Start">
 
-                <StackLayout>
-                  <StackLayout Orientation="Horizontal">
-					  
-					<!-- Name Attribute -->
-                    <Label Text="Name:"
-                       LineBreakMode="WordWrap"
-                       Style="{DynamicResource ListItemTextStyle}"
-                       FontSize="16" />
-                    <Label Text="{Binding Name}"
-                       LineBreakMode="WordWrap"
-                       Style="{DynamicResource ListItemTextStyle}"
-					   FontAttributes="Bold"
-                       FontSize="16" />
-					
-					  <!-- Class Attribute --> 
-					<Label Text="Class:"
-                       LineBreakMode="WordWrap"
-                       Style="{DynamicResource ListItemTextStyle}"
-                       FontSize="16" />
-                    <Label Text="{Binding Type}"
-                       LineBreakMode="WordWrap"
-                       Style="{DynamicResource ListItemTextStyle}"
-                       FontSize="16" />
-                  </StackLayout>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+    					    <!-- Class Attribute --> 
+                            <Label Text="{Binding Type}"
+                               Style="{DynamicResource ListItemTextStyle}"
+                               FontSize="16" 
+                               TextColor="Teal"
+                               />
+                        
+        					<!-- Name Attribute -->
+                            <Label Text="{Binding Name}"
+                               Style="{DynamicResource ListItemTextStyle}"
+        					   FontAttributes="Bold"
+                               FontSize="16" /> 
+                        </StackLayout>
+                    </StackLayout>
+                                
                 </StackLayout>
-              </StackLayout>
             </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>

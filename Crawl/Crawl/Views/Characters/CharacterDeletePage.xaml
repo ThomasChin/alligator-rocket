@@ -10,12 +10,17 @@
             Spacing="20"
             Padding="15">
 
-            <Label Text="Delete Character?" FontSize="Medium" />
+            <Label Text="Delete Character?" 
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   TextColor="Teal"
+                   FontSize="Medium" />
 
             <StackLayout
                 Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Name : " 
+                >
+                <Label Text="Name : "
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Name}" 
@@ -27,6 +32,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Class : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Type}" 
@@ -38,6 +44,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Level : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Level}" 
@@ -45,12 +52,17 @@
                     HorizontalOptions="Center"/>
             </StackLayout>
             
-            <Label Text="Stats:" FontSize="Medium" FontAttributes="Bold" />
+            <Label Text="Stats:"
+                  HorizontalTextAlignment="Center"
+                   TextColor="Teal"
+                   FontSize="Medium"
+                   FontAttributes="Bold" />
             
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
-                <Label Text="Attack : " 
+                <Label Text="Attack : "
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Attribute.Attack}" 
@@ -62,6 +74,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Defense : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Attribute.Defense}" 
@@ -73,6 +86,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Speed : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Attribute.Speed}" 
@@ -84,6 +98,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Max Health : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Attribute.MaxHealth}" 

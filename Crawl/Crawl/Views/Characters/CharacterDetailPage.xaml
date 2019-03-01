@@ -2,12 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.CharacterDetailPage"
-             Title="{Binding Title}">
+             >
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
         <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
@@ -17,12 +16,16 @@
             Spacing="20"
             Padding="15">
 
-            <Label Text="Characters Detail Page" FontSize="Medium" />
+            <Label  Text="Characters Detail Page" 
+                    TextColor="Teal"
+                    FontAttributes="Bold"
+                    FontSize="Medium" />
 
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Name : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Name}" 
@@ -35,7 +38,9 @@
                 HorizontalOptions="Start">
 				<Label Text="Class : " 
                    FontSize="Small" 
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Start"
+                   TextColor="Teal"
+                    />
 				<Label Text="{Binding Data.Type}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
@@ -45,6 +50,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Max Health : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.MaxHealth}" 
@@ -56,6 +62,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Attack : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.Attack}" 
@@ -67,6 +74,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Defense : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.Defense}" 
@@ -78,6 +86,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Speed : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Attribute.Speed}" 
@@ -89,6 +98,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="Level : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.Level}" 
@@ -100,6 +110,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
 				<Label Text="EXP : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
 				<Label Text="{Binding Data.ExperienceTotal}" 
@@ -108,6 +119,7 @@
 			</StackLayout>
             
             <Label Text="Items:"
+                   TextColor="Teal"
                FontAttributes="Bold"
                FontSize="Small" 
                HorizontalOptions="Start"/>
@@ -116,6 +128,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Head : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Head}" 
@@ -127,6 +140,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Feet: " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Feet}" 
@@ -139,6 +153,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Necklace : " 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Necklass}" 
@@ -150,6 +165,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Primary Fin :" 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.PrimaryHand}" 
@@ -161,6 +177,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Off Fin :" 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.OffHand}" 
@@ -172,6 +189,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Right Ring :" 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.RightFinger}" 
@@ -183,6 +201,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Left Ring :" 
+                       TextColor="Teal"
                    FontSize="Small" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.LeftFinger}" 

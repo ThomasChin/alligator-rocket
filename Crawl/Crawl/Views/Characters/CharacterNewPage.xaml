@@ -7,14 +7,20 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
-                <Label Text="New Character" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="New Character" 
+                       FontAttributes="Bold"
+                       FontSize="Medium" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center"
+                       TextColor="Teal"/>
                 <!-- Name Entry -->
                 <StackLayout>
                     <Label 
                         Text="Name: " 
                         FontSize="Medium" 
                         HorizontalOptions="Start" 
-                        VerticalOptions="Center"/>
+                        VerticalOptions="Center"
+                        TextColor="Teal"/>
                 </StackLayout>
                 <StackLayout>
                     <Entry 
@@ -28,6 +34,7 @@
                 <StackLayout>
                     <Label 
                         Text="Class: " 
+                        TextColor="Teal"
                         FontSize="Medium" 
                         HorizontalOptions="Start" 
                         VerticalOptions="Center"/>

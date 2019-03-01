@@ -28,10 +28,11 @@
                 HorizontalOptions="Fill"/>
 
                 <Label 
-                FontSize="Large"
-                Text="Horn Wars"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
+                    FontSize="Large"
+                    Text="Horn Wars"
+                    TextColor="Teal"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="CenterAndExpand" />
             </StackLayout>
                 
             <!--Battle-->
@@ -53,7 +54,7 @@
             <StackLayout
                     x:Name="DatabaseSettingsFrame"
                     IsVisible="True"
-                    BackgroundColor="Blue">
+                    BackgroundColor="Teal">
 
 
                     <StackLayout 
