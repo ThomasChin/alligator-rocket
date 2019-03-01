@@ -2,13 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.ItemDetailPage"
-             Title="{Binding Title}">
-
+             >
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
         <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
@@ -24,32 +22,27 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"/>
 
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Name : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Name}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
-
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Description : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Description}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
+            <Label Text="Name : " 
+                   TextColor="Teal"
+               FontSize="Medium" 
+               HorizontalOptions="Start"/>
+            <Label Text="{Binding Data.Name}" 
+                FontSize="Medium" 
+                HorizontalOptions="Center"/>
+            
+            <Label Text="Description : " 
+                   TextColor="Teal"
+               FontSize="Medium" 
+               HorizontalOptions="Start"/>
+            <Label Text="{Binding Data.Description}" 
+                FontSize="Medium" 
+                HorizontalOptions="Center"/>
 
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Range : " 
+                       TextColor="Teal"
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Range}" 
@@ -61,6 +54,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Damage : " 
+                       TextColor="Teal"
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Damage}" 
@@ -72,6 +66,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Value : " 
+                       TextColor="Teal"
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Value}" 
@@ -83,6 +78,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Location : " 
+                       TextColor="Teal"
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
                 <Label Text="{Binding Data.Location}" 
@@ -94,6 +90,7 @@
                 Orientation="Horizontal" 
                 HorizontalOptions="Start">
             <Label Text="Attribute : " 
+                   TextColor="Teal"
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
             <Label Text="{Binding Data.Attribute}" 

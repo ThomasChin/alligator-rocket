@@ -35,16 +35,19 @@
 
 
                                 <StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Name}" 
-                                           LineBreakMode="NoWrap" 
-                                           Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16" />
+                                    <Label Text="{Binding Name}" 
+                                           TextColor="Teal"
+                                       LineBreakMode="NoWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="16" />
+                                    <StackLayout 
+                                        Orientation="Horizontal">
                                         <Label Text="{Binding Attribute}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
                                         <Label Text="{Binding Value}" 
+                                               TextColor="Teal"
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
@@ -54,7 +57,6 @@
                                        Style="{DynamicResource ListItemDetailTextStyle}"
                                        FontSize="13" />
                                 </StackLayout>
-                                
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

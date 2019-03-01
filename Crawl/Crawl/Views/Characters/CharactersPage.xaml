@@ -25,15 +25,16 @@
                 <StackLayout Padding="10"
                            Orientation="Horizontal"
                            VerticalOptions="Start"
-                           HorizontalOptions="Start">
+                           HorizontalOptions="CenterAndExpand">
 
                     <StackLayout>
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical">
     					    <!-- Class Attribute --> 
                             <Label Text="{Binding Type}"
                                Style="{DynamicResource ListItemTextStyle}"
                                FontSize="16" 
                                TextColor="Teal"
+                                HorizontalTextAlignment="Center"
                                />
                         
         					<!-- Name Attribute -->
