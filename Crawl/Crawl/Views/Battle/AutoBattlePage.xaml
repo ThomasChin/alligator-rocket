@@ -9,11 +9,21 @@
             VerticalOptions="Start"
             Orientation="Vertical">
                 <Label  Text="AutoBattle"
+                        TextColor="Teal"
+                        FontSize="Large"
+                        FontAttributes="Bold"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand"
                         />
                 
-                <Button Text="Auto Battle"
+                <Label  Text="  Autobattle will run the game in 
+                              its entirety with no input needed. You will then see the final score popup."
+                        TextColor="White"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        />
+                
+                <Button Text="CONTINUE..."
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" 
                         Clicked="AutoBattleButton_Command"
