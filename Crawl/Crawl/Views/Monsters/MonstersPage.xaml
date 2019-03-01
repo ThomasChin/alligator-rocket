@@ -20,40 +20,32 @@
                ItemSelected="OnItemSelected">
             <ListView.ItemTemplate>
               <DataTemplate>
-                <ViewCell>
-                  <StackLayout Padding="10"
-							   Orientation="Horizontal"
-                               VerticalOptions="Start"
-                               HorizontalOptions="Start">
+                 <ViewCell>
+                <StackLayout Padding="10"
+                           Orientation="Horizontal"
+                           VerticalOptions="Start"
+                           HorizontalOptions="CenterAndExpand">
 
                     <StackLayout>
-                      <StackLayout Orientation="Horizontal">
-						  
-						<!-- Name Attribute -->
-                        <Label Text="Name:"
-                           LineBreakMode="WordWrap"
-                           Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="13" />
-                        <Label Text="{Binding Name}"
-                           LineBreakMode="WordWrap"
-                           Style="{DynamicResource ListItemTextStyle}"
-                           FontAttributes="Bold"
-                           FontSize="13" />
-						  
-						<!-- Type Attribute -->  
-                        <Label Text="Type:"
-                           LineBreakMode="WordWrap"
-                           Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="13" />
-						<Label Text="{Binding Type}"
-                           LineBreakMode="WordWrap"
-                           Style="{DynamicResource ListItemTextStyle}"
-                           FontSize="13" />
-						 
-						</StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <!-- Class Attribute --> 
+                            <Label Text="{Binding Type}"
+                               Style="{DynamicResource ListItemTextStyle}"
+                               FontSize="16" 
+                               TextColor="Red"
+                                HorizontalTextAlignment="Center"
+                               />
+                        
+                            <!-- Name Attribute -->
+                            <Label Text="{Binding Name}"
+                               Style="{DynamicResource ListItemTextStyle}"
+                               FontAttributes="Bold"
+                               FontSize="16" /> 
+                        </StackLayout>
                     </StackLayout>
-                  </StackLayout>
-                </ViewCell>
+                                
+                </StackLayout>
+            </ViewCell>
               </DataTemplate>
             </ListView.ItemTemplate>
           </ListView>

@@ -2,17 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Crawl.Views.MonsterNewPage"
-		     Title="Add New Monster">
+		        >
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
-                <Label Text="MONSTER CREATION" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="MONSTER CREATION" 
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       FontSize="Medium"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center"/>
 				
                 <!-- Name Entry -->
                 <StackLayout>
                     <Label 
                         Text="Name: " 
+                        TextColor="Red"
                         FontSize="Medium" 
                         HorizontalOptions="Start" 
                         VerticalOptions="Center"/>
@@ -29,6 +35,7 @@
                 <StackLayout>
                     <Label 
                         Text="Type: " 
+                        TextColor="Red"
                         FontSize="Medium" 
                         HorizontalOptions="Start" 
                         VerticalOptions="Center"/>
@@ -47,6 +54,7 @@
                 <StackLayout>
                     <Label 
                         Text="Difficulty: " 
+                        TextColor="Red"
                         FontSize="Medium" 
                         HorizontalOptions="Start" 
                         VerticalOptions="Center"/>
@@ -64,6 +72,7 @@
                 <!-- Save Button -->
                 <StackLayout>
                 <Button Text="Birth Beast of the Deep"
+                        TextColor="White"
                         HorizontalOptions="Center"
                         Clicked="Save_Clicked" 
                          />

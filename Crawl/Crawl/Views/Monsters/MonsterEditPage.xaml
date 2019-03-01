@@ -2,115 +2,108 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.MonsterEditPage"		     
-             Title="{Binding Title}">
+             >
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <ScrollView>
+            
             <StackLayout Spacing="20" Padding="15">
-                <Grid
-                    RowSpacing="1"
-                    ColumnSpacing="2"
-                    VerticalOptions="Center">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="auto"/>
-					</Grid.ColumnDefinitions>
-
-					<!-- Name Attribute -->
-					<StackLayout Grid.Row="0" Grid.Column="0">
-                        <Label 
-                            Text="Name" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="0" Grid.Column="1">
-                        <Entry 
-                            Text="{Binding Data.Name}" 
-                            FontSize="Small" 
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-
-                    <!-- Health Attribute -->
-                    <StackLayout Grid.Row="1" Grid.Column="0">
-                        <Label 
-                            Text="Health:" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            FontAttributes="Bold"
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="1">
-                        <Label Text="{Binding Data.Attribute.MaxHealth}" 
+                
+                <Label Text="Edit Monster"
+                   FontAttributes="Bold"
+                   TextColor="Red"
+                   FontSize="Medium"
+                   HorizontalOptions="Center"/>
+                    
+				<!-- Name Attribute -->
+				<StackLayout Orientation="Horizontal">
+                    <Label 
+                        Text="Name" 
+                        FontAttributes="Bold"
+                        TextColor="Red"
                         FontSize="Medium" 
-                        HorizontalOptions="Center"/>
-                    </StackLayout>
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"/>
+                    <Entry 
+                        Text="{Binding Data.Name}" 
+                        FontSize="Small" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                </StackLayout>
 
-                    <!-- Attack Attribute -->
-                    <StackLayout Grid.Row="2" Grid.Column="0">
-                        <Label 
-                            Text="Attack:" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            FontAttributes="Bold"
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="2" Grid.Column="1">
-                        <Label Text="{Binding Data.Attribute.Attack}" 
+                <!-- Health Attribute -->
+                <StackLayout Orientation="Horizontal">
+                    <Label 
+                        Text="Health:" 
+                        TextColor="Red"
                         FontSize="Medium" 
-                        HorizontalOptions="Center"/>
-                    </StackLayout>
+                        HorizontalOptions="Start"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"/>
 
-                    <!-- Defense Attribute -->
-                    <StackLayout Grid.Row="3" Grid.Column="0">
-                        <Label 
-                            Text="Defense:" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            FontAttributes="Bold"
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="3" Grid.Column="1">
-                        <Label Text="{Binding Data.Attribute.Defense}" 
+                    <Label Text="{Binding Data.Attribute.MaxHealth}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <!-- Attack Attribute -->
+                <StackLayout Orientation="Horizontal">
+                    <Label 
+                        Text="Attack:" 
+                        TextColor="Red"
                         FontSize="Medium" 
-                        HorizontalOptions="Center"/>
-                    </StackLayout>
+                        HorizontalOptions="Start"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"/>
+         
+                    <Label Text="{Binding Data.Attribute.Attack}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+                </StackLayout>
 
-                    <!-- Speed Attribute -->
-                    <StackLayout Grid.Row="4" Grid.Column="0">
-                        <Label 
-                            Text="Speed:" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            FontAttributes="Bold"
-                            VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="4" Grid.Column="1">
-                        <Label Text="{Binding Data.Attribute.Speed}" 
+                <!-- Defense Attribute -->
+               <StackLayout Orientation="Horizontal">
+                    <Label 
+                        Text="Defense:" 
+                        TextColor="Red"
                         FontSize="Medium" 
-                        HorizontalOptions="Center"/>
-                    </StackLayout>
+                        HorizontalOptions="Start"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"/>
+                    <Label Text="{Binding Data.Attribute.Defense}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+                </StackLayout>
 
-					<!-- Reroll Base Attributes -->
-					<StackLayout Grid.Row="6" Grid.Column="1">
-						<Button Text ="ReRoll"
-							BackgroundColor = "Accent"
-							BorderRadius = "10"
-							BorderWidth = "2"
-							BorderColor = "Black"
-							Clicked = "ReRollButton_Clicked"
-							HorizontalOptions = "Center"/>
-					</StackLayout>
-				</Grid>
+                <!-- Speed Attribute -->
+                <StackLayout Orientation="Horizontal">
+                    <Label 
+                        Text="Speed:" 
+                        TextColor="Red"
+                        FontSize="Medium" 
+                        HorizontalOptions="Start"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"/>
+
+                    <Label Text="{Binding Data.Attribute.Speed}" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center"/>
+                </StackLayout>
+
+				<!-- Reroll Base Attributes -->
+				<StackLayout>
+					<Button Text ="ReRoll"
+						BackgroundColor = "Maroon"
+						BorderRadius = "10"
+						BorderWidth = "2"
+						BorderColor = "Black"
+						Clicked = "ReRollButton_Clicked"
+						HorizontalOptions = "Center"/>
+				</StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

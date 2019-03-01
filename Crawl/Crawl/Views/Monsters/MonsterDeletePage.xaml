@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.MonsterDeletePage"
-            Title="{Binding Title}">
+            >
            
     <ScrollView>
         <StackLayout 
@@ -11,15 +11,20 @@
             Spacing="20"
             Padding="15">
 
-            <Label Text="Delete Monster?" FontSize="Medium" />
+            <Label Text="Delete Monster?" 
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium" />
 
 			<!-- Name Attribute -->
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Name : " 
+                        TextColor="Red"
                    FontSize="Small" 
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Center"/>
                 <Label Text="{Binding Data.Name}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
@@ -30,8 +35,9 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Type : " 
+                        TextColor="Red"
                    FontSize="Small" 
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Center"/>
                 <Label Text="{Binding Data.Type}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
@@ -42,22 +48,27 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Difficulty : " 
+                        TextColor="Red"
                    FontSize="Small" 
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Center"/>
                 <Label Text="{Binding Data.Level}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
             </StackLayout>
             
-            <Label Text="Stats:" FontSize="Medium" FontAttributes="Bold" />
+            <Label Text="Stats:" 
+                   TextColor="Red"
+                   FontSize="Medium"
+                   FontAttributes="Bold" />
 
 			<!-- Attack Attribute -->
 			<StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Attack : " 
+                        TextColor="Red"
                    FontSize="Small" 
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Center"/>
                 <Label Text="{Binding Data.Attribute.Attack}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
@@ -68,8 +79,9 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Defense : " 
+                        TextColor="Red"
                    FontSize="Small" 
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Center"/>
                 <Label Text="{Binding Data.Attribute.Defense}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
@@ -80,8 +92,9 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Speed : " 
+                        TextColor="Red"
                    FontSize="Small" 
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Center"/>
                 <Label Text="{Binding Data.Attribute.Speed}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
@@ -92,8 +105,9 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
                 <Label Text="Max Health : " 
+                        TextColor="Red"
                    FontSize="Small" 
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Center"/>
                 <Label Text="{Binding Data.Attribute.MaxHealth}" 
                     FontSize="Small" 
                     HorizontalOptions="Center"/>
@@ -102,6 +116,7 @@
 			<!-- Delete Button -->
 			<StackLayout Grid.Row="2" Grid.Column="1">
             <Button Text="Yes, Delete"
+                    BackgroundColor="Maroon"
                     HorizontalOptions="Center"
                     Clicked="Delete_Clicked"/>
             </StackLayout>  
