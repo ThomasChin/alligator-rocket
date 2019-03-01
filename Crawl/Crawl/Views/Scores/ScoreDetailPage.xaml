@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crawl.Views.ScoreDetailPage"
-             Title="{Binding Title}">
+             >
              
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
@@ -15,11 +15,17 @@
             Orientation="Vertical"
             Spacing="20"
             Padding="15">
+                <Label Text="Score Details"
+                       TextColor="White"
+                       FontAttributes="Bold" 
+                       FontSize="Medium" 
+                       HorizontalOptions="Center"/>
                 
                  <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="Start">
                     <Label Text="Score: " 
+                           TextColor="White"
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
                     <Label Text="{Binding Data.ScoreTotal}" 
@@ -31,6 +37,7 @@
                     Orientation="Horizontal"
                     HorizontalOptions="Start">
                     <Label Text="Game Date: " 
+                           TextColor="White"
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
                     <Label Text="{Binding Data.GameDate}" 
@@ -42,6 +49,7 @@
                     Orientation="Horizontal"
                     HorizontalOptions="Start">
                     <Label Text="AutoBattle: " 
+                           TextColor="White"
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
                     <Label Text="{Binding Data.AutoBattle}" 
@@ -52,7 +60,8 @@
                 <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="Start">
-                    <Label Text="Monsters Slain: " 
+                    <Label Text="Monsters Slain: "
+                           TextColor="White"
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
                     <Label Text="{Binding Data.MonsterSlainNumber}" 
@@ -64,6 +73,7 @@
                     Orientation="Horizontal"
                     HorizontalOptions="Start">
                     <Label Text="Experience Gained: " 
+                           TextColor="White"
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
                     <Label Text="{Binding Data.ExperienceGainedTotal}" 
@@ -74,7 +84,8 @@
                 <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="Start">
-                    <Label Text="Characters at Death: " 
+                    <Label Text="Characters at Death: "
+                           TextColor="White"
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
                     <Label Text="{Binding Data.CharacterAtDeathList}" 
@@ -86,6 +97,7 @@
                     Orientation="Horizontal"
                     HorizontalOptions="Start">
                     <Label Text="Monsters Killed: " 
+                           TextColor="White"
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
                     <Label Text="{Binding Data.MonstersKilledList}" 
@@ -96,7 +108,8 @@
                 <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="Start">
-                    <Label Text="Items Dropped: " 
+                    <Label Text="Items Dropped: "
+                           TextColor="White"
                        FontSize="Small" 
                        HorizontalOptions="Start"/>
                     <Label Text="{Binding Data.ItemsDroppedList}" 

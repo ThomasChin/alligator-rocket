@@ -25,17 +25,21 @@
                   <StackLayout Padding="10"
                                Orientation="Horizontal"
                                VerticalOptions="Start"
-                               HorizontalOptions="Start">
+                               HorizontalOptions="Center">
 
                     <StackLayout>
-                      <StackLayout Orientation="Horizontal">
+                      <StackLayout Orientation="Vertical">
                           
                         <!-- Name Attribute -->
                         <Label Text="Date:"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontSize="13" />
                         <Label Text="{Binding GameDate}"
+                               HorizontalOptions="Center"
                            LineBreakMode="WordWrap"
                            Style="{DynamicResource ListItemTextStyle}"
                            FontAttributes="Bold"
