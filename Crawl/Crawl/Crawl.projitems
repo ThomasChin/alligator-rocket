@@ -30,6 +30,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Battle\InBattlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -157,6 +161,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\AutoBattleEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ClassType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MonsterType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\InBattlePage.xaml.cs">
+      <DependentUpon>InBattlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\BattleOverPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">

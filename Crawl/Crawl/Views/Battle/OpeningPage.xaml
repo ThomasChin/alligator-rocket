@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Crawl.Views.OpeningPage">
+             x:Class="Crawl.Views.OpeningPage"
+             Title="Manual Battle">
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="Select Narwhals"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   TextColor="Teal"
+                HorizontalOptions="CenterAndExpand" />
+            
             <StackLayout>
-                <Label Text="Battle Begins Here"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
+                <StackLayout>
+                    <Label Text="Slot 1:"
+                           TextColor="White"
+                           HorizontalOptions="Start"/>
+                   
+                    <Picker Title="Narwhal 1"
+                            TextColor="Teal"
+                            ItemsSource="{Binding Characters}"
+                            ItemDisplayBinding="{Binding Name}" />
+                </StackLayout>
+                
+                <!-- copy 5 more times for other slots -->
+                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
