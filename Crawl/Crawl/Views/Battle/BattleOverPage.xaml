@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Crawl.Views.Battle.BattleOverPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout 
+            HorizontalOptions="Center" 
+            VerticalOptions="Start"
+            Orientation="Vertical">
+                <Label  Text="Battle Over!"
+                        TextColor="Teal"
+                        FontSize="Large"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                
+                <Label 
+                    HorizontalOptions="Center"
+                    Text="Party EXP Earned:"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+                
+                <Label 
+                    HorizontalOptions="Center"
+                    Text="0"
+                    x:Name="ExpCount"
+                        FontAttributes="Bold"
+                        TextColor="Teal"
+                   />
+                                
+                <Label 
+                    HorizontalOptions="Center"
+                    Text="Party Damage Dealt:"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+                
+                <Label 
+                    HorizontalOptions="Center"
+                    Text="0"
+                    x:Name="DamageDealt"
+                        FontAttributes="Bold"
+                        TextColor="Teal"
+                   />
+                
+                <Button Text="CONTINUE..."
+                        VerticalOptions="End" 
+                        HorizontalOptions="CenterAndExpand" 
+                        />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

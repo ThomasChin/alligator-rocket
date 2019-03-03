@@ -26,7 +26,7 @@ namespace Crawl.Views
         {
 
             // Jump to Main Battle Page
-            await Navigation.PushAsync(new Battle.AutoBattlePage());
+            await Navigation.PushAsync(new Battle.BattleOverPage());
 
             // Last, remove this page
             Navigation.RemovePage(this);

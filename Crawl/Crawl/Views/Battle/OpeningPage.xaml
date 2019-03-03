@@ -5,7 +5,7 @@
              Title="Narwhal Select">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Next" Clicked="OnNextClicked" />
+        <ToolbarItem Text="Next" Clicked="OnNextClicked"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
