@@ -7,10 +7,10 @@ namespace Crawl.Views.Battle
 {
     public partial class BattleOverPage : ContentPage
     {
+        // Constructor
         public BattleOverPage()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -13,8 +13,10 @@ namespace Crawl.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class OpeningPage : ContentPage
 	{
+        // BattleViewModel instance.
         private BattleViewModel _viewModel;
 
+        // Constructor
         public OpeningPage()
         {
             InitializeComponent();
@@ -24,7 +26,8 @@ namespace Crawl.Views
         // Close this page
         async void OnNextClicked(object sender, EventArgs args)
         {
-            if (_viewModel.SelectedCharacters.Count() == 6)
+            // Make sure that party is at least 1.
+            if (_viewModel.SelectedCharacters.Count() >= 1)
             {
                 // Jump to Main Battle Page
                 await Navigation.PushAsync(new Battle.InBattlePage());
@@ -34,7 +37,7 @@ namespace Crawl.Views
             }
         }
 
-
+        // Select Character
         private async void OnAvailableCharacterItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Character;
@@ -55,6 +58,7 @@ namespace Crawl.Views
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
         }
 
+        // Remove Character
         private async void OnSelectedCharacterItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Character;
@@ -71,6 +75,7 @@ namespace Crawl.Views
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
         }
 
+        // Load character Data when page is opened.
         protected override void OnAppearing()
         {
             base.OnAppearing();
