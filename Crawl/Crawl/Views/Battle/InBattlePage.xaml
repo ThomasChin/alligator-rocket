@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Crawl.Views.Battle.InBattlePage">
+             x:Class="Crawl.Views.InBattlePage">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand">
             
@@ -19,12 +19,14 @@
                         Clicked="OnNextClicked"/>
             </StackLayout>
             
+            <Label Text="Boss Stats:" TextColor="Maroon" FontAttributes="Bold"/>
+
             <ListView x:Name="MonsterListView" 
                     ItemsSource="{Binding SelectedMonsters}"
                     VerticalOptions="FillAndExpand"
                      HasUnevenRows="true"
                      RefreshCommand="{Binding LoadItemsCommand}"
-                     IsPullToRefreshEnabled="true"
+        
                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                      CachingStrategy="RecycleElement">
                     <ListView.ItemTemplate>
@@ -37,15 +39,37 @@
                              HorizontalOptions="Center">
                              
                                     <StackLayout>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Name}" 
-                                                   TextColor="Teal"
+                                          <Label Text="{Binding Name}" 
+                                                   TextColor="Maroon"
                                                    LineBreakMode="NoWrap"
                                                    Style="{DynamicResource ListItemTextStyle}" />
-                                            <Label Text="Lvl:" 
+                                        <StackLayout Orientation="Horizontal">
+                                          
+                                            <Label Text="HP" 
                                                    TextColor="White"/>
-                                            <Label Text="{Binding Level}" 
-                                                   TextColor="Teal"
+                                            <Label Text="{Binding Attribute.CurrentHealth}" 
+                                                   TextColor="Maroon"
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" />
+                                        
+                                            <Label Text="ATK" 
+                                                   TextColor="White"/>
+                                            <Label Text="{Binding Attribute.Attack}" 
+                                                   TextColor="Maroon"
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" />
+                                        
+                                            <Label Text="DEF" 
+                                                   TextColor="White"/>
+                                            <Label Text="{Binding Attribute.Defense}" 
+                                                   TextColor="Maroon"
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" />
+                                        
+                                            <Label Text="SPD" 
+                                                   TextColor="White"/>
+                                            <Label Text="{Binding Attribute.Speed}" 
+                                                   TextColor="Maroon"
                                                    LineBreakMode="NoWrap" 
                                                    Style="{DynamicResource ListItemTextStyle}" />
                                         </StackLayout>
@@ -56,6 +80,8 @@
                     </ListView.ItemTemplate>
             </ListView>
             
+            <Label Text="Party Stats:" TextColor="Teal" FontAttributes="Bold"/>
+
             <ListView x:Name="SelectedCharactersListView" 
                 ItemsSource="{Binding SelectedCharacters}"
                 VerticalOptions="FillAndExpand"

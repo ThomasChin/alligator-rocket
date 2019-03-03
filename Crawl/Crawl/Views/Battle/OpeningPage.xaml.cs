@@ -30,7 +30,7 @@ namespace Crawl.Views
             if (_viewModel.SelectedCharacters.Count() >= 1)
             {
                 // Jump to Main Battle Page
-                await Navigation.PushAsync(new Battle.InBattlePage());
+                await Navigation.PushAsync(new InBattlePage(_viewModel));
 
                 // Last, remove this page
                 Navigation.RemovePage(this);
