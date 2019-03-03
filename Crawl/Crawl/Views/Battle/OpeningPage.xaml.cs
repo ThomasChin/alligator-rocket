@@ -1,7 +1,10 @@
 ﻿using System;
 
-using Crawl.Views;   
+using Crawl.Views;
+using Crawl.Models;
+using System.Collections.ObjectModel;
 
+using Crawl.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,10 +15,19 @@ namespace Crawl.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class OpeningPage : ContentPage
 	{
+        // ReSharper disable once NotAccessedField.Local
+        private CharactersViewModel _viewModel;
+
+        // Collection of Characters to show as a list
+        public ObservableCollection<Character> Data { get; set; }
+
         // Constructor.
-		public OpeningPage ()
+        public OpeningPage ()
 		{
+            Data = _viewModel.Dataset;
+
 			InitializeComponent ();
+            BindingContext = _viewModel;
 		}
 
         // Go to Auto Battle page.

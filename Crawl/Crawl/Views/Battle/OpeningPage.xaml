@@ -19,7 +19,7 @@
                    
                     <Picker Title="Narwhal 1"
                             TextColor="Teal"
-                            ItemsSource="{Binding Characters}"
+                            ItemsSource="{Binding Data}"
                             ItemDisplayBinding="{Binding Name}" />
                 </StackLayout>
                 
