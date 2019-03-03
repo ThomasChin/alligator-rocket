@@ -101,16 +101,38 @@
                              HorizontalOptions="Center">
 
                                 <StackLayout>
+                                    <Label Text="{Binding Name}" 
+                                               TextColor="Teal"
+                                               LineBreakMode="NoWrap" 
+                                               Style="{DynamicResource ListItemTextStyle}" />
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Name}" 
-                                               TextColor="Teal"
-                                               LineBreakMode="NoWrap" 
-                                               Style="{DynamicResource ListItemTextStyle}" />
-                                        <Label Text="Lvl:" TextColor="White" />
-                                        <Label Text="{Binding Level}" 
-                                               TextColor="Teal"
-                                               LineBreakMode="NoWrap" 
-                                               Style="{DynamicResource ListItemTextStyle}" />
+                                        <Label Text="HP" 
+                                                   TextColor="White"/>
+                                            <Label Text="{Binding Attribute.CurrentHealth}" 
+                                                   TextColor="Teal"
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" />
+                                        
+                                            <Label Text="ATK" 
+                                                   TextColor="White"/>
+                                            <Label Text="{Binding Attribute.Attack}" 
+                                                   TextColor="Teal"
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" />
+                                        
+                                            <Label Text="DEF" 
+                                                   TextColor="White"/>
+                                            <Label Text="{Binding Attribute.Defense}" 
+                                                   TextColor="Teal"
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" />
+                                        
+                                            <Label Text="SPD" 
+                                                   TextColor="White"/>
+                                            <Label Text="{Binding Attribute.Speed}" 
+                                                   TextColor="Teal"
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" />
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>

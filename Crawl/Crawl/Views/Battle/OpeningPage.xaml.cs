@@ -101,7 +101,6 @@ namespace Crawl.Views
             BindingContext = _viewModel;
 
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
-           
         }
     }
 }
