@@ -161,20 +161,19 @@ namespace Crawl.Views
         // Server Post Items.
         private async void GetItemsPost_Command(object sender, EventArgs e)
         {
-            //ItemsController.Instance.GetItemsFromGame(int number, int level, AttributeEnum attribute, ItemLocationEnum location, bool random, bool updateDataBase)
+            var myOutput = "No Results";
+            var myDataList = new List<Item>();
 
-            var number = 10;    // 10 items
+            var number = Convert.ToInt32(ServerItemValue.Text);
             var level = 6;  // Max Value of 6
             var attribute = AttributeEnum.Unknown;  // Any Attribute
             var location = ItemLocationEnum.Unknown;    // Any Location
             var random = true;  // Random between 1 and Level
             var updateDataBase = true;  // Add them to the DB
 
-            // GetItemsFromGame(1,10,Speed,Feet,false,true) will return shoes value 10 of speed.
-
-            var myDataList = new List<Item>();
-
-            var myOutput = "No Results";
+            // will return shoes value 10 of speed.
+            // Example  result = await ItemsController.Instance.GetItemsFromGame(1, 10, AttributeEnum.Speed, ItemLocationEnum.Feet, false, true);
+            myDataList = await ItemsController.Instance.GetItemsFromGame(number, level, attribute, location, random, updateDataBase);
 
             if (myDataList != null && myDataList.Count > 0)
             {
@@ -188,7 +187,7 @@ namespace Crawl.Views
                 }
             }
 
-            var answer = await DisplayAlert("Returned List", myOutput, "Yes", "No");
+            await DisplayAlert("Returned List", myOutput, "OK");
         }
     }
 }
