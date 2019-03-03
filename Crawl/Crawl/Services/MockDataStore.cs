@@ -138,7 +138,6 @@ namespace Crawl.Services
             var UpdateResult = await UpdateAsync_Item(data);
             if (UpdateResult)
             {
-                await AddAsync_Item(data);
                 return true;
             }
 
@@ -207,7 +206,6 @@ namespace Crawl.Services
             var UpdateResult = await UpdateAsync_Character(data);
             if (UpdateResult)
             {
-                await AddAsync_Character(data);
                 return true;
             }
 
@@ -276,7 +274,6 @@ namespace Crawl.Services
             var UpdateResult = await UpdateAsync_Monster(data);
             if (UpdateResult)
             {
-                await AddAsync_Monster(data);
                 return true;
             }
 
@@ -344,7 +341,6 @@ namespace Crawl.Services
             var UpdateResult = await UpdateAsync_Score(data);
             if (UpdateResult)
             {
-                await AddAsync_Score(data);
                 return true;
             }
 
