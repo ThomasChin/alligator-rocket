@@ -24,12 +24,14 @@ namespace Crawl.Views
         // Close this page
         async void OnNextClicked(object sender, EventArgs args)
         {
+            if (_viewModel.SelectedCharacters.Count() == 6)
+            {
+                // Jump to Main Battle Page
+                await Navigation.PushAsync(new Battle.InBattlePage());
 
-            // Jump to Main Battle Page
-            await Navigation.PushAsync(new Battle.BattleOverPage());
-
-            // Last, remove this page
-            Navigation.RemovePage(this);
+                // Last, remove this page
+                Navigation.RemovePage(this);
+            }
         }
 
 
@@ -94,7 +96,7 @@ namespace Crawl.Views
             BindingContext = _viewModel;
 
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
-
+           
         }
     }
 }

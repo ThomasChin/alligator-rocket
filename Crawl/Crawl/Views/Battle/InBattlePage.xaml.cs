@@ -11,5 +11,16 @@ namespace Crawl.Views.Battle
         {
             InitializeComponent();
         }
+
+        // Close this page
+        async void OnNextClicked(object sender, EventArgs args)
+        {
+
+            // Jump to Main Battle Page
+            await Navigation.PushAsync(new Battle.BattleOverPage());
+
+            // Last, remove this page
+            Navigation.RemovePage(this);
+        }
     }
 }

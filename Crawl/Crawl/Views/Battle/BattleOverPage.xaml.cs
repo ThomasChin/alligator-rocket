@@ -11,5 +11,6 @@ namespace Crawl.Views.Battle
         {
             InitializeComponent();
         }
+
     }
 }

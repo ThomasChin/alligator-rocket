@@ -41,8 +41,7 @@
                     Text="0"
                     x:Name="DamageDealt"
                         FontAttributes="Bold"
-                        TextColor="Teal"
-                   />
+                        TextColor="Teal" />
                 
                 <Button Text="CONTINUE..."
                         VerticalOptions="End" 

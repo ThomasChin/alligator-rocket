@@ -41,6 +41,10 @@ namespace Crawl.ViewModels
         // Class for the AvailableCharacters
         public ObservableCollection<Character> AvailableCharacters { get; set; }
 
+        //Class for SelectedMonsters
+        public ObservableCollection<Monster> SelectedMonsters { get; set; }
+
+
         // Load the Data command
         public Command LoadDataCommand { get; set; }
 
@@ -53,6 +57,7 @@ namespace Crawl.ViewModels
 
             SelectedCharacters = new ObservableCollection<Character>();
             AvailableCharacters = new ObservableCollection<Character>();
+            SelectedMonsters = new ObservableCollection<Monster>();
 
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
@@ -141,6 +146,12 @@ namespace Crawl.ViewModels
                 foreach (var data in availableCharacters)
                 {
                     AvailableCharacters.Add(data);
+                }
+
+                var availableMonsters = MonstersViewModel.Instance.Dataset;
+                foreach (var data in availableMonsters)
+                {
+                    SelectedMonsters.Add(data);
                 }
             }
 
