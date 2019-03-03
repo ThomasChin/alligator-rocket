@@ -128,11 +128,33 @@ namespace Crawl.Views
         // Server Get Items.
         private async void GetItems_Command(object sender, EventArgs e)
         {
+            var myOutput = "No Results";
+            var myDataList = new List<Item>();
+
             var answer = await DisplayAlert("Get", "Sure you want to Get Items from the Server?", "Yes", "No");
             if (answer)
             {
                 // Call to the Item Service and have it Get the Items
-                
+                // The ServerItemValue Code stands for the batch of items to get
+                // as the group to request.  1, 2, 3, 100 (All), or if not specified All
+
+                var value = Convert.ToInt32(ServerItemValue.Text);
+                myDataList = await ItemsController.Instance.GetItemsFromServer(value);
+
+                if (myDataList != null && myDataList.Count > 0)
+                {
+                    // Reset the output
+                    myOutput = "";
+
+                    foreach (var item in myDataList)
+                    {
+                        // Add them line by one, use \n to force new line for output display.
+                        // Build up the output string by adding formatted Item Output
+                        myOutput += item.FormatOutput() + "\n";
+                    }
+                }
+
+                await DisplayAlert("Returned List", myOutput, "OK");
             }
         }
 

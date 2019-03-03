@@ -41,13 +41,13 @@
                     Text="Auto Battle" 
                     Clicked="AutoBattle_Clicked"
                     HorizontalOptions="Fill"
-                    TextColor="Black" />
+                    TextColor="White" />
                 
                 <Button  
                     Text="Manual Battle" 
                     Clicked="ManualBattle_Clicked"
                     HorizontalOptions="Fill"
-                    TextColor="Black" />
+                    TextColor="White" />
             </StackLayout>
                 
             <!--Database Settings-->
@@ -94,10 +94,9 @@
                                 Text="Clear" 
                                 Clicked="ClearDatabase_Command" 
                                 HorizontalOptions="Fill"
-                                TextColor="Black" />
+                                TextColor="White" />
                         </StackLayout>
-
-                        <!--
+                        
                         <StackLayout
                             HorizontalOptions="FillAndExpand"
                             Orientation="Horizontal">
@@ -107,19 +106,27 @@
                                 Text="Server Items"
                                 HorizontalTextAlignment="Start"
                                 HorizontalOptions="Start"/>
+                        
+                            <Entry
+                                x:Name="ServerItemValue"
+                                Text="1" 
+                                TextColor="Black"
+                                MaxLength="3"
+                                CursorPosition="0" 
+                                SelectionLength = "3" />
 
                             <Button  
                                 Text="Get" 
                                 Clicked="GetItems_Command" 
                                 HorizontalOptions="EndAndExpand"
-                                TextColor="Black" />
+                                TextColor="White" />
 
                             <Button  
                                 Text="Post" 
                                 Clicked="GetItemsPost_Command" 
                                 HorizontalOptions="EndAndExpand"
-                                TextColor="Black" />
-                        </StackLayout> --> 
+                                TextColor="White" />
+                        </StackLayout>
                 </StackLayout>
             </StackLayout>
 
