@@ -165,6 +165,7 @@
       <DependentUpon>InBattlePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\BattleOverPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BattleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
