@@ -190,11 +190,14 @@ namespace Crawl.Services
         // Get Item.
         public async Task<Item> GetAsync_Item(string id)
         {
-            var tempResult = await App.Database.GetAsync<Item>(id);
-
-            var result = tempResult;
-
-            return result;
+            try
+            {
+                var result = await App.Database.GetAsync<Item>(id); return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         // Get List of Items.
