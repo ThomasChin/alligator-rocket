@@ -55,21 +55,6 @@ namespace Crawl.Views
                     VerticalTextAlignment = TextAlignment.Center
                 };
 
-                var myURI = "Troll2.png";
-
-                if (!string.IsNullOrEmpty(data.ImageURI))
-                {
-                    myURI = data.ImageURI;
-                }
-
-                var myImage = new Image()
-                {
-                    //Source = FileImageSource.FromUri(new Uri(myURI)),
-                    Source = myURI,
-                    WidthRequest = 50.0,
-                    HeightRequest = 50.0
-                };
-
                 StackLayout OuterFrame = new StackLayout
                 {
                     MinimumWidthRequest = 400,
@@ -77,7 +62,6 @@ namespace Crawl.Views
                     Padding = 10
                 };
 
-                OuterFrame.Children.Add(myImage);
                 OuterFrame.Children.Add(myName);
                 OuterFrame.Children.Add(myLevel);
                 OuterFrame.Children.Add(myHP);
