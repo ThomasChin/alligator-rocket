@@ -75,15 +75,11 @@ namespace Crawl.Views
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
         }
 
+
         // Load character Data when page is opened.
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-
             BindingContext = null;
-
-
-            InitializeComponent();
 
             // Clear the Selected Ones, start over.
             _viewModel.SelectedCharacters.Clear();
@@ -101,6 +97,6 @@ namespace Crawl.Views
             BindingContext = _viewModel;
 
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
-        }
+        } 
     }
 }

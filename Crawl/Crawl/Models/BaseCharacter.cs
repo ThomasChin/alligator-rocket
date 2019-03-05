@@ -8,7 +8,8 @@ namespace Crawl.Models
         // This is what will be saved to the Database
 
         // So when working with the database, pass Character
-
+        // Enum for ClassType
+        public ClassTypeEnum Type { get; set; }
 
         // Constructor
         public BaseCharacter()
@@ -25,6 +26,7 @@ namespace Crawl.Models
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
             Alive = newData.Alive;
+            Type = newData.Type;
 
             // Database information
             Guid = newData.Guid;
@@ -59,6 +61,7 @@ namespace Crawl.Models
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
             Alive = newData.Alive;
+            Type = newData.Type;
 
             // Database information
             Guid = newData.Guid;
