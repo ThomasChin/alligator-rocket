@@ -7,6 +7,9 @@ namespace Crawl.Models
 {
     public class BaseMonster : BasePlayer<BaseMonster>
     {
+        // Enum for MonsterType
+        public MonsterTypeEnum Type { get; set; }
+
         // Unique Item for Monster
         public string UniqueItem { get; set; }
 
@@ -33,6 +36,7 @@ namespace Crawl.Models
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
             Alive = newData.Alive;
+            Type = newData.Type;
 
             // Populate the Attributes
             AttributeString = newData.AttributeString;
@@ -66,6 +70,7 @@ namespace Crawl.Models
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
             Alive = newData.Alive;
+            Type = newData.Type;
 
             // Populate the Attributes
             AttributeString = newData.AttributeString;

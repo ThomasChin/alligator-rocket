@@ -63,6 +63,7 @@ namespace Crawl.Models
         {
             Name = newData.Name;
             Attribute = new AttributeBase();
+            Type = newData.Type;
 
             Alive = true;
             Level = newData.Level;
