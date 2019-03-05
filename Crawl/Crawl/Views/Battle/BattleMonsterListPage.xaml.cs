@@ -14,14 +14,20 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BattleMonsterListPage : ContentPage
     {
+        // Data list for Monsters in round.
         public List<Monster> Datalist = new List<Monster>();
 
-        public BattleMonsterListPage()
+        // ViewModel for Battle
+        private BattleViewModel _viewModel;
+
+        // Constructor
+        public BattleMonsterListPage(BattleViewModel _viewModel1)
         {
             InitializeComponent();
 
             Datalist = BattleViewModel.Instance.BattleEngine.MonsterList;
             BindingContext = Datalist;
+            _viewModel = _viewModel1;
 
             foreach (var data in Datalist)
             {
@@ -64,28 +70,6 @@ namespace Crawl.Views
                     HeightRequest = 50.0
                 };
 
-                #region Relative
-                //RelativeLayout myInnerBox = new RelativeLayout();
-
-                //myInnerBox.Children.Add(myImage,
-                //    Constraint.Constant(0),
-                //    Constraint.Constant(0),
-                //    Constraint.RelativeToParent((parent) => { return parent.Width; }),
-                //    Constraint.RelativeToParent((parent) => { return parent.Height; }));
-
-                //myInnerBox.Children.Add(myLevel,
-                //    Constraint.Constant(0),
-                //    Constraint.Constant(0),
-                //    Constraint.RelativeToParent((parent) => { return parent.Width; }),
-                //    Constraint.RelativeToParent((parent) => { return parent.Height; }));
-
-                //myInnerBox.Children.Add(myHP,
-                //    Constraint.Constant(0),
-                //    Constraint.Constant(0),
-                //    Constraint.RelativeToParent((parent) => { return parent.Width; }),
-                //    Constraint.RelativeToParent((parent) => { return parent.Height; }));
-                #endregion Relative
-
                 StackLayout OuterFrame = new StackLayout
                 {
                     MinimumWidthRequest = 400,
@@ -105,8 +89,11 @@ namespace Crawl.Views
         // Close this page
         async void OnNextClicked(object sender, EventArgs args)
         {
-            // Go back a page.
-            await Navigation.PopModalAsync();
+            // Jump to Main Battle Page
+            await Navigation.PushAsync(new InBattlePage(_viewModel));
+
+            // Last, remove this page
+            Navigation.RemovePage(this);
         }
     }
 }

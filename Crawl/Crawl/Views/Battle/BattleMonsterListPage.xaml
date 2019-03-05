@@ -25,7 +25,6 @@
                                 HorizontalOptions="CenterAndExpand"
                                 VerticalOptions="CenterAndExpand"
                                 Padding="5"/>
-                    
                 </StackLayout>
 
                 <Button Clicked="OnNextClicked" Text="Next"/>

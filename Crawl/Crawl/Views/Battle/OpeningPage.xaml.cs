@@ -36,7 +36,7 @@ namespace Crawl.Views
                 _viewModel.StartRound();
 
                 // Jump to Main Battle Page
-                await Navigation.PushAsync(new BattleMonsterListPage());
+                await Navigation.PushAsync(new BattleMonsterListPage(_viewModel));
 
                 // Last, remove this page
                 Navigation.RemovePage(this);
