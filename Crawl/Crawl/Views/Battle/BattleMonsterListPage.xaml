@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Crawl.Views.BattleMonsterListPage"
+             Title="Incoming Boss">
+
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand">
+
+                <Label Text="INCOMING BOSS"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" 
+                FontSize="Large"
+                       TextColor="Maroon"/>
+
+                <StackLayout
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand">
+
+                    <FlexLayout x:Name="MonsterListFrame"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Padding="5"/>
+                    
+                </StackLayout>
+
+                <Button Clicked="OnNextClicked" Text="Next"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -29,8 +29,14 @@ namespace Crawl.Views
             // Make sure that party is at least 1.
             if (_viewModel.SelectedCharacters.Count() >= 1)
             {
+                _viewModel.StartBattle();
+                _viewModel.LoadCharacters();
+
+                // Start the Round
+                _viewModel.StartRound();
+
                 // Jump to Main Battle Page
-                await Navigation.PushAsync(new InBattlePage(_viewModel));
+                await Navigation.PushAsync(new BattleMonsterListPage());
 
                 // Last, remove this page
                 Navigation.RemovePage(this);
