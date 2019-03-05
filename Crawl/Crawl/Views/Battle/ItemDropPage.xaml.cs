@@ -12,12 +12,22 @@ using Xamarin.Forms.Xaml;
 namespace Crawl.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BattleOverPage : ContentPage
+    public partial class ItemDropPage : ContentPage
     {
         // Constructor
-        public BattleOverPage()
+        public ItemDropPage()
         {
             InitializeComponent();
+        }
+
+        // Close this page
+        async void OnNextClicked(object sender, EventArgs args)
+        {
+            // Jump to BattleOver Page
+            await Navigation.PushAsync(new BattleOverPage());
+
+            // Last, remove this page
+            Navigation.RemovePage(this);
         }
     }
 }

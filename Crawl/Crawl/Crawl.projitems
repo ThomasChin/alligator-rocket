@@ -42,6 +42,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Battle\ItemDropPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -178,6 +182,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\BattleMonsterListPage.xaml.cs">
       <DependentUpon>BattleMonsterListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\ItemDropPage.xaml.cs">
+      <DependentUpon>ItemDropPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
