@@ -12,8 +12,6 @@ namespace Crawl.Models
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
 
-        // Enum for ClassType
-        public ClassTypeEnum Type { get; set; }
 
         //Health, Attack, Defense, Speed
         static int[] BaseClassBaseStats = { 5, 4, 3, 4 };
@@ -89,6 +87,7 @@ namespace Crawl.Models
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
             Alive = newData.Alive;
+            Type = newData.Type;
 
             // Database information
             Guid = newData.Guid;
@@ -106,6 +105,7 @@ namespace Crawl.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+            RollStats();
         }
 
         // Create a new character, based on existing Character
@@ -143,6 +143,7 @@ namespace Crawl.Models
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
             Alive = newData.Alive;
+            Type = newData.Type;
 
             // Database information
             Guid = newData.Guid;
@@ -161,6 +162,7 @@ namespace Crawl.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+            RollStats();
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string

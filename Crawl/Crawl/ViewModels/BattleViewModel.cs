@@ -41,9 +41,8 @@ namespace Crawl.ViewModels
         // Class for the AvailableCharacters
         public ObservableCollection<Character> AvailableCharacters { get; set; }
 
-        //Class for SelectedMonsters
+        // Class for the SelectedMonsters
         public ObservableCollection<Monster> SelectedMonsters { get; set; }
-
 
         // Load the Data command
         public Command LoadDataCommand { get; set; }
@@ -77,6 +76,59 @@ namespace Crawl.ViewModels
             });
         }
 
+        /// <summary>
+        /// Call to the Engine to Start the Battle
+        /// </summary>
+        public void StartBattle()
+        {
+            BattleViewModel.Instance.BattleEngine.StartBattle(false);
+        }
+
+        /// <summary>
+        /// Call to the Engine to End the Battle
+        /// </summary>
+        public void EndBattle()
+        {
+            BattleViewModel.Instance.BattleEngine.EndBattle();
+        }
+
+        /// <summary>
+        /// Call to the Engine to Start the First Round
+        /// </summary>
+        public void StartRound()
+        {
+            BattleViewModel.Instance.BattleEngine.StartRound();
+        }
+
+        /// <summary>
+        /// Load the Characters from the Selected List into the Battle Engine
+        /// Making a copy of the character.
+        /// </summary>
+        public void LoadCharacters()
+        {
+            foreach (var data in SelectedCharacters)
+            {
+                BattleViewModel.Instance.BattleEngine.CharacterList.Add(new Character(data));
+            }
+
+        }
+
+        /// <summary>
+        /// Call to the engine for the NextRound to Happen
+        /// </summary>
+        public void RoundNextTurn()
+        {
+            BattleViewModel.Instance.BattleEngine.RoundNextTurn();
+        }
+
+        /// <summary>
+        /// Call to the Engine for a New Round to Happen
+        /// </summary>
+        public void NewRound()
+        {
+            BattleViewModel.Instance.BattleEngine.NewRound();
+        }
+
         #region DataOperations
         // Call to database operation for delete
         public bool SelectedListRemove(Character data)
@@ -106,6 +158,15 @@ namespace Crawl.ViewModels
         }
         #endregion DataOperations
 
+
+        // Clear current lists so they can get rebuilt
+        public void ClearCharacterLists()
+        {
+            AvailableCharacters.Clear();
+            SelectedCharacters.Clear();
+
+            ExecuteLoadDataCommand();
+        }
 
         // Return True if a refresh is needed
         // It sets the refresh flag to false
@@ -146,12 +207,6 @@ namespace Crawl.ViewModels
                 foreach (var data in availableCharacters)
                 {
                     AvailableCharacters.Add(data);
-                }
-
-                var availableMonsters = MonstersViewModel.Instance.Dataset;
-                foreach (var data in availableMonsters)
-                {
-                    SelectedMonsters.Add(data);
                 }
             }
 

@@ -68,7 +68,7 @@ namespace Crawl.GameEngine
         public void AddMonstersToRound()
         {
             // Check to see if the monster list is full, if so, no need to add more...
-            if (MonsterList.Count() >= 6)
+            if (MonsterList.Count() >= 1)
             {
                 return;
             }
@@ -97,7 +97,7 @@ namespace Crawl.GameEngine
                         MonsterList.Add(item);
                     }
 
-                } while (MonsterList.Count() < 6);
+                } while (MonsterList.Count() < 1);
             }
             else
             {

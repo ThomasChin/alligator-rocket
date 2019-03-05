@@ -29,8 +29,14 @@ namespace Crawl.Views
             // Make sure that party is at least 1.
             if (_viewModel.SelectedCharacters.Count() >= 1)
             {
+                _viewModel.StartBattle();
+                _viewModel.LoadCharacters();
+
+                // Start the Round
+                _viewModel.StartRound();
+
                 // Jump to Main Battle Page
-                await Navigation.PushAsync(new InBattlePage(_viewModel));
+                await Navigation.PushAsync(new BattleMonsterListPage(_viewModel));
 
                 // Last, remove this page
                 Navigation.RemovePage(this);
@@ -75,15 +81,11 @@ namespace Crawl.Views
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
         }
 
+
         // Load character Data when page is opened.
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-
             BindingContext = null;
-
-
-            InitializeComponent();
 
             // Clear the Selected Ones, start over.
             _viewModel.SelectedCharacters.Clear();
@@ -101,6 +103,6 @@ namespace Crawl.Views
             BindingContext = _viewModel;
 
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
-        }
+        } 
     }
 }

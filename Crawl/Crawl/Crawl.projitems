@@ -38,6 +38,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Battle\BattleMonsterListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -171,6 +175,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BattleViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\BattleOverPage.xaml.cs">
       <DependentUpon>BattleOverPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\BattleMonsterListPage.xaml.cs">
+      <DependentUpon>BattleMonsterListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
