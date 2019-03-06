@@ -15,7 +15,7 @@ namespace Crawl.GameEngine
     // * Target to Attack
     // * Should Move, or Stay put (can hit with weapon range?)
     // * Death
-    // * Manage Round...
+    // * Manage Round...f
     // * /
 
     public class TurnEngine

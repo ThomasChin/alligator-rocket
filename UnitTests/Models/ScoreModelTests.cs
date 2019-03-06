@@ -16,7 +16,7 @@ namespace UnitTests.Models
         public void Model_Score_Instantiate_Should_Pass()
         {
             var myData = new Score();
-            var Actual = (myData.AutoBattle == null);
+            var Actual = myData.AutoBattle;
             bool Expected = false;
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);

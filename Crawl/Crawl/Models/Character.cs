@@ -81,12 +81,12 @@ namespace Crawl.Models
         public Character(BaseCharacter newData)
         {
             // Base information
+            Alive = newData.Alive;
             Name = newData.Name;
             Description = newData.Description;
             Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
-            Alive = newData.Alive;
             Type = newData.Type;
 
             // Database information
@@ -95,7 +95,6 @@ namespace Crawl.Models
 
             // Populate the Attributes
             AttributeString = newData.AttributeString;
-
             Attribute = new AttributeBase(newData.AttributeString);
 
             // Set the strings for the items

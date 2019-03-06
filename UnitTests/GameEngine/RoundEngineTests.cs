@@ -28,15 +28,18 @@ namespace UnitTests.GameEngine
         [Test]
         public void RoundEngine_StartRound_Should_Pass()
         {
+            // Arrange
             MockForms.Init();
 
             // Can create a new Round engine...
             var myRoundEngine = new RoundEngine();
-            myRoundEngine.StartRound();
-
-            var Actual = myRoundEngine.BattleScore.RoundCount;
             var Expected = 1;
 
+            // Act
+            myRoundEngine.StartRound();
+            var Actual = myRoundEngine.BattleScore.RoundCount;
+
+            // Assert
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
@@ -77,7 +80,6 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
-        /*
         [Test]
         public void RoundEngine_RoundNextTurn_2_Characters_Should_Return_NextTurn()
         {
@@ -107,7 +109,7 @@ namespace UnitTests.GameEngine
             var Expected = RoundEnum.NextTurn;
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
-        } 
+        }
 
         [Test]
         public void RoundEngine_RoundNextTurn_Characters_MonstersDead_Should_Return_NewRound()
@@ -152,13 +154,58 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
-        
         [Test]
-        public void RoundEngine_RoundNextTurn_2Characters_1Monster_Weak_Should_Take_2_Rounds()
+        public void RoundEngine_RoundNextTurn_1Character_1Monster_Strong_Should_be_GameOver()
         {
             MockForms.Init();
 
-            // No characters, so return should be game over...
+            // Can create a new Round engine...
+            var myRoundEngine = new RoundEngine();
+
+            // Start
+            myRoundEngine.StartRound();
+
+            // Add moderate monsters
+            // First monster
+            myRoundEngine.MonsterList.Clear();  // start fresh, because it was loaded already with 6...
+
+            var myMonsterWeak = new Monster(DefaultModels.MonsterDefault());
+            myMonsterWeak.ScaleLevel(20);
+            myMonsterWeak.Attribute.CurrentHealth = 700; // need to set to enough to last 2 rounds...
+
+            myRoundEngine.MonsterList.Add(myMonsterWeak);
+
+            // Add weak character for first...
+            var myCharacterStrong = new Character(DefaultModels.CharacterDefault());
+            myCharacterStrong.ScaleLevel(1);
+            myMonsterWeak.Attribute.CurrentHealth = 1; // make weak
+            myRoundEngine.CharacterList.Add(myCharacterStrong);
+
+            // Should be Character 20, Character 10, Monster 5
+
+            // Force rolls to 18 for to hit...
+            // Turn off random numbers
+            GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 18);
+
+            // Character, should kill the monster in the first round.
+            // So the check for the second round will say Round over...
+            var FirstRound = myRoundEngine.RoundNextTurn();     // Monster Goes and Kills Character
+            var Actual = myRoundEngine.RoundNextTurn();         // Over...
+
+            // Reset
+            GameGlobals.ToggleRandomState();
+
+            var Expected = RoundEnum.GameOver;
+
+            Assert.AreEqual(Expected, Actual, "Status " + TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(1, myRoundEngine.BattleScore.TurnCount, "TurnCount " + TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(1, myRoundEngine.BattleScore.RoundCount, "RoundCount " + TestContext.CurrentContext.Test.Name);
+        }
+
+        [Test]
+        public void RoundEngine_RoundNextTurn_2Characters_1Monster_Weak_Should_Take_2_Turns()
+        {
+            MockForms.Init();
 
             // Can create a new Round engine...
             var myRoundEngine = new RoundEngine();
@@ -172,7 +219,7 @@ namespace UnitTests.GameEngine
 
             var myMonsterWeak = new Monster(DefaultModels.MonsterDefault());
             myMonsterWeak.ScaleLevel(2);
-            myMonsterWeak.Attribute.CurrentHealth = 11; // need to set to enough to last 2 rounds...
+            myMonsterWeak.Attribute.CurrentHealth = 7; // need to set to enough to last 2 rounds...
 
             myRoundEngine.MonsterList.Add(myMonsterWeak);
 
@@ -206,11 +253,10 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, "Status " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(2, myRoundEngine.BattleScore.TurnCount, "TurnCount " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(1, myRoundEngine.BattleScore.RoundCount, "RoundCount " + TestContext.CurrentContext.Test.Name);
-        } */
+        }
 
-        /*
         [Test]
-        public void RoundEngine_RoundNextTurn_2Characters_1Monster_Strong_Should_Take_3_Rounds()
+        public void RoundEngine_RoundNextTurn_2Characters_1Monster_Strong_Should_Take_4_Turns()
         {
             MockForms.Init();
 
@@ -227,7 +273,7 @@ namespace UnitTests.GameEngine
 
             var myMonsterWeak = new Monster(DefaultModels.MonsterDefault());
             myMonsterWeak.ScaleLevel(2);
-            myMonsterWeak.Attribute.CurrentHealth = 20; // need to set to enough to last 4 rounds...
+            myMonsterWeak.Attribute.CurrentHealth = 10; // need to set to enough to last 4 rounds...
             myRoundEngine.MonsterList.Add(myMonsterWeak);
 
             // Add weak character for first...
@@ -262,7 +308,7 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, "Status " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(4, myRoundEngine.BattleScore.TurnCount, "TurnCount " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(1, myRoundEngine.BattleScore.RoundCount, "RoundCount " + TestContext.CurrentContext.Test.Name);
-        } */
+        }
 
         #endregion RoundNextTurn
 
@@ -388,6 +434,7 @@ namespace UnitTests.GameEngine
         [Test]
         public void RoundEngine_StartRound_Zero_Monsters_Should_Create_6()
         {
+            // Arrange
             MockForms.Init();
 
             // Clear the datastore...
@@ -401,18 +448,20 @@ namespace UnitTests.GameEngine
 
             // Can create a new Round engine...
             var myRoundEngine = new RoundEngine();
+
+            var Expected = GameGlobals.MaxNumberPartyPlayers;
+
+            // Act
             myRoundEngine.StartRound();
-
-
             var Actual = myRoundEngine.MonsterList.Count;
-            var Expected = 6;
 
+            // Reset
             // Restore the datastore
             MockDataStore.Instance.InitializeDatabaseNewTables();
 
+            // Assert
             Assert.AreEqual(Expected, Actual, "Monster List" + TestContext.CurrentContext.Test.Name);
             Assert.AreNotEqual(Expected, ListCount, "View Model " + TestContext.CurrentContext.Test.Name);
-
         }
 
         [Test]
@@ -442,7 +491,7 @@ namespace UnitTests.GameEngine
             myRoundEngine.AddMonstersToRound();
 
             var Actual = myRoundEngine.MonsterList.Count;
-            var Expected = 6;
+            var Expected = GameGlobals.MaxNumberPartyPlayers;
 
             // Restore the datastore
             MockDataStore.Instance.InitializeDatabaseNewTables();

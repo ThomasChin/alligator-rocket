@@ -290,7 +290,50 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(false, myDefaultMonster.Alive, TestContext.CurrentContext.Test.Name);
         }
 
-        /*
+
+        [Test]
+        public void TurnEngine_TurnAsAttack_Monster_Attack_Defender_CriticalHit_PowerfullHit_Should_Kill()
+        {
+            MockForms.Init();
+
+            // Turn off random numbers
+            GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
+
+            var Attacker = DefaultModels.MonsterDefault();
+            Attacker.Name = "Rat";
+            Attacker.ScaleLevel(20);
+
+            var myDefaultCharacter = new Character(DefaultModels.CharacterDefault());
+            myDefaultCharacter.Name = "Fighter";
+            myDefaultCharacter.ScaleLevel(1);
+
+            var myTurnEngine = new TurnEngine();
+            myTurnEngine.CharacterList.Add(myDefaultCharacter);
+
+            GameGlobals.ForceToHitValue = 20; // Force a hit
+
+            // Should Kill because level 20 hit on level 1 Character for Critical is more damage than health...
+
+            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var DefenseScore = myDefaultCharacter.GetDefense() + myDefaultCharacter.Level;
+
+            var Status = myTurnEngine.TurnAsAttack(Attacker, AttackScore, myDefaultCharacter, DefenseScore);
+
+            var Actual = Status;
+            bool Expected = true;
+
+            var ActualString = myTurnEngine.TurnMessage;
+            var ActualResult = myTurnEngine.HitStatus;
+            var ActualDamage = myTurnEngine.DamageAmount;
+            var LifeStatus = myDefaultCharacter.Alive;
+
+            // Reset
+            GameGlobals.ToggleRandomState();
+
+            Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(false, myDefaultCharacter.Alive, TestContext.CurrentContext.Test.Name);
+        }
+
         [Test]
         public void TurnEngine_TurnAsAttack_Character_Attack_Defender_Die_With_Item_Should_Drop()
         {
@@ -341,7 +384,59 @@ namespace UnitTests.GameEngine
             // See if Item is now in the score list...
             var AfterItemDropList = myTurnEngine.BattleScore.ItemsDroppedList;
             Assert.AreNotEqual(BeforeItemDropList, AfterItemDropList, TestContext.CurrentContext.Test.Name);
-        } */
+        }
+
+        [Test]
+        public void TurnEngine_TurnAsAttack_Monster_Attack_Defender_Die_With_Item_Should_Drop()
+        {
+            MockForms.Init();
+
+            // Turn off random numbers
+            GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
+
+            var Attacker = DefaultModels.MonsterDefault();
+            Attacker.Name = "Rat";
+            Attacker.ScaleLevel(20);
+
+            var myDefaultCharacter = new Character(DefaultModels.CharacterDefault());
+            myDefaultCharacter.Name = "Fighter";
+            myDefaultCharacter.ScaleLevel(1);
+
+            // Add Uniqueitem
+            var myItem = new Item
+            {
+                Attribute = AttributeEnum.Attack,
+                Location = ItemLocationEnum.Feet,
+                Value = 1
+            };
+            ItemsViewModel.Instance.AddAsync(myItem).GetAwaiter().GetResult();  // Register Item to DataSet
+            myDefaultCharacter.PrimaryHand = myItem.Guid;
+
+            var myTurnEngine = new TurnEngine();
+            myTurnEngine.CharacterList.Add(myDefaultCharacter);
+
+            // Get Score, and remember item.
+            var BeforeItemDropList = myTurnEngine.BattleScore.ItemsDroppedList;
+
+            GameGlobals.ForceToHitValue = 20; // Force a hit
+
+            // Should Kill because level 20 hit on level 1 Character for Critical is more damage than health...
+            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var DefenseScore = myDefaultCharacter.GetDefense() + myDefaultCharacter.Level;
+
+            var Status = myTurnEngine.TurnAsAttack(Attacker, AttackScore, myDefaultCharacter, DefenseScore);
+
+
+            // Item should drop...
+
+            // Reset
+            GameGlobals.ToggleRandomState();
+
+            // Need to get Score
+            // See if Item is now in the score list...
+            var AfterItemDropList = myTurnEngine.BattleScore.ItemsDroppedList;
+            Assert.AreNotEqual(BeforeItemDropList, AfterItemDropList, TestContext.CurrentContext.Test.Name);
+        }
 
         [Test]
         public void TurnEngine_TurnAsAttack_Character_Attack_DefenderList_Hit_Should_Pass()
@@ -613,6 +708,7 @@ namespace UnitTests.GameEngine
         [Test]
         public void TurnEngine_Turn_AttackChoice_Monster_Valid_Attacker_Valid_Defender_Alive_False_Should_Skip()
         {
+            // Arrange
             var Attacker = DefaultModels.MonsterDefault();
 
             var myDefaultCharacter = new Character(DefaultModels.CharacterDefault());
@@ -623,8 +719,14 @@ namespace UnitTests.GameEngine
             var myTurnEngine = new TurnEngine();
             myTurnEngine.CharacterList.Add(myDefaultCharacter);
 
-            var Actual = myTurnEngine.AttackChoice(Attacker);
             object Expected = null;
+
+            // Act
+            var Actual = myTurnEngine.AttackChoice(Attacker);
+
+            // Reset
+
+            // Assert
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
@@ -632,7 +734,7 @@ namespace UnitTests.GameEngine
         #endregion AttackChoice
 
         #region TakeTurn
-        /*
+
         [Test]
         public void TurnEngine_TakeTurn_Attack_Valid_Defender_Valid_Defender_Should_Die()
         {
@@ -679,7 +781,7 @@ namespace UnitTests.GameEngine
             GameGlobals.ToggleRandomState();
 
             Assert.AreEqual(BeforeMonsterList - 1, AfterMonsterList, TestContext.CurrentContext.Test.Name);
-        } */
+        }
         #endregion TakeTurn
 
         #region RollToHitTarget

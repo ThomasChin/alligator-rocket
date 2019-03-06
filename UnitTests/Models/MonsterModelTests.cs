@@ -155,6 +155,18 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void Model_Monster_GetDamage_Valid_Should_Pass()
+        {
+            var myData = new Monster();
+            var myDataDefault = DefaultModels.MonsterDefault();
+
+            var Result = myDataDefault.GetDamage();
+            var Expected = 2; // 1 for level, and 1 for base damage
+
+            Assert.AreEqual(Expected, Result, TestContext.CurrentContext.Test.Name);
+        }
+
+        [Test]
         public void Model_Monster_GetDefense_Valid_Should_Pass()
         {
             var myData = new Monster();
@@ -309,6 +321,59 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void Model_Monster_Monster_From_BaseMonster_Should_Pass()
+        {
+            // Arrange
+            var myBase = DefaultModels.BaseMonsterDefault();
+
+            // New Monster scales the level, so need to control the random.
+            Crawl.Models.GameGlobals.SetForcedRandomNumbersValue(5);
+
+            // Act
+            var Expected = new Monster(myBase);
+            var Result = new Monster(myBase);
+
+            // Reset
+            // New Monster scales the level, so need to control the random.
+            Crawl.Models.GameGlobals.DisableRandomValues();
+
+            // Assert
+
+            // Check all Monster fields, that come from BaseMonster.
+            Assert.AreEqual(Expected.Guid, Result.Guid, "Guid "+TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Result.Guid, Result.Id, " Guid match ID " +TestContext.CurrentContext.Test.Name);
+
+            Assert.AreEqual(Expected.Head, Result.Head, "Head " +TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected.Necklass, Result.Necklass, "Necklass " +TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected.RightFinger, Result.RightFinger, "Right Finger " +TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected.LeftFinger, Result.LeftFinger, "Left Finger " + TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected.Feet, Result.Feet, "Feet " + TestContext.CurrentContext.Test.Name);
+
+            Assert.AreEqual(Expected.Damage, Result.Damage, "Damage " + TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(300, Result.ExperienceRemaining, "Experience Remaining "+TestContext.CurrentContext.Test.Name);
+
+            // Check the Attributes
+            var myAttributes = new AttributeBase
+            {
+                Attack = 1,
+                Speed = 1,
+                MaxHealth = 5,
+                CurrentHealth = 5,
+                Defense = 1
+            };
+
+            JObject myAttributesJson = (JObject)JToken.FromObject(myAttributes);
+            var myAttibutesString = myAttributesJson.ToString();
+            Assert.AreEqual(myAttibutesString, Result.AttributeString, "Attribute String" + TestContext.CurrentContext.Test.Name);
+
+            Assert.AreEqual(Expected.Name, Result.Name, "Name " +TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected.Description, Result.Description, "Description " +TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected.Level, Result.Level, "Level "+TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected.ExperienceTotal, Result.ExperienceTotal, "Experience Total " +TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected.ImageURI, Result.ImageURI, "Image " +TestContext.CurrentContext.Test.Name);
+        }
+
+        [Test]
         public void Model_Monster_FormatOutput_DefaultMonster_Should_Pass()
         {
             MockForms.Init();
@@ -360,7 +425,6 @@ namespace UnitTests.Models
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
-        /* 
         [Test]
         public void Model_Monster_Update_With_Bogus_Data_Should_Skip()
         {
@@ -375,8 +439,8 @@ namespace UnitTests.Models
             var Actual = myData.Name;
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
-        } 
-        
+        }
+
         [Test]
         public void Model_Monster_Update_With_Valid_Data_Should_Pass()
         {
@@ -414,7 +478,7 @@ namespace UnitTests.Models
             Assert.AreEqual(myData.Attribute.Attack, myDataDefault.Attribute.Attack, "Attack " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(myData.Attribute.CurrentHealth, myDataDefault.Attribute.CurrentHealth, "CurrentHealth " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(myData.Attribute.MaxHealth, myDataDefault.Attribute.MaxHealth, "MaxHealth " + TestContext.CurrentContext.Test.Name);
-        } */
+        }
 
         [Test]
         public void Model_Monster_TakeDamage_With_MoreHealth__Should_Pass()
@@ -450,7 +514,7 @@ namespace UnitTests.Models
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
-        /*[Test]
+        [Test]
         public void Model_Monster_TakeDamage_With_Large_Damage_Should_Kill()
         {
             var health = 1;
@@ -482,7 +546,7 @@ namespace UnitTests.Models
             var Actual = myData.Name;
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
-        } 
+        }
 
         [Test]
         public void Model_BaseMonster_Instantiate_With_Valid_Data_Should_Pass()
@@ -526,7 +590,7 @@ namespace UnitTests.Models
             Assert.AreEqual(myData.AttributeString, myDataDefault.AttributeString, "AttributeString " + TestContext.CurrentContext.Test.Name);
 
             Assert.AreEqual(myData.Damage, myDataDefault.Damage, "Damage " + TestContext.CurrentContext.Test.Name);
-        } 
+        }
 
         [Test]
         public void Model_BaseMonster_Update_With_Valid_Data_Should_Pass()
@@ -559,7 +623,7 @@ namespace UnitTests.Models
             Assert.AreEqual(myData.AttributeString, myDataDefault.AttributeString, "AttributeString " + TestContext.CurrentContext.Test.Name);
 
             Assert.AreEqual(myData.Damage, myDataDefault.Damage, "AttributeString " + TestContext.CurrentContext.Test.Name);
-        } */
+        }
 
     }
 }
