@@ -20,8 +20,7 @@ namespace UnitTests.Models
             bool Expected = true;
 
             // Act
-            Test.ScaleLevel(Level);
-            var Actual = Test.Level;
+            var Actual = Test.ScaleLevel(Level);
 
             // Reset
 
@@ -38,8 +37,7 @@ namespace UnitTests.Models
             bool Expected = false;
 
             // Act
-            Test.ScaleLevel;
-            var Actual = Test.Level;
+            var Actual = Test.ScaleLevel(0);
 
             // Reset
 
@@ -56,8 +54,7 @@ namespace UnitTests.Models
             bool Expected = false;
 
             // Act
-            Test.ScaleLevel;
-            var Actual = Test.Level;
+            var Actual = Test.ScaleLevel(-1);
 
             // Reset
 
@@ -79,8 +76,7 @@ namespace UnitTests.Models
             Test.Level = Level;
 
             // Act
-            Test.ScaleLevel(Level);
-            var Actual = Test.Level;
+            var Actual = Test.ScaleLevel(Level);
 
             // Reset
 
@@ -97,13 +93,12 @@ namespace UnitTests.Models
             bool Expected = false;
 
             // Act
-            Test.ScaleLevel(Level);
-            var Actual = Test.Level;
+            var Actual = Test.ScaleLevel(Level);
 
-           // Reset
+            // Reset
 
-           // Assert
-           Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
+            // Assert
+            Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
         [Test]

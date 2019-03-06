@@ -17,7 +17,7 @@ namespace UnitTests.Models
         {
             var myData = new Score();
             var Actual = myData.AutoBattle;
-            bool Expected = false;
+            bool Expected = true;
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }

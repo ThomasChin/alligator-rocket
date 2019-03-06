@@ -31,14 +31,14 @@ namespace UnitTests.GameEngine
         }
 
         [Test]
-        public void BattleEngine_AddCharacter_Should_Create_6_Characters()
+        public void BattleEngine_AddCharacter_Should_Create_1_Characters()
         {
             // Set a new Battle Engine
-            // Create new Characters, 6 is the default
+            // Create new Characters, 1 is the default
 
             // Arrange
             var myEngine = new BattleEngine();
-            var Expect = GameGlobals.MaxNumberPartyPlayers;
+            var Expect = 1;
             
             // Act
             myEngine.AddCharactersToBattle();
@@ -442,7 +442,7 @@ namespace UnitTests.GameEngine
             var Return = myBattleEngine.AddCharactersToBattle();
 
             var Actual = myBattleEngine.CharacterList.Count;
-            var Expected = GameGlobals.MaxNumberPartyPlayers;
+            var Expected = 1;
 
             Assert.AreEqual(true, Return, " Pass Fail " + TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);

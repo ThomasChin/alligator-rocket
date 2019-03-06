@@ -123,7 +123,7 @@ namespace Crawl.Models
                 return false;
 
             // Return false if the requested level is too low
-            if (newLevel <= Level)
+            if (newLevel < Level)
                 return false;
 
             Attribute.Attack = baseAttack() + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
