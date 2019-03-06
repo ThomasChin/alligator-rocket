@@ -271,7 +271,10 @@ namespace Crawl.Models
         {
             Debug.WriteLine("DAMAGE:" + (Attribute.CurrentHealth - damage));
             if (Attribute.CurrentHealth - damage <= 0)
+            {
                 Alive = false;
+                Attribute.CurrentHealth = 0;
+            }
 
             else
                 Attribute.CurrentHealth -= damage;
