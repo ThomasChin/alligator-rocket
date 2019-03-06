@@ -109,6 +109,9 @@ namespace Crawl.Models
         // Update the values passed in
         public new void Update(Monster newData)
         {
+            if (newData == null)
+                return; 
+
             Type = newData.Type;
             Name = newData.Name;
             Level = newData.Level;
