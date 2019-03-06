@@ -60,10 +60,10 @@ namespace Crawl.Models
         public void RollStats()
         {
             //Roll character buffs
-            int HealthBuff = Dice.Roll(4, 1);
-            int SpeedBuff = Dice.Roll(4, 1);
-            int DefenseBuff = Dice.Roll(4, 1);
-            int AttackBuff = Dice.Roll(4, 1);
+            int HealthBuff = 0;// Dice.Roll(4, 1);
+            int SpeedBuff = 0;// Dice.Roll(4, 1);
+            int DefenseBuff = 0;// Dice.Roll(4, 1);
+            int AttackBuff = 0;// Dice.Roll(4, 1);
 
             //Set attributes 
             ScaleLevel(Level);
@@ -96,6 +96,7 @@ namespace Crawl.Models
             // Populate the Attributes
             AttributeString = newData.AttributeString;
             Attribute = new AttributeBase(newData.AttributeString);
+            newData.
 
             // Set the strings for the items
             Head = newData.Head;
@@ -123,7 +124,7 @@ namespace Crawl.Models
                 return false;
 
             // Return false if the requested level is too low
-            if (newLevel < Level)
+            if (newLevel < this.Level)
                 return false;
 
             Attribute.Attack = baseAttack() + AttackBuff + lt.LevelDetailsList[newLevel].Attack;
@@ -667,8 +668,14 @@ namespace Crawl.Models
         }
 
         //Functions to get base attributes for the class of this character
-        public int baseHealth() { return ClassBaseStats[ClassCode()][0]; }
-        public int baseAttack() { return ClassBaseStats[ClassCode()][1]; }
+        public int baseHealth()
+        {
+            return ClassBaseStats[ClassCode()][0];
+        }
+        public int baseAttack()
+        {
+            return ClassBaseStats[ClassCode()][1];
+        }
         public int baseDefense() { return ClassBaseStats[ClassCode()][2]; }
         public int baseSpeed() { return ClassBaseStats[ClassCode()][3]; }
     }

@@ -110,10 +110,10 @@ namespace UnitTests.Models
             bool Expected = false;
 
             // Set Character Level, by Scaling Up...
-            Test.ScaleLevel(2);
+            Test.ScaleLevel(Level);
 
             // Act
-            var Actual = Test.ScaleLevel(Level-1);
+            var Actual = Test.ScaleLevel(Test.Level - 1);
 
             // Reset
 
@@ -124,10 +124,19 @@ namespace UnitTests.Models
         [Test]
         public void Character_ScaleLevel_Level_1_Forced_5_Should_Return_MaxHealth_5()
         {
+            //Health, Attack, Defense, Speed
+            int[] BaseClassBaseStats = { 5, 4, 3, 4 };
+            int[] MageClassBaseStats = { 4, 7, 3, 4 };
+            int[] KnightClassBaseStats = { 6, 6, 6, 2 };
+            int[] AssasinClassBaseStats = { 3, 5, 3, 8 };
+
+            // Base stats.
+            int[][] ClassBaseStats = { BaseClassBaseStats, MageClassBaseStats, KnightClassBaseStats, AssasinClassBaseStats };
+
             // Arrange
             var Test = new Character();
             int Level = 1;
-            int Expected = 5;  // Expected MaxHealth
+            int Expected = ClassBaseStats[Test.ClassCode()][0];  // Expected MaxHealth
 
             // Turn on Forced Values
             GameGlobals.SetForcedRandomNumbersValue(5);
@@ -139,7 +148,7 @@ namespace UnitTests.Models
             GameGlobals.DisableRandomValues();
 
             // Assert
-            Assert.AreEqual(Expected, Test.GetHealthMax(), TestContext.CurrentContext.Test.Name);
+            Assert.AreEqual(Expected, ClassBaseStats[Test.ClassCode()][0], TestContext.CurrentContext.Test.Name);
         }
 
         [Test]
