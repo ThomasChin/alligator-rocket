@@ -209,7 +209,6 @@
     <Compile Include="Models\PlayerInfoModelTests.cs" />
     <Compile Include="Models\ScoreModelTests.cs" />
     <Compile Include="Models\VersionGlobalsModelTest.cs" />
-    <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AboutViewModelTests.cs" />
     <Compile Include="ViewModels\BaseViewModelTests.cs" />
