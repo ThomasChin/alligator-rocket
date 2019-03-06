@@ -26,6 +26,7 @@ namespace UnitTests.Models.Default
             myData.Attribute.Attack = 1;
             myData.Attribute.CurrentHealth = 1;
             myData.Attribute.MaxHealth = 1;
+            myData.Damage = 1;
 
             // Set the strings for the items
             myData.Head = null;

@@ -154,10 +154,19 @@ namespace UnitTests.Models
         [Test]
         public void Character_ScaleLevel_Level_2_Forced_5_Should_Return_MaxHealth_10()
         {
+            //Health, Attack, Defense, Speed
+            int[] BaseClassBaseStats = { 5, 4, 3, 4 };
+            int[] MageClassBaseStats = { 4, 7, 3, 4 };
+            int[] KnightClassBaseStats = { 6, 6, 6, 2 };
+            int[] AssasinClassBaseStats = { 3, 5, 3, 8 };
+
+            // Base stats.
+            int[][] ClassBaseStats = { BaseClassBaseStats, MageClassBaseStats, KnightClassBaseStats, AssasinClassBaseStats };
+
             // Arrange
             var Test = new Character();
             int Level = 2;
-            int Expected = 10;  // Expected MaxHealth
+            int Expected = ClassBaseStats[Test.ClassCode()][0] + 5;  // Expected MaxHealth
 
             // Turn on Forced Values
             GameGlobals.SetForcedRandomNumbersValue(5);

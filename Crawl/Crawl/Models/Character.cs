@@ -132,7 +132,7 @@ namespace Crawl.Models
             Attribute.Speed = baseSpeed() + SpeedBuff + lt.LevelDetailsList[newLevel].Speed;
 
             Attribute.MaxHealth = baseHealth() + HealthBuff;
-            Attribute.MaxHealth += Dice.Roll(10, newLevel);
+            Attribute.MaxHealth += HelperEngine.RollDice(newLevel - Level, 10);
 
             return true;
         }
