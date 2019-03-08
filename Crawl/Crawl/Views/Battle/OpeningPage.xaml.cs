@@ -8,42 +8,36 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-namespace Crawl.Views
+
+namespace Crawl.Views.Battle
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class OpeningPage : ContentPage
-	{
-        // BattleViewModel instance.
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class OpeningPage : ContentPage
+    {
         private BattleViewModel _viewModel;
 
-        // Constructor
         public OpeningPage()
         {
             InitializeComponent();
             BindingContext = _viewModel = BattleViewModel.Instance;
+
+            BattleViewModel.Instance.ClearCharacterLists();
+
+            // Start with Next button disabled
+            NextButton.IsEnabled = false;
         }
 
         // Close this page
         async void OnNextClicked(object sender, EventArgs args)
         {
-            // Make sure that party is at least 1.
-            if (_viewModel.SelectedCharacters.Count() >= 1)
-            {
-                _viewModel.StartBattle();
-                _viewModel.LoadCharacters();
 
-                // Start the Round
-                _viewModel.StartRound();
+            // Jump to Main Battle Page
+            //await Navigation.PushAsync(new InBattlePage());
 
-                // Jump to Main Battle Page
-                await Navigation.PushAsync(new BattleMonsterListPage(_viewModel));
-
-                // Last, remove this page
-                Navigation.RemovePage(this);
-            }
+            // Last, remove this page
+            Navigation.RemovePage(this);
         }
 
-        // Select Character
         private async void OnAvailableCharacterItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Character;
@@ -55,16 +49,26 @@ namespace Crawl.Views
             // Manually deselect item.
             AvailableCharactersListView.SelectedItem = null;
 
+            var currentCount = _viewModel.SelectedCharacters.Count();
             // Don't add more than the party max
-            if (_viewModel.SelectedCharacters.Count() < GameGlobals.MaxNumberPartyPlayers)
+            if (currentCount < GameGlobals.MaxNumberPartyPlayers)
             {
                 MessagingCenter.Send(this, "AddSelectedCharacter", data);
             }
 
-            PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
+            // refresh the count
+            currentCount = _viewModel.SelectedCharacters.Count();
+
+            // Set the Button to be enabled or disabled if no characters in the party
+            NextButton.IsEnabled = true;
+            if (currentCount == 0)
+            {
+                NextButton.IsEnabled = false;
+            }
+
+            PartyCountLabel.Text = currentCount.ToString();
         }
 
-        // Remove Character
         private async void OnSelectedCharacterItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Character;
@@ -78,14 +82,24 @@ namespace Crawl.Views
 
             MessagingCenter.Send(this, "RemoveSelectedCharacter", data);
 
-            PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
+            // If no characters disable Next button
+            var currentCount = _viewModel.SelectedCharacters.Count();
+            if (currentCount == 0)
+            {
+                NextButton.IsEnabled = false;
+            }
+
+            PartyCountLabel.Text = currentCount.ToString();
         }
 
-
-        // Load character Data when page is opened.
         protected override void OnAppearing()
         {
+            base.OnAppearing();
+
             BindingContext = null;
+
+
+            InitializeComponent();
 
             // Clear the Selected Ones, start over.
             _viewModel.SelectedCharacters.Clear();
@@ -103,6 +117,8 @@ namespace Crawl.Views
             BindingContext = _viewModel;
 
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
-        } 
+
+        }
+
     }
 }

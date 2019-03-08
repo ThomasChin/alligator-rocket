@@ -98,7 +98,7 @@ namespace Crawl.Views
         //Manually Create a battle
         private async void ManualBattle_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new OpeningPage());
+            await Navigation.PushAsync(new Battle.OpeningPage());
         }
 
         // Turn on Critical Misses
