@@ -21,13 +21,12 @@ namespace Crawl.Views.Battle
         private BattleViewModel _viewModel;
 
         // Constructor
-        public BattleMonsterListPage(BattleViewModel _viewModel1)
+        public BattleMonsterListPage()
         {
             InitializeComponent();
 
             Datalist = BattleViewModel.Instance.BattleEngine.MonsterList;
             BindingContext = Datalist;
-            _viewModel = _viewModel1;
 
             foreach (var data in Datalist)
             {

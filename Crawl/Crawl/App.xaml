@@ -1,60 +1,200 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Crawl.App"
-             xmlns:dark="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Dark">
+             x:Class="Crawl.App">
     <Application.Resources>
         <ResourceDictionary>
+
+            <Color x:Key="ButtonBackgroundColor">#D9AD90</Color>
             
-            <Color x:Key="Primary">#2196F3</Color>
-            <Color x:Key="PrimaryDark">#1976D2</Color>
-            <Color x:Key="Accent">#96d1ff</Color>
-            <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
-            <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
-            <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
-            <Color x:Key="LightTextColor">#999999</Color>
+            <Color x:Key="Primary">#A56757</Color>
+            <Color x:Key="PrimaryDark">#72342C</Color>
+            <Color x:Key="Accent">#D9AD90</Color>
+
+            <Color x:Key="LightBackgroundColor">#E8D0B6</Color>
+            <Color x:Key="AccentBackground">#EFDAC5</Color>
+
+            <Color x:Key="TextPrimary">#696969</Color>
+            <Color x:Key="TextAccent">#A56757</Color>
+            <Color x:Key="TextDark">#272425</Color>
+
+
+            <!--Color Sceme
+                https://color.adobe.com/cobre-color-theme-11990038/
+                Cobre Colors
+            
+                E8D0B6  - Light
+                EFDAC5  - Med Light
+                D9AD90  - Middle
+                A56757  - Med Dark
+                72342C  - Very Dark
+                272425  - Black
+            -->
+
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
+                <Setter Property="TextColor" Value="{StaticResource TextDark}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource TextPrimary}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style TargetType="ScrollView">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
+            </Style>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
+            </Style>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
+            </Style>
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="BarTextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
+                <Setter Property="BarTextColor" Value="{StaticResource TextDark}" />
             </Style>
-
+            
             <Style TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
                 <Setter Property="FontAttributes" Value="None" />
                 <Setter Property="FontSize" Value="Small" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+            </Style>
+
+            <Style TargetType="Label"
+                    x:Key="LabelList"
+                    BasedOn="{StaticResource Xamarin.Forms.Label}">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style TargetType="Label"
+                    x:Key="TeamPlayerText"
+                    BasedOn="{StaticResource Xamarin.Forms.Label}">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+
+            <Style TargetType="Label"
+                   x:Key="DebugSwitchLabel">
+                <Setter Property="TextColor" Value="{StaticResource TextAccent}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style TargetType="StackLayout"
+                    x:Key="StackLayoutList"
+                    BasedOn="{StaticResource Xamarin.Forms.StackLayout}">
+                    <Setter Property="Orientation" Value="Horizontal" />
+                    <Setter Property="VerticalOptions" Value="Start" />
+                    <Setter Property="HorizontalOptions" Value="Start" />
+                    <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style TargetType="StackLayout"
+                    x:Key="ImageBattlePlayerBox"
+                    BasedOn="{StaticResource Xamarin.Forms.StackLayout}">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="MinimumWidthRequest" Value="150" />
+                <Setter Property="MinimumHeightRequest" Value="150" />
+            </Style>
+
+            <Style TargetType="StackLayout"
+                    x:Key="TeamPlayerBox"
+                    BasedOn="{StaticResource Xamarin.Forms.StackLayout}">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="MinimumHeightRequest" Value="100" />
+                <Setter Property="MinimumWidthRequest" Value="100" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+
+            <Style TargetType="Image">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style TargetType="Image"
+                    x:Key="ImageList"
+                    BasedOn="{StaticResource Xamarin.Forms.Image}">
+                    <Setter Property="BackgroundColor" Value="Transparent" />
+                    <Setter Property="WidthRequest" Value="50" />
+                    <Setter Property="HeightRequest" Value="50" />
+                    <Setter Property="HorizontalOptions" Value="Center" />
+                    <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style TargetType="Image"
+                    x:Key="ImageBattlePlayer"
+                    BasedOn="{StaticResource Xamarin.Forms.Image}">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style TargetType="Image"
+                    x:Key="TeamPlayerImage"
+                    BasedOn="{StaticResource Xamarin.Forms.Image}">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="WidthRequest" Value="50" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
             <Style TargetType="Label"
                     x:Key="LabelBase"
                     BasedOn="{StaticResource Xamarin.Forms.Label}">
-                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentBackground}" />
             </Style>
             
             <Style TargetType="Label"
                     x:Key="LabelLeft"
                     BasedOn="{StaticResource LabelBase}">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
             </Style>
 
             <Style TargetType="Label"
                    x:Key="LabelRight"
                    BasedOn="{StaticResource LabelBase}">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
                 <Setter Property="HorizontalOptions" Value="EndAndExpand" />
             </Style>
 
-            <Style TargetType="Label"
-                   x:Key="DebugSwitchLabel">
-                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="TextColor" Value="Red" />
-                <Setter Property="FontAttributes" Value="Bold" />
+            <Style TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+                <Setter Property="FontAttributes" Value="None" />
                 <Setter Property="FontSize" Value="Small" />
             </Style>
 
+            <Style TargetType="ListView">
+                <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="HasUnevenRows" Value="True" />
+                <Setter Property="IsPullToRefreshEnabled" Value="True" />
+            </Style>
+
+            <Style TargetType="Switch">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="OnColor" Value="{StaticResource PrimaryDark}" />
+                <Setter Property="IsToggled" Value="False" />
+            </Style>
+            
         </ResourceDictionary>
-        <ResourceDictionary MergedWith="dark:DarkThemeResources" />
     </Application.Resources>
 </Application>

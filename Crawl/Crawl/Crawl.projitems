@@ -196,6 +196,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\BattleMainPage.xaml.cs">
       <DependentUpon>BattleMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">

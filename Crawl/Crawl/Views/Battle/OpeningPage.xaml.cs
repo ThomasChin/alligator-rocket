@@ -32,7 +32,7 @@ namespace Crawl.Views.Battle
         {
 
             // Jump to Main Battle Page
-            await Navigation.PushAsync(new InBattlePage());
+            await Navigation.PushAsync(new BattleMainPage());
 
             // Last, remove this page
             Navigation.RemovePage(this);
