@@ -13,7 +13,7 @@ namespace Crawl
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new MainPage();
 
             // Load The Mock Datastore by default
             Crawl.Services.MasterDataStore.ToggleDataStore(Models.DataStoreEnum.Mock);
