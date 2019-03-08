@@ -7,7 +7,7 @@
     <ContentPage.ToolbarItems>
     </ContentPage.ToolbarItems>
     
-    <ScrollView>
+    <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
                 
@@ -121,5 +121,5 @@
                 IsEnabled="False"
                 /> 
         </StackLayout>
-    </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
