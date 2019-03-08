@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-namespace Crawl.Views
+namespace Crawl.Views.Battle
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InBattlePage : ContentPage
