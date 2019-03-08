@@ -74,7 +74,7 @@ namespace Crawl.Views.Battle
         async void OnNextClicked(object sender, EventArgs args)
         {
             // Jump to Main Battle Page
-            await Navigation.PushAsync(new InBattlePage(_viewModel));
+            await Navigation.PushAsync(new InBattlePage());
 
             // Last, remove this page
             Navigation.RemovePage(this);

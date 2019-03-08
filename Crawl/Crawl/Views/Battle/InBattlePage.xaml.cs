@@ -17,10 +17,9 @@ namespace Crawl.Views.Battle
         private BattleViewModel _viewModel;
 
         // Constructor
-        public InBattlePage(BattleViewModel _viewModel1)
+        public InBattlePage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = _viewModel1;
         }
 
         // Move to Battle Over Page for now...
