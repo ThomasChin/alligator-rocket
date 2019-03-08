@@ -187,7 +187,8 @@
       <DependentUpon>ItemDropPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\BattleMessages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Enum\BattleMessageHitEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Enums\BattleMessageHitEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Enums\HitStatusEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
@@ -280,6 +281,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
   #endif-->
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\Enum\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Enums\" />
   </ItemGroup>
 </Project>

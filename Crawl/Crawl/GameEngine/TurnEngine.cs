@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 using Crawl.Models;
 using Crawl.ViewModels;
-using Crawl.Models.Enum;
+using Crawl.Models.Enums;
 
 namespace Crawl.GameEngine
 {
