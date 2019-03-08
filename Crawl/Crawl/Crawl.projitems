@@ -46,6 +46,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Battle\BattleMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -189,6 +193,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\BattleMessages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Enums\BattleMessageHitEnum.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Enums\HitStatusEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\BattleMainPage.xaml.cs">
+      <DependentUpon>BattleMainPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
