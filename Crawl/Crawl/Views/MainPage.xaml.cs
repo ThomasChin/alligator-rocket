@@ -25,9 +25,6 @@ namespace Crawl.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
                     case (int)MenuItemType.Score:
                         MenuPages.Add(id, new NavigationPage(new ScoresPage()));
                         break;
