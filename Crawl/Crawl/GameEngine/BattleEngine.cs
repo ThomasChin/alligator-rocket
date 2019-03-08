@@ -8,7 +8,10 @@ using Crawl.ViewModels;
 
 namespace Crawl.GameEngine
 {
+    // Battle is the top structure
+
     // A battle has
+
     public class BattleEngine : RoundEngine
     {
         // The status of the actual battle, running or not (over)
@@ -23,9 +26,24 @@ namespace Crawl.GameEngine
         // Sets the new state for the variables for Battle
         private void BattleEngineInit()
         {
+            CharacterList.Clear();
+
+            // Clear the rest of the data
+            BattleEngineClearData();
+        }
+
+        // Sets the new state for the variables for Battle
+        private void BattleEngineClearData()
+        {
             BattleScore = new Score();
-            CharacterList = new List<Character>();
-            ItemPool = new List<Item>();
+            BattleMessages = new BattleMessages();
+
+            ItemPool.Clear();
+            MonsterList.Clear();
+            CharacterList.Clear();
+
+            // Reset current player
+            PlayerCurrent = null;
         }
 
         // Determine if Auto Battle is On or Off
@@ -40,59 +58,70 @@ namespace Crawl.GameEngine
             return isBattleRunning;
         }
 
+        // Battle is over
+        // Update Battle State, Log Score to Database
+        public void EndBattle()
+        {
+            // Set Score
+            BattleScore.ScoreTotal = BattleScore.ExperienceGainedTotal;
+
+            // Set off state
+            isBattleRunning = false;
+
+            // Save the Score to the DataStore
+            ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
+        }
+
         // Initializes the Battle to begin
         public bool StartBattle(bool isAutoBattle)
         {
+            BattleEngineClearData();
+
+            // New Battle
+            // Load Characters
             BattleScore.AutoBattle = isAutoBattle;
             isBattleRunning = true;
 
-            // Check for at least 1 party member.
-            if (CharacterList.Count < 1) { return false; }
+            // Characters not Initialized, so false start...
+            if (CharacterList.Count < 1)
+            {
+                return false;
+            }
+
             return true;
-        }
-
-        // End battle and Update Battle State, Log Score to Database
-        public void EndBattle()
-        {
-            // Set Score.
-            BattleScore.ScoreTotal = BattleScore.ExperienceGainedTotal;
-
-            // Turn off battle.
-            isBattleRunning = false;
-
-            // Save score.
-            ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
         }
 
         // Add Characters
         // Scale them to meet Character Strength...
         public bool AddCharactersToBattle()
         {
-            // Check to see if the Character list is full, if so, no need to add more...
-            if (CharacterList.Count >= 1)
-            {
-                return true;
-            }
-
-            var ScaleLevelMax = 2;
-            var ScaleLevelMin = 1;
-
+            // Check if the Character list is empty
             if (CharactersViewModel.Instance.Dataset.Count < 1)
             {
                 return false;
             }
 
+            // Check to see if the Character list is full, if so, no need to add more...
+            if (CharacterList.Count >= GameGlobals.MaxNumberPartyPlayers)
+            {
+                return true;
+            }
+
+            // TODO, determine the character strength
+            // add Characters up to that strength...
+            var ScaleLevelMax = 3;
+            var ScaleLevelMin = 1;
+
             // Get 6 Characters
             do
             {
-                var myData = GetRandomCharacter(ScaleLevelMin, ScaleLevelMax);
-                CharacterList.Add(myData);
-            } while (CharacterList.Count < 1);
+                var Data = GetRandomCharacter(ScaleLevelMin, ScaleLevelMax);
+                CharacterList.Add(Data);
+            } while (CharacterList.Count < GameGlobals.MaxNumberPartyPlayers);
 
             return true;
         }
 
-        // Get a random character.
         public Character GetRandomCharacter(int ScaleLevelMin, int ScaleLevelMax)
         {
             var myCharacterViewModel = CharactersViewModel.Instance;
@@ -107,7 +136,7 @@ namespace Crawl.GameEngine
             var rndScale = HelperEngine.RollDice(ScaleLevelMin, ScaleLevelMax);
             myData.ScaleLevel(rndScale);
 
-            // Add Items to Character
+            // Add Items...
             myData.Head = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Head, AttributeEnum.Unknown);
             myData.Necklass = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Necklass, AttributeEnum.Unknown);
             myData.PrimaryHand = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.PrimaryHand, AttributeEnum.Unknown);
@@ -118,5 +147,46 @@ namespace Crawl.GameEngine
 
             return myData;
         }
+
+
+        // Check Character List, if empty battle over
+        // Check Monster List, if empty Round Over, then New Round
+
+        // Round Over
+        // Clear Monsters
+        // Drop Items to Pool
+        // Allow Pickup of Items from Pool
+
+        // New Round
+        // Item pool is empty
+        // Monster List is new
+        // Start Round
+
+        // Start Round
+        // Choose Attack Order
+        // Walk Attack Order
+        // Take Turn A attacks B
+
+
+        /// <summary>
+        /// Retruns a formated String of the Results of the Battle
+        /// </summary>
+        /// <returns></returns>
+        public string GetResultsOutput()
+        {
+
+            string myResult = "" +
+                    " Battle Ended" + BattleScore.ScoreTotal +
+                    " Total Score :" + BattleScore.ExperienceGainedTotal +
+                    " Total Experience :" + BattleScore.ExperienceGainedTotal +
+                    " Rounds :" + BattleScore.RoundCount +
+                    " Turns :" + BattleScore.TurnCount +
+                    " Monster Kills :" + BattleScore.MonstersKilledList;
+
+            Debug.WriteLine(myResult);
+
+            return myResult;
+        }
+
     }
 }

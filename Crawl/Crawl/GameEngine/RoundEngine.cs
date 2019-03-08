@@ -17,13 +17,13 @@ namespace Crawl.GameEngine
         // Player currently engaged
         public PlayerInfo PlayerCurrent;
 
-        // Instantiate
+        public RoundEnum RoundStateEnum = RoundEnum.Unknown;
+
         public RoundEngine()
         {
             ClearLists();
         }
 
-        // Intialize Lists.
         private void ClearLists()
         {
             ItemPool = new List<Item>();
@@ -33,21 +33,121 @@ namespace Crawl.GameEngine
         // Start the round, need to get the ItemPool, and Characters
         public void StartRound()
         {
+            // Start on 0, the turns will increment...
             BattleScore.RoundCount = 0;
+
+            // Start the first round...
             NewRound();
 
-            // Debug output for now
             Debug.WriteLine("Start Round :" + BattleScore.RoundCount);
         }
 
-        // Call to start a new Round.
+        // Call to make a new set of monsters...
         public void NewRound()
-        {          
+        {
+            // End the existing round
             EndRound();
+
+            // Populate New Monsters...
             AddMonstersToRound();
+
+            // Make the PlayerList
             MakePlayerList();
 
+            // Update Score for the RoundCount
             BattleScore.RoundCount++;
+        }
+
+        /// <summary>
+        /// Will return the Min, Max, Average for the Characters in the party
+        /// So the monster can get scaled to the appropraite level
+        /// </summary>
+        /// <returns></returns>
+        public int GetAverageCharacterLevel()
+        {
+            var data = CharacterList.Average(m => m.Level);
+            return (int)Math.Floor(data);
+        }
+
+        /// <summary>
+        /// Will return the Min, Max, Average for the Characters in the party
+        /// So the monster can get scaled to the appropraite level
+        /// </summary>
+        /// <returns></returns>
+        public int GetMinCharacterLevel()
+        {
+            var data = CharacterList.Min(m => m.Level);
+            return data;
+        }
+
+        /// <summary>
+        /// Will return the Min, Max, Average for the Characters in the party
+        /// So the monster can get scaled to the appropraite level
+        /// </summary>
+        /// <returns></returns>
+        public int GetMaxCharacterLevel()
+        {
+            var data = CharacterList.Max(m => m.Level);
+            return data;
+        }
+
+        // Add Monsters
+        // Scale them to meet Character Strength...
+        public void AddMonstersToRound()
+        {
+
+            // Check to see if the monster list is full, if so, no need to add more...
+            if (MonsterList.Count() >= GameGlobals.MaxNumberPartyPlayers)
+            {
+                return;
+            }
+
+            // Make Sure Monster List exists and is loaded...
+            var myMonsterViewModel = MonstersViewModel.Instance;
+            if (myMonsterViewModel.Dataset.Count() > 0)
+            {
+                // Scale monsters to be within the range of the Characters
+
+                var ScaleLevelMax = 1;
+                var ScaleLevelMin = 1;
+                var ScaleLevelAverage = 1;
+
+                if (CharacterList.Any())
+                {
+                    ScaleLevelMax = GetMaxCharacterLevel();
+                    ScaleLevelMin = GetMinCharacterLevel();
+                    ScaleLevelAverage = GetAverageCharacterLevel();
+                }
+
+                // Get 6 monsters
+                do
+                {
+                    var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
+                    {
+                        var monster = new Monster(myMonsterViewModel.Dataset[rnd - 1]);
+
+                        // Help identify which monster it is...
+                        monster.Name += " " + (1 + MonsterList.Count()).ToString();
+
+                        // Scale the monster to be between the average level of the characters+1
+                        var rndScale = HelperEngine.RollDice(1, ScaleLevelAverage + 1);
+                        monster.ScaleLevel(rndScale);
+                        MonsterList.Add(monster);
+                    }
+
+                } while (MonsterList.Count() < GameGlobals.MaxNumberPartyPlayers);
+            }
+            else
+            {
+                // No monsters in DB, so add 6 new ones...
+                for (var i = 0; i < GameGlobals.MaxNumberPartyPlayers; i++)
+                {
+                    var item = new Monster();
+                    // Help identify which monster it is...
+                    item.Name += " " + MonsterList.Count() + 1;
+                    MonsterList.Add(item);
+                }
+            }
         }
 
         // At the end of the round
@@ -60,59 +160,12 @@ namespace Crawl.GameEngine
             {
                 PickupItemsFromPool(character);
             }
+
             ClearLists();
         }
 
-        // Add Monsters
-        // Scale them to meet Character Strength...
-        public void AddMonstersToRound()
-        {
-            // Check to see if the monster list is full, if so, no need to add more...
-            if (MonsterList.Count() >= 1)
-            {
-                return;
-            }
-
-            var ScaleLevelMax = 2;
-            var ScaleLevelMin = 1;
-
-            // Make Sure Monster List exists and is loaded...
-            var myMonsterViewModel = MonstersViewModel.Instance;
-            myMonsterViewModel.ForceDataRefresh();
-
-            if (myMonsterViewModel.Dataset.Count() > 0)
-            {
-                // Get 1 monster
-                do
-                {
-                    var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
-                    {
-                        var item = new Monster(myMonsterViewModel.Dataset[rnd - 1]);
-
-                        // Help identify which monster it is...
-                        item.Name += " " + (1 + MonsterList.Count()).ToString();
-
-                        var rndScale = HelperEngine.RollDice(ScaleLevelMin, ScaleLevelMax);
-                        item.ScaleLevel(rndScale);
-                        MonsterList.Add(item);
-                    }
-
-                } while (MonsterList.Count() < 1);
-            }
-            else
-            {
-                // No monsters in DB, so add 6 new ones...
-                for (var i = 0; i < 6; i++)
-                {
-                    var item = new Monster();
-                    // Help identify which monster it is...
-                    item.Name += " " + MonsterList.Count() + 1;
-                    MonsterList.Add(item);
-                }
-            }
-        }
-
         // Get Round Turn Order
+
         // Rember Who's Turn
 
         // RoundNextTurn
@@ -122,7 +175,8 @@ namespace Crawl.GameEngine
             if (CharacterList.Count < 1)
             {
                 // Game Over
-                return RoundEnum.GameOver;
+                RoundStateEnum = RoundEnum.GameOver;
+                return RoundStateEnum;
             }
 
             // Check if round is over
@@ -156,21 +210,34 @@ namespace Crawl.GameEngine
                 TakeTurn(myPlayer);
             }
 
-            return RoundEnum.NextTurn;
+            RoundStateEnum = RoundEnum.NextTurn;
+            return RoundStateEnum;
         }
 
-        // Recalculate Order and get next turn.
         public PlayerInfo GetNextPlayerTurn()
         {
+            // Recalculate Order
             OrderPlayerListByTurnOrder();
+
             var PlayerCurrent = GetNextPlayerInList();
+            // Lookup CurrentPlayer in the list
+            // Find the player next to Current Player in order
+
             return PlayerCurrent;
         }
 
-        // Rearrange players by turn order based on remaining characters.
         public void OrderPlayerListByTurnOrder()
         {
             var myReturn = new List<PlayerInfo>();
+
+            // Order is based by... 
+            // Order by Speed (Desending)
+            // Then by Highest level (Descending)
+            // Then by Highest Experience Points (Descending)
+            // Then by Character before Monster (enum assending)
+            // Then by Alphabetic on Name (Assending)
+            // Then by First in list order (Assending
+
             MakePlayerList();
 
             PlayerList = PlayerList.OrderByDescending(a => a.Speed)
@@ -182,7 +249,6 @@ namespace Crawl.GameEngine
                 .ToList();
         }
 
-        // Make list of players with remaining alive characters.
         private void MakePlayerList()
         {
             PlayerList = new List<PlayerInfo>();
@@ -198,7 +264,9 @@ namespace Crawl.GameEngine
 
                     // Remember the order
                     tempPlayer.ListOrder = ListOrder;
+
                     PlayerList.Add(tempPlayer);
+
                     ListOrder++;
                 }
             }
@@ -207,6 +275,7 @@ namespace Crawl.GameEngine
             {
                 if (data.Alive)
                 {
+
                     tempPlayer = new PlayerInfo(data);
 
                     // Remember the order
@@ -219,16 +288,19 @@ namespace Crawl.GameEngine
             }
         }
 
-        // Get next player for upcoming turn.
         public PlayerInfo GetNextPlayerInList()
         {
-            // Choose last/default player if player not found.
+            // Walk the list from top to bottom
+            // If Player is found, then see if next player exist, if so return that.
+            // If not, return first player (looped)
+
+            // No current player, so set the last one, so it rolls over to the first...
             if (PlayerCurrent == null)
             {
                 PlayerCurrent = PlayerList.LastOrDefault();
             }
 
-            // Pick next player in list otherwise.
+            // Else go and pick the next player in the list...
             for (var i = 0; i < PlayerList.Count(); i++)
             {
                 if (PlayerList[i].Guid == PlayerCurrent.Guid)
@@ -237,20 +309,22 @@ namespace Crawl.GameEngine
                     {
                         return PlayerList[i + 1];
                     }
-
-                    // Return the first in the list...
-                    return PlayerList.FirstOrDefault();
+                    else
+                    {
+                        // Return the first in the list...
+                        return PlayerList.FirstOrDefault();
+                    }
                 }
             }
+
             return null;
         }
 
-        // Have character pickup items from pool after round over.
         public void PickupItemsFromPool(Character character)
         {
-            // Upgrade character items
+            // Have the character, walk the items in the pool, and decide if any are better than current one.
 
-            // If no items in the pool, do nothing.
+            // No items in the pool...
             if (ItemPool.Count < 1)
             {
                 return;
@@ -265,13 +339,13 @@ namespace Crawl.GameEngine
             GetItemFromPoolIfBetter(character, ItemLocationEnum.Feet);
         }
 
-        // Logic for upgrading items based on stats per character.
         public void GetItemFromPoolIfBetter(Character character, ItemLocationEnum setLocation)
         {
             var myList = ItemPool.Where(a => a.Location == setLocation)
                 .OrderByDescending(a => a.Value)
                 .ToList();
-                
+
+            // If no items in the list, return...
             if (!myList.Any())
             {
                 return;

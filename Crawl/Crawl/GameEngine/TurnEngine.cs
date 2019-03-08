@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using System.Diagnostics;
 
 using Crawl.Models;
 using Crawl.ViewModels;
-using System.Linq;
+using Crawl.Models.Enum;
 
 namespace Crawl.GameEngine
 {
@@ -15,49 +16,57 @@ namespace Crawl.GameEngine
     // * Target to Attack
     // * Should Move, or Stay put (can hit with weapon range?)
     // * Death
-    // * Manage Round...f
+    // * Manage Round...
     // * /
 
     public class TurnEngine
     {
+
+        #region Properties
         // Holds the official score
         public Score BattleScore = new Score();
 
-        public string AttackerName = string.Empty; // Attacker
-        public string TargetName = string.Empty; // Target
-        public string AttackStatus = string.Empty; // Attack Status
+        public BattleMessages BattleMessages = new BattleMessages();
 
-        public string TurnMessage = string.Empty; // Message for Turn
-        public string TurnMessageSpecial = string.Empty; // Special Message.
-        public string LevelUpMessage = string.Empty; // Level Up Message.
-
-        public int DamageAmount = 0; // Damage amount
-        public HitStatusEnum HitStatus = HitStatusEnum.Unknown; // Hit Type
-
-        public List<Item> ItemPool = new List<Item>(); // Pool for Items.
+        public List<Item> ItemPool = new List<Item>();
 
         //public List<Item> ItemList = new List<Item>();
+
         public List<Monster> MonsterList = new List<Monster>();
         public List<Character> CharacterList = new List<Character>();
 
-        // Attack
+        public PlayerInfo CurrentAttacker;
+        public PlayerInfo CurrentDefender;
+
+        // Attack or Move
         // Roll To Hit
         // Decide Hit or Miss
         // Decide Damage
         // Death
         // Drop Items
         // Turn Over
+        #endregion Properties
 
         // Character Attacks...
         public bool TakeTurn(Character Attacker)
         {
+            // Choose Move or Attack
+
             // For Attack, Choose Who
             var Target = AttackChoice(Attacker);
+
+            if (Target == null)
+            {
+                return false;
+            }
 
             // Do Attack
             var AttackScore = Attacker.Level + Attacker.GetAttack();
             var DefenseScore = Target.GetDefense() + Target.Level;
             TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
+
+            CurrentAttacker = new PlayerInfo(Attacker);
+            CurrentDefender = new PlayerInfo(Target);
 
             return true;
         }
@@ -65,13 +74,23 @@ namespace Crawl.GameEngine
         // Monster Attacks...
         public bool TakeTurn(Monster Attacker)
         {
+            // Choose Move or Attack
+
             // For Attack, Choose Who
             var Target = AttackChoice(Attacker);
+
+            if (Target == null)
+            {
+                return false;
+            }
 
             // Do Attack
             var AttackScore = Attacker.Level + Attacker.GetAttack();
             var DefenseScore = Target.GetDefense() + Target.Level;
             TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
+
+            CurrentAttacker = new PlayerInfo(Attacker);
+            CurrentDefender = new PlayerInfo(Target);
 
             return true;
         }
@@ -79,9 +98,11 @@ namespace Crawl.GameEngine
         // Monster Attacks Character
         public bool TurnAsAttack(Monster Attacker, int AttackScore, Character Target, int DefenseScore)
         {
-            TurnMessage = string.Empty;
-            TurnMessageSpecial = string.Empty;
-            AttackStatus = string.Empty;
+            BattleMessages.TurnMessage = string.Empty;
+            BattleMessages.TurnMessageSpecial = string.Empty;
+            BattleMessages.AttackStatus = string.Empty;
+
+            BattleMessages.PlayerType = PlayerTypeEnum.Monster;
 
             if (Attacker == null)
             {
@@ -97,45 +118,45 @@ namespace Crawl.GameEngine
 
             // Choose who to attack
 
-            TargetName = Target.Name;
-            AttackerName = Attacker.Name;
+            BattleMessages.TargetName = Target.Name;
+            BattleMessages.AttackerName = Attacker.Name;
 
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
-            if (HitStatus == HitStatusEnum.Miss)
+            Debug.WriteLine(BattleMessages.GetTurnMessage());
+
+            if (BattleMessages.HitStatus == HitStatusEnum.Miss)
             {
-                Target.TakeDamage(DamageAmount);
-                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                return true;
             }
 
-            if (HitStatus == HitStatusEnum.CriticalMiss)
+            if (BattleMessages.HitStatus == HitStatusEnum.CriticalMiss)
             {
-                Target.TakeDamage(DamageAmount);
-                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                return true;
             }
 
             // It's a Hit or a Critical Hit
-            //Calculate Damage
-            DamageAmount = Attacker.GetDamageRollValue();
-
-            DamageAmount += GameGlobals.ForceMonsterDamangeBonusValue;  // Add The forced damage bonus
-
-            if (HitStatus == HitStatusEnum.Hit)
+            if (BattleMessages.HitStatus == HitStatusEnum.Hit || BattleMessages.HitStatus == HitStatusEnum.CriticalHit)
             {
-                Target.TakeDamage(DamageAmount);
-                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                //Calculate Damage
+                BattleMessages.DamageAmount = Attacker.GetDamageRollValue();
+
+                BattleMessages.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
+
+                if (GameGlobals.EnableCriticalHitDamage)
+                {
+                    if (BattleMessages.HitStatus == HitStatusEnum.CriticalHit)
+                    {
+                        //2x damage
+                        BattleMessages.DamageAmount += BattleMessages.DamageAmount;
+                    }
+                }
+
+                Target.TakeDamage(BattleMessages.DamageAmount);
             }
 
-            if (HitStatus == HitStatusEnum.CriticalHit)
-            {
-                //2x damage
-                DamageAmount += DamageAmount;
-
-                Target.TakeDamage(DamageAmount);
-                AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
-            }
-
-            TurnMessageSpecial = " remaining health is " + Target.Attribute.CurrentHealth;
+            BattleMessages.CurrentHealth = Target.Attribute.CurrentHealth;
+            BattleMessages.TurnMessageSpecial = BattleMessages.GetCurrentHealthMessage();
 
             // Check for alive
             if (Target.Alive == false)
@@ -144,7 +165,7 @@ namespace Crawl.GameEngine
                 CharacterList.Remove(Target);
 
                 // Mark Status in output
-                TurnMessageSpecial = " and causes death";
+                BattleMessages.TurnMessageSpecial = " and causes death";
 
                 // Add the monster to the killed list
                 BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
@@ -156,14 +177,14 @@ namespace Crawl.GameEngine
                 foreach (var item in myItemList)
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    TurnMessageSpecial += " Item " + item.Name + " dropped";
+                    BattleMessages.TurnMessageSpecial += " Item " + item.Name + " dropped";
                 }
 
                 ItemPool.AddRange(myItemList);
             }
 
-            TurnMessage = Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
-            Debug.WriteLine(TurnMessage);
+            BattleMessages.TurnMessage = Attacker.Name + BattleMessages.AttackStatus + Target.Name + BattleMessages.TurnMessageSpecial;
+            Debug.WriteLine(BattleMessages.TurnMessage);
 
             return true;
         }
@@ -171,10 +192,10 @@ namespace Crawl.GameEngine
         // Character attacks Monster
         public bool TurnAsAttack(Character Attacker, int AttackScore, Monster Target, int DefenseScore)
         {
-            TurnMessage = string.Empty;
-            TurnMessageSpecial = string.Empty;
-            AttackStatus = string.Empty;
-            LevelUpMessage = string.Empty;
+            BattleMessages.TurnMessage = string.Empty;
+            BattleMessages.TurnMessageSpecial = string.Empty;
+            BattleMessages.AttackStatus = string.Empty;
+            BattleMessages.LevelUpMessage = string.Empty;
 
             if (Attacker == null)
             {
@@ -190,77 +211,69 @@ namespace Crawl.GameEngine
 
             // Choose who to attack
 
-            TargetName = Target.Name;
-            AttackerName = Attacker.Name;
+            BattleMessages.TargetName = Target.Name;
+            BattleMessages.AttackerName = Attacker.Name;
 
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
-            if (HitStatus == HitStatusEnum.Miss)
-            {
-                TurnMessage = Attacker.Name + " misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
+            Debug.WriteLine(BattleMessages.GetTurnMessage());
 
+            if (BattleMessages.HitStatus == HitStatusEnum.Miss)
+            {
                 return true;
             }
 
-            if (HitStatus == HitStatusEnum.CriticalMiss)
+            if (BattleMessages.HitStatus == HitStatusEnum.CriticalMiss)
             {
-                TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
 
                 if (GameGlobals.EnableCriticalMissProblems)
                 {
-                    TurnMessage += DetermineCriticalMissProblem(Attacker);
+                    BattleMessages.TurnMessage += DetermineCriticalMissProblem(Attacker);
                 }
                 return true;
             }
 
             // It's a Hit or a Critical Hit
-            if (HitStatus == HitStatusEnum.Hit || HitStatus == HitStatusEnum.CriticalHit)
+            if (BattleMessages.HitStatus == HitStatusEnum.Hit || BattleMessages.HitStatus == HitStatusEnum.CriticalHit)
             {
                 //Calculate Damage
-                DamageAmount = Attacker.GetDamageRollValue();
+                BattleMessages.DamageAmount = Attacker.GetDamageRollValue();
 
-                DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
-
-                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                BattleMessages.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
                 if (GameGlobals.EnableCriticalHitDamage)
                 {
-                    if (HitStatus == HitStatusEnum.CriticalHit)
+                    if (BattleMessages.HitStatus == HitStatusEnum.CriticalHit)
                     {
                         //2x damage
-                        DamageAmount += DamageAmount;
-                        AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
+                        BattleMessages.DamageAmount += BattleMessages.DamageAmount;
                     }
                 }
 
-                Target.TakeDamage(DamageAmount);
+                Target.TakeDamage(BattleMessages.DamageAmount);
 
-                var experienceEarned = Target.CalculateExperienceEarned(DamageAmount);
-
-                Target.TakeDamage(DamageAmount);
+                var experienceEarned = Target.CalculateExperienceEarned(BattleMessages.DamageAmount);
 
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
                 {
-                    LevelUpMessage = Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " + Attacker.GetHealthMax();
-                    Debug.WriteLine(LevelUpMessage);
+                    BattleMessages.LevelUpMessage = Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " + Attacker.GetHealthMax();
+                    Debug.WriteLine(BattleMessages.LevelUpMessage);
                 }
 
                 BattleScore.ExperienceGainedTotal += experienceEarned;
             }
 
-            TurnMessageSpecial = " remaining health is " + Target.Attribute.CurrentHealth;
+            BattleMessages.TurnMessageSpecial = " remaining health is " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
             {
-                // Remover target from list...
+                // Remove target from list...
                 MonsterList.Remove(Target);
 
                 // Mark Status in output
-                TurnMessageSpecial = " and causes death";
+                BattleMessages.TurnMessageSpecial = " and causes death";
 
                 // Add one to the monsters killd count...
                 BattleScore.MonsterSlainNumber++;
@@ -278,21 +291,21 @@ namespace Crawl.GameEngine
                 foreach (var item in myItemList)
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    TurnMessageSpecial += " Item " + item.Name + " dropped";
+                    BattleMessages.TurnMessageSpecial += " Item " + item.Name + " dropped";
                 }
 
                 ItemPool.AddRange(myItemList);
             }
 
-            TurnMessage = Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
-            Debug.WriteLine(TurnMessage);
+            BattleMessages.TurnMessage = Attacker.Name + BattleMessages.AttackStatus + Target.Name + BattleMessages.TurnMessageSpecial;
+            Debug.WriteLine(BattleMessages.TurnMessage);
 
             return true;
         }
 
-        // Roll for attack.
         public HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
+
             var d20 = HelperEngine.RollDice(1, 20);
 
             // Turn On UnitTestingSetRoll
@@ -310,32 +323,32 @@ namespace Crawl.GameEngine
             if (d20 == 1)
             {
                 // Force Miss
-                HitStatus = HitStatusEnum.CriticalMiss;
-                return HitStatus;
+                BattleMessages.HitStatus = HitStatusEnum.CriticalMiss;
+                return BattleMessages.HitStatus;
             }
 
             if (d20 == 20)
             {
                 // Force Hit
-                HitStatus = HitStatusEnum.CriticalHit;
-                return HitStatus;
+                BattleMessages.HitStatus = HitStatusEnum.CriticalHit;
+                return BattleMessages.HitStatus;
             }
 
             var ToHitScore = d20 + AttackScore;
             if (ToHitScore < DefenseScore)
             {
-                AttackStatus = " misses ";
+                BattleMessages.AttackStatus = " misses ";
                 // Miss
-                HitStatus = HitStatusEnum.Miss;
-                DamageAmount = 0;
+                BattleMessages.HitStatus = HitStatusEnum.Miss;
+                BattleMessages.DamageAmount = 0;
             }
             else
             {
                 // Hit
-                HitStatus = HitStatusEnum.Hit;
+                BattleMessages.HitStatus = HitStatusEnum.Hit;
             }
 
-            return HitStatus;
+            return BattleMessages.HitStatus;
         }
 
         // Decide which to attack
@@ -351,11 +364,24 @@ namespace Crawl.GameEngine
                 return null;
             }
 
-            // Since there is only one Monster, it will choose that one.
-            foreach (var Defender in MonsterList)
+            //// For now, just use a simple selection of the first in the list.
+            //// Later consider, strongest, closest, with most Health etc...
+            //foreach (var Defender in MonsterList)
+            //{
+            //    if (Defender.Alive)
+            //    {
+            //        return Defender;
+            //    }
+            //}
+
+            // Select first one to hit in the list for now...
+            // Attack the Weakness (lowest HP) Monster first 
+            var DefenderWeakest = MonsterList.OrderBy(m => m.Attribute.CurrentHealth).FirstOrDefault();
+            if (DefenderWeakest.Alive)
             {
-                if (Defender.Alive) { return Defender; }
+                return DefenderWeakest;
             }
+
             return null;
         }
 
@@ -373,10 +399,13 @@ namespace Crawl.GameEngine
             }
 
             // For now, just use a simple selection of the first in the list.
+            // Later consider, strongest, closest, with most Health etc...
+
             foreach (var Defender in CharacterList)
             {
                 if (Defender.Alive)
                 {
+                    // Select first one to hit in the list for now...
                     return Defender;
                 }
             }
@@ -429,7 +458,6 @@ namespace Crawl.GameEngine
             return myList;
         }
 
-        // Determin Critiical Miss.
         public string DetermineCriticalMissProblem(Character attacker)
         {
             if (attacker == null)
@@ -492,6 +520,7 @@ namespace Crawl.GameEngine
                     }
                     break;
             }
+
             return myReturn;
         }
     }
