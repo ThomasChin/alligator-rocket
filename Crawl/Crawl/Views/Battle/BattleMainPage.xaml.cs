@@ -105,7 +105,7 @@ namespace Crawl.Views.Battle
             if (CurrentRoundState == RoundEnum.GameOver)
             {
                 _viewModel.EndBattle();
-                //MessagingCenter.Send(this, "EndBattle");
+                MessagingCenter.Send(this, "EndBattle");
                 Debug.WriteLine("End Battle");
 
                 // Output Formatted Results 
