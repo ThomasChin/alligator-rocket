@@ -18,6 +18,7 @@ namespace Crawl.Models
         // Difficulty
         public int Difficulty { get; set; }
 
+        // Constants for maximum and minimum difficulty.
         public const int MINDIFF = 1;
         public const int MAXDIFF = 5;
 
@@ -37,7 +38,7 @@ namespace Crawl.Models
             Level = 1;
             Type = MonsterTypeEnum.GiantSquid;
             Difficulty = 1;
-
+            ScaleLevel(Level);
         }
 
         //Basic constructor with inputs for base stats
@@ -54,21 +55,24 @@ namespace Crawl.Models
 
             Alive = true;
             Level = level;
-            ScaleLevel(level);
             Difficulty = difficulty;
+            ScaleLevel(Level);
         }
 
         // Passed in from creating via the Database, so use the guid passed in...
         public Monster(BaseMonster newData)
         {
+            Type = newData.Type;
             Name = newData.Name;
             Attribute = new AttributeBase();
-            Type = newData.Type;
+            Attribute.CurrentHealth = Attribute.MaxHealth;
 
             Alive = true;
             Level = newData.Level;
+            ScaleLevel(Level);
 
             Id = System.Guid.NewGuid().ToString();
+            ScaleLevel(Level);
         }
 
         // Returns the string name of the monster type
@@ -88,22 +92,51 @@ namespace Crawl.Models
         }
 
         // Upgrades a monster to a set level
-        public void ScaleLevel(int level)
+        public bool ScaleLevel(int level)
         {
+            // Level of < 1 does not need changing
+            if (level < 1)
+            {
+                return false;
+            }
+
+            // Don't exit on same level, because the settings below need to be calculated
+            //// Same level does not need changing
+            //if (level == this.Level)
+            //{
+            //    return false;
+            //}
+
+            // Don't go down in level...
+            if (level < this.Level)
+            {
+                return false;
+            }
+
+            // Level > Max Level
+            if (level > LevelTable.MaxLevel)
+            {
+                return false;
+            }
+
+            // Calculate Experience Remaining based on Lookup...
             Level = level;
 
             // Get the number of points at the next level, and set it for Experience Total...
             ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level + 1].Experience;
             ExperienceRemaining = ExperienceTotal;
 
-            LevelTable lt = new LevelTable();
+            Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[Level].Attack;
+            Attribute.Attack = LevelTable.Instance.LevelDetailsList[Level].Attack;
+            Attribute.Defense = LevelTable.Instance.LevelDetailsList[Level].Defense;
+            Attribute.Speed = LevelTable.Instance.LevelDetailsList[Level].Speed;
 
-            Attribute.Attack = lt.LevelDetailsList[level].Attack;
-            Attribute.Defense = lt.LevelDetailsList[level].Defense;
-            Attribute.Speed = lt.LevelDetailsList[level].Speed;
-
-            Attribute.MaxHealth = HelperEngine.RollDice(level - Level, 10);
+            Attribute.MaxHealth = HelperEngine.RollDice(Level, HealthDice);
             Attribute.CurrentHealth = Attribute.MaxHealth;
+
+            AttributeString = AttributeBase.GetAttributeString(Attribute);
+
+            return true;
         }
 
         // Update the values passed in

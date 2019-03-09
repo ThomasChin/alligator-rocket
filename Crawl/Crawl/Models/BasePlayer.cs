@@ -13,6 +13,9 @@ namespace Crawl.Models
         // Current experience gained, or to give
         public int ExperienceTotal { get; set; }
 
+        // Dice for leveling up. Default is d10.
+        public int HealthDice { get; set; } = 10;
+
         public bool Alive { get; set; }
 
         // The AttributeString will be unpacked and stored in the top level of Character as actual attributes, 
