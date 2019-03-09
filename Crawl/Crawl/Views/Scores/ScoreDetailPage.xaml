@@ -63,10 +63,10 @@
                     <Label Text="Monsters Slain: "
                            TextColor="White"
                        FontSize="Small" 
-                       HorizontalOptions="Start"/>
+                       HorizontalOptions="StartAndExpand"/>
                     <Label Text="{Binding Data.MonsterSlainNumber}" 
                         FontSize="Small" 
-                        HorizontalOptions="Center"/>
+                        HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
                 
                 <StackLayout
