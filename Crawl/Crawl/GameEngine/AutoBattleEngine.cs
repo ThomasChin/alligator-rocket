@@ -70,12 +70,12 @@ namespace Crawl.GameEngine
         public string GetResultsOutput()
         {
             string myResult = null;
-                    myResult += "Battle Ended" + BattleEngine.BattleScore.ScoreTotal +
-                    " Total Score :" + BattleEngine.BattleScore.ExperienceGainedTotal +
-                    " Total Experience :" + BattleEngine.BattleScore.ExperienceGainedTotal +
-                    " Rounds :" + BattleEngine.BattleScore.RoundCount +
-                    " Turns :" + BattleEngine.BattleScore.TurnCount +
-                    " Monster Kills :" + BattleEngine.BattleScore.MonstersKilledList;
+            myResult += "Battle Ended" + BattleEngine.BattleScore.ScoreTotal +
+            " Total Score :" + BattleEngine.BattleScore.ExperienceGainedTotal +
+            " Total Experience :" + BattleEngine.BattleScore.ExperienceGainedTotal +
+            " Rounds :" + BattleEngine.BattleScore.RoundCount +
+            " Turns :" + BattleEngine.BattleScore.TurnCount +
+            " Monster Kills :" + BattleEngine.BattleScore.MonstersKilledList;
 
 
             Debug.WriteLine(myResult);

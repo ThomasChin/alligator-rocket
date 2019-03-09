@@ -8,10 +8,7 @@ using Crawl.ViewModels;
 
 namespace Crawl.GameEngine
 {
-    // Battle is the top structure
-
     // A battle has
-
     public class BattleEngine : RoundEngine
     {
         // The status of the actual battle, running or not (over)
@@ -58,70 +55,59 @@ namespace Crawl.GameEngine
             return isBattleRunning;
         }
 
-        // Battle is over
-        // Update Battle State, Log Score to Database
-        public void EndBattle()
-        {
-            // Set Score
-            BattleScore.ScoreTotal = BattleScore.ExperienceGainedTotal;
-
-            // Set off state
-            isBattleRunning = false;
-
-            // Save the Score to the DataStore
-            ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
-        }
-
         // Initializes the Battle to begin
         public bool StartBattle(bool isAutoBattle)
         {
-            BattleEngineClearData();
-
-            // New Battle
-            // Load Characters
             BattleScore.AutoBattle = isAutoBattle;
             isBattleRunning = true;
 
-            // Characters not Initialized, so false start...
-            if (CharacterList.Count < 1)
-            {
-                return false;
-            }
-
+            // Check for at least 1 party member.
+            if (CharacterList.Count < 1) { return false; }
             return true;
+        }
+
+        // End battle and Update Battle State, Log Score to Database
+        public void EndBattle()
+        {
+            // Set Score.
+            BattleScore.ScoreTotal = BattleScore.ExperienceGainedTotal;
+
+            // Turn off battle.
+            isBattleRunning = false;
+
+            // Save score.
+            ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
         }
 
         // Add Characters
         // Scale them to meet Character Strength...
         public bool AddCharactersToBattle()
         {
-            // Check if the Character list is empty
+            // Check to see if the Character list is full, if so, no need to add more...
+            if (CharacterList.Count >= 1)
+            {
+                return true;
+            }
+
+            var ScaleLevelMax = 2;
+            var ScaleLevelMin = 1;
+
             if (CharactersViewModel.Instance.Dataset.Count < 1)
             {
                 return false;
             }
 
-            // Check to see if the Character list is full, if so, no need to add more...
-            if (CharacterList.Count >= GameGlobals.MaxNumberPartyPlayers)
-            {
-                return true;
-            }
-
-            // TODO, determine the character strength
-            // add Characters up to that strength...
-            var ScaleLevelMax = 3;
-            var ScaleLevelMin = 1;
-
             // Get 6 Characters
             do
             {
-                var Data = GetRandomCharacter(ScaleLevelMin, ScaleLevelMax);
-                CharacterList.Add(Data);
-            } while (CharacterList.Count < GameGlobals.MaxNumberPartyPlayers);
+                var myData = GetRandomCharacter(ScaleLevelMin, ScaleLevelMax);
+                CharacterList.Add(myData);
+            } while (CharacterList.Count < 1);
 
             return true;
         }
 
+        // Get a random character.
         public Character GetRandomCharacter(int ScaleLevelMin, int ScaleLevelMax)
         {
             var myCharacterViewModel = CharactersViewModel.Instance;
@@ -136,7 +122,7 @@ namespace Crawl.GameEngine
             var rndScale = HelperEngine.RollDice(ScaleLevelMin, ScaleLevelMax);
             myData.ScaleLevel(rndScale);
 
-            // Add Items...
+            // Add Items to Character
             myData.Head = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Head, AttributeEnum.Unknown);
             myData.Necklass = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Necklass, AttributeEnum.Unknown);
             myData.PrimaryHand = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.PrimaryHand, AttributeEnum.Unknown);
@@ -147,26 +133,6 @@ namespace Crawl.GameEngine
 
             return myData;
         }
-
-
-        // Check Character List, if empty battle over
-        // Check Monster List, if empty Round Over, then New Round
-
-        // Round Over
-        // Clear Monsters
-        // Drop Items to Pool
-        // Allow Pickup of Items from Pool
-
-        // New Round
-        // Item pool is empty
-        // Monster List is new
-        // Start Round
-
-        // Start Round
-        // Choose Attack Order
-        // Walk Attack Order
-        // Take Turn A attacks B
-
 
         /// <summary>
         /// Retruns a formated String of the Results of the Battle
@@ -187,6 +153,5 @@ namespace Crawl.GameEngine
 
             return myResult;
         }
-
     }
 }
