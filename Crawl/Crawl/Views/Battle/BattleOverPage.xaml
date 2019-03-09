@@ -46,6 +46,7 @@
                 <Button Text="CONTINUE..."
                         VerticalOptions="End" 
                         HorizontalOptions="CenterAndExpand" 
+                        Clicked="OnNextClicked"
                         />
             </StackLayout>
         </StackLayout>
