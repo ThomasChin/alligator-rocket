@@ -138,11 +138,9 @@ namespace Crawl.Views.Battle
         /// </summary>
         public void DrawGameBoardAttackerDefender()
         {
-            AttackerImage.Source = _viewModel.BattleEngine.CurrentAttacker.ImageURI;
             AttackerName.Text = _viewModel.BattleEngine.CurrentAttacker.Name;
             AttackerHealth.Text = _viewModel.BattleEngine.CurrentAttacker.CurrentHealth.ToString() + " / " + _viewModel.BattleEngine.CurrentAttacker.MaxHealth.ToString();
 
-            DefenderImage.Source = _viewModel.BattleEngine.CurrentDefender.ImageURI;
             DefenderName.Text = _viewModel.BattleEngine.CurrentDefender.Name;
             DefenderHealth.Text = _viewModel.BattleEngine.CurrentDefender.CurrentHealth.ToString() + " / " + _viewModel.BattleEngine.CurrentDefender.MaxHealth.ToString();
         }
@@ -152,11 +150,9 @@ namespace Crawl.Views.Battle
         /// </summary>
         public void DrawGameBoardClear()
         {
-            AttackerImage.Source = string.Empty;
             AttackerName.Text = string.Empty;
             AttackerHealth.Text = string.Empty;
 
-            DefenderImage.Source = string.Empty;
             DefenderName.Text = string.Empty;
             DefenderHealth.Text = string.Empty;
 
@@ -282,18 +278,11 @@ namespace Crawl.Views.Battle
                 Style = (Style)Application.Current.Resources["TeamPlayerText"]
             };
 
-            var myImage = new Image()
-            {
-                Source = data.ImageURI,
-                Style = (Style)Application.Current.Resources["TeamPlayerImage"]
-            };
-
             StackLayout OuterFrame = new StackLayout
             {
                 Style = (Style)Application.Current.Resources["TeamPlayerBox"]
             };
 
-            OuterFrame.Children.Add(myImage);
             OuterFrame.Children.Add(myName);
 
             PlayerStackLayout.Children.Add(OuterFrame);

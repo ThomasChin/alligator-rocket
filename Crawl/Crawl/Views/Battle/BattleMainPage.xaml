@@ -15,12 +15,12 @@
             <Label Text="Characters" Style="{DynamicResource DebugSwitchLabel}"/>
             <StackLayout x:Name="CharacterBox"
                          HorizontalOptions="Start"
-                         Orientation="Horizontal"/>
+                         Orientation="Vertical"/>
 
             <Label Text="Monsters" Style="{DynamicResource DebugSwitchLabel}"/>
             <StackLayout x:Name="MonsterBox"
                     HorizontalOptions="Start"
-                    Orientation="Horizontal"/>
+                    Orientation="Vertical"/>
 
             <StackLayout x:Name="BattlePlayerBox"
                 HorizontalOptions="CenterAndExpand"

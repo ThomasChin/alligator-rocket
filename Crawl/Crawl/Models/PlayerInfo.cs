@@ -60,7 +60,6 @@ namespace Crawl.Models
             Level = data.Level;
             Name = data.Name;
             Speed = data.GetSpeed();
-            ImageURI = data.ImageURI;
             CurrentHealth = data.GetHealthCurrent();
             MaxHealth = data.GetHealthMax();
         }
@@ -75,7 +74,6 @@ namespace Crawl.Models
             Level = data.Level;
             Name = data.Name;
             Speed = data.GetSpeed();
-            ImageURI = data.ImageURI;
             CurrentHealth = data.GetHealthCurrent();
             MaxHealth = data.GetHealthMax();
         }
