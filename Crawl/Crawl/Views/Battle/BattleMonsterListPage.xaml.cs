@@ -17,9 +17,6 @@ namespace Crawl.Views.Battle
         // Data list for Monsters in round.
         public List<Monster> Datalist = new List<Monster>();
 
-        // ViewModel for Battle
-        private BattleViewModel _viewModel;
-
         // Constructor
         public BattleMonsterListPage()
         {
@@ -72,11 +69,8 @@ namespace Crawl.Views.Battle
         // Close this page
         async void OnNextClicked(object sender, EventArgs args)
         {
-            // Jump to Main Battle Page
-            await Navigation.PushAsync(new BattleMainPage());
-
-            // Last, remove this page
-            Navigation.RemovePage(this);
+            // Go back a page.
+            await Navigation.PopModalAsync();
         }
     }
 }
