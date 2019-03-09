@@ -119,7 +119,7 @@ namespace Crawl.GameEngine
                     ScaleLevelAverage = GetAverageCharacterLevel();
                 }
 
-                // Get 6 monsters
+                // Get 1 monsters
                 do
                 {
                     var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
@@ -135,12 +135,12 @@ namespace Crawl.GameEngine
                         MonsterList.Add(monster);
                     }
 
-                } while (MonsterList.Count() < GameGlobals.MaxNumberPartyPlayers);
+                } while (MonsterList.Count() < 1);
             }
             else
             {
-                // No monsters in DB, so add 6 new ones...
-                for (var i = 0; i < GameGlobals.MaxNumberPartyPlayers; i++)
+                // No monsters in DB, so add 1 new ones...
+                for (var i = 0; i < 1; i++)
                 {
                     var item = new Monster();
                     // Help identify which monster it is...
