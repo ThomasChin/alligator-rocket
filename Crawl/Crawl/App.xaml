@@ -5,10 +5,10 @@
     <Application.Resources>
         <ResourceDictionary>
 
-            <Color x:Key="ButtonBackgroundColor">#D9AD90</Color>
+            <Color x:Key="ButtonBackgroundColor">#4D668F</Color>
             
             <Color x:Key="Primary">#00FFC8</Color>
-            <Color x:Key="PrimaryDark">#72342C</Color>
+            <Color x:Key="PrimaryDark">#4D668F</Color>
             <Color x:Key="Accent">#7CA4E5</Color>
 
             <Color x:Key="LightBackgroundColor">#4D668F</Color>
