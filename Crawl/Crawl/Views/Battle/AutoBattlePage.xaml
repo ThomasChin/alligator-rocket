@@ -6,7 +6,7 @@
         <StackLayout>
             <StackLayout 
             HorizontalOptions="Center" 
-            VerticalOptions="Start"
+            VerticalOptions="StartAndExpand"
             Orientation="Vertical">
                 <Label  Text="AutoBattle"
                         TextColor="Teal"
@@ -16,8 +16,7 @@
                         HorizontalOptions="CenterAndExpand"
                         />
                 
-                <Label  Text="  Autobattle will run the game in 
-                              its entirety with no input needed. You will then see the final score popup."
+                <Label  Text="Are you sure?"
                         TextColor="White"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"

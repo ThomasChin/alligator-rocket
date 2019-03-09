@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Crawl.GameEngine;
 using Crawl.ViewModels;
+using Crawl.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,37 +21,41 @@ namespace Crawl.Views.Battle
 			InitializeComponent ();
 		}
 
-        // Excecute AutoBattle Button
         private async void AutoBattleButton_Command(object sender, EventArgs e)
         {
+
+            // Hold the score property to give to the score navigation later
+            Score myScoreObject = new Score();
+
             // Can create a new battle engine...
             var myEngine = new AutoBattleEngine();
 
-            var result = myEngine.ExecuteAutoBattle();
 
-            if (result == false)
+            await Task.Run(async () =>
             {
-                await DisplayAlert("Error", "No Characters Avaialbe", "OK");
-                return;
-            }
+                var result = myEngine.ExecuteAutoBattle();
 
-            if (myEngine.GetRoundCount() < 1)
-            {
-                await DisplayAlert("Error", "No Rounds Fought", "OK");
-                return;
-            }
+                if (result == false)
+                {
+                    await DisplayAlert("Error", "No Characters Avaialbe", "OK");
+                    return;
+                }
 
-            var myResult = myEngine.GetResultsOutput();
-            var myScore = myEngine.GetScoreValue();
+                if (myEngine.GetRoundCount() < 1)
+                {
+                    await DisplayAlert("Error", "No Rounds Fought", "OK");
+                    return;
+                }
 
-            var outputString = "Battle Over! Score " + myScore.ToString();
+                var myResult = myEngine.GetResultsOutput();
+                var myScore = myEngine.GetScoreValue();
 
-            var action = await DisplayActionSheet(outputString, "Cancel", null, "View Score");
-            if (action == "View Score")
-            {
-                var myScoreObject = myEngine.GetScoreObject();
-                await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myScoreObject)));
-            }
+                var outputString = "Battle Over! Score " + myScore.ToString();
+
+                myScoreObject = myEngine.GetScoreObject();
+            });
+
+            await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myScoreObject)));
         }
     }
 }
