@@ -42,6 +42,7 @@ namespace Crawl.Views.Battle
         public BattleMainPage()
         {
             _viewModel = BattleViewModel.Instance;
+            BindingContext = _viewModel;
 
             InitializeComponent();
 
@@ -58,8 +59,6 @@ namespace Crawl.Views.Battle
             // Start the Round
             _viewModel.StartRound();
             Debug.WriteLine("Round Start" + " Monsters:" + _viewModel.BattleEngine.MonsterList.Count);
-
-            BindingContext = _viewModel;
 
             // Clear the Screen
             ClearMessages();
@@ -88,7 +87,7 @@ namespace Crawl.Views.Battle
         {
             // Do the turn...
             _viewModel.RoundNextTurn();
-            //MessagingCenter.Send(this, "RoundNextTurn");
+            MessagingCenter.Send(this, "RoundNextTurn");
 
             // Hold the current state
             var CurrentRoundState = _viewModel.BattleEngine.RoundStateEnum;
@@ -97,7 +96,7 @@ namespace Crawl.Views.Battle
             if (CurrentRoundState == RoundEnum.NewRound)
             {
                 _viewModel.NewRound();
-                // MessagingCenter.Send(this, "NewRound");
+                MessagingCenter.Send(this, "NewRound");
 
                 Debug.WriteLine("New Round :" + _viewModel.BattleEngine.BattleScore.RoundCount);
 
