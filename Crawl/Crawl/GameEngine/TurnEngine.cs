@@ -375,6 +375,7 @@ namespace Crawl.GameEngine
             {
                 // Force Miss
                 HitStatus = HitStatusEnum.CriticalMiss;
+                BattleMessages.HitStatus = HitStatus;
                 return HitStatus;
             }
 
@@ -382,6 +383,7 @@ namespace Crawl.GameEngine
             {
                 // Force Hit
                 HitStatus = HitStatusEnum.CriticalHit;
+                BattleMessages.HitStatus = HitStatus;
                 return HitStatus;
             }
 
@@ -389,14 +391,18 @@ namespace Crawl.GameEngine
             if (ToHitScore < DefenseScore)
             {
                 AttackStatus = " misses ";
+                BattleMessages.AttackStatus = AttackStatus;
                 // Miss
                 HitStatus = HitStatusEnum.Miss;
+                BattleMessages.HitStatus = HitStatus;
                 DamageAmount = 0;
+                BattleMessages.DamageAmount = DamageAmount;
             }
             else
             {
                 // Hit
                 HitStatus = HitStatusEnum.Hit;
+                BattleMessages.HitStatus = HitStatus;
             }
 
             return HitStatus;
