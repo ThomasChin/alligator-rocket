@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Crawl.Models
 {
+    // Enums for Menu Modules
     public enum MenuItemType
     {
         Home,
@@ -14,6 +15,7 @@ namespace Crawl.Models
         Items
     }
 
+    // Constructor for Home Menu Item.
     public class HomeMenuItem
     {
         public MenuItemType Id { get; set; }

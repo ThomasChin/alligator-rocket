@@ -20,6 +20,7 @@ namespace Crawl.Models.Enums
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static BattleMessageHitEnum _instance;
 
+        // Constructor for BMHitEnum
         public static BattleMessageHitEnum Instance
         {
             get
@@ -34,7 +35,7 @@ namespace Crawl.Models.Enums
 
         #endregion Singleton
 
-
+        // List for messages.
         private List<MessageDetailHitEnum> MessageList { get; set; }
 
         // Data for the Levels
@@ -43,12 +44,14 @@ namespace Crawl.Models.Enums
             ClearAndLoadDatTable();
         }
 
+        // Make new list and load data.
         public void ClearAndLoadDatTable()
         {
             MessageList = new List<MessageDetailHitEnum>();
             LoadData();
         }
 
+        // Load Enum Data.
         public void LoadData()
         {
             MessageList.Add(new MessageDetailHitEnum { HitStatus = HitStatusEnum.Unknown, Message = "Unknown" });
@@ -65,6 +68,7 @@ namespace Crawl.Models.Enums
             public string Message;
         }
 
+        // Get the current message based on hit status.
         public string GetMessage(HitStatusEnum hitStatus)
         {
             var myReturn = MessageList.Where(a => a.HitStatus == hitStatus).FirstOrDefault().Message;

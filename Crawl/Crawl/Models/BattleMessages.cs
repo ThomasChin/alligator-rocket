@@ -7,23 +7,24 @@ namespace Crawl.Models
 {
     public class BattleMessages
     {
+        // Type of Player
         public PlayerTypeEnum PlayerType;
 
-        public string AttackerName = string.Empty;
-        public string TargetName = string.Empty;
-        public string AttackStatus = string.Empty;
+        public string AttackerName = string.Empty; // Attacker Name
+        public string TargetName = string.Empty; // Target name
+        public string AttackStatus = string.Empty; // Attack Status
 
-        public string TurnMessage = string.Empty;
-        public string TurnMessageSpecial = string.Empty;
-        public string LevelUpMessage = string.Empty;
+        public string TurnMessage = string.Empty; // Turn Message
+        public string TurnMessageSpecial = string.Empty; // Special Message
+        public string LevelUpMessage = string.Empty; // Levelup Message
 
-        public int DamageAmount = 0;
-        public int CurrentHealth = 0;
+        public int DamageAmount = 0; // Damage
+        public int CurrentHealth = 0; // Current Health
 
-        private string htmlHead = @"<html><body bgcolor=""#E8D0B6""><p>";
+        private string htmlHead = @"<html><body bgcolor=""#4D668F""><p>"; // Color
         private string htmlTail = @"</p></body></html>";
 
-        public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
+        public HitStatusEnum HitStatus = HitStatusEnum.Unknown; // Enum for HitStatus
 
         /// <summary>
         /// Return formatted string
