@@ -85,10 +85,6 @@ namespace Crawl.Views.Battle
         /// <param name="args"></param>
         public async void OnNextClicked(object sender, EventArgs args)
         {
-            // Do the turn...
-            _viewModel.RoundNextTurn();
-            MessagingCenter.Send(this, "RoundNextTurn");
-
             // Hold the current state
             var CurrentRoundState = _viewModel.BattleEngine.RoundStateEnum;
 
@@ -127,6 +123,10 @@ namespace Crawl.Views.Battle
 
                 return;
             }
+
+            // Do the turn...
+            _viewModel.RoundNextTurn();
+            MessagingCenter.Send(this, "RoundNextTurn");
 
             // Output the Game Board
             DrawGameBoardAttackerDefender();
