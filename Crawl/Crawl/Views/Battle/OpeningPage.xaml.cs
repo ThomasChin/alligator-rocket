@@ -14,8 +14,10 @@ namespace Crawl.Views.Battle
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OpeningPage : ContentPage
     {
+        // Viewmodel being used for characters.
         private BattleViewModel _viewModel;
 
+        // Constructor.
         public OpeningPage()
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace Crawl.Views.Battle
             Navigation.RemovePage(this);
         }
 
+        // Select Available characters.
         private async void OnAvailableCharacterItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Character;
@@ -69,6 +72,7 @@ namespace Crawl.Views.Battle
             PartyCountLabel.Text = currentCount.ToString();
         }
 
+        // Remove selected character from party.
         private async void OnSelectedCharacterItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Character;
@@ -92,6 +96,7 @@ namespace Crawl.Views.Battle
             PartyCountLabel.Text = currentCount.ToString();
         }
 
+        // Logic for every time page appears.
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -117,8 +122,6 @@ namespace Crawl.Views.Battle
             BindingContext = _viewModel;
 
             PartyCountLabel.Text = _viewModel.SelectedCharacters.Count().ToString();
-
         }
-
     }
 }

@@ -21,6 +21,7 @@ namespace Crawl.Views.Battle
 			InitializeComponent ();
 		}
 
+        // Button Logic for AutoBattle page.
         private async void AutoBattleButton_Command(object sender, EventArgs e)
         {
 
