@@ -96,7 +96,6 @@ namespace Crawl.Models
             // Populate the Attributes
             AttributeString = newData.AttributeString;
             Attribute = new AttributeBase(newData.AttributeString);
-            newData.
 
             // Set the strings for the items
             Head = newData.Head;

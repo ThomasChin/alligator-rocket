@@ -50,6 +50,7 @@ namespace Crawl.ViewModels
         // Flag to check if the data needs refreshing
         private bool _needsRefresh;
 
+        // Constructor.
         public BattleViewModel()
         {
             Title = "Battle";

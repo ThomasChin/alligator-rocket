@@ -202,6 +202,7 @@ namespace Crawl.Views.Battle
             await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myScoreObject)));
         }
 
+        // Helper to handle Modal navigation.
         private void HandleModalPopping(object sender, ModalPoppingEventArgs e)
         {
             if (e.Modal == _myModalBattleMonsterListPage)
@@ -221,6 +222,7 @@ namespace Crawl.Views.Battle
             }
         }
 
+        // Show Monsters
         private async void ShowModalPageMonsterList()
         {
             // When you want to show the modal page, just call this method
@@ -230,7 +232,8 @@ namespace Crawl.Views.Battle
             await Navigation.PushModalAsync(_myModalBattleMonsterListPage);
         }
 
-        private async void ShowModalPageCharcterSelect()
+        // Show CharacterSelect
+        private async void ShowModalPageCharacterSelect()
         {
             // When you want to show the modal page, just call this method
             // add the event handler for to listen for the modal popping event:
@@ -239,6 +242,7 @@ namespace Crawl.Views.Battle
             await Navigation.PushModalAsync(_myModalCharacterSelectPage);
         }
 
+        // Show Game Over.
         private async void ShowModalPageGameOver()
         {
             // When you want to show the modal page, just call this method
@@ -248,6 +252,7 @@ namespace Crawl.Views.Battle
             await Navigation.PushModalAsync(_myModalBattleGameOverPage);
         }
 
+        // Add Characters and Monsters to screen.
         public void AllCharactersToScreen()
         {
             StackLayout myStackLayoutCharacter = this.FindByName<StackLayout>("CharacterBox");
