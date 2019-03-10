@@ -23,17 +23,18 @@ namespace Crawl.GameEngine
         // Holds the official score
         public Score BattleScore = new Score();
 
+        // Messages to show on Manual Battle Screen.
         public BattleMessages BattleMessages = new BattleMessages();
 
+        // Item Pool.
         public List<Item> ItemPool = new List<Item>();
-
-        //public List<Item> ItemList = new List<Item>();
-
+        // MonsterList
         public List<Monster> MonsterList = new List<Monster>();
+        // CharacterList.
         public List<Character> CharacterList = new List<Character>();
 
-        public PlayerInfo CurrentAttacker;
-        public PlayerInfo CurrentDefender;
+        public PlayerInfo CurrentAttacker; // Current Attacker
+        public PlayerInfo CurrentDefender; // Current Defender
 
         public string AttackerName = string.Empty; // Attacker
         public string TargetName = string.Empty; // Target

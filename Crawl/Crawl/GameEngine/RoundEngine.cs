@@ -17,13 +17,16 @@ namespace Crawl.GameEngine
         // Player currently engaged
         public PlayerInfo PlayerCurrent;
 
+        // Enum for State of the Round.
         public RoundEnum RoundStateEnum = RoundEnum.Unknown;
 
+        // Clear Lists on intiation.
         public RoundEngine()
         {
             ClearLists();
         }
 
+        // Clear ItemPool and MonsterList for Round.
         private void ClearLists()
         {
             ItemPool = new List<Item>();
@@ -214,6 +217,7 @@ namespace Crawl.GameEngine
             return RoundStateEnum;
         }
 
+        // Get info of next player.
         public PlayerInfo GetNextPlayerTurn()
         {
             // Recalculate Order
@@ -226,6 +230,7 @@ namespace Crawl.GameEngine
             return PlayerCurrent;
         }
 
+        // Function to order turn order based on initiative.
         public void OrderPlayerListByTurnOrder()
         {
             var myReturn = new List<PlayerInfo>();
@@ -249,6 +254,7 @@ namespace Crawl.GameEngine
                 .ToList();
         }
 
+        // Make List of Players.
         private void MakePlayerList()
         {
             PlayerList = new List<PlayerInfo>();
@@ -288,6 +294,7 @@ namespace Crawl.GameEngine
             }
         }
 
+        // Get next player for turn.
         public PlayerInfo GetNextPlayerInList()
         {
             // Walk the list from top to bottom
@@ -320,6 +327,7 @@ namespace Crawl.GameEngine
             return null;
         }
 
+        // Pickup items from ItemPool.
         public void PickupItemsFromPool(Character character)
         {
             // Have the character, walk the items in the pool, and decide if any are better than current one.
@@ -339,6 +347,7 @@ namespace Crawl.GameEngine
             GetItemFromPoolIfBetter(character, ItemLocationEnum.Feet);
         }
 
+        // Helper to decide if item is better than what is already equipped.
         public void GetItemFromPoolIfBetter(Character character, ItemLocationEnum setLocation)
         {
             var myList = ItemPool.Where(a => a.Location == setLocation)
