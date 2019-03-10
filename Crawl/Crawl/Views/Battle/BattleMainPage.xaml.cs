@@ -178,13 +178,14 @@ namespace Crawl.Views.Battle
         {
 
             var message = _viewModel.BattleEngine.BattleMessages.TurnMessage;
+            var levelMessage = _viewModel.BattleEngine.BattleMessages.LevelUpMessage;
             Debug.WriteLine("Message: " + message);
 
             AppendMessage(message);
+            AppendMessage(levelMessage);
 
             htmlSource.Html = _viewModel.BattleEngine.BattleMessages.GetHTMLFormattedTurnMessage();
             HtmlBox.Source = HtmlBox.Source = htmlSource;
-
         }
 
         /// <summary>
