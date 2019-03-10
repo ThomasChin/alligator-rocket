@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Crawl.Controllers
 {
-
     public class ItemsController
     {
         // Make this a singleton so it only exist one time because holds all the data records in memory
@@ -30,6 +29,7 @@ namespace Crawl.Controllers
         public static string DefaultImageURI = "Item.png";
 
         #region ServerCalls
+        // Get Items from API.
         public async Task<List<Item>> GetItemsFromServer(int parameter = 100)
         {
             // parameter is the item group to request.  1, 2, 3, 100
@@ -161,6 +161,7 @@ namespace Crawl.Controllers
 
         }
 
+        // Convert From Json to Item type.
         private Item ConvertFromJson(JObject json)
         {
             var myData = new Item();
