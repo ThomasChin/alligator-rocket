@@ -107,6 +107,13 @@ namespace Crawl.GameEngine
             TurnMessageSpecial = string.Empty;
             AttackStatus = string.Empty;
 
+            BattleMessages.TurnMessage = string.Empty;
+            BattleMessages.TurnMessageSpecial = string.Empty;
+            BattleMessages.AttackStatus = string.Empty;
+
+            BattleMessages.PlayerType = PlayerTypeEnum.Monster;
+
+
             if (Attacker == null)
             {
                 return false;
@@ -124,42 +131,52 @@ namespace Crawl.GameEngine
             TargetName = Target.Name;
             AttackerName = Attacker.Name;
 
+            BattleMessages.TargetName = Target.Name;
+            BattleMessages.AttackerName = Attacker.Name;
+
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
             if (HitStatus == HitStatusEnum.Miss)
             {
                 Target.TakeDamage(DamageAmount);
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                BattleMessages.AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
             }
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
                 Target.TakeDamage(DamageAmount);
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                BattleMessages.AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
             }
 
             // It's a Hit or a Critical Hit
             //Calculate Damage
             DamageAmount = Attacker.GetDamageRollValue();
-
+  
             DamageAmount += GameGlobals.ForceMonsterDamangeBonusValue;  // Add The forced damage bonus
+            BattleMessages.DamageAmount = DamageAmount;
 
             if (HitStatus == HitStatusEnum.Hit)
             {
                 Target.TakeDamage(DamageAmount);
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                BattleMessages.AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
             }
 
             if (HitStatus == HitStatusEnum.CriticalHit)
             {
                 //2x damage
                 DamageAmount += DamageAmount;
+                BattleMessages.DamageAmount = DamageAmount;
 
                 Target.TakeDamage(DamageAmount);
                 AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
+                BattleMessages.AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
             }
 
             TurnMessageSpecial = " remaining health is " + Target.Attribute.CurrentHealth;
+            BattleMessages.TurnMessageSpecial = TurnMessageSpecial;
 
             // Check for alive
             if (Target.Alive == false)
@@ -169,6 +186,8 @@ namespace Crawl.GameEngine
 
                 // Mark Status in output
                 TurnMessageSpecial = " and causes death";
+                BattleMessages.TurnMessageSpecial = TurnMessageSpecial;
+
 
                 // Add the monster to the killed list
                 BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
@@ -181,12 +200,14 @@ namespace Crawl.GameEngine
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
                     TurnMessageSpecial += " Item " + item.Name + " dropped";
+                    BattleMessages.TurnMessageSpecial = TurnMessageSpecial;
                 }
 
                 ItemPool.AddRange(myItemList);
             }
 
             TurnMessage = Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
+            BattleMessages.TurnMessage = TurnMessage;
             Debug.WriteLine(TurnMessage);
 
             return true;
