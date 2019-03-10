@@ -221,6 +221,11 @@ namespace Crawl.GameEngine
             AttackStatus = string.Empty;
             LevelUpMessage = string.Empty;
 
+            BattleMessages.TurnMessage = string.Empty;
+            BattleMessages.TurnMessageSpecial = string.Empty;
+            BattleMessages.AttackStatus = string.Empty;
+            BattleMessages.LevelUpMessage = string.Empty;
+
             if (Attacker == null)
             {
                 return false;
@@ -238,11 +243,15 @@ namespace Crawl.GameEngine
             TargetName = Target.Name;
             AttackerName = Attacker.Name;
 
+            BattleMessages.TargetName = Target.Name;
+            BattleMessages.AttackerName = Attacker.Name;
+
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
             if (HitStatus == HitStatusEnum.Miss)
             {
                 TurnMessage = Attacker.Name + " misses " + Target.Name;
+                BattleMessages.TurnMessage = TurnMessage;
                 Debug.WriteLine(TurnMessage);
 
                 return true;
@@ -251,12 +260,16 @@ namespace Crawl.GameEngine
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
                 TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
+                BattleMessages.TurnMessage = TurnMessage;
+
+
 
                 if (GameGlobals.EnableCriticalMissProblems)
                 {
                     TurnMessage += DetermineCriticalMissProblem(Attacker);
+                    BattleMessages.TurnMessage = TurnMessage;
                 }
+                Debug.WriteLine(TurnMessage);
                 return true;
             }
 
@@ -265,7 +278,6 @@ namespace Crawl.GameEngine
             {
                 //Calculate Damage
                 DamageAmount = Attacker.GetDamageRollValue();
-
                 DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
@@ -279,6 +291,9 @@ namespace Crawl.GameEngine
                         AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
                     }
                 }
+                BattleMessages.AttackStatus = AttackStatus;
+                BattleMessages.DamageAmount = DamageAmount;
+
 
                 Target.TakeDamage(DamageAmount);
 
@@ -291,6 +306,7 @@ namespace Crawl.GameEngine
                 {
                     LevelUpMessage = Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " + Attacker.GetHealthMax();
                     Debug.WriteLine(LevelUpMessage);
+                    BattleMessages.LevelUpMessage = LevelUpMessage;
                 }
 
                 BattleScore.ExperienceGainedTotal += experienceEarned;
@@ -306,6 +322,7 @@ namespace Crawl.GameEngine
 
                 // Mark Status in output
                 TurnMessageSpecial = " and causes death";
+                BattleMessages.TurnMessageSpecial = TurnMessageSpecial;
 
                 // Add one to the monsters killd count...
                 BattleScore.MonsterSlainNumber++;
@@ -324,6 +341,7 @@ namespace Crawl.GameEngine
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
                     TurnMessageSpecial += " Item " + item.Name + " dropped";
+                    BattleMessages.TurnMessageSpecial = TurnMessageSpecial;
                 }
 
                 ItemPool.AddRange(myItemList);
@@ -331,6 +349,7 @@ namespace Crawl.GameEngine
 
             TurnMessage = Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
             Debug.WriteLine(TurnMessage);
+            BattleMessages.TurnMessage = TurnMessage;
 
             return true;
         }
