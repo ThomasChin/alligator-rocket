@@ -30,6 +30,9 @@ namespace Crawl.Views.Battle
         // HTML Formatting for message output box
         HtmlWebViewSource htmlSource = new HtmlWebViewSource();
 
+        // Score
+        Score myScoreObject = new Score();
+
         // Hold the Veiw Model
         private BattleViewModel _viewModel;
 
@@ -196,10 +199,8 @@ namespace Crawl.Views.Battle
             var outputString = "Battle Over! Score " + myScore.ToString();
             Debug.WriteLine(outputString);
 
-            ShowModalPageGameOver();
-
-            // Back up to the Start of Battle
-            await Navigation.PopToRootAsync();
+            myScoreObject = _viewModel.BattleEngine.BattleScore;
+            await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myScoreObject)));
         }
 
         private void HandleModalPopping(object sender, ModalPoppingEventArgs e)
