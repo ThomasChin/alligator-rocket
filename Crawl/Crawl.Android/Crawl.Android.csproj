@@ -89,9 +89,6 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +109,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\splashscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
   </ItemGroup>
   <Import Project="..\Crawl\Crawl.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
