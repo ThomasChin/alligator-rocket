@@ -17,7 +17,6 @@ namespace Crawl.Views.Battle
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BattleMainPage : ContentPage
     {
-
         // Hold the Selected Characters
         OpeningPage _myModalCharacterSelectPage;
 
