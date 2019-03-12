@@ -131,7 +131,6 @@
             </StackLayout>
 
 
-            <!--
             <StackLayout 
                 Margin="0,50,0,0"
                     HorizontalOptions="CenterAndExpand"
@@ -196,7 +195,7 @@
                         IsToggled="False"/>
                     </StackLayout>
                 </StackLayout>
-            </StackLayout> -->
+            </StackLayout>
             <StackLayout>
                 <Label
                     Text="Creators: Thomas Chin | Fisher Harris"/>
