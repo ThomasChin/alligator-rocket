@@ -121,6 +121,11 @@ namespace Crawl.Views.Battle
                 GameNextButton.IsVisible = false;
                 GameOverButton.IsVisible = true;
 
+
+                // Save the Score to the Score View Model, by sending a message to it.
+                var myScore = _viewModel.BattleEngine.BattleScore;
+                MessagingCenter.Send(this, "AddData", myScore);
+
                 return;
             }
 

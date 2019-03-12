@@ -57,6 +57,16 @@ namespace Crawl.ViewModels
                 await AddAsync(data);
             });
 
+            MessagingCenter.Subscribe<Views.Battle.AutoBattlePage, Score>(this, "AddData", async (obj, data) =>
+            {
+                await AddAsync(data);
+            });
+
+            MessagingCenter.Subscribe<Views.Battle.BattleMainPage, Score>(this, "AddData", async (obj, data) =>
+            {
+                await AddAsync(data);
+            });
+
             MessagingCenter.Subscribe<ScoreEditPage, Score>
             (this, "EditData", async (obj, data) =>
             {

@@ -32,29 +32,29 @@ namespace Crawl.Views.Battle
             var myEngine = new AutoBattleEngine();
 
 
-            await Task.Run(async () =>
+            //await Task.Run(async () =>
+            //{
+            var result = myEngine.ExecuteAutoBattle();
+
+            if (result == false)
             {
-                var result = myEngine.ExecuteAutoBattle();
+                await DisplayAlert("Error", "No Characters Avaialbe", "OK");
+                return;
+            }
 
-                if (result == false)
-                {
-                    await DisplayAlert("Error", "No Characters Avaialbe", "OK");
-                    return;
-                }
+            if (myEngine.GetRoundCount() < 1)
+            {
+                await DisplayAlert("Error", "No Rounds Fought", "OK");
+                return;
+            }
 
-                if (myEngine.GetRoundCount() < 1)
-                {
-                    await DisplayAlert("Error", "No Rounds Fought", "OK");
-                    return;
-                }
+            var myResult = myEngine.GetResultsOutput();
+            var myScore = myEngine.GetScoreValue();
 
-                var myResult = myEngine.GetResultsOutput();
-                var myScore = myEngine.GetScoreValue();
+            var outputString = "Battle Over! Score " + myScore.ToString();
 
-                var outputString = "Battle Over! Score " + myScore.ToString();
-
-                myScoreObject = myEngine.GetScoreObject();
-            });
+            myScoreObject = myEngine.GetScoreObject();
+            // });
 
             await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myScoreObject)));
         }

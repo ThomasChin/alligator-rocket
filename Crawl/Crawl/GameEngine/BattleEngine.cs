@@ -76,7 +76,8 @@ namespace Crawl.GameEngine
             isBattleRunning = false;
 
             // Save score.
-            ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
+            // Score needs to be saved outside the battle engine...
+            // ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
         }
 
         // Add Characters
