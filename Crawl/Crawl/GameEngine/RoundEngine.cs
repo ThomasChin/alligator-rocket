@@ -186,6 +186,7 @@ namespace Crawl.GameEngine
             if (MonsterList.Count < 1)
             {
                 // If over, New Round
+                RoundStateEnum = RoundEnum.NewRound;
                 return RoundEnum.NewRound;
             }
 
