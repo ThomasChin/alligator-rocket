@@ -25,6 +25,7 @@ namespace Crawl.Views.Battle
         {
             // Go back a page.
             await Navigation.PopModalAsync();
+            await Navigation.PushModalAsync(new BattleVictoryPage());
         }
     }
 }

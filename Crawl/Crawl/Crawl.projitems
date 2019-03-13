@@ -103,6 +103,10 @@
       <DependentUpon>AutoBattlePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\BattleVictoryPage.xaml.cs">
+      <DependentUpon>BattleVictoryPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\OpeningPage.xaml.cs">
       <DependentUpon>OpeningPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -291,5 +295,11 @@
   #endif-->
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\Enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Battle\BattleVictoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
