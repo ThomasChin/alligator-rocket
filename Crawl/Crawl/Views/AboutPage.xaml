@@ -57,30 +57,11 @@
                     BackgroundColor="Teal">
 
 
-                    <StackLayout 
+                <StackLayout 
                         VerticalOptions="StartAndExpand"
                         HorizontalOptions="FillAndExpand" 
                         Orientation="Vertical">
-
-                        <StackLayout
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Start"
-                            Orientation="Horizontal">
-
-                                <Label 
-                                    FontSize="Small"
-                                    Text="Use Mock DataStore"
-                                    HorizontalTextAlignment="Start"
-                                    HorizontalOptions="StartAndExpand"/>
-
-                                <Switch 
-                                    x:Name="UseMockDataSource"
-                                    HorizontalOptions="EndAndExpand"
-                                    Toggled="UseMockDataSourceSwitch_OnToggled"
-                                    IsToggled="False"/>
-                        </StackLayout>
-                        
-                        <StackLayout
+                    <StackLayout
                                 HorizontalOptions="FillAndExpand"
                                 Orientation="Horizontal">
 
@@ -152,12 +133,14 @@
                         x:Name="EnableDebugSettings"
                         HorizontalOptions="EndAndExpand"
                         Toggled="EnableDebugSettings_OnToggled"
-                        IsToggled="True"/>
+                        IsToggled="False"/>
                 </StackLayout>
 
+                <!-- Debug Settings frame-->
+                
                 <StackLayout
                     x:Name="DebugSettingsFrame"
-                    IsVisible="True"
+                    IsVisible="False"
                     BackgroundColor="WhiteSmoke"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="StartAndExpand">
@@ -179,12 +162,31 @@
                     </StackLayout>
 
 
+                    <!-- Mock database settings-->
+                    <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start"
+                            Orientation="Horizontal">
+
+                        <Label 
+                                    FontSize="Small"
+                                    Text="Use Mock DataStore"
+                                    HorizontalTextAlignment="Start"
+                                    HorizontalOptions="StartAndExpand"/>
+
+                        <Switch 
+                                    x:Name="UseMockDataSource"
+                                    HorizontalOptions="EndAndExpand"
+                                    Toggled="UseMockDataSourceSwitch_OnToggled"
+                                    IsToggled="False"/>
+                    </StackLayout>
+                    
                     <StackLayout
                     HorizontalOptions="FillAndExpand"
                     Orientation="Horizontal">
 
                         <Label 
-                        Text="Critical Miss Bad Things"
+                        Text="Critical Miss Effects"
                         Style="{DynamicResource DebugSwitchLabel}"
                         />
 
@@ -195,6 +197,11 @@
                         IsToggled="False"/>
                     </StackLayout>
                 </StackLayout>
+                
+                
+                
+                
+                
             </StackLayout>
             <StackLayout>
                 <Label

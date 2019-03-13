@@ -23,7 +23,4 @@ namespace Crawl.Views.Battle
             Navigation.PopModalAsync();
         }
     }
-
-
-
 }
