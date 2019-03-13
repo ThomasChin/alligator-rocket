@@ -39,7 +39,7 @@ namespace Crawl.Views
                 FontSize = 12,
                 TextColor = Color.Black,
             };
-            
+
             // Set debug settings
             //EnableCriticalMissProblems.IsToggled = GameGlobals.EnableCriticalMissProblems;
             //EnableCriticalHitDamage.IsToggled = GameGlobals.EnableCriticalHitDamage;
@@ -69,11 +69,22 @@ namespace Crawl.Views
         }
 
         // Enable Debug Settings.
+        private void Enable20asHit_OnToggled(object sender, ToggledEventArgs e)
+        {
+            //Implement Logic
+        }
+
+        // Enable Debug Settings.
+        private void Enable1AsCriticalMiss_OnToggled(object sender, ToggledEventArgs e)
+        {
+            //Implement Logic
+        }
+
+        // Enable Debug Settings.
         private void EnableDebugSettings_OnToggled(object sender, ToggledEventArgs e)
         {
-            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
-
-            // DebugSettingsFrame.IsVisible = (e.Value);
+            DebugSettingsFrame.IsVisible = (e.Value);
+            DatabaseSettingsFrame.IsVisible = (e.Value);
         }
 
         // Enable Database Settings.
@@ -114,7 +125,7 @@ namespace Crawl.Views
             // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
             GameGlobals.EnableCriticalHitDamage = e.Value;
         }
-                
+
         private async void ClearDatabase_Command(object sender, EventArgs e)
         {
             var answer = await DisplayAlert("Delete", "Sure you want to Delete All Data, and start over?", "Yes", "No");

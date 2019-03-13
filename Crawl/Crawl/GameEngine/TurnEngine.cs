@@ -376,6 +376,26 @@ namespace Crawl.GameEngine
 
             if (d20 == 1)
             {
+
+                // Critical Miss drop
+                var dropRoll = HelperEngine.RollDice(1, 10);
+                if (dropRoll == 1) {
+                    //primary hand item breaks, is lost forever
+                    
+                }
+
+                else if (dropRoll >= 2 && dropRoll <= 4) {
+                    //Primary hand item goes back into pool
+                }
+
+                else if (dropRoll == 5 || dropRoll == 6) {
+                    //drops random equipped item into pool
+                }
+
+                else if (dropRoll > 7) {
+                    //Nothin bad happens, attacker has luck
+                }
+
                 // Force Miss
                 HitStatus = HitStatusEnum.CriticalMiss;
                 BattleMessages.HitStatus = HitStatus;

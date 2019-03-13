@@ -34,7 +34,7 @@
                     VerticalOptions="Center" 
                     HorizontalOptions="CenterAndExpand" />
             </StackLayout>
-                
+
             <!--Battle-->
             <StackLayout>
                 <Button  
@@ -42,92 +42,12 @@
                     Clicked="AutoBattle_Clicked"
                     HorizontalOptions="Fill"
                     TextColor="White" />
-                
+
                 <Button  
                     Text="Manual Battle" 
                     Clicked="ManualBattle_Clicked"
                     HorizontalOptions="Fill"
                     TextColor="White" />
-            </StackLayout>
-                
-            <!--Database Settings-->
-            <StackLayout
-                    x:Name="DatabaseSettingsFrame"
-                    IsVisible="True"
-                    BackgroundColor="Teal">
-
-
-                    <StackLayout 
-                        VerticalOptions="StartAndExpand"
-                        HorizontalOptions="FillAndExpand" 
-                        Orientation="Vertical">
-
-                        <StackLayout
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Start"
-                            Orientation="Horizontal">
-
-                                <Label 
-                                    FontSize="Small"
-                                    Text="Use Mock DataStore"
-                                    HorizontalTextAlignment="Start"
-                                    HorizontalOptions="StartAndExpand"/>
-
-                                <Switch 
-                                    x:Name="UseMockDataSource"
-                                    HorizontalOptions="EndAndExpand"
-                                    Toggled="UseMockDataSourceSwitch_OnToggled"
-                                    IsToggled="False"/>
-                        </StackLayout>
-                        
-                        <StackLayout
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal">
-
-                            <Label 
-                                FontSize="Small"
-                                Text="Clear Database"
-                                HorizontalTextAlignment="Start"
-                                HorizontalOptions="Start"/>
-
-                            <Button  
-                                Text="Clear" 
-                                Clicked="ClearDatabase_Command" 
-                                HorizontalOptions="Fill"
-                                TextColor="White" />
-                        </StackLayout>
-                        
-                        <StackLayout
-                            HorizontalOptions="FillAndExpand"
-                            Orientation="Horizontal">
-
-                            <Label 
-                                FontSize="Small"
-                                Text="Server Items"
-                                HorizontalTextAlignment="Start"
-                                HorizontalOptions="Start"/>
-                        
-                            <Entry
-                                x:Name="ServerItemValue"
-                                Text="1" 
-                                TextColor="Black"
-                                MaxLength="3"
-                                CursorPosition="0" 
-                                SelectionLength = "3" />
-
-                            <Button  
-                                Text="Get" 
-                                Clicked="GetItems_Command" 
-                                HorizontalOptions="EndAndExpand"
-                                TextColor="White" />
-
-                            <Button  
-                                Text="Post" 
-                                Clicked="GetItemsPost_Command" 
-                                HorizontalOptions="EndAndExpand"
-                                TextColor="White" />
-                        </StackLayout>
-                </StackLayout>
             </StackLayout>
 
 
@@ -152,22 +72,24 @@
                         x:Name="EnableDebugSettings"
                         HorizontalOptions="EndAndExpand"
                         Toggled="EnableDebugSettings_OnToggled"
-                        IsToggled="True"/>
+                        IsToggled="False"/>
                 </StackLayout>
 
+                <!-- Debug Settings frame-->
                 <StackLayout
                     x:Name="DebugSettingsFrame"
-                    IsVisible="True"
+                    IsVisible="False"
                     BackgroundColor="WhiteSmoke"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="StartAndExpand">
-                    
+
+                    <!-- enable critical hit double damage -->
                     <StackLayout
                     HorizontalOptions="FillAndExpand"
                     Orientation="Horizontal">
 
                         <Label 
-                        Text="Critical Hit Double Damage"
+                        Text="Enable 20 as hit"
                         Style="{DynamicResource DebugSwitchLabel}"
                         />
 
@@ -178,23 +100,107 @@
                         IsToggled="False"/>
                     </StackLayout>
 
-
+                    <!-- enable critical miss -->
                     <StackLayout
                     HorizontalOptions="FillAndExpand"
                     Orientation="Horizontal">
 
                         <Label 
-                        Text="Critical Miss Bad Things"
+                        Text="Enable 1 as miss"
                         Style="{DynamicResource DebugSwitchLabel}"
                         />
 
                         <Switch 
-                        x:Name="EnableCriticalMissProblems"
+                        x:Name="EnableCriticalMiss_OnToggled"
                         HorizontalOptions="EndAndExpand"
-                        Toggled="EnableCriticalMissProblems_OnToggled"
+                        Toggled="Enable1AsCriticalMiss_OnToggled"
                         IsToggled="False"/>
                     </StackLayout>
                 </StackLayout>
+
+                <!--Database Settings-->
+                <StackLayout
+                    x:Name="DatabaseSettingsFrame"
+                    IsVisible="False"
+                    BackgroundColor="Teal">
+
+                    <StackLayout 
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand" 
+                        Orientation="Vertical">
+
+                        <!-- Mock database settings-->
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start"
+                            Orientation="Horizontal">
+
+                            <Label 
+                                    FontSize="Small"
+                                    Text="Use Mock DataStore"
+                                    HorizontalTextAlignment="Start"
+                                    HorizontalOptions="StartAndExpand"/>
+
+                            <Switch 
+                                    x:Name="UseMockDataSource"
+                                    HorizontalOptions="EndAndExpand"
+                                    Toggled="UseMockDataSourceSwitch_OnToggled"
+                                    IsToggled="False"/>
+                        </StackLayout>
+
+                        <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal">
+
+                            <Label 
+                                FontSize="Small"
+                                Text="Clear Database"
+                                HorizontalTextAlignment="Start"
+                                HorizontalOptions="Start"/>
+
+                            <Button  
+                                Text="Clear" 
+                                Clicked="ClearDatabase_Command" 
+                                HorizontalOptions="Fill"
+                                TextColor="White" />
+                        </StackLayout>
+
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+
+                            <Label 
+                                FontSize="Small"
+                                Text="Server Items"
+                                HorizontalTextAlignment="Start"
+                                HorizontalOptions="Start"/>
+
+                            <Entry
+                                x:Name="ServerItemValue"
+                                Text="1" 
+                                TextColor="Black"
+                                MaxLength="3"
+                                CursorPosition="0" 
+                                SelectionLength = "3" />
+
+                            <Button  
+                                Text="Get" 
+                                Clicked="GetItems_Command" 
+                                HorizontalOptions="EndAndExpand"
+                                TextColor="White" />
+
+                            <Button  
+                                Text="Post" 
+                                Clicked="GetItemsPost_Command" 
+                                HorizontalOptions="EndAndExpand"
+                                TextColor="White" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+
+
+
             </StackLayout>
             <StackLayout>
                 <Label
