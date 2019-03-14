@@ -263,7 +263,7 @@ namespace Crawl.GameEngine
             if (GameGlobals.EnableTimeWarp)
             {
                 var TimeWarpRoll = GameEngine.HelperEngine.RollDice(1, 100);
-                if (TimeWarpRoll > GameGlobals.TimeWarpChance)
+                if (TimeWarpRoll < GameGlobals.TimeWarpChance)
                 {
                     // TimeWarp Enabled, need to show in output so set the flag
                     GameGlobals.TimeWarpEnabled = true;
