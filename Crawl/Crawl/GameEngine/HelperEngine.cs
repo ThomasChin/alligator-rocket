@@ -19,9 +19,9 @@ namespace Crawl.GameEngine
         /// <param name="rolls">The number of Rolls to Make</param>
         /// <param name="dice">The Dice to Roll</param>
         /// <returns></returns>
-        public static int RollDice(int rolls, int dice)
+        public static int RollDice(int rolls, int dice, bool ForceRandom = false)
         {
-
+           
             if (rolls < 1)
             {
                 return 0;
@@ -32,7 +32,7 @@ namespace Crawl.GameEngine
                 return 0;
             }
 
-            if (Models.GameGlobals.ForceRollsToNotRandom)
+            if (Models.GameGlobals.ForceRollsToNotRandom && ForceRandom == false)
             {
                 return rolls * Models.GameGlobals.ForcedRandomValue;
             }

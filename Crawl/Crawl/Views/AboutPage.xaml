@@ -100,6 +100,31 @@
                         IsToggled="False"/>
                     </StackLayout>
 
+                    <!-- disable random rolls -->
+                    <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
+                        <Label 
+                            Text="Disable random values"
+                            Style="{DynamicResource DebugSwitchLabel}"
+                        />
+
+                        <Entry
+                                x:Name="RandomValue Override"
+                                Text="1" 
+                                TextColor="Black"
+                                MaxLength="3"
+                                CursorPosition="0" 
+                                SelectionLength = "3" />
+
+                        <Switch 
+                            x:Name="DisableRandomValues"
+                            HorizontalOptions="EndAndExpand"
+                            Toggled="DisableRandomValues_OnToggled"
+                            IsToggled="False"/>
+                    </StackLayout>
+
                     <!-- enable critical miss -->
                     <StackLayout
                     HorizontalOptions="FillAndExpand"

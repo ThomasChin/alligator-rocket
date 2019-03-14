@@ -127,6 +127,7 @@ namespace Crawl.GameEngine
                 {
                     var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
                     {
+                        Console.Write(rnd);
                         var monster = new Monster(myMonsterViewModel.Dataset[rnd - 1]);
 
                         // Help identify which monster it is...

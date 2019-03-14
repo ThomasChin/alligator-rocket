@@ -13,8 +13,11 @@ namespace Crawl.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPage : ContentPage
     {
+
         // Use AboutViewModel.
         private AboutViewModel _aboutViewModel = new AboutViewModel();
+
+        bool UsingRandomValues = true;
 
         // Initialize AboutPage.
         public AboutPage()
@@ -117,6 +120,22 @@ namespace Crawl.Views
         {
             // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
             GameGlobals.EnableCriticalMissProblems = e.Value;
+        }
+
+        private void DisableRandomValues_OnToggled(object sender, EventArgs e)
+        {
+            if (UsingRandomValues == true)
+            {
+                Crawl.Models.GameGlobals.SetForcedRandomNumbersValue(_aboutViewModel.RandomValueOverride);
+            }
+
+            else
+            {
+                Crawl.Models.GameGlobals.DisableRandomValues();
+            }
+
+            UsingRandomValues = !UsingRandomValues;
+
         }
 
         // Turn on Critical Hit Damage
