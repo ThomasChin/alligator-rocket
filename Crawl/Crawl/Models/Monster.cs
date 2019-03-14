@@ -308,6 +308,10 @@ namespace Crawl.Models
             Debug.WriteLine("DAMAGE:" + (Attribute.CurrentHealth - damage));
             if (Attribute.CurrentHealth - damage <= 0)
             {
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load("Dun-dun-duuuuun.mp3");
+                player.Play();
+
                 Alive = false;
                 Attribute.CurrentHealth = 0;
             }

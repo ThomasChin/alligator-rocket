@@ -139,6 +139,10 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Miss)
             {
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load("Mcdonald-melody-toy.mp3");
+                player.Play();
+
                 TurnMessage = Attacker.Name + " misses " + Target.Name;
                 BattleMessages.TurnMessage = TurnMessage;
                 Debug.WriteLine(TurnMessage);
@@ -162,6 +166,10 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Hit)
             {
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load("Meowing-cat.mp3");
+                player.Play();
+
                 Target.TakeDamage(DamageAmount);
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
                 BattleMessages.AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
@@ -253,6 +261,10 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Miss)
             {
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load("Mcdonald-melody-toy.mp3");
+                player.Play();
+
                 TurnMessage = Attacker.Name + " misses " + Target.Name;
                 BattleMessages.TurnMessage = TurnMessage;
                 Debug.WriteLine(TurnMessage);
@@ -279,6 +291,10 @@ namespace Crawl.GameEngine
             // It's a Hit or a Critical Hit
             if (HitStatus == HitStatusEnum.Hit || HitStatus == HitStatusEnum.CriticalHit)
             {
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load("Loud-gunshot-sound.mp3");
+                player.Play();
+
                 //Calculate Damage
                 DamageAmount = Attacker.GetDamageRollValue();
                 DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
