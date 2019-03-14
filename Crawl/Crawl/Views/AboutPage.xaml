@@ -111,7 +111,7 @@
                         />
 
                         <Entry
-                                x:Name="RandomValue Override"
+                                x:Name="RandomValueOverride"
                                 Text="1" 
                                 TextColor="Black"
                                 MaxLength="3"
@@ -138,7 +138,7 @@
                         <Switch 
                         x:Name="EnableCriticalMiss_OnToggled"
                         HorizontalOptions="EndAndExpand"
-                        Toggled="Enable1AsCriticalMiss_OnToggled"
+                        Toggled="EnablelAsCriticalMiss_OnToggled"
                         IsToggled="False"/>
                     </StackLayout>
 

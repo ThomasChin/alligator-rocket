@@ -150,13 +150,27 @@ namespace Crawl.Views
             GameGlobals.EnableCriticalMissProblems = e.Value;
         }
 
+        // Turn on Critical Miss
+        private void EnablelAsCriticalMiss_OnToggled(object sender, ToggledEventArgs e)
+        {
+//TODO add code here...
 
+        }
+        
+
+        // Turn on timewarp
+        private void EnableMiracleMax_OnToggled(object sender, ToggledEventArgs e)
+        {
+            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
+            GameGlobals.EnableReincarnation = e.Value;
+        }
+        
         // Turn on timewarp
         private void EnableTimeWarp_OnToggled(object sender, ToggledEventArgs e)
         {
             // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
             GameGlobals.EnableTimeWarp = e.Value;
-            //GameGlobals.TimeWarpChance = Convert.ToInt32(EnableTimeWarpValue.Text);
+            GameGlobals.TimeWarpChance = Convert.ToInt32(EnableTimeWarpValue.Text);
         }
 
         private async void ClearDatabase_Command(object sender, EventArgs e)
