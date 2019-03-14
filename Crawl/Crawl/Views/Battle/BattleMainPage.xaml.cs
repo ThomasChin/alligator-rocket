@@ -137,6 +137,12 @@ namespace Crawl.Views.Battle
 
             // Output The Message that happened.
             GameMessage();
+
+            // Output TimeWarp If it Happens
+            if (GameGlobals.TimeWarpEnabled)
+            {
+                AppendMessage("Time Warp Happened\n"); 
+            }
         }
 
         /// <summary>
