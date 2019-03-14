@@ -27,6 +27,10 @@ namespace Crawl.Models
         // Alive turns to False
         public void CauseDeath()
         {
+            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            player.Load("Dun-dun-duuuuun.mp3");
+            player.Play();
+
             Alive = false;
         }
 

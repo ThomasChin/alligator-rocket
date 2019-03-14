@@ -34,6 +34,9 @@ namespace Crawl.Models
         // Allow Random Items when monsters die...
         public static bool AllowMonsterDropItems = true;
 
+        // Miracle Max...
+        public static bool EnableReincarnation = true;
+
         // Turn Off Random Number Generation, and use the passed in values.
         public static void SetForcedRandomNumbersValueAndToHit(int value, int hit)
         {

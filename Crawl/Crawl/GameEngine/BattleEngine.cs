@@ -27,6 +27,7 @@ namespace Crawl.GameEngine
 
             // Clear the rest of the data
             BattleEngineClearData();
+            
         }
 
         // Sets the new state for the variables for Battle
