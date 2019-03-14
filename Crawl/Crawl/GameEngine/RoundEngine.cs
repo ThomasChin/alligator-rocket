@@ -269,6 +269,7 @@ namespace Crawl.GameEngine
                     // TimeWarp Enabled, need to show in output so set the flag
                     GameGlobals.TimeWarpEnabled = true;
                     Console.WriteLine("Time Warp Happens... Slow is Fast");
+                    BattleMessages.RoundMessage = "Time Warp Happens... Slow is Fast";
 
                     // If enabled, switch to slowest first...
                     PlayerList = PlayerList.OrderBy(a => a.Speed)
