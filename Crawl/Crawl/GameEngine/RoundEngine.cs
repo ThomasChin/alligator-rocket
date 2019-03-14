@@ -125,7 +125,9 @@ namespace Crawl.GameEngine
                 // Get 1 monsters
                 do
                 {
-                    var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
+                    //Force Random Roll here. Important for the debug override setting. 
+                    //Game will not work without a random value here
+                    var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count, true);
                     {
                         Console.Write(rnd);
                         var monster = new Monster(myMonsterViewModel.Dataset[rnd - 1]);

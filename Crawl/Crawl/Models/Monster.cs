@@ -39,6 +39,7 @@ namespace Crawl.Models
             Type = MonsterTypeEnum.GiantSquid;
             Difficulty = 1;
             ScaleLevel(Level);
+            Attribute.CurrentHealth = Attribute.MaxHealth;
         }
 
         //Basic constructor with inputs for base stats
@@ -131,7 +132,7 @@ namespace Crawl.Models
             Attribute.Defense = LevelTable.Instance.LevelDetailsList[Level].Defense;
             Attribute.Speed = LevelTable.Instance.LevelDetailsList[Level].Speed;
 
-            Attribute.MaxHealth = HelperEngine.RollDice(Level, HealthDice);
+            Attribute.MaxHealth = HelperEngine.RollDice(Level, HealthDice, true);
             Attribute.CurrentHealth = Attribute.MaxHealth;
 
             AttributeString = AttributeBase.GetAttributeString(Attribute);
@@ -308,9 +309,9 @@ namespace Crawl.Models
             Debug.WriteLine("DAMAGE:" + (Attribute.CurrentHealth - damage));
             if (Attribute.CurrentHealth - damage <= 0)
             {
-                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                player.Load("Dun-dun-duuuuun.mp3");
-                player.Play();
+                //var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                //player.Load("Dun-dun-duuuuun.mp3");
+                //player.Play();
 
                 Alive = false;
                 Attribute.CurrentHealth = 0;

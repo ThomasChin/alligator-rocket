@@ -9,13 +9,12 @@ using System.Linq;
 
 namespace Crawl.GameEngine
 {
-
     /// * 
     // * Need to decide who takes the next turn
     // * Target to Attack
     // * Should Move, or Stay put (can hit with weapon range?)
     // * Death
-    // * Manage Round...f
+    // * Manage Round...
     // * /
 
     public class TurnEngine
@@ -114,7 +113,6 @@ namespace Crawl.GameEngine
 
             BattleMessages.PlayerType = PlayerTypeEnum.Monster;
 
-
             if (Attacker == null)
             {
                 return false;
@@ -139,15 +137,14 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Miss)
             {
-                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                player.Load("Mcdonald-melody-toy.mp3");
-                player.Play();
+               // var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+               // player.Load("Mcdonald-melody-toy.mp3");
+               // player.Play();
 
                 TurnMessage = Attacker.Name + " misses " + Target.Name;
                 BattleMessages.TurnMessage = TurnMessage;
                 Debug.WriteLine(TurnMessage);
                 return true;
-
             }
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
@@ -166,9 +163,9 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Hit)
             {
-                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                player.Load("Meowing-cat.mp3");
-                player.Play();
+                //var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                //player.Load("Meowing-cat.mp3");
+                //player.Play();
 
                 Target.TakeDamage(DamageAmount);
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
@@ -261,9 +258,9 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Miss)
             {
-                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                player.Load("Mcdonald-melody-toy.mp3");
-                player.Play();
+                //var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                //player.Load("Mcdonald-melody-toy.mp3");
+                //player.Play();
 
                 TurnMessage = Attacker.Name + " misses " + Target.Name;
                 BattleMessages.TurnMessage = TurnMessage;
@@ -291,9 +288,9 @@ namespace Crawl.GameEngine
             // It's a Hit or a Critical Hit
             if (HitStatus == HitStatusEnum.Hit || HitStatus == HitStatusEnum.CriticalHit)
             {
-                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                player.Load("Loud-gunshot-sound.mp3");
-                player.Play();
+                //var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                //player.Load("Loud-gunshot-sound.mp3");
+                //player.Play();
 
                 //Calculate Damage
                 DamageAmount = Attacker.GetDamageRollValue();
