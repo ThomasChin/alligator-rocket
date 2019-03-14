@@ -112,12 +112,12 @@ namespace Crawl.Views
         {
             if (UsingRandomValues == true)
             {
-                Crawl.Models.GameGlobals.SetForcedRandomNumbersValue(_aboutViewModel.RandomValueOverride);
+                GameGlobals.SetForcedRandomNumbersValue(GameGlobals.RandomValueOverride);
             }
 
             else
             {
-                Crawl.Models.GameGlobals.DisableRandomValues();
+                GameGlobals.DisableRandomValues();
             }
 
             UsingRandomValues = !UsingRandomValues;
