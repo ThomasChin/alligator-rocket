@@ -7,7 +7,7 @@ namespace Crawl.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
-        public int RandomValueOverride { get; set; }
+
 
         // Constructor.
         public AboutViewModel()
