@@ -38,7 +38,12 @@ namespace Crawl.Models
         public static bool EnableReincarnation = true;
 
         // Time Warp ...
+        // First setting turns it on or off
+        // Second setting is the % chance of happening
+        // Third setting is a state to show output if currently happening.
         public static bool EnableTimeWarp = true;
+        public static int TimeWarpChance = 0;
+        public static bool TimeWarpEnabled = false;
 
         // Turn Off Random Number Generation, and use the passed in values.
         public static void SetForcedRandomNumbersValueAndToHit(int value, int hit)
