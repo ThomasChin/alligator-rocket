@@ -39,6 +39,7 @@ namespace Crawl.Models
 
         // Time Warp ...
         public static bool EnableTimeWarp = true;
+        public static int TimeWarpChance = 0;
 
         // Turn Off Random Number Generation, and use the passed in values.
         public static void SetForcedRandomNumbersValueAndToHit(int value, int hit)
