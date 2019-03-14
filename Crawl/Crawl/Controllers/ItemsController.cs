@@ -5,6 +5,7 @@ using Crawl.Models;
 using Crawl.ViewModels;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Crawl.Controllers
 {
@@ -155,7 +156,7 @@ namespace Crawl.Controllers
             }
             catch (Exception Ex)
             {
-                Console.WriteLine(Ex.ToString());
+                Debug.WriteLine(Ex.ToString());
                 return null;
             }
 
@@ -185,7 +186,7 @@ namespace Crawl.Controllers
 
             catch (Exception Ex)
             {
-                Console.WriteLine(Ex.ToString());
+                Debug.WriteLine(Ex.ToString());
                 return null;
             }
 
