@@ -17,6 +17,7 @@ namespace Crawl.Models
         public string TurnMessage = string.Empty; // Turn Message
         public string TurnMessageSpecial = string.Empty; // Special Message
         public string LevelUpMessage = string.Empty; // Levelup Message
+        public string RoundMessage = string.Empty; // for the Round
 
         public int DamageAmount = 0; // Damage
         public int CurrentHealth = 0; // Current Health
@@ -25,6 +26,7 @@ namespace Crawl.Models
         private string htmlTail = @"</p></body></html>";
 
         public HitStatusEnum HitStatus = HitStatusEnum.Unknown; // Enum for HitStatus
+
 
         /// <summary>
         /// Return formatted string
