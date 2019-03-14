@@ -3,6 +3,7 @@ using Crawl.ViewModels;
 using System;
 using System.Collections.Generic;
 using SQLite;
+using System.Diagnostics;
 
 namespace Crawl.Models
 {
@@ -54,7 +55,7 @@ namespace Crawl.Models
                 {
                     ReincarnationNumberOfLives--;
                     Attribute.CurrentHealth = Attribute.MaxHealth;
-                    Console.WriteLine("Reincarnation Happened, thanks Mircale Max");
+                    Debug.Write("Reincarnation Happened, thanks Mircale Max");
 
                     Alive = true; // Death did not happen
                     return;
