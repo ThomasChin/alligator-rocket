@@ -18,6 +18,9 @@ namespace Crawl.Models
 
         public bool Alive { get; set; }
 
+        // If Reincarnation is Enabled, how many times can it happen on this character?
+        public int ReincarnationNumberOfLives = 1;
+
         // The AttributeString will be unpacked and stored in the top level of Character as actual attributes, 
         // but it needs to go here as a string so it can be saved to the database.
         public string AttributeString { get; set; }
@@ -25,7 +28,7 @@ namespace Crawl.Models
 
         // Death
         // Alive turns to False
-        public void CauseDeath()
+        public virtual void CauseDeath()
         {
            // var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
            // player.Load("Dun-dun-duuuuun.mp3");

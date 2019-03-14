@@ -42,6 +42,29 @@ namespace Crawl.Models
             Head = Feet = Necklass = PrimaryHand = OffHand = RightFinger = LeftFinger = "None";
         }
 
+        // Death
+        // Alive turns to False
+        public override void CauseDeath()
+        {
+            if (GameGlobals.EnableReincarnation)
+            {
+                // If reincarnation is turned on, use it here.
+
+                if (ReincarnationNumberOfLives > 0)
+                {
+                    ReincarnationNumberOfLives--;
+                    Attribute.CurrentHealth = Attribute.MaxHealth;
+                    Console.WriteLine("Reincarnation Happened, thanks Mircale Max");
+
+                    Alive = true; // Death did not happen
+                    return;
+                }
+            }
+
+            Alive = false;
+        }
+
+
         //Main character constructor. "Rolls" stats based on class type.
         public Character(string name, ClassTypeEnum classType)
         {
