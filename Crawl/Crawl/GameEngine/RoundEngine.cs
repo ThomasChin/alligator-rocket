@@ -254,6 +254,33 @@ namespace Crawl.GameEngine
                 .ThenBy(a => a.Name)
                 .ThenBy(a => a.ListOrder)
                 .ToList();
+
+            GameGlobals.TimeWarpEnabled = false;
+
+            // Enable Time Warp where Slow is best, it is based on a % chance roll, so roll and decide if it happens.
+            // The TimeWarpChance is managed in the About Settings
+            if (GameGlobals.EnableTimeWarp)
+            {
+                var TimeWarpRoll = GameEngine.HelperEngine.RollDice(1, 100);
+                if (TimeWarpRoll > GameGlobals.TimeWarpChance)
+                {
+                    // TimeWarp Enabled, need to show in output so set the flag
+                    GameGlobals.TimeWarpEnabled = true;
+                    Console.WriteLine("Time Warp Happens... Slow is Fast");
+
+                    // If enabled, switch to slowest first...
+                    PlayerList = PlayerList.OrderBy(a => a.Speed)
+                    .ThenByDescending(a => a.Level)
+                    .ThenByDescending(a => a.ExperiencePoints)
+                    .ThenByDescending(a => a.PlayerType)
+                    .ThenBy(a => a.Name)
+                    .ThenBy(a => a.ListOrder)
+                    .ToList();
+                }
+            }
+
+
+
         }
 
         // Make List of Players.
