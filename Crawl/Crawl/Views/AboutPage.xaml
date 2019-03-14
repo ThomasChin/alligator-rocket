@@ -141,6 +141,49 @@
                         Toggled="Enable1AsCriticalMiss_OnToggled"
                         IsToggled="False"/>
                     </StackLayout>
+
+                    <!-- enable TimeWarp  -->
+                    <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
+                        <Label 
+                        Text="Enable TimeWarp"
+                        Style="{DynamicResource DebugSwitchLabel}"
+                        />
+
+                        <Switch 
+                        x:Name="EnableTimeWarpToggle"
+                        HorizontalOptions="EndAndExpand"
+                        Toggled="EnableTimeWarp_OnToggled"
+                        IsToggled="False"/>
+
+                        <Entry
+                                x:Name="EnableTimeWarpValue"
+                                Text="10" 
+                                TextColor="Black"
+                                MaxLength="3"
+                                CursorPosition="0" 
+                                SelectionLength = "3" />
+                    </StackLayout>
+
+                    <!-- Enable Miracle Max  -->
+                    <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
+                        <Label 
+                        Text="Enable Miracle Max"
+                        Style="{DynamicResource DebugSwitchLabel}"
+                        />
+
+                        <Switch 
+                        x:Name="EnableMiracleMaxToggle"
+                        HorizontalOptions="EndAndExpand"
+                        Toggled="EnableMiracleMax_OnToggled"
+                        IsToggled="False"/>
+                    </StackLayout>
+
                 </StackLayout>
 
                 <!--Database Settings-->
