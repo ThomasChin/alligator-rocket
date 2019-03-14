@@ -145,6 +145,14 @@ namespace Crawl.Views
             GameGlobals.EnableCriticalHitDamage = e.Value;
         }
 
+        // Turn on Critical Hit Damage
+        private void EnableTimeWarp_OnToggled(object sender, ToggledEventArgs e)
+        {
+            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
+            GameGlobals.EnableTimeWarp = e.Value;
+            //GameGlobals.TimeWarpChance = Convert.ToInt32(EnableTimeWarpValue.Text);
+        }
+
         private async void ClearDatabase_Command(object sender, EventArgs e)
         {
             var answer = await DisplayAlert("Delete", "Sure you want to Delete All Data, and start over?", "Yes", "No");
