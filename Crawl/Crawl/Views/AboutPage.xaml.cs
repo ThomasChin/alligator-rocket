@@ -71,16 +71,9 @@ namespace Crawl.Views
             MasterDataStore.ToggleDataStore(set);
         }
 
-        // Enable Debug Settings.
-        private void Enable20asHit_OnToggled(object sender, ToggledEventArgs e)
+        private void EnableCriticalMiss()
         {
-            //Implement Logic
-        }
 
-        // Enable Debug Settings.
-        private void Enable1AsCriticalMiss_OnToggled(object sender, ToggledEventArgs e)
-        {
-            //Implement Logic
         }
 
         // Enable Debug Settings.
@@ -115,13 +108,6 @@ namespace Crawl.Views
             await Navigation.PushAsync(new Battle.OpeningPage());
         }
 
-        // Turn on Critical Misses
-        private void EnableCriticalMissProblems_OnToggled(object sender, ToggledEventArgs e)
-        {
-            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
-            GameGlobals.EnableCriticalMissProblems = e.Value;
-        }
-
         private void DisableRandomValues_OnToggled(object sender, EventArgs e)
         {
             if (UsingRandomValues == true)
@@ -138,6 +124,18 @@ namespace Crawl.Views
 
         }
 
+        // Enable Debug Settings.
+        private void Force20toHit_OnToggled(object sender, ToggledEventArgs e)
+        {
+            //Implement Logic
+        }
+
+        // Enable Debug Settings.
+        private void Force1ToMiss_OnToggled(object sender, ToggledEventArgs e)
+        {
+            //Implement Logic
+        }
+
         // Turn on Critical Hit Damage
         private void EnableCriticalHitDamage_OnToggled(object sender, ToggledEventArgs e)
         {
@@ -145,7 +143,15 @@ namespace Crawl.Views
             GameGlobals.EnableCriticalHitDamage = e.Value;
         }
 
-        // Turn on Critical Hit Damage
+        // Turn on Critical Misses
+        private void EnableCriticalMissProblems_OnToggled(object sender, ToggledEventArgs e)
+        {
+            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
+            GameGlobals.EnableCriticalMissProblems = e.Value;
+        }
+
+
+        // Turn on timewarp
         private void EnableTimeWarp_OnToggled(object sender, ToggledEventArgs e)
         {
             // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
