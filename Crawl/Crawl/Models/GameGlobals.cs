@@ -23,6 +23,8 @@ namespace Crawl.Models
         // What number to use for ToHit values (1,2, 19, 20)
         public static int ForceToHitValue = 20;
 
+
+
         // Forces Monsters to hit with a set value
         // Zero, because don't want to add it in unless it is used...
         public static int ForceMonsterDamangeBonusValue = 0;
