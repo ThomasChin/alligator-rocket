@@ -37,6 +37,9 @@ namespace Crawl.Models
         // Miracle Max...
         public static bool EnableReincarnation = true;
 
+        // Time Warp ...
+        public static bool EnableTimeWarp = true;
+
         // Turn Off Random Number Generation, and use the passed in values.
         public static void SetForcedRandomNumbersValueAndToHit(int value, int hit)
         {
