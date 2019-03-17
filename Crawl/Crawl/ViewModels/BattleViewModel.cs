@@ -91,6 +91,7 @@ namespace Crawl.ViewModels
         public void EndBattle()
         {
             BattleViewModel.Instance.BattleEngine.EndBattle();
+            BattleViewModel.Instance.BattleEngine.BattleEngineInit();
         }
 
         /// <summary>

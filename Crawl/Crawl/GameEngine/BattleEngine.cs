@@ -21,7 +21,7 @@ namespace Crawl.GameEngine
         }
 
         // Sets the new state for the variables for Battle
-        private void BattleEngineInit()
+        public void BattleEngineInit()
         {
             CharacterList.Clear();
 
