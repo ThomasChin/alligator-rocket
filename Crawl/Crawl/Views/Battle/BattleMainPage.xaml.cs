@@ -210,6 +210,7 @@ namespace Crawl.Views.Battle
             Debug.WriteLine(outputString);
 
             myScoreObject = _viewModel.BattleEngine.BattleScore;
+            Navigation.RemovePage(this);
             await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myScoreObject)));
         }
 

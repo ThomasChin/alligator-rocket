@@ -17,21 +17,11 @@ namespace Crawl.GameEngine
         // Constructor calls Init
         public BattleEngine()
         {
-            BattleEngineInit();
-        }
-
-        // Sets the new state for the variables for Battle
-        public void BattleEngineInit()
-        {
-            CharacterList.Clear();
-
-            // Clear the rest of the data
             BattleEngineClearData();
-            
         }
 
         // Sets the new state for the variables for Battle
-        private void BattleEngineClearData()
+        public void BattleEngineClearData()
         {
             BattleScore = new Score();
             BattleMessages = new BattleMessages();

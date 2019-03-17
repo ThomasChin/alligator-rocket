@@ -62,6 +62,7 @@ namespace Crawl.ViewModels
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
             BattleEngine = new BattleEngine();
+            BattleEngine.BattleEngineClearData();
 
             // Load Data
             ExecuteLoadDataCommand().GetAwaiter().GetResult();
