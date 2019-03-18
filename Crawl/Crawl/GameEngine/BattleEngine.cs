@@ -25,6 +25,7 @@ namespace Crawl.GameEngine
         {
             BattleScore = new Score();
             BattleMessages = new BattleMessages();
+            RoundStateEnum = RoundEnum.NewRound;
 
             ItemPool.Clear();
             MonsterList.Clear();

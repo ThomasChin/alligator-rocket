@@ -124,7 +124,6 @@ namespace Crawl.Views.Battle
                 // Save the Score to the Score View Model, by sending a message to it.
                 var myScore = _viewModel.BattleEngine.BattleScore;
                 MessagingCenter.Send(this, "AddData", myScore);
-
                 return;
             }
 
@@ -212,6 +211,7 @@ namespace Crawl.Views.Battle
             myScoreObject = _viewModel.BattleEngine.BattleScore;
             Navigation.RemovePage(this);
             await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myScoreObject)));
+            _viewModel.BattleEngine.BattleEngineClearData();
         }
 
         // Helper to handle Modal navigation.
@@ -262,6 +262,7 @@ namespace Crawl.Views.Battle
             Crawl.App.Current.ModalPopping += HandleModalPopping;
             _myModalBattleGameOverPage = new BattleOverPage();
             await Navigation.PushModalAsync(_myModalBattleGameOverPage);
+            Navigation.RemovePage(this);
         }
 
         // Add Characters and Monsters to screen.
