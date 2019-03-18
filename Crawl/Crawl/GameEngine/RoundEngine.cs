@@ -59,6 +59,7 @@ namespace Crawl.GameEngine
 
             // Update Score for the RoundCount
             BattleScore.RoundCount++;
+            RoundStateEnum = RoundEnum.NextTurn;
         }
 
         /// <summary>
