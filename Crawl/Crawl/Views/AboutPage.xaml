@@ -83,7 +83,7 @@
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="StartAndExpand">
 
-                    <!-- enable critical hit double damage -->
+                    <!-- enable critical hits -->
                     <StackLayout
                     HorizontalOptions="FillAndExpand"
                     Orientation="Horizontal">
@@ -100,31 +100,6 @@
                         IsToggled="False"/>
                     </StackLayout>
 
-                    <!-- disable random rolls -->
-                    <StackLayout
-                    HorizontalOptions="FillAndExpand"
-                    Orientation="Horizontal">
-
-                        <Label 
-                            Text="Disable random values"
-                            Style="{DynamicResource DebugSwitchLabel}"
-                        />
-
-                        <Entry
-                                x:Name="RandomValueOverride"
-                                Text="1" 
-                                TextColor="Black"
-                                MaxLength="3"
-                                CursorPosition="0" 
-                                SelectionLength = "3" />
-
-                        <Switch 
-                            x:Name="DisableRandomValues"
-                            HorizontalOptions="EndAndExpand"
-                            Toggled="DisableRandomValues_OnToggled"
-                            IsToggled="False"/>
-                    </StackLayout>
-
                     <!-- enable critical miss -->
                     <StackLayout
                     HorizontalOptions="FillAndExpand"
@@ -138,9 +113,63 @@
                         <Switch 
                         x:Name="EnableCriticalMiss_OnToggled"
                         HorizontalOptions="EndAndExpand"
-                        Toggled="EnablelAsCriticalMiss_OnToggled"
+                        Toggled="EnableCriticalMissProblems_OnToggled"
                         IsToggled="False"/>
                     </StackLayout>
+
+                    <!-- disable random rolls -->
+                    <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
+                        <Label 
+                            Text="Disable random values"
+                            Style="{DynamicResource DebugSwitchLabel}"
+                        />
+
+                        <Entry
+                                x:Name="RandomValueOverride"
+                                
+                                Text="1" 
+                                TextColor="Black"
+                                Keyboard="Numeric"
+                                MaxLength="3"
+                                CursorPosition="0" 
+                                SelectionLength = "3" />
+
+                        <Switch 
+                            x:Name="DisableRandomValues"
+                            HorizontalOptions="EndAndExpand"
+                            Toggled="DisableRandomValues_OnToggled"
+                            IsToggled="False"/>
+                    </StackLayout>
+
+                    <!-- Set Hit Value -->
+                    <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
+                        <Label 
+                            Text="Force Hit Value"
+                            Style="{DynamicResource DebugSwitchLabel}"
+                        />
+
+                        <Entry
+                                x:Name="HitValueOverride"
+                                Text="1" 
+                                TextColor="Black"
+                                Keyboard="Numeric"
+                                MaxLength="3"
+                                CursorPosition="0" 
+                                SelectionLength = "3" />
+
+                        <Switch 
+                            x:Name="SetHitValue"
+                            HorizontalOptions="EndAndExpand"
+                            Toggled="ForcedToHitVal_OnToggled"
+                            IsToggled="False"/>
+                    </StackLayout>
+
 
                     <!-- enable TimeWarp  -->
                     <StackLayout

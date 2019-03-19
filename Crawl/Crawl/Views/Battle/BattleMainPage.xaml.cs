@@ -90,6 +90,10 @@ namespace Crawl.Views.Battle
             // If the round is over start a new one...
             if (CurrentRoundState == RoundEnum.NewRound)
             {
+                //ItemDropPage
+                //Bug: Pops up before the new monster page
+                await Navigation.PushAsync(new ItemDropPage());
+
                 _viewModel.NewRound();
                 MessagingCenter.Send(this, "NewRound");
 

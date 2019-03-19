@@ -23,10 +23,6 @@ namespace Crawl.Views.Battle
         // Close this page
         async void OnNextClicked(object sender, EventArgs args)
         {
-            // Jump to BattleOver Page
-            await Navigation.PushAsync(new BattleOverPage());
-
-            // Last, remove this page
             Navigation.RemovePage(this);
         }
     }

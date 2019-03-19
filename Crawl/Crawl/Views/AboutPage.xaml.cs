@@ -124,16 +124,29 @@ namespace Crawl.Views
 
         }
 
-        // Enable Debug Settings.
-        private void Force20toHit_OnToggled(object sender, ToggledEventArgs e)
+        private void ForcedToHitVal_OnToggled(object sender, EventArgs e)
         {
-            //Implement Logic
+            GameGlobals.ForcingHitValue = !GameGlobals.ForcingHitValue;
+
+            if (GameGlobals.ForcingHitValue == true)
+            {
+                GameGlobals.ForcedHitValue = Convert.ToInt32(RandomValueOverride.Text);
+            }
+
         }
 
         // Enable Debug Settings.
-        private void Force1ToMiss_OnToggled(object sender, ToggledEventArgs e)
+        private void ForceTwentytoHit_OnToggled(object sender, ToggledEventArgs e)
         {
             //Implement Logic
+            GameGlobals.ForceTwentyToHit = e.Value;
+        }
+
+        // Enable Debug Settings.
+        private void ForceOneToMiss_OnToggled(object sender, ToggledEventArgs e)
+        {
+            //Implement Logic
+            GameGlobals.ForceOneToMiss = e.Value;
         }
 
         // Turn on Critical Hit Damage
@@ -150,13 +163,14 @@ namespace Crawl.Views
             GameGlobals.EnableCriticalMissProblems = e.Value;
         }
 
-        // Turn on Critical Miss
-        private void EnablelAsCriticalMiss_OnToggled(object sender, ToggledEventArgs e)
+        // Enable Debug Settings.
+        private void ForcedHitValue_OnToggled(object sender, ToggledEventArgs e)
         {
-//TODO add code here...
-
+            //Implement Logic
+            GameGlobals.ForcingHitValue = e.Value;
         }
-        
+
+
 
         // Turn on timewarp
         private void EnableMiracleMax_OnToggled(object sender, ToggledEventArgs e)

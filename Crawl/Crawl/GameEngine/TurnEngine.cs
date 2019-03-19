@@ -137,10 +137,6 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Miss)
             {
-               // var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-               // player.Load("Mcdonald-melody-toy.mp3");
-               // player.Play();
-
                 TurnMessage = Attacker.Name + " misses " + Target.Name;
                 BattleMessages.TurnMessage = TurnMessage;
                 Debug.WriteLine(TurnMessage);
@@ -163,16 +159,12 @@ namespace Crawl.GameEngine
 
             if (HitStatus == HitStatusEnum.Hit)
             {
-                //var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                //player.Load("Meowing-cat.mp3");
-                //player.Play();
-
                 Target.TakeDamage(DamageAmount);
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
                 BattleMessages.AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
             }
 
-            if (HitStatus == HitStatusEnum.CriticalHit)
+            if (HitStatus == HitStatusEnum.CriticalHit && GameGlobals.EnableCriticalHitDamage)
             {
                 //2x damage
                 DamageAmount += DamageAmount;
@@ -273,8 +265,6 @@ namespace Crawl.GameEngine
             {
                 TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
                 BattleMessages.TurnMessage = TurnMessage;
-
-
 
                 if (GameGlobals.EnableCriticalMissProblems)
                 {
@@ -387,30 +377,27 @@ namespace Crawl.GameEngine
                 d20 = GameGlobals.ForceToHitValue;
             }
 
+            if(GameGlobals.ForcingHitValue == true)
+            {
+                d20 = GameGlobals.ForcedHitValue;
+            }
+
+            Debug.WriteLine("Roll: " + d20);
+
             if (d20 == 1)
             {
 
-                // Critical Miss drop
-                var dropRoll = HelperEngine.RollDice(1, 10);
-                if (dropRoll == 1) {
-                    //primary hand item breaks, is lost forever
-                    
+                //Critical Miss, if enabled
+                if (GameGlobals.EnableCriticalMissProblems)
+                {
+                    HitStatus = HitStatusEnum.CriticalMiss;
+                }
+         
+                else
+                {
+                    HitStatus = HitStatusEnum.Miss;
                 }
 
-                else if (dropRoll >= 2 && dropRoll <= 4) {
-                    //Primary hand item goes back into pool
-                }
-
-                else if (dropRoll == 5 || dropRoll == 6) {
-                    //drops random equipped item into pool
-                }
-
-                else if (dropRoll > 7) {
-                    //Nothin bad happens, attacker has luck
-                }
-
-                // Force Miss
-                HitStatus = HitStatusEnum.CriticalMiss;
                 BattleMessages.HitStatus = HitStatus;
                 return HitStatus;
             }
