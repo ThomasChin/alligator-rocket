@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Crawl.Views.Battle.CharacterItems">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <!-- Title -->
+            <Label Text="Character Item Page"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
+            <!-- Name -->
+            <Label Text="{Binding Data.Name}" 
+                   FontSize="Small" 
+                   HorizontalOptions="Center"/>
+
+            <!-- Back Button -->
+            <Button Clicked="Back_Clicked" Text="Back"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

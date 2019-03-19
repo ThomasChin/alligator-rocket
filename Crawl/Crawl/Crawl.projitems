@@ -107,6 +107,10 @@
       <DependentUpon>BattleVictoryPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\CharacterItemsPage.xaml.cs">
+      <DependentUpon>CharacterItemsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Battle\OpeningPage.xaml.cs">
       <DependentUpon>OpeningPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -300,6 +304,12 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Battle\BattleVictoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Battle\CharacterItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

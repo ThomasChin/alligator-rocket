@@ -59,5 +59,7 @@ namespace Crawl.Views
             Navigation.RemovePage(this);
             await Navigation.PushAsync(new CharacterEditPage(_viewModel));
         }
+
+
     }
 }
