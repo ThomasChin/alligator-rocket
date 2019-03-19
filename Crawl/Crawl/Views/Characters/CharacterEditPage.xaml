@@ -100,13 +100,19 @@
 							FontAttributes="Bold"
                             VerticalOptions="Center"/>
 					</StackLayout>
+                    
 					<StackLayout Grid.Row="4" Grid.Column="1">
 						<Label Text="{Binding Data.Attribute.Speed}" 
 						FontSize="Medium" 
 						HorizontalOptions="Center"/>
 					</StackLayout>
+                    
+                    <!-- Item Attributes -->
+                    <StackLayout Grid.Row="5" Grid.Column="1">
 
-					<!-- Reroll Base Attributes -->
+                    </StackLayout>
+                    
+                    <!-- Reroll Base Attributes -->
 					<StackLayout Grid.Row="6" Grid.Column="1">
 						<Button Text ="ReRoll"
                                 TextColor="White"

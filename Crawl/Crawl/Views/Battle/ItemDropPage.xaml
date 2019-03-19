@@ -1,112 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Crawl.Views.Battle.ItemDropPage">
-    <ScrollView>
-        <StackLayout
-         VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand">
+             x:Class="Crawl.Views.Battle.ItemDropPage"
+             Title="{Binding Title}"
+             x:Name="ItemReorderPage">
 
-                <Label Text="ITEM DROP"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" 
-                FontSize="Large"
-                       TextColor="Teal"/>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Clicked="OnNextClicked" />
+    </ContentPage.ToolbarItems>
 
-                <StackLayout
-                     Orientation="Horizontal"
-                     VerticalOptions="Start"
-                     HorizontalOptions="Center">
-                    <StackLayout 
-                        x:Name="DetailsRoot"
-                        Orientation="Vertical"
-                        Padding="15">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ItemsListView"
+                 ItemsSource="{Binding Dataset}"
+                 VerticalOptions="FillAndExpand"
+                 HasUnevenRows="true"
+                 RefreshCommand="{Binding LoadItemsCommand}"
+                 IsPullToRefreshEnabled="true"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                 CachingStrategy="RecycleElement"
+                 ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10"
+                                         Orientation="Horizontal"
+                                         VerticalOptions="Start"
+                                         HorizontalOptions="Start">
 
-                        <Image Source="{Binding Data.ImageURI}"
-                            WidthRequest="150"
-                            HeightRequest="150" 
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"/>
+                                <Image Source="{Binding ImageURI}"
+                                       WidthRequest="50"
+                                       HeightRequest="50" 
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
 
-                        <Label Text="Name : " 
-                               TextColor="Teal"
-                           FontSize="Medium" 
-                           HorizontalOptions="Start"/>
-                        <Label Text="{Binding Data.Name}" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Center"/>
-                        
-                        <Label Text="Description : " 
-                               TextColor="Teal"
-                           FontSize="Medium" 
-                           HorizontalOptions="Start"/>
-                        <Label Text="{Binding Data.Description}" 
-                            FontSize="Medium" 
-                            HorizontalOptions="Center"/>
 
-                        <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="Start">
-                            <Label Text="Range : " 
-                                   TextColor="Teal"
-                               FontSize="Medium" 
-                               HorizontalOptions="Start"/>
-                            <Label Text="{Binding Data.Range}" 
-                                FontSize="Medium" 
-                                HorizontalOptions="Center"/>
-                        </StackLayout>
+                                <StackLayout>
 
-                        <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="Start">
-                            <Label Text="Damage : " 
-                                   TextColor="Teal"
-                               FontSize="Medium" 
-                               HorizontalOptions="Start"/>
-                            <Label Text="{Binding Data.Damage}" 
-                                FontSize="Medium" 
-                                HorizontalOptions="Center"/>
-                        </StackLayout>
-                        
-                        <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="Start">
-                            <Label Text="Value : " 
-                                   TextColor="Teal"
-                               FontSize="Medium" 
-                               HorizontalOptions="Start"/>
-                            <Label Text="{Binding Data.Value}" 
-                                FontSize="Medium" 
-                                HorizontalOptions="Center"/>
-                        </StackLayout>
-                        
-                        <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="Start">
-                            <Label Text="Location : " 
-                                   TextColor="Teal"
-                               FontSize="Medium" 
-                               HorizontalOptions="Start"/>
-                            <Label Text="{Binding Data.Location}" 
-                                FontSize="Medium" 
-                                HorizontalOptions="Center"/>
-                        </StackLayout>
+                                    <Label Text="{Binding Name}" 
+                                           TextColor="Teal"
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="16" />
+                                    <StackLayout Orientation="Horizontal">
 
-                        <StackLayout 
-                            Orientation="Horizontal" 
-                            HorizontalOptions="Start">
-                        <Label Text="Attribute : " 
-                               TextColor="Teal"
-                               FontSize="Medium" 
-                               HorizontalOptions="Start"/>
-                        <Label Text="{Binding Data.Attribute}" 
-                               FontSize="Medium" 
-                               HorizontalOptions="Center"/>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
+                                        <Label Text="{Binding Attribute}" 
+                                               LineBreakMode="NoWrap" 
+                                               Style="{DynamicResource ListItemTextStyle}" 
+                                               FontSize="16" />
+                                        <Label Text="{Binding Value}" 
+                                               TextColor="Teal"
+                                               LineBreakMode="NoWrap" 
+                                               Style="{DynamicResource ListItemTextStyle}" 
+                                               FontSize="16" />
+                                    </StackLayout>
 
-                <Button Clicked="OnNextClicked" Text="Next"/>
+                                    <Label Text="{Binding Description}" 
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="13" />
+
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Clicked="OnCloseClicked" Text="Close"/>
         </StackLayout>
-    </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
+
