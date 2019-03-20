@@ -6,7 +6,7 @@
              x:Name="ItemReorderPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Next" Clicked="OnNextClicked" />
+        <ToolbarItem Text="Next" Clicked="OnCloseClicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
