@@ -4,9 +4,13 @@
              x:Class="Crawl.Views.Battle.BattlePartyPage">
     <ContentPage.Content>
         <StackLayout>
+            
             <Label Text="BattlePartyPage"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Button Clicked="OnCloseClicked" Text="Close"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

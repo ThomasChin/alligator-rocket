@@ -31,6 +31,7 @@ namespace Crawl.Views.Battle
         // Close this page
         async void OnCloseClicked(object sender, EventArgs args)
         {
+            await Navigation.PushAsync(new BattlePartyPage());
             Navigation.RemovePage(this);
         }
 
