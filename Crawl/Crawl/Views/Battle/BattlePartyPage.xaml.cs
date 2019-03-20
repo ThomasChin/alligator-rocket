@@ -30,6 +30,20 @@ namespace Crawl.Views.Battle
                 _viewModel.AddAsync(CharacterList[i]);
         }
 
+        // Push for selecting Character model from index
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var data = args.SelectedItem as Character;
+            if (data == null)
+                return;
+
+            // Leads to Character Detail Page
+            await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(data)));
+
+            // Manually deselect item.
+            //PartyListView.SelectedItem = null;
+        }
+
         // Close this page
         async void OnCloseClicked(object sender, EventArgs args)
         {
