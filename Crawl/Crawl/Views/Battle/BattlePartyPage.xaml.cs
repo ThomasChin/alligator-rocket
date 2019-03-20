@@ -38,10 +38,10 @@ namespace Crawl.Views.Battle
                 return;
 
             // Leads to Character Detail Page
-            await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(data)));
+            await Navigation.PushAsync(new CharacterItemsPage(new CharacterDetailViewModel(data)));
 
             // Manually deselect item.
-            //PartyListView.SelectedItem = null;
+            PartyListView.SelectedItem = null;
         }
 
         // Close this page
