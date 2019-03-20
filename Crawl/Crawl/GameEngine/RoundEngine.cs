@@ -167,7 +167,8 @@ namespace Crawl.GameEngine
                 PickupItemsFromPool(character);
             }
 
-            ClearLists();
+            //ClearLists();
+            MonsterList = new List<Monster>();
         }
 
         // Get Round Turn Order

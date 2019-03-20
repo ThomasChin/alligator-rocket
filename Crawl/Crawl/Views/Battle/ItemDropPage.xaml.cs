@@ -19,15 +19,16 @@ namespace Crawl.Views.Battle
         // Initialize ItemsViewModel
         private ItemsViewModel _viewModel;
 
-        //private CharacterDetailViewModel CharacterViewModel;
+        private Character Character;
 
         // Constructor
-        public ItemDropPage()
+        public ItemDropPage(Character TargetCharacter)
         {
             InitializeComponent();
             //Not the instance view model, new view model
             BindingContext = _viewModel = new ItemsViewModel();
-            //CharacterViewModel = charmodel;
+            Character = TargetCharacter;
+            
 
             getItems();
         }
@@ -35,6 +36,7 @@ namespace Crawl.Views.Battle
         // Load Data for Items 
         protected override void OnAppearing()
         {
+            return;
             base.OnAppearing();
 
             BindingContext = null;
@@ -67,17 +69,35 @@ namespace Crawl.Views.Battle
         // Open detail page when item is selected from Index
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
+            
             var data = args.SelectedItem as Item;
             if (data == null)
                 return;
 
+            Item oldItem = Character.AddItem(data.Location, data.Id);
+
+            if (oldItem != null)
+            {
+                BattleViewModel.Instance.BattleEngine.ItemPool.Add(oldItem);
+                _viewModel.Dataset.Add(oldItem);
+            }
+
+            BattleViewModel.Instance.BattleEngine.ItemPool.Remove(data);
+            _viewModel.Dataset.Remove(data);
+
+
+
+
+            _viewModel.SetNeedsRefresh(true);
+            
             //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(data)));
+            //BattleViewModel.Instance.BattleEngine.CharacterList().
         }
 
         // Load Data for Items 
         private void getItems()
         {
-            List<Item> ItemList = BattleViewModel.Instance.BattleEngine.ItemPool;
+            List<Item> ItemList = BattleViewModel.Instance.BattleEngine.ItemPool.ToList<Item>();
             for (int i = 0; i < ItemList.Count; i++)
                 _viewModel.AddAsync(ItemList[i]);
           

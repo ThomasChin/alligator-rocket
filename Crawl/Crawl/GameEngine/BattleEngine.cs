@@ -146,5 +146,10 @@ namespace Crawl.GameEngine
 
             return myResult;
         }
+
+        public void EmptyItemPool()
+        {
+            ItemPool = new List<Item>();
+        }
     }
 }

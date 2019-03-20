@@ -27,7 +27,12 @@ namespace Crawl.Views.Battle
         {
             List<Character> CharacterList = BattleViewModel.Instance.SelectedCharacters.ToList<Character>();
             for (int i = 0; i < CharacterList.Count; i++)
-                _viewModel.AddAsync(CharacterList[i]);
+            {
+                if (CharacterList[i].Alive)
+                {
+                    _viewModel.AddAsync(CharacterList[i]);
+                }
+            }
         }
 
         // Push for selecting Character model from index
@@ -38,7 +43,7 @@ namespace Crawl.Views.Battle
                 return;
 
             // Leads to Character Detail Page
-            var ItemPage = new ItemDropPage();
+            var ItemPage = new ItemDropPage(data);
             //await Navigation.PushAsync(new ItemDropPage());
             await Navigation.PushModalAsync(ItemPage);
 
@@ -49,6 +54,7 @@ namespace Crawl.Views.Battle
         // Close this page
         async void OnCloseClicked(object sender, EventArgs args)
         {
+            BattleViewModel.Instance.BattleEngine.EmptyItemPool();
             await Navigation.PopModalAsync();
         }
     }

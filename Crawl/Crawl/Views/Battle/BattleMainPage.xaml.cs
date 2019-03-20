@@ -95,15 +95,10 @@ namespace Crawl.Views.Battle
             {
                 //ItemDropPage
                 //Bug: Pops up before the new monster page
-                //await Navigation.PushAsync(new ItemDropPage());
-                //await Navigation.PushAsync(new BattlePartyPage());
                 ShowModalPageBattleParty();
 
-                
-           
                 _viewModel.NewRound();
                 MessagingCenter.Send(this, "NewRound");
-
                 Debug.WriteLine("New Round :" + _viewModel.BattleEngine.BattleScore.RoundCount);
 
                 ShowModalPageMonsterList();
@@ -153,6 +148,7 @@ namespace Crawl.Views.Battle
             {
                 AppendMessage("Time Warp Happened\n"); 
             }
+
         }
 
         /// <summary>
@@ -239,6 +235,15 @@ namespace Crawl.Views.Battle
             if (e.Modal == _myModalCharacterSelectPage)
             {
                 _myModalCharacterSelectPage = null;
+
+                // remember to remove the event handler:
+                App.Current.ModalPopping -= HandleModalPopping;
+            }
+
+
+            if (e.Modal == _myModalBattlePartyPage)
+            {
+                _myModalBattlePartyPage = null;
 
                 // remember to remove the event handler:
                 App.Current.ModalPopping -= HandleModalPopping;
