@@ -31,6 +31,7 @@ namespace Crawl.Views.Battle
 
         public CharacterItemsPage (CharacterDetailViewModel viewModel)
 		{
+            
 			InitializeComponent ();
             BindingContext = _viewModel = viewModel;
             ItemPool = BattleViewModel.Instance.BattleEngine.ItemPool;
