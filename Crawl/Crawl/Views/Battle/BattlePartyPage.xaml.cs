@@ -38,7 +38,9 @@ namespace Crawl.Views.Battle
                 return;
 
             // Leads to Character Detail Page
-            await Navigation.PushAsync(new CharacterItemsPage(new CharacterDetailViewModel(data)));
+            var ItemPage = new ItemDropPage();
+            //await Navigation.PushAsync(new ItemDropPage());
+            await Navigation.PushModalAsync(ItemPage);
 
             // Manually deselect item.
             PartyListView.SelectedItem = null;
@@ -47,7 +49,7 @@ namespace Crawl.Views.Battle
         // Close this page
         async void OnCloseClicked(object sender, EventArgs args)
         {
-            Navigation.RemovePage(this);
+            await Navigation.PopModalAsync();
         }
     }
 }

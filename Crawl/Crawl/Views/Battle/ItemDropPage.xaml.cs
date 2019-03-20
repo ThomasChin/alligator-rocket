@@ -19,20 +19,49 @@ namespace Crawl.Views.Battle
         // Initialize ItemsViewModel
         private ItemsViewModel _viewModel;
 
+        //private CharacterDetailViewModel CharacterViewModel;
+
         // Constructor
         public ItemDropPage()
         {
             InitializeComponent();
             //Not the instance view model, new view model
             BindingContext = _viewModel = new ItemsViewModel();
+            //CharacterViewModel = charmodel;
+
             getItems();
+        }
+
+        // Load Data for Items 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            BindingContext = null;
+
+            if (ToolbarItems.Count > 0)
+            {
+                ToolbarItems.RemoveAt(0);
+            }
+
+            InitializeComponent();
+
+            if (_viewModel.Dataset.Count == 0)
+            {
+                _viewModel.LoadDataCommand.Execute(null);
+            }
+            else if (_viewModel.NeedsRefresh())
+            {
+                _viewModel.LoadDataCommand.Execute(null);
+            }
+
+            BindingContext = _viewModel;
         }
 
         // Close this page
         async void OnCloseClicked(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new BattlePartyPage());
-            Navigation.RemovePage(this);
+            await Navigation.PopModalAsync();
         }
 
         // Open detail page when item is selected from Index
@@ -42,7 +71,7 @@ namespace Crawl.Views.Battle
             if (data == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(data)));
+            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(data)));
         }
 
         // Load Data for Items 

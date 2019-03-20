@@ -21,7 +21,6 @@ namespace Crawl.Views.Battle
         async void OnButtonClicked(object sender, EventArgs args)
         {
             await Navigation.PopModalAsync();
-            await Navigation.PushAsync(new ItemDropPage());
         }
     }
 

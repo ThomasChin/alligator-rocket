@@ -16,55 +16,40 @@ namespace Crawl.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CharacterItemsPage : ContentPage
 	{
-        private CharacterDetailViewModel _viewModel;
-        public List<Item> ItemPool { get; set; }
+        private ItemsViewModel _viewModel;
+        public CharacterDetailViewModel _characterViewModel;
 
-        public List<Item> ItemListUnknown { get; set; }
-        public List<Item> ItemListHead { get; set; }
-        public List<Item> ItemListNecklass { get; set; }
-        public List<Item> ItemListHand { get; set; }
-        public List<Item> ItemListOffHand { get; set; }
-        public List<Item> ItemListFinger { get; set; }
-        public List<Item> ItemListRightFinger { get; set; }
-        public List<Item> ItemListLeftFinger { get; set; }
-        public List<Item> ItemListFeet { get; set; }
+        public List<Item> ItemPool { get; set; }
+ 
 
         public CharacterItemsPage (CharacterDetailViewModel viewModel)
 		{
-            
+            _viewModel = new ItemsViewModel();
 			InitializeComponent ();
-            BindingContext = _viewModel = viewModel;
+            BindingContext = _viewModel;
+            _characterViewModel = viewModel;
+
             ItemPool = BattleViewModel.Instance.BattleEngine.ItemPool;
-
-            SortItems();
+            LoadItems();
         }
 
-        private void SortItems()
+
+        // Load Data for Items 
+        private void LoadItems()
         {
-            ItemListUnknown = GetItemsByType(ItemLocationEnum.Unknown);
-            ItemListHead = GetItemsByType(ItemLocationEnum.Head);
-            ItemListNecklass = GetItemsByType(ItemLocationEnum.Necklass);
-            ItemListHand = GetItemsByType(ItemLocationEnum.PrimaryHand);
-            ItemListOffHand = GetItemsByType(ItemLocationEnum.OffHand);
-            ItemListFinger = GetItemsByType(ItemLocationEnum.Finger);
-            ItemListRightFinger = GetItemsByType(ItemLocationEnum.LeftFinger);
-            ItemListLeftFinger = GetItemsByType(ItemLocationEnum.RightFinger);
-            ItemListFeet = GetItemsByType(ItemLocationEnum.Feet);
+            List<Item> ItemList = ItemPool;
+            for (int i = 0; i < ItemList.Count; i++)
+                _viewModel.AddAsync(ItemList[i]);
         }
 
-    private List<Item> GetItemsByType(ItemLocationEnum location)
+        // Open detail page when item is selected from Index
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            List<Item> items = new List<Item>();
+            var data = args.SelectedItem as Item;
+            if (data == null)
+                return;
 
-            for(int i = 0; i < ItemPool.Count; i++)
-            {
-                if(ItemPool[i].Location == location)
-                {
-                    items.Add(ItemPool[i]);
-                }
-            }
-
-            return items;
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(data)));
         }
 
         // Redirect to last page (CharacterPage)

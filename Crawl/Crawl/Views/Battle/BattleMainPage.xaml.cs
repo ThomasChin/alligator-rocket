@@ -26,6 +26,9 @@ namespace Crawl.Views.Battle
         // Hold the Game Over
         BattleOverPage _myModalBattleGameOverPage;
 
+        // Hold the Party
+        BattlePartyPage _myModalBattlePartyPage;
+
         // HTML Formatting for message output box
         HtmlWebViewSource htmlSource = new HtmlWebViewSource();
 
@@ -92,8 +95,12 @@ namespace Crawl.Views.Battle
             {
                 //ItemDropPage
                 //Bug: Pops up before the new monster page
-                await Navigation.PushAsync(new ItemDropPage());
+                //await Navigation.PushAsync(new ItemDropPage());
+                //await Navigation.PushAsync(new BattlePartyPage());
+                ShowModalPageBattleParty();
 
+                
+           
                 _viewModel.NewRound();
                 MessagingCenter.Send(this, "NewRound");
 
@@ -246,6 +253,16 @@ namespace Crawl.Views.Battle
             Crawl.App.Current.ModalPopping += HandleModalPopping;
             _myModalBattleMonsterListPage = new BattleMonsterListPage();
             await Navigation.PushModalAsync(_myModalBattleMonsterListPage);
+        }
+
+        // Show Monsters
+        private async void ShowModalPageBattleParty()
+        {
+            // When you want to show the modal page, just call this method
+            // add the event handler for to listen for the modal popping event:
+            Crawl.App.Current.ModalPopping += HandleModalPopping;
+            _myModalBattlePartyPage = new BattlePartyPage();
+            await Navigation.PushModalAsync(_myModalBattlePartyPage);
         }
 
         // Show CharacterSelect
