@@ -25,7 +25,7 @@ namespace Crawl.Views.Battle
 
         private void GetCharacters()
         {
-            List<Character> CharacterList = BattleViewModel.Instance.AvailableCharacters.ToList<Character>();
+            List<Character> CharacterList = BattleViewModel.Instance.SelectedCharacters.ToList<Character>();
             for (int i = 0; i < CharacterList.Count; i++)
                 _viewModel.AddAsync(CharacterList[i]);
         }

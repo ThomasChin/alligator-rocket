@@ -35,7 +35,7 @@ namespace Crawl.Views
             BindingContext = this;
         }
 
-        //Add all of the monster difficulties to the picker
+        //Add all of the monster difficulties to a list
         private void InitializeDifficultes()
         {
             Difficulties = new List<int>();
@@ -43,7 +43,7 @@ namespace Crawl.Views
                 Difficulties.Add(i);
         }
 
-        //Add all of the monster difficulties to the picker
+        //Add all of the monster names to the picker
         private void InitializeTypes()
         {
             Types = new List<string>();

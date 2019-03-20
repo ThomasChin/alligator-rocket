@@ -7,13 +7,77 @@
 
             <!-- Title -->
             <Label Text="Character Item Page"
-                   VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
 
             <!-- Name -->
             <Label Text="{Binding Data.Name}" 
                    FontSize="Small" 
                    HorizontalOptions="Center"/>
+
+            <!-- Head Item Picker -->
+            <Picker Title="Head"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+					ItemsSource="{Binding ItemListHead}"
+                    >
+            </Picker>
+
+
+            <!-- Necklass Item Picker -->
+            <Picker Title="Necklass"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+					ItemsSource="{Binding ItemListNecklass}"
+                    >
+            </Picker>
+
+            <!-- Hand Item picker -->
+            <Picker Title="Hand"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+					ItemsSource="{Binding ItemListHand}"
+                    >
+            </Picker>
+
+            <!-- OffHand Item Picker -->
+            <Picker Title="OffHand"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+					ItemsSource="{Binding ItemListOffHand}"
+                    >
+            </Picker>
+
+            <!-- Finger Item Picker -->
+            <Picker Title="Finger"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+					ItemsSource="{Binding ItemListFinger}"
+                    >
+            </Picker>
+
+            <!-- RightFinger Item Picker -->
+            <Picker Title="RightFinger"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+					ItemsSource="{Binding ItemListRightFinger}"
+                    >
+            </Picker>
+
+            <!-- LeftFinger Item Picker -->
+            <Picker Title="LeftFinger"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+					ItemsSource="{Binding ItemListLeftFinger}"
+                    >
+            </Picker>
+
+            <!-- Feet Item Picker -->
+            <Picker Title="Feet"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="30, 5"
+					ItemsSource="{Binding ItemListFeet}"
+                    >
+            </Picker>
 
             <!-- Back Button -->
             <Button Clicked="Back_Clicked" Text="Back"/>
