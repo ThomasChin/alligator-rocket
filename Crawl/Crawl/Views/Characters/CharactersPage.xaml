@@ -11,37 +11,36 @@
   <ContentPage.Content>
     <StackLayout>
       <ListView x:Name="CharactersListView"
-          ItemsSource="{Binding Dataset}"
-          VerticalOptions="FillAndExpand"
-           HasUnevenRows="true"
-           RefreshCommand="{Binding LoadItemsCommand}"
-           IsPullToRefreshEnabled="true"
-           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-           CachingStrategy="RecycleElement"
-           ItemSelected="OnItemSelected">
+                ItemsSource="{Binding Dataset}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
                 <StackLayout Padding="10"
-                           Orientation="Horizontal"
-                           VerticalOptions="Start"
-                           HorizontalOptions="CenterAndExpand">
+                             Orientation="Horizontal"
+                             VerticalOptions="Start"
+                             HorizontalOptions="CenterAndExpand">
 
                     <StackLayout>
                         <StackLayout Orientation="Vertical">
     					    <!-- Class Attribute --> 
                             <Label Text="{Binding Type}"
-                               Style="{DynamicResource ListItemTextStyle}"
-                               FontSize="16" 
-                               TextColor="Teal"
-                                HorizontalTextAlignment="Center"
-                               />
+                                   Style="{DynamicResource ListItemTextStyle}"
+                                   FontSize="16" 
+                                   TextColor="Teal"
+                                   HorizontalTextAlignment="Center"/>
                         
         					<!-- Name Attribute -->
                             <Label Text="{Binding Name}"
-                               Style="{DynamicResource ListItemTextStyle}"
-        					   FontAttributes="Bold"
-                               FontSize="16" /> 
+                                   Style="{DynamicResource ListItemTextStyle}"
+        					       FontAttributes="Bold"
+                                   FontSize="16" /> 
                         </StackLayout>
                     </StackLayout>
                                 

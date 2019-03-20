@@ -20,6 +20,7 @@ namespace Crawl.Views.Battle
         {
             InitializeComponent();
             BindingContext = _viewModel = new CharactersViewModel();
+            GetCharacters();
         }
 
         private void GetCharacters()
