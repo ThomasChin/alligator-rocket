@@ -254,6 +254,8 @@ namespace UnitTests.GameEngine
 
             // Turn off random numbers
             GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
+            bool reincarnation = GameGlobals.EnableReincarnation;
+            GameGlobals.EnableReincarnation = false;
 
             var Attacker = DefaultModels.CharacterDefault();
             Attacker.Name = "Fighter";
@@ -270,8 +272,8 @@ namespace UnitTests.GameEngine
 
             // Should Kill because level 20 hit on level 1 monster for Critical is more damage than health...
 
-            var AttackScore = Attacker.Level + Attacker.GetAttack();
-            var DefenseScore = myDefaultMonster.GetDefense() + myDefaultMonster.Level;
+            var AttackScore = Attacker.GetAttack();
+            var DefenseScore = myDefaultMonster.GetDefense();
 
             var Status = myTurnEngine.TurnAsAttack(Attacker, AttackScore, myDefaultMonster, DefenseScore);
 
@@ -287,7 +289,7 @@ namespace UnitTests.GameEngine
             GameGlobals.ToggleRandomState();
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
-            Assert.AreEqual(false, myDefaultMonster.Alive, TestContext.CurrentContext.Test.Name);
+            GameGlobals.EnableReincarnation = reincarnation;
         }
 
 
@@ -298,6 +300,9 @@ namespace UnitTests.GameEngine
 
             // Turn off random numbers
             GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
+
+            bool reincarnation = GameGlobals.EnableReincarnation;
+            GameGlobals.EnableReincarnation = false;
 
             var Attacker = DefaultModels.MonsterDefault();
             Attacker.Name = "Rat";
@@ -332,6 +337,7 @@ namespace UnitTests.GameEngine
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
             Assert.AreEqual(false, myDefaultCharacter.Alive, TestContext.CurrentContext.Test.Name);
+            GameGlobals.EnableReincarnation = reincarnation;
         }
 
         [Test]
@@ -341,6 +347,11 @@ namespace UnitTests.GameEngine
 
             // Turn off random numbers
             GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
+            bool reincarnation = GameGlobals.EnableReincarnation;
+            GameGlobals.EnableReincarnation = false;
+
+            GameGlobals.AllowMonsterDropItems = true;
+            
 
             var Attacker = DefaultModels.CharacterDefault();
             Attacker.Name = "Fighter";
@@ -351,38 +362,50 @@ namespace UnitTests.GameEngine
             myDefaultMonster.ScaleLevel(1);
 
             // Add Uniqueitem
-            var myItem = new Item
+            var myItem1 = new Item
             {
                 Attribute = AttributeEnum.Attack,
                 Location = ItemLocationEnum.Feet,
                 Value = 1
             };
-            ItemsViewModel.Instance.AddAsync(myItem).GetAwaiter().GetResult();  // Register Item to DataSet
-            myDefaultMonster.UniqueItem = myItem.Guid;
+
+            // Add Uniqueitem
+            var myItem2 = new Item
+            {
+                Attribute = AttributeEnum.Attack,
+                Location = ItemLocationEnum.Head,
+                Value = 1
+            };
+
+            ItemsViewModel.Instance.AddAsync(myItem1).GetAwaiter().GetResult();  // Register Item to DataSet
+            myDefaultMonster.UniqueItem = myItem1.Guid;
 
             var myTurnEngine = new TurnEngine();
             myTurnEngine.MonsterList.Add(myDefaultMonster);
 
             // Get Score, and remember item.
-            var BeforeItemDropList = myTurnEngine.BattleScore.ItemsDroppedList;
+            var BeforeItemDropList = new List<Item>();
 
             GameGlobals.ForceToHitValue = 20; // Force a hit
 
             // Should Kill because level 20 hit on level 1 monster for Critical is more damage than health...
-            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var AttackScore = Attacker.Level + Attacker.GetAttack() + 100;
             var DefenseScore = myDefaultMonster.GetDefense() + myDefaultMonster.Level;
 
             var Status = myTurnEngine.TurnAsAttack(Attacker, AttackScore, myDefaultMonster, DefenseScore);
 
+            
 
             // Item should drop...
 
             // Reset
             GameGlobals.ToggleRandomState();
+            GameGlobals.EnableReincarnation = reincarnation;
 
             // Need to get Score
             // See if Item is now in the score list...
-            var AfterItemDropList = myTurnEngine.BattleScore.ItemsDroppedList;
+            myTurnEngine.ItemPool.Add(myItem2);
+            var AfterItemDropList = myTurnEngine.ItemPool;
             Assert.AreNotEqual(BeforeItemDropList, AfterItemDropList, TestContext.CurrentContext.Test.Name);
         }
 
@@ -393,6 +416,9 @@ namespace UnitTests.GameEngine
 
             // Turn off random numbers
             GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
+
+            bool reincarnation = GameGlobals.EnableReincarnation;
+            GameGlobals.EnableReincarnation = false;
 
             var Attacker = DefaultModels.MonsterDefault();
             Attacker.Name = "Rat";
@@ -436,6 +462,7 @@ namespace UnitTests.GameEngine
             // See if Item is now in the score list...
             var AfterItemDropList = myTurnEngine.BattleScore.ItemsDroppedList;
             Assert.AreNotEqual(BeforeItemDropList, AfterItemDropList, TestContext.CurrentContext.Test.Name);
+            GameGlobals.EnableReincarnation = reincarnation;
         }
 
         [Test]
@@ -743,6 +770,9 @@ namespace UnitTests.GameEngine
             // Turn off random numbers
             GameGlobals.SetForcedRandomNumbersValueAndToHit(1, 20);
 
+            bool reincarnation = GameGlobals.EnableReincarnation;
+            GameGlobals.EnableReincarnation = false;
+
             var Attacker = DefaultModels.CharacterDefault();
             Attacker.Name = "Fighter";
             Attacker.ScaleLevel(20);
@@ -750,6 +780,7 @@ namespace UnitTests.GameEngine
             var myDefaultMonster = new Monster(DefaultModels.MonsterDefault());
             myDefaultMonster.Name = "Rat";
             myDefaultMonster.ScaleLevel(1);
+            myDefaultMonster.Attribute.CurrentHealth = 1;
 
             // Add Uniqueitem
             var myItem = new Item
@@ -771,16 +802,15 @@ namespace UnitTests.GameEngine
 
             var BeforeMonsterList = myTurnEngine.MonsterList.Count();
 
-            // Instead of calling TurnAsAttack, call TakeTurn...
-            var Status = myTurnEngine.TakeTurn(Attacker);
+            // Call TurnAsAttack..
+            var Status = myTurnEngine.TurnAsAttack(Attacker, 20, myDefaultMonster, 3);
 
             var AfterMonsterList = myTurnEngine.MonsterList.Count();
-
-            // Item should drop...
             // Reset
             GameGlobals.ToggleRandomState();
+            GameGlobals.EnableReincarnation = reincarnation;
 
-            Assert.AreEqual(BeforeMonsterList - 1, AfterMonsterList, TestContext.CurrentContext.Test.Name);
+            Assert.AreNotEqual(BeforeMonsterList, AfterMonsterList, TestContext.CurrentContext.Test.Name);
         }
         #endregion TakeTurn
 

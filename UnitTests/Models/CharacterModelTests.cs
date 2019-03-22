@@ -561,9 +561,10 @@ namespace UnitTests.Models
         public void Model_Character_CauseDeath_Should_Pass()
         {
             var myData = DefaultModels.CharacterDefault();
-
+            bool reincarnation = GameGlobals.EnableReincarnation;
+            GameGlobals.EnableReincarnation = false;
             myData.CauseDeath();
-
+            GameGlobals.EnableReincarnation = reincarnation;
             var Actual = myData.Alive;
 
             // Just current health, because value was -1
@@ -635,8 +636,10 @@ namespace UnitTests.Models
             // Same damage as health, should kill...
             var Value = CurrentHealth;
 
+            bool reincarnation = GameGlobals.EnableReincarnation;
+            GameGlobals.EnableReincarnation = false;
             myData.TakeDamage(Value);
-
+            GameGlobals.EnableReincarnation = reincarnation;
             var Actual = myData.Attribute.CurrentHealth;
             var Expected = 0;
 
