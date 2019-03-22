@@ -330,7 +330,7 @@ namespace Crawl.GameEngine
 
                 // Drop Items to item Pool
                 var myItemList = Target.DropAllItems();
-                ItemPool.AddRange(myItemList);
+                
 
                 // If Random drops are enabled, then add some....
                 myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
@@ -342,6 +342,8 @@ namespace Crawl.GameEngine
                     TurnMessageSpecial += " Item " + item.Name + " dropped";
                     BattleMessages.TurnMessageSpecial = TurnMessageSpecial;
                 }
+
+                ItemPool.AddRange(myItemList);
             }
 
             TurnMessage = Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
