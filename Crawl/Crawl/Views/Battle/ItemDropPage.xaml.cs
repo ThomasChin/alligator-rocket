@@ -21,7 +21,8 @@ namespace Crawl.Views.Battle
     {
         // Initialize ItemsViewModel
         private ItemPoolViewModel _viewModel;
-   
+    
+        // Character for item.
         private Character Character;
 
         // Constructor
@@ -37,8 +38,6 @@ namespace Crawl.Views.Battle
             getItems();
             _viewModel.SetNeedsRefresh(true);
         }
-
-    
 
         // Close this page
         async void OnCloseClicked(object sender, EventArgs args)
@@ -68,7 +67,6 @@ namespace Crawl.Views.Battle
 
             //need to refresh the view model 
             _viewModel.SetNeedsRefresh(true);
-
         }
 
         // Load Data for Items 
@@ -81,6 +79,5 @@ namespace Crawl.Views.Battle
                 _viewModel.AddAsync(ItemList[i]);
             }
         }
-
     }
 }

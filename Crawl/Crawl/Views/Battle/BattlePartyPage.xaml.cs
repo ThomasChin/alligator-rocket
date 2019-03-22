@@ -20,6 +20,7 @@ namespace Crawl.Views.Battle
         // Hold the Monsters
         BattleMonsterListPage _myModalBattleMonsterListPage;
 
+        // Constructor
         public BattlePartyPage()
         {
             InitializeComponent();
@@ -84,6 +85,5 @@ namespace Crawl.Views.Battle
                 App.Current.ModalPopping -= HandleModalPopping;
             }
         }
-
     }
 }

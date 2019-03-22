@@ -16,12 +16,13 @@ namespace Crawl.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CharacterItemsPage : ContentPage
 	{
+        // ViewModels used for party
         private ItemsViewModel _viewModel;
         public CharacterDetailViewModel _characterViewModel;
 
-        public List<Item> ItemPool { get; set; }
+        public List<Item> ItemPool { get; set; } // Item Pool
  
-
+        // Constructor
         public CharacterItemsPage (CharacterDetailViewModel viewModel)
 		{
             _viewModel = new ItemsViewModel();
@@ -32,7 +33,6 @@ namespace Crawl.Views.Battle
             ItemPool = BattleViewModel.Instance.BattleEngine.ItemPool;
             LoadItems();
         }
-
 
         // Load Data for Items 
         private void LoadItems()
@@ -59,5 +59,3 @@ namespace Crawl.Views.Battle
         }
     }
 }
-
-
