@@ -16,6 +16,9 @@ namespace Crawl.Views.Battle
     {
         private CharactersViewModel _viewModel;
 
+        // Hold the Monsters
+        BattleMonsterListPage _myModalBattleMonsterListPage;
+
         public BattlePartyPage()
         {
             InitializeComponent();
@@ -51,11 +54,33 @@ namespace Crawl.Views.Battle
             PartyListView.SelectedItem = null;
         }
 
-        // Close this page
+        // Close this page, send a message to the Battle Main page to display the next screen
         async void OnCloseClicked(object sender, EventArgs args)
         {
             BattleViewModel.Instance.BattleEngine.EmptyItemPool();
             await Navigation.PopModalAsync();
+            MessagingCenter.Send<BattlePartyPage>(this, "PartyPageClosed");
         }
+
+        // Show Monsters
+        private async void ShowModalPageMonsterList()
+        {
+            // When you want to show the modal page, just call this method
+            // add the event handler for to listen for the modal popping event:
+            Crawl.App.Current.ModalPopping += HandleModalPopping;
+            _myModalBattleMonsterListPage = new BattleMonsterListPage();
+            await Navigation.PushModalAsync(_myModalBattleMonsterListPage);
+        }
+
+        // Helper to handle Modal navigation.
+        private void HandleModalPopping(object sender, ModalPoppingEventArgs e)
+        {
+            if (e.Modal == _myModalBattleMonsterListPage)
+            {
+                _myModalBattleMonsterListPage = null;
+                App.Current.ModalPopping -= HandleModalPopping;
+            }
+        }
+
     }
 }

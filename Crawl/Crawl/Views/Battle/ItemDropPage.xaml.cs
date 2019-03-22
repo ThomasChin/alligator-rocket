@@ -17,8 +17,8 @@ namespace Crawl.Views.Battle
     public partial class ItemDropPage : ContentPage
     {
         // Initialize ItemsViewModel
-        private ItemsViewModel _viewModel;
-
+        private ItemPoolViewModel _viewModel;
+   
         private Character Character;
 
         // Constructor
@@ -26,39 +26,16 @@ namespace Crawl.Views.Battle
         {
             InitializeComponent();
             //Not the instance view model, new view model
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new ItemPoolViewModel();
             Character = TargetCharacter;
-            
+            _viewModel.CharacterName = "name";
+ 
 
             getItems();
+            _viewModel.SetNeedsRefresh(true);
         }
 
-        // Load Data for Items 
-        protected override void OnAppearing()
-        {
-            return;
-            base.OnAppearing();
-
-            BindingContext = null;
-
-            if (ToolbarItems.Count > 0)
-            {
-                ToolbarItems.RemoveAt(0);
-            }
-
-            InitializeComponent();
-
-            if (_viewModel.Dataset.Count == 0)
-            {
-                _viewModel.LoadDataCommand.Execute(null);
-            }
-            else if (_viewModel.NeedsRefresh())
-            {
-                _viewModel.LoadDataCommand.Execute(null);
-            }
-
-            BindingContext = _viewModel;
-        }
+    
 
         // Close this page
         async void OnCloseClicked(object sender, EventArgs args)
@@ -66,13 +43,16 @@ namespace Crawl.Views.Battle
             await Navigation.PopModalAsync();
         }
 
-        // Open detail page when item is selected from Index
+        //Swap the items!
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            
             var data = args.SelectedItem as Item;
             if (data == null)
                 return;
+
+            
+            BattleViewModel.Instance.BattleEngine.ItemPool.Remove(_viewModel.GetItem(data.Id));
+            _viewModel.Dataset.Remove(_viewModel.GetItem(data.Id));
 
             Item oldItem = Character.AddItem(data.Location, data.Id);
 
@@ -82,11 +62,7 @@ namespace Crawl.Views.Battle
                 _viewModel.Dataset.Add(oldItem);
             }
 
-            BattleViewModel.Instance.BattleEngine.ItemPool.Remove(data);
-            _viewModel.Dataset.Remove(data);
-
-
-
+            ItemReorderPage.Title = "Titllee";
 
             _viewModel.SetNeedsRefresh(true);
             

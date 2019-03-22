@@ -68,6 +68,11 @@ namespace Crawl.Views.Battle
             ShowModalPageMonsterList();
 
             AllCharactersToScreen();
+
+            MessagingCenter.Subscribe<BattlePartyPage>(this, "PartyPageClosed", (PartyPage) => {
+                ShowModalPageMonsterList();
+            });
+
         }
 
         /// <summary>
@@ -94,14 +99,12 @@ namespace Crawl.Views.Battle
             if (CurrentRoundState == RoundEnum.NewRound)
             {
                 //ItemDropPage
-                //Bug: Pops up before the new monster page
+                //Send the user to the party page to reorganize their items
                 ShowModalPageBattleParty();
 
                 _viewModel.NewRound();
                 MessagingCenter.Send(this, "NewRound");
                 Debug.WriteLine("New Round :" + _viewModel.BattleEngine.BattleScore.RoundCount);
-
-                ShowModalPageMonsterList();
             }
 
             // Check for Game Over
@@ -192,7 +195,6 @@ namespace Crawl.Views.Battle
         /// <param name="message"></param>
         public void GameMessage()
         {
-
             var message = _viewModel.BattleEngine.BattleMessages.TurnMessage;
             var levelMessage = _viewModel.BattleEngine.BattleMessages.LevelUpMessage;
             Debug.WriteLine("Message: " + message);
@@ -227,26 +229,19 @@ namespace Crawl.Views.Battle
             if (e.Modal == _myModalBattleMonsterListPage)
             {
                 _myModalBattleMonsterListPage = null;
-
-                // remember to remove the event handler:
                 App.Current.ModalPopping -= HandleModalPopping;
             }
 
             if (e.Modal == _myModalCharacterSelectPage)
             {
                 _myModalCharacterSelectPage = null;
-
-                // remember to remove the event handler:
                 App.Current.ModalPopping -= HandleModalPopping;
             }
-
 
             if (e.Modal == _myModalBattlePartyPage)
             {
                 _myModalBattlePartyPage = null;
-
-                // remember to remove the event handler:
-                App.Current.ModalPopping -= HandleModalPopping;
+                App.Current.ModalPopping -= HandleModalPopping;    
             }
         }
 
