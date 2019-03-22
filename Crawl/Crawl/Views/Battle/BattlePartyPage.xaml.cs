@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using Crawl.Models;
 using Crawl.ViewModels;
 
+//Page to show all the characters in the party
 namespace Crawl.Views.Battle
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -26,6 +27,7 @@ namespace Crawl.Views.Battle
             GetCharacters();
         }
 
+        //Load the characters from the battleViewModel, (only the living ones)
         private void GetCharacters()
         {
             List<Character> CharacterList = BattleViewModel.Instance.SelectedCharacters.ToList<Character>();
@@ -45,9 +47,9 @@ namespace Crawl.Views.Battle
             if (data == null)
                 return;
 
-            // Leads to Character Detail Page
             var ItemPage = new ItemDropPage(data);
-            //await Navigation.PushAsync(new ItemDropPage());
+           
+            //Open a new item drop page to allow the character to change items
             await Navigation.PushModalAsync(ItemPage);
 
             // Manually deselect item.
@@ -59,6 +61,7 @@ namespace Crawl.Views.Battle
         {
             BattleViewModel.Instance.BattleEngine.EmptyItemPool();
             await Navigation.PopModalAsync();
+            //Send a message so that the Main battle page knows to open a new monster page
             MessagingCenter.Send<BattlePartyPage>(this, "PartyPageClosed");
         }
 

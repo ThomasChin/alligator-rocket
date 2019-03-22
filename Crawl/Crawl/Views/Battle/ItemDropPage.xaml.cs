@@ -11,6 +11,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Crawl.GameEngine;
 
+//A page to display all of the items in the item pool.
+//IF the user clicks on an item, it will be swapped with one of their items, 
+//which will be put back into the pool. 
 namespace Crawl.Views.Battle
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -30,7 +33,7 @@ namespace Crawl.Views.Battle
             Character = TargetCharacter;
             _viewModel.CharacterName = "name";
  
-
+            //Load the items int othe view
             getItems();
             _viewModel.SetNeedsRefresh(true);
         }
@@ -43,7 +46,7 @@ namespace Crawl.Views.Battle
             await Navigation.PopModalAsync();
         }
 
-        //Swap the items!
+        //Swap the selected item with the character's item
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Item;
@@ -56,27 +59,27 @@ namespace Crawl.Views.Battle
 
             Item oldItem = Character.AddItem(data.Location, data.Id);
 
+            //if theres an old item, swap if into the item pool.
             if (oldItem != null)
             {
                 BattleViewModel.Instance.BattleEngine.ItemPool.Add(oldItem);
                 _viewModel.Dataset.Add(oldItem);
             }
 
-            ItemReorderPage.Title = "Titllee";
-
+            //need to refresh the view model 
             _viewModel.SetNeedsRefresh(true);
-            
-            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(data)));
-            //BattleViewModel.Instance.BattleEngine.CharacterList().
+
         }
 
         // Load Data for Items 
         private void getItems()
         {
+            //Add all of the items to the list!
             List<Item> ItemList = BattleViewModel.Instance.BattleEngine.ItemPool.ToList<Item>();
             for (int i = 0; i < ItemList.Count; i++)
+            {
                 _viewModel.AddAsync(ItemList[i]);
-          
+            }
         }
 
     }
